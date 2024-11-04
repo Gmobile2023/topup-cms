@@ -1459,7 +1459,7 @@
 		</text>
 		<text name="OTP_TimeOuts">180</text>
 
-		<text name="PrintCard_Header_Brand">NHẤT TRẦN</text>
+		<text name="PrintCard_Header_Brand">Gmobile JSC</text>
 		<text name="PrintCard_PinCode_Type">Data</text>
 		<text name="PrintCard_Agent">Đại lý:</text>
 		<text name="PrintCard_CarType">Loại thẻ:</text>
@@ -1852,7 +1852,7 @@
 		<text name="ErrorMessage_111">Số dư đại lý không đủ. Vui lòng liên hệ với đại lý của bạn</text>
 		<text name="ErrorMessage_113">Bạn chưa thiết lập hình thức bảo mật thanh toán. Vui lòng thiết lập hình thức bảo mật trước khi thanh toán</text>
 
-		<text name="Footer_Company">Công ty cổ phần Thương Mại Dịch Vụ Nhất Trần</text>
+		<text name="Footer_Company">Công ty cổ phần Thương Mại Dịch Vụ Gmobile JSC</text>
 		<text name="Footer_Address">350/2 Nguyễn Trọng Tuyển, P2, Quận Tân Bình, Tp. Hồ Chí Minh, Việt Nam</text>
 		<text name="Footer_PhoneNumber">0921.911.911</text>
 		<text name="Footer_Email">hoto@nhattran.com</text>
@@ -2025,8 +2025,8 @@
 		<text name="Fees_Stop">Dừng chính sách</text>
 		<text name="ExportFileNotSuccess">Xử lý file không thành công. Xin vui lòng thử lại sau</text>
 
-		<text name="Bot_Send_DepositToAgentApi"><![CDATA[Nhất Trần xin thông báo .Tài khoản {0} vừa được nạp thành công số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}.%0AMã giao dịch: {5}]]></text>
-		<text name="Bot_Send_RefundToAgentApi"><![CDATA[Nhất Trần xin thông báo .Tài khoản {0} vừa được hoàn tiền thành công cho giao dịch lỗi, số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}]]></text>
+		<text name="Bot_Send_DepositToAgentApi"><![CDATA[Gmobile JSC xin thông báo .Tài khoản {0} vừa được nạp thành công số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}.%0AMã giao dịch: {5}]]></text>
+		<text name="Bot_Send_RefundToAgentApi"><![CDATA[Gmobile JSC xin thông báo .Tài khoản {0} vừa được hoàn tiền thành công cho giao dịch lỗi, số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}]]></text>
 		<text name="Enum_SaleType_0">Bình thường</text>
 		<text name="Enum_SaleType_1">Nạp chậm</text>
 		<text name="Enum_SaleType_99">Chưa xác định</text>
@@ -2053,7 +2053,7 @@
 
 		<text name="Email_PasswordZipFile_Title"><![CDATA[Mã bảo mật danh sách tải xuống]]></text>
 		<text name="Email_PasswordZipFile_Subject"><![CDATA[Mã bảo mật danh sách tải xuống {filename}]]></text>
-		<text name="Email_PasswordZipFile_Body"><![CDATA[<b>Cảm ơn Quý khách đã sử dụng dịch vụ của Nhất Trần.</b><br/>Nhất Trần xin thông báo mã bảo mật danh sách tải xuống của quý khách như sau: <br/> - Tên danh sách tải xuống: {filename}<br/> - Mật khẩu: <b>{password}</b> <br/>Trân trọng cảm ơn.<br/> ]]></text>
+		<text name="Email_PasswordZipFile_Body"><![CDATA[<b>Cảm ơn Quý khách đã sử dụng dịch vụ của Gmobile JSC.</b><br/>Gmobile JSC xin thông báo mã bảo mật danh sách tải xuống của quý khách như sau: <br/> - Tên danh sách tải xuống: {filename}<br/> - Mật khẩu: <b>{password}</b> <br/>Trân trọng cảm ơn.<br/> ]]></text>
 
 		<text name="AgentGeneral">Đại lý tổng</text>
 		<text name="CreateNewAgentGeneral">Thêm mới đại lý tổng</text>
@@ -2072,8 +2072,8 @@
 		<text name="LockUnLock">Khóa/Mở khóa</text>
 		<text name="OffsetTopupManagements">Quản lý nạp bù</text>
 		<text name="DeclaredSlowTopup">Khai báo nạp chậm</text>
-		<text name="ProviderMaxWaitingTimeout">Timeout mà Nhất Trần sẽ chờ tối đa</text>
-		<text name="ProviderSetTransactionTimeout">Timeout Nhất Trần truyền sang NCC</text>
+		<text name="ProviderMaxWaitingTimeout">Timeout mà Gmobile JSC sẽ chờ tối đa</text>
+		<text name="ProviderSetTransactionTimeout">Timeout Gmobile JSC truyền sang NCC</text>
 		<text name="IsEnableResponseWhenJustReceived">Kích hoạt trả trạng thái giao dịch trước</text>
 		<text name="StatusResponseWhenJustReceived">Trạng thái trả trước cho đối tác</text>
 		<text name="WaitingTimeResponseWhenJustReceived">Thời gian trả kết quả</text>

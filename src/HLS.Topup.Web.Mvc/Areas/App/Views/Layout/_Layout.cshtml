@@ -29,7 +29,7 @@
 <!DOCTYPE html>
 <html lang="en" dir=@(CultureHelper.IsRtl ? "rtl" : "")>
 <head prefix="og: http://ogp.me/ns#">
-    <title>Topup</title>
+    <title>Gmobile JSC</title>
     <meta charset="utf-8"/>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,12 +41,8 @@
     <meta property="og:image" content="@headerViewModel.GetLogoUrl(ApplicationPath, theme.BaseSettings.Menu.AsideSkin)"/>
     <meta property="og:description" content="MobileGo"/>
     <meta property="og:url" content="@($" {Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")">
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/themes/topup/nhattan-favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/themes/topup/nhattan-favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/themes/topup/nhattan-favicon/favicon-16x16.png">
-    @* <link rel="manifest" href="/themes/topup/nhattan-favicon/site.webmanifest"> *@
-    @* <link rel="shortcut icon" href="~/favicon.ico"/> *@
+    
+    <link rel="shortcut icon" href="~/favicon.ico"/>
 
     <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/vendors.bundle.css" asp-append-version="true"/>
     <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/app-layout-libs.css" asp-append-version="true"/>

@@ -1389,7 +1389,7 @@ namespace HLS.Topup.Reports.Exporting
                     rowsIndex = rowsIndex + input.TotalRowsBalance + 1;
                     AddObjectsRowItemColumn(sheet, rowsIndex, 4, "Ngày.......tháng.......năm.........");
                     rowsIndex = rowsIndex + 1;
-                    AddObjectsRowItemColumn(sheet, rowsIndex, 1, "CÔNG TY TM DV NHẤT TRẦN");
+                    AddObjectsRowItemColumn(sheet, rowsIndex, 1, "GTEL MOBILE JSC");
                     AddObjectsRowItemColumn(sheet, rowsIndex, 4, input.FullName, false);
 
                     #endregion

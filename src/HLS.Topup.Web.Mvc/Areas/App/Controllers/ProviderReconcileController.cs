@@ -326,7 +326,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 return new ResponseMessages
                 {
                     ResponseCode = "00",
-                    ResponseMessage = "Quý khách chưa chọn file Nhất Trần"
+                    ResponseMessage = "Quý khách chưa chọn file Gmobile JSC"
                 };
             }
             else
@@ -337,7 +337,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                     return new ResponseMessages
                     {
                         ResponseCode = "00",
-                        ResponseMessage = "Định dạng đuôi file của Nhất Trần không hợp lệ",
+                        ResponseMessage = "Định dạng đuôi file của Gmobile JSC không hợp lệ",
                     };
                 }
 
@@ -655,7 +655,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
             var li = new List<CompareFileDto>();
             li.Add(new CompareFileDto()
             {
-                CompareType = "BF Nhất Trần",
+                CompareType = "BF Gmobile JSC",
                 Quantity = request.SysQuantity,
                 Amount = request.SysAmount,
                 QuantityRefund = request.RefundAutoQuantity,

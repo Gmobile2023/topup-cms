@@ -2421,9 +2421,9 @@
         <text name="Fees_Stop">Stop fee</text>
         <text name="ExportFileNotSuccess">Xử lý file không thành công. Xin vui lòng thử lại sau</text>
         <text name="Bot_Send_DepositToAgentApi">
-            <![CDATA[Nhất Trần xin thông báo .Tài khoản {0} vừa được nạp thành công số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}.%0AMã giao dịch: {5}]]></text>
+            <![CDATA[Gmobile JSC xin thông báo .Tài khoản {0} vừa được nạp thành công số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}.%0AMã giao dịch: {5}]]></text>
         <text name="Bot_Send_RefundToAgentApi">
-            <![CDATA[Nhất Trần xin thông báo .Tài khoản {0} vừa được hoàn tiền thành công cho giao dịch lỗi, số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}]]></text>
+            <![CDATA[Gmobile JSC xin thông báo .Tài khoản {0} vừa được hoàn tiền thành công cho giao dịch lỗi, số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}]]></text>
 
         <text name="Enum_SaleType_0">Bình thường</text>
         <text name="Enum_SaleType_1">Nạp chậm</text>

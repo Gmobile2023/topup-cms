@@ -1,0 +1,111 @@
+@using HLS.Topup.Common;
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Providers
+@model ReponseCompareViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Kết quả đối Nhà cung cấp"))
+
+<div class="modal-body">
+    <div id="ReponseProviderionsTab">
+        <form name="ReponseProviderInformationsForm" role="form" novalidate class="form-validation">
+            <div class="card-body">
+                <div class="card card-custom gutter-b">
+                    <div id="AdvacedFiltersArea" class="row mb-4">
+                        <div class="col-md-12">
+                            <div class="kt-separator kt-separator--border-dashed"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="ProviderId">@L("Provider")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input" type="text" id="txtProvider" value="@Model.Provider" disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="dateTran">Ngày giao dịch</label>
+                                <div class="input-group">
+                                    <input class="form-control m-input" type="text" id="dateTran" value='@Model.TransDate.ToString("dd/MM/yyyy")' disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="FromFilterId">Ngày đối soát</label>
+                                <div class="input-group">
+                                    <input class="form-control m-input" type="text" id="dateCompare" value='@Model.CompareDate.ToString("dd/MM/yyyy")' disabled="disabled">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row align-items-center">
+                        <table id="lblViewTotal" class="display table table-striped table-bordered table-hover dt-responsive nowrap cleafix">
+                            <thead>
+                                <tr>
+                                    <th>Loại kết quả</th>
+                                    <th>SL GD</th>
+                                    <th>Số tiền BF Nhất Trần</th>
+                                    <th>Số tiền BF NCC</th>
+                                    <th>Số tiền lệch</th>
+                                </tr>
+                            </thead>
+
+                            @foreach (var item in Model.Items)
+                            {
+                                <tr>
+                                    <td>@item.CompareType</td>
+                                    <td>@item.Quantity.ToString("N0")</td>
+                                    <td>@item.AmountSys.ToString("N0")</td>
+                                    <td>@item.AmountProvider.ToString("N0")</td>
+                                    <td>@item.Deviation.ToString("N0")</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <select class="form-control" name="droTypeCompare" id="droTypeCompare">
+                                    <option value="0">@L("All")</option>
+                                    <option value="1">Khớp</option>
+                                    <option value="2">Lệch</option>
+                                    <option value="3">NCC có, Nhất Trần không có</option>
+                                    <option value="4">Nhất Trần có, NCC không có</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <button id="ExportDetailToExcelButton" class="btn btn-outline-success">
+                                    <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="hdnProvider" value="@Model.Provider" />
+                    <input type="hidden" id="hdnTrandate" value="@Model.TransDateSearch" />
+                    <input type="hidden" id="hdnKeyCode" value="@Model.KeyCode" />
+                    <div class="row align-items-center">
+                        <table id="tblDetail" class="display table table-striped table-bordered table-hover dt-responsive nowrap cleafix">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Thời gian GD</th>
+                                    <th>Đại lý</th>
+                                    <th>Mã giao dịch</th>
+                                    <th>Mã NCC</th>
+                                    <th>Mệnh giá</th>
+                                    <th>Số thụ hưởng</th>
+                                    <th>Loại sản phẩm</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

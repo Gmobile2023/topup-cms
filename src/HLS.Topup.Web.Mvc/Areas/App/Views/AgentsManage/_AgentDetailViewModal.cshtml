@@ -1,0 +1,167 @@
+@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@model HLS.Topup.AgentManagerment.AgentDetailView
+<div class="modal-body">
+    <div id="AgentInformationsTab">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Xem chi tiết</h4>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Mã đại lý</b>
+                <p>@Model.AccountCode</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Số điện thoại</b>
+                <p>@Model.PhoneNumber</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Họ và tên</b>
+                <p>@Model.FullName</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Loại đại lý</b>
+                <p>@L("Enum_AgentType_" + (int) Model.AgentType)</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Trưởng nhóm kinh doanh</b>
+                <p>@Model.SaleLeadName</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>NV quản lý</b>
+                <p>@Model.ManagerName</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Ngày tạo</b>
+                <p>@Model.CreationTime</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Người tạo</b>
+                <p>@Model.CreatorName</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Trạng thái gán NVKD</b>
+                <p>@(Model.IsMapSale == true ? "Đã gán" : "Chưa gán")</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Thời gian gán</b>
+                <p>@Model.AssignTime</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Trạng thái tài khoản</b>
+                <p>@(Model.Status == true ? "Hoạt động" : "Bị khoá")</p>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Ngày xác thực</b>
+                <p>@Model.VerifyTime</p>
+            </div>
+
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Địa chỉ</b>
+                <p>@Model.AddressView</p>
+            </div>
+
+            <div class="col-md-12">
+                <h5>Thông tin đại lý</h5>
+            </div>
+
+            @if (Model.AgentType == CommonConst.AgentType.AgentGeneral)
+            {
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Số hợp đồng</b>
+                    <p>@Model.ContractNumber</p>
+                </div>
+                <div class="col-sm-4 col-xs-12 mb-3">
+                    <b>Ngày ký hợp đồng</b>
+                    <p>@Model.SigDate?.ToShortDateString()</p>
+                </div>
+            }
+
+            @if (Model.AgentType == CommonConst.AgentType.WholesaleAgent)
+            {
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Số hợp đồng</b>
+                    <p>@(Model.ContractNumber ?? "Chưa khai báo")</p>
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Ngày ký hợp đồng</b>
+                    <p>@(Model.SigDate?.ToShortDateString() ?? "Chưa khai báo")</p>
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Nhận Pass file Zip qua</b>
+                    @if (Model.MethodReceivePassFile != null)
+                    {
+                        <p>@L("Enum_MethodReceivePassFile_" + (int) Model.MethodReceivePassFile)</p>
+                    }
+                    else
+                    {
+                        <p>Chưa khai báo</p>
+                    }
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Email/Số điện thoại nhận pass</b>
+                    <p>@(Model.ValueReceivePassFile ?? "Chưa khai báo")</p>
+                </div>
+            }
+
+            @if (Model.AgentType == CommonConst.AgentType.SubAgent)
+            {
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Tên cửa hàng</b>
+                    <p>@(Model.AgentName ?? "Chưa khai báo")</p>
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Loại giấy tờ</b>
+                    @if (Model.IdIdentityType > 0)
+                    {
+                        <p>@L("" + @Model.IdIdentityType + "")</p>
+                    }
+                    else
+                    {
+                        <p>Chưa khai báo</p>
+                    }
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Số giấy tờ</b>
+                    <p>@(Model.Exhibit ?? "Chưa khai báo")</p>
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Ngày hết hạn</b>
+                    <p>@(Model.IdentityIdExpireDate != null ? Model.IdentityIdExpireDate.Value.ToString("dd/MM/yyyy") : "Chưa khai báo")</p>
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Ảnh mặt trước</b>
+                    @if (Model.IdIdentityFront != null)
+                    {
+                        <p>
+                            <img src="@Model.IdIdentityFront" alt="" style="max-width: 100%;">
+                        </p>
+                    }
+                    else
+                    {
+                        <p>Chưa khai báo</p>
+                    }
+                </div>
+                <div class="col-sm-6 col-xs-12 mb-3">
+                    <b>Ảnh mặt sau</b>
+                    @if (Model.IdIdentityFront != null)
+                    {
+                        <p>
+                            <img src="@Model.IdIdentityBack" alt="" style="max-width: 100%;">
+                        </p>
+                    }
+                    else
+                    {
+                        <p>Chưa khai báo</p>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-light-primary font-weight-bold close-button" data-dismiss="modal">@L("Cancel")</button>
+</div>

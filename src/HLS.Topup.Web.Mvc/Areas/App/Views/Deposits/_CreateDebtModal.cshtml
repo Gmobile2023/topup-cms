@@ -1,0 +1,111 @@
+﻿@using HLS.Topup.Common;
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Deposits
+@model CreateOrEditDepositModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? "Sửa nạp tiền Nhân viên kinh doanh" : "Tạo nạp tiền Nhân viên kinh doanh"))
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/Deposits/_CreateDebtModal.js" asp-append-version="true"></script>
+}
+<div class="modal-body">
+    <div id="DepositInformationsTab">
+        <form name="DepositInformationsForm" role="form" novalidate class="form-validation">
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.Deposit.Id" />
+            }
+            <input type="hidden" name="type" id="type" value="4" />
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="UserName">Chọn nhân viên kinh doanh<span class="lightred">(*)</span></label>
+                    <div class="input-group">
+                        <div class="input-group">
+                            @if (Model.IsEditMode)
+                            {
+                                <select id="selectSale_UserId" name="selectSale_UserId" class="form-control select2" required style="width:800px" disabled>
+                                    @if (Model.IsEditMode)
+                                    {
+                                        <option value="@Model.Deposit.UserSaleId">@Model.UserNameSale</option>
+                                    }
+                                </select>
+                            }
+                            else
+                            {
+                                <select id="selectSale_UserId" name="selectSale_UserId" class="form-control select2" required style="width:800px" di>
+                                </select>
+                            }
+
+                            <input type="hidden" name="type" id="userId" value="@Model.Deposit.UserId" />
+                        </div>
+                    </div>
+                    @if (Model.IsEditMode)
+                    {
+                        <input class="form-control" id="Deposit_UserId" value="@Model.Deposit.UserId" type="text" name="userId" required hidden />
+                    }
+                    else
+                    {
+                        <input class="form-control" id="Deposit_UserId" value="" type="text" name="userId" required hidden />
+                    }
+
+                    @{
+                        var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.DepositStatus));
+                        foreach (var selectOption in selectListStatus)
+                        {
+                            selectOption.Text = L("Enum_DepositStatus_" + selectOption.Value);
+                        }
+                    }
+
+                </div>
+                <div class="col-md-6">
+                    <label for="UserNameSaleLimit">Hạn mức công nợ còn lại</label>
+                    <div class="input-group">
+                        <input class="form-control" id="UserNameSaleLimit" name="UserNameSaleLimit" value="@Model.SaleLimit" type="text" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="UserNameAgent">Chọn tài khoản nạp tiền<span class="lightred">(*)</span></label>
+                        @if (Model.IsEditMode)
+                        {
+                            <select id="UserAgent" name="UserAgent" class="form-control select2" disabled>
+                                @if (Model.IsEditMode)
+                                {
+                                    <option value="@Model.Deposit.UserId">@Model.UserName</option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <select id="UserAgent" name="UserAgent" class="form-control select2">
+                            </select>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Deposit_Amount">@L("Amount") <span class="lightred">(*)</span></label>
+                        <input class="form-control m-input amount-mask" id="Deposit_Amount" value="@Model.Deposit.Amount" type="text" required="required" name="amount" />
+                        <br>
+                        <div class="amount-to-text"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Deposit_Description">@L("Description")</label>
+                        <textarea class="form-control" id="Deposit_Description" type="text" name="description" rows="3">@Model.Deposit.Description</textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

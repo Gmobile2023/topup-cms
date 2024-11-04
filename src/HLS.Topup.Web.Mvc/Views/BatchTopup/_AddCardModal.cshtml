@@ -1,0 +1,60 @@
+﻿@using HLS.Topup.Common;
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Discounts
+@model CreateOrEditDiscountModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Thêm mã thẻ"))
+
+<div class="modal-body">
+    <div id="CardInformationsTab">       
+        <form name="CardInformationsTabFrom" role="form" novalidate class="form-validation">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="">Loại thẻ</label>
+                        <select class="form-control select2" name="selectService" id="selectService">
+                            <option value="">Chọn loại thẻ</option>
+                            <option value="PIN_CODE">Mua mã thẻ</option>
+                            <option value="PIN_GAME">Mua thẻ game</option>
+                            <option value="PIN_DATA">Mua thẻ Data</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="">Nhà phát hành</label>
+                        <select class="form-control select2" name="selectCategory" id="selectCategory">
+                            <option value="">Chọn nhà phát hành</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="">Mệnh giá</label>
+                        <select class="form-control select2" name="selectProduct" id="selectProduct">
+                            <option value="">Chọn mệnh giá</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="">Số lượng</label>
+                        <input type="number" id="txtQuantity" name="quantity" numbers-only placeholder="Nhập số lượng mua" class="form-control amount-mask" min="1" maxlength="4"  />
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="hdnProductValue" value="0" />
+            <script type="javascript">
+
+            </script>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal" style="outline: none;">
+        @L("Cancel")
+    </button>
+    <button type="button" id="btnAdd" class="button btn-custom btn-blue save-button" style="display: none; width: 7em;">
+        <i class="fa fa-save"></i><span>Thêm</span>
+    </button>
+</div>

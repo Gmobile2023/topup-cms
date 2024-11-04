@@ -1,0 +1,46 @@
+@using HLS.Topup.Common
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.StocksAirtimes
+@model StocksAirtimeViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="StocksAirtimeInformationsTab">
+
+        <div class="row">
+            <div class="col-12 mb-3">
+                <h6>@L("ProviderCode") :</h6>
+                @Model.StocksAirtime.ProviderCode - @Model.StocksAirtime.ProviderName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("TotalAirtime") :</h6>
+                @Model.StocksAirtime.TotalAirtime
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("AirtimeRealtime") :</h6>
+                <span class="q_airtime">@Model.StocksAirtime.TotalAirtime</span> 
+                <button type="button" style="float: right;" 
+                        onclick="queryBalance(event)" 
+                        data-code="@Model.StocksAirtime.ProviderCode"
+                        class="btn btn-primary save-button" ><span>@L("Query")</span></button>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("MinLimitAirtime") :</h6>
+                @Model.StocksAirtime.MinLimitAirtime.ToFormat("")
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("MaxLimitAirtime") :</h6>
+                @Model.StocksAirtime.MaxLimitAirtime.ToFormat("")
+            </div>
+            <div class="col-12 mb-3">
+                <h6>@L("Description") :</h6>
+                @Model.StocksAirtime.Description
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

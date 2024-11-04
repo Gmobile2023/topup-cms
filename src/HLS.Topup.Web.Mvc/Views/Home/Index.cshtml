@@ -1,0 +1,225 @@
+﻿@using HLS.Topup.Authorization
+@{
+    Layout = $"~/Views/Layout/_LayoutHomepage.cshtml";
+}
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Home;
+    ViewBag.ImageTitle = "/themes/topup/images/home.svg";
+    ViewBag.Title = $"Chào mừng {ViewBag.Name} đến với NHẤT TRẦN";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Home/Index.js" asp-append-version="true"></script>
+    <script src="~/lib/calendar/jquery.amlich.js" asp-append-version="true"></script>
+}
+
+<div class="section-body-middle no-border" style="min-height: 915.891px;">
+    @* <div id="dich-vu-khac" class="section-body-middle-introduce text-center"> *@
+    @*     <h1 class="h1-dark text-left">Cá nhân</h1> *@
+    @* </div> *@
+    <div class="section-body-middle-introduce text-center" style="padding:20px"></div>
+    <div class="group-help__section">
+        <ul class="group-help grid4">
+            <li>
+                <a href="/Profile" class="group-help__frame">
+                    <div class="group-help__ic">
+                        <img src="/themes/topup/images/nhattran/Profile-01.svg" alt="">
+                    </div>
+                    <div class="group-help__title">
+                        Thông tin tài khoản
+                    </div>
+                </a>
+            </li>
+            @if (IsGranted(AppPermissions.Pages_RequestDeposit))
+            {
+                <li>
+                    <a href="/Transactions/Deposit" class="group-help__frame">
+                        <div class="group-help__ic">
+                            <img src="/themes/topup/images/ic_dark/ic-transfer.svg" alt="">
+                        </div>
+                        <div class="group-help__title">
+                            Nạp tiền tài khoản
+                        </div>
+                    </a>
+                </li>
+            }
+            @if (IsGranted(AppPermissions.Pages_TransferMoney))
+            {
+                <li>
+                    <a href="/Transactions/TransferMoney" class="group-help__frame">
+                        <div class="group-help__ic">
+                            <img src="/themes/topup/images/ic_dark/ic-47.svg" alt="">
+                        </div>
+                        <div class="group-help__title">
+                            Chuyển tiền đại lý
+                        </div>
+                    </a>
+                </li>
+            }
+            @if (IsGranted(AppPermissions.Pages_TransactionHistory))
+            {
+                <li>
+                    <a href="/Report/Detail" class="group-help__frame">
+                        <div class="group-help__ic">
+                            <img src="/themes/topup/images/nhattran/trans-history.svg" alt="">
+                        </div>
+                        <div class="group-help__title">
+                            Lịch sử giao dịch
+                        </div>
+                    </a>
+                </li>
+            }
+            <div class="clearfix"></div>
+        </ul>
+    </div>
+
+    <div id="nap-tien-dien-thoai" class="section-body-middle-introduce text-center">
+        <h1 class="h1-dark text-center">NẠP TIỀN - THANH TOÁN ĐƠN GIẢN CHỈ VỚI VÀI THAO TÁC</h1>
+    </div>
+    <div class="section-body-middle" data-target="1">
+        <ul class="group-pay-bill grid3">
+            @if (IsGranted(AppPermissions.Pages_CreatePayment))
+            {
+                <li class="pay-bill-category-code">
+                    <a href="/Topup">
+                        <div class="group-pay-bill-icon icon1" style="background-image: url(/themes/topup/images/2icon/2icon-68.svg);"></div>
+                        <div class="group-pay-bill-content">Nạp tiền điện thoại</div>
+                        <span class="checkbox-custom"></span>
+                    </a>
+                </li>
+                <li class="pay-bill-category-code group-service-item" data-category-name="Nạp tiền trả sau" data-category-code="MOBILE_BILL" data-src="/themes/topup/images/2icon/2icon-68.svg">
+                    <a href="/BillPayment#MOBILE_BILL">
+                        <div class="group-pay-bill-icon icon1" style="background-image: url(/themes/topup/images/2icon/2icon-68.svg);"></div>
+                        <div class="group-pay-bill-content">Nạp tiền trả sau</div>
+                        <span class="checkbox-custom"></span>
+                    </a>
+                </li>
+                <li class="pay-bill-category-code">
+                    <a href="/Topup/TopupData">
+                        <div class="group-pay-bill-icon icon1" style="background-image: url(/themes/topup/images/2icon/2icon-data-topup.svg);"></div>
+                        <div class="group-pay-bill-content">Nạp Topup Data</div>
+                        <span class="checkbox-custom"></span>
+                    </a>
+                </li>
+                <li class="pay-bill-category-code">
+                    <a href="/Topup/PinCode#Pin_Code">
+                        <div class="group-pay-bill-icon icon1" style="background-image: url(/themes/topup/images/2icon/2icon-05-card.svg);"></div>
+                        <div class="group-pay-bill-content">Mua thẻ điện thoại</div>
+                        <span class="checkbox-custom"></span>
+                    </a>
+                </li>
+                <li class="pay-bill-category-code">
+                    <a href="/Topup/PinCode#Pin_Game">
+                        <div class="group-pay-bill-icon icon1" style="background-image: url(/themes/topup/images/nhattran/game-card.svg);"></div>
+                        <div class="group-pay-bill-content">Mua thẻ game</div>
+                        <span class="checkbox-custom"></span>
+                    </a>
+                </li>
+                <li class="pay-bill-category-code">
+                    <a href="/Topup/PinCode#Pin_Data">
+                        <div class="group-pay-bill-icon icon1" style="background-image: url(/themes/topup/images/2icon/2icon-05-data.svg);"></div>
+                        <div class="group-pay-bill-content">Mua thẻ Data</div>
+                        <span class="checkbox-custom"></span>
+                    </a>
+                </li>
+                <li class="pay-bill-category-code">
+                    <a href="/BillPayment">
+                        <div class="group-pay-bill-icon icon1" style="background-image: url(/themes/topup/images/2icon/2icon-05.svg);"></div>
+                        <div class="group-pay-bill-content">Thanh toán hóa đơn</div>
+                        <span class="checkbox-custom"></span>
+                    </a>
+                </li>
+                @if (IsGranted(AppPermissions.Pages_CreateBatchLotPayment))
+                {
+                    <li class="pay-bill-category-code">
+                        <a href="/BatchTopup">
+                            <div class="group-pay-bill-icon icon1" style="background-image: url(/themes/topup/images/2icon/2icon-nap-lo.svg);"></div>
+                            <div class="group-pay-bill-content">Nạp lô</div>
+                            <span class="checkbox-custom"></span>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+
+    <div class="section-body-middle-introduce text-center">
+        <div class="app-mobile">
+            <a href="itms-services://?action=download-manifest&url=@ViewBag.Ios">
+                <img src="/themes/topup/images/appstore.png" alt="" class="logo-protect__bg" style="height:30px">
+            </a>
+            <a href="@ViewBag.Android" target="_blank">
+                <img src="/themes/topup/images/googleplay.png" alt="" style="height:30px">
+            </a>
+        </div>
+    </div>
+
+    @*     <div class="group-help__section"> *@
+    @*         <ul class="group-help grid4"> *@
+    @*             <li> *@
+    @*                 <a href="/Topup" class="group-help__frame"> *@
+    @*                     <div class="group-help__ic"> *@
+    @*                         <img src="/themes/topup/images/ic_dark/ic-01.svg" alt=""> *@
+    @*                     </div> *@
+    @*                     <div class="group-help__title"> *@
+    @*                         Nạp tiền điện thoại *@
+    @*                     </div> *@
+    @*                 </a> *@
+    @*             </li> *@
+    @*             <li> *@
+    @*                 <a href="javascript:;" class="group-help__frame"> *@
+    @*                     <div class="group-help__ic"> *@
+    @*                         <img src="/themes/topup/images/ic_dark/ic-05.svg" alt=""> *@
+    @*                     </div> *@
+    @*                     <div class="group-help__title"> *@
+    @*                         Mua mã thẻ trả trước *@
+    @*                     </div> *@
+    @*                 </a> *@
+    @*             </li> *@
+    @*             <li> *@
+    @*                 <a href="javascript:;" class="group-help__frame"> *@
+    @*                     <div class="group-help__ic"> *@
+    @*                         <img src="/themes/topup/images/ic_dark/ic-data-card.svg" alt=""> *@
+    @*                     </div> *@
+    @*                     <div class="group-help__title"> *@
+    @*                         Mua mã thẻ trả trước *@
+    @*                     </div> *@
+    @*                 </a> *@
+    @*             </li> *@
+    @*             <li> *@
+    @*                 <a href="/Topup/PinCode" class="group-help__frame"> *@
+    @*                     <div class="group-help__ic"> *@
+    @*                         <img src="/themes/topup/images/ic_dark/ic-game-card.svg" alt=""> *@
+    @*                     </div> *@
+    @*                     <div class="group-help__title"> *@
+    @*                         Mua mã thẻ Game *@
+    @*                     </div> *@
+    @*                 </a> *@
+    @*             </li> *@
+    @*             <div class="clearfix"></div> *@
+    @*         </ul> *@
+    @*     </div> *@
+    @* *@
+    @*     <div id="thanh-toan-hoa-don" class="section-body-middle-introduce text-center"> *@
+    @*         <h1 class="h1-dark text-left">Thanh toán hoá đơn</h1> *@
+    @*     </div> *@
+    @*     <div class="group-help__section"> *@
+    @*         <ul class="group-help grid4"> *@
+    @*             @foreach (var item in Model.Categorys) *@
+    @*             { *@
+    @*                 <li> *@
+    @*                     <a href="/BillPayment#@item.CategoryCode" class="group-help__frame group-service-item" data-category-name="@item.CategoryName" data-src="@item.Image"> *@
+    @*                         <div class="group-help__ic"> *@
+    @*                             <img src="/themes/topup/images/ic_dark/ic-03.svg" alt="@item.CategoryName"> *@
+    @*                         </div> *@
+    @*                         <div class="group-help__title"> *@
+    @*                             @item.CategoryName *@
+    @*                         </div> *@
+    @*                     </a> *@
+    @*                 </li> *@
+    @*             } *@
+    @*             <div class="clearfix"></div> *@
+    @*         </ul> *@
+    @*     </div> *@
+</div>

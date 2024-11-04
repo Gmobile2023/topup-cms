@@ -1,0 +1,96 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.CardStocks
+@model TransferCardStockModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Điều chuyển thẻ sang kho khác"))
+
+<div class="modal-body">
+    <div id="CardStockInformationsTab">
+        <form name="CardStockInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="srcStockCode">Chọn kho nguồn <span class="lightred">(*)</span></label>
+                        @Html.DropDownList("srcStockCode",
+                            new SelectList(Model.StockCodes, "Id", "DisplayName", (Model.IsEditMode ? Model.SrcStockCode.ToString() : "")),
+                            @L("SelectAStockCode"), new {@class = " form-control", @required = "required"})
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="desStockCode">Chọn kho đích <span class="lightred">(*)</span></label>
+                        @Html.DropDownList("desStockCode",
+                            new SelectList(Model.StockCodes, "Id", "DisplayName", (Model.IsEditMode ? Model.DesStockCode.ToString() : "")),
+                            @L("SelectAStockCode"), new {@class = " form-control", @required = "required"})
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="batchCode">@L("CardBatch")</label>
+                        @Html.DropDownList("batchCode",
+                            new SelectList(Model.BatchList, "Id", "DisplayName", (Model.IsEditMode ? Model.BatchCode.ToString() : "")),
+                            @L("SelectACardBatch"), new {@class = "select2 form-control"})
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="serviceCode">@L("Services") <span class="lightred">(*)</span></label>
+                        @Html.DropDownList("serviceCode",
+                            new SelectList(Model.ServicesCard, "Id", "DisplayName",  (Model.IsEditMode ? Model.ServiceCode.ToString() : "")),
+                            @L("SelectAService"), new {@class = "select2 form-control", @required = "required"})
+                    </div>
+                </div>   
+                
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="vendorCode">@L("Categories") <span class="lightred">(*)</span></label>
+                        @Html.DropDownList("vendorCode",
+                            new SelectList(Model.VendorList, "Id", "DisplayName", (Model.IsEditMode ? Model.VendorCode.ToString() : "")),
+                            @L("SelectACategory"), new {@class = "select2 form-control", @required = "required"})
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="cardValue">@L("CardValue")</label>
+                        @Html.DropDownList("cardValue",
+                            new SelectList(Model.CardValues, "Id", "DisplayName", (Model.IsEditMode ? Model.CardValue.ToString() : "")),
+                            @L("SelectACardValue"), new {@class = "form-control select2"})
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="Quantity">Số lượng thẻ cần chuyển</label>
+                        <input class="form-control m-input" id="Quantity" type="number" name="quantity" value=" @Model"/>
+                    </div>
+                </div>
+                
+                <div class="col-sm-12 col-xs-12">
+                    <small>
+                        <p> chuyển <b>X</b> thẻ, giá trị <b>Y</b> trong lô thẻ bất kỳ</p>
+                        <p> chuyển <b>X</b> thẻ, giá trị <b>Y</b> trong lô thẻ <b>Z</b></p>
+                        <p> chuyển tất cả thẻ giá trị <b>Y</b> trong lô thẻ <b>Z</b></p>
+                        <p> chuyển tất cả thẻ trong lô thẻ <b>Z</b></p>
+                    </small>
+                </div>
+
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="Description">Ghi chú</label>
+                        <textarea class="form-control m-input" id="Description" type="text" name="description">@Model.Description</textarea>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,136 @@
+@model HLS.Topup.AgentManagerment.AgentSupperDetailView
+<div class="modal-body">
+    <div id="AgentInformationsTab">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Xem chi tiết</h4>
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Mã đại lý</b>
+                <input class="form-control" disabled value="@Model.AccountCode" type="text" />
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Số điện thoại</b>
+                <input class="form-control" disabled value="@Model.PhoneNumber" type="text" />
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Họ và tên</b>
+                <input class="form-control" disabled value="@Model.FullName" type="text" />
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Hợp đồng số</b>
+                <input class="form-control" disabled value="@Model.Contract" type="text" />
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Ngày ký hợp đồng</b>
+                <input class="form-control" disabled value="@Model.ContractRegister?.ToString("dd/MM/yyyyy")" type="text" />
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Kỳ đối soát</b>
+                <input class="form-control" disabled value="@Model.CrossCheckPeriod" type="text" />
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Email nhận đối soát</b>
+                <input class="form-control" disabled value="@Model.EmailCompare" type="text" />
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Địa chỉ chi tiết</b>
+                <input class="form-control" disabled value="@Model.AddressView" type="text" />
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Trạng thái</b>
+                <input class="form-control" disabled value="@Model.StatusName" type="text" />
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <b>Ngày tạo</b>
+
+                <input class="form-control" disabled value="@(Model.CreationTime?.ToString("dd/MM/yyyy"))" type="text" />
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <b>Giám đốc</b>
+                    <input class="form-control" type="text" disabled value="@Model.ManagerFullName" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" style="margin-top:20px">
+                    <b></b>
+                    <input class="form-control" type="text" disabled value="@Model.ManagerPhone" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" style="margin-top:20px">
+                    <b></b>
+                    <input class="form-control" type="text" disabled value="@Model.ManagerEmail" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <b>Kỹ thuật</b>
+                    <input class="form-control" type="text" disabled value="@Model.TechnicalFullName" />
+                </div>
+            </div>
+            <div class="col-md-4" style="margin-top:20px">
+                <div class="form-group">
+                    <b></b>
+                    <input class="form-control" type="text" disabled value="@Model.TechnicalPhone" />
+                </div>
+            </div>
+            <div class="col-md-4" style="margin-top:20px">
+                <div class="form-group">
+                    <b></b>
+                    <input class="form-control" type="text" disabled value="@Model.TechnicalEmail" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <b>Đối soát</b>
+                    <input class="form-control" type="text" disabled value="@Model.CompareFullName" />
+                </div>
+            </div>
+            <div class="col-md-4" style="margin-top:20px">
+                <div class="form-group">
+                    <b></b>
+                    <input class="form-control" type="text" disabled value="@Model.ComparePhone" />
+                </div>
+            </div>
+
+            <div class="col-md-4" style="margin-top:20px">
+                <div class="form-group">
+                    <b></b>
+                    <input class="form-control" type="text" disabled value="@Model.CompareEmail" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <b>Kế toán</b>
+                <input class="form-control" type="text" disabled value="@Model.AccountancyFullName" />
+            </div>
+            <div class="col-md-4" style="margin-top:20px">
+                <div class="form-group">
+                    <b></b>
+                    <input class="form-control" type="text" disabled value="@Model.AccountancyPhone" />
+                </div>
+            </div>
+            <div class="col-md-4" style="margin-top:20px">
+                <div class="form-group">
+                    <b></b>
+                    
+                    <input class="form-control" type="text" disabled value="@Model.AccountancyEmail" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-light-primary font-weight-bold close-button" data-dismiss="modal">@L("Cancel")</button>
+</div>

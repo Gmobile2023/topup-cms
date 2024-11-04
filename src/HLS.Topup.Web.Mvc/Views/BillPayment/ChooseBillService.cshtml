@@ -1,0 +1,40 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutAccount.cshtml";
+}
+
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.BillPayment;
+    ViewBag.Title = "Thanh toán hoá đơn";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/BillPayment/Index.js" asp-append-version="true"></script>
+}
+
+<div class="topup-naptiendt">
+    <div class="page-title">
+        <div class="add-button mob">
+            Số dư hiện tại: <span class="balance-account">@await Component.InvokeAsync(typeof(BalanceViewComponent)) đ</span>
+        </div>
+    </div>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group" id="choose-service">
+                    <div class="list-provider">
+                        @{ var index = 0; }
+                        @foreach (var item in Model.Products)
+                        {
+                            index++;
+                            <div class="provider-item an" data-provider="@item.ProductName" data-productCode="@item.ProductCode" data-categoryCode="@item.CategoryCode"  data-toggle="tooltip" data-placement="top" title="@item.ProductName" data-original-title="@item.ProductName">
+                                <img src="@item.Image" alt="@item.ProductName">
+                            </div>
+                        }
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.CardStocks
+@model CreateOrEditCardStockModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditCardStock")) : L("CreateNewCardStock")))
+
+<div class="modal-body">
+    <div id="CardStockInformationsTab">
+        <form name="CardStockInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                <input type="hidden" id="ActionType" value="@ViewBag.ActionType" name="actionType"/>
+                @if (!Model.IsEditMode)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="stockCode">
+                                @L("StockCode") <span class="lightred">(*)</span>
+                            </label>
+                            @Html.DropDownList("stockCode", new SelectList(Model.StockCodes, "Id", "DisplayName", Model.CardStock.StockCode),
+                                null, new {@class = "form-control select2", @required = "required"})
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="CardStock_StockCode">
+                                @L("StockCode") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control" disabled id="CardStock_StockCode" value="@Model.CardStock.StockCode" type="text" name="stockCode" required maxlength="@HLS.Topup.StockManagement.CardStockConsts.MaxStockCodeLength" minlength="@HLS.Topup.StockManagement.CardStockConsts.MinStockCodeLength"/>
+                             <input type="hidden" name="keyCode" value="@Model.CardStock.ProductCode" />
+                             <input type="hidden" name="productCode" value="@Model.CardStock.ProductCode" />
+                        </div>
+                    </div>
+                }
+
+                @if (!Model.IsEditMode)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="serviceCode">
+                                @L("Service") <span class="lightred">(*)</span>
+                            </label>
+                            @Html.DropDownList("serviceCode", new SelectList(Model.ServicesCard, "Id", "DisplayName", (Model.IsEditMode ? Model.CardStock.ServiceCode.ToString() : "")),
+                                @L("SelectAService"), new {@class = "select2 form-control"})
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="categoryCode">
+                                @L("Categories") <span class="lightred">(*)</span>
+                            </label>
+                            @Html.DropDownList("categoryCode", new SelectList(Model.CategoryList, "Id", "DisplayName", (Model.IsEditMode ? Model.CardStock.CategoryCode.ToString() : "")),
+                                @L("SelectACategory"), new {@class = "select2 form-control"})
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="cardValue">
+                                @L("CardValue") <span class="lightred">(*)</span>
+                            </label>
+                            @Html.DropDownList("cardValue", new SelectList(Model.CardValues.Select(r => new {Text = r, Value = r}), "Text", "Value", Model.CardStock.CardValue),
+                                null, new {@class = "form-control select2", @required = "required"})
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <h6>@L("Service") :</h6>
+                            <input class="form-control" disabled value="@Model.CardStock.ServiceName"/>
+                            <input type="hidden" name="serviceCode" value="@Model.CardStock.ServiceCode" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6  col-xs-12">
+                        <div class="form-group">
+                            <h6>@L("Categories") :</h6>
+                            <input class="form-control" disabled value="@Model.CardStock.CategoryName"/>
+                            <input type="hidden" name="categoryCode" value="@Model.CardStock.CategoryCode" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6  col-xs-12">
+                        <div class="form-group">
+                            <h6>@L("CardValue") :</h6>
+                            <input class="form-control" disabled value="@Model.CardStock.CardValue.ToFormat()"/>
+                             <input type="hidden" name="cardValue" value="@Model.CardStock.CardValue" />
+                        </div>
+                    </div>
+                }
+ 
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="CardStock_InventoryLimit">
+                            @L("InventoryLimit") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input" maxlength="6" max="9999999" id="CardStock_InventoryLimit" value="@Model.CardStock.InventoryLimit.ToString(CultureInfo.InvariantCulture)" required="required" type="number" name="inventoryLimit"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="CardStock_MinimumInventoryLimit">
+                            @L("MinimumInventoryLimit") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input" maxlength="6" max="9999999" id="CardStock_MinimumInventoryLimit" value="@Model.CardStock.MinimumInventoryLimit.ToString(CultureInfo.InvariantCulture)" type="number" required="required" name="minimumInventoryLimit"/>
+                    </div>
+                </div>
+                @if (Model.IsEditMode)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="CardStock_Inventory">@L("Inventory")</label>
+                            <input disabled="" class="form-control m-input" id="CardStock_Inventory" value="@Model.CardStock.Inventory.ToString(CultureInfo.InvariantCulture)" type="number" name="inventory"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6  col-xs-12">
+                        <div class="form-group">
+                            <h6>@L("Status") :</h6>
+                            <input class="form-control" disabled value="@L("Enum_CardStockStatus_" + (int) Model.CardStock.Status)"/>
+                        </div>
+                    </div>
+                }
+                <div class="col-12 mb-12">
+                    <div class="form-group">
+                        <label for="CardStock_Description">@L("Description")</label>
+                        <textarea class="form-control" id="CardStock_Description" type="text" name="description"
+                        maxlength="@HLS.Topup.StockManagement.CardStockConsts.MaxDescriptionLength" minlength="@HLS.Topup.StockManagement.CardStockConsts.MinDescriptionLength">@Model.CardStock.Description</textarea>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<script >
+@if (Model.IsEditMode)
+{
+    <text>
+    $("form[name=CardStockInformationsTab] #CardStock_ProductCode").prop("disabled", true);
+    $("form[name=CardStockInformationsTab] #CardStock_StockCode").prop("disabled", true);
+    $("form[name=CardStockInformationsTab] #cardValue").prop("disabled", true);
+    </text>
+}
+</script>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

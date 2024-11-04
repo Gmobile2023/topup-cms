@@ -1,0 +1,123 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.PayBatchBills
+@model CreateOrEditPayBatchBillModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Tạo mới"))
+
+<div class="modal-body">
+    <div id="AdvacedAuditFiltersArea">
+        @*<form name="PayBatchBillInformationsForm" role="form" novalidate class="form-validation">*@
+        <input type="hidden" id="idHiddenSearch" value="1" />
+        <div name="PayBatchBillInformationsForm" role="form" novalidate class="form-validation">
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.PayBatchBill.Id" />
+            }
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBatchBill_Name">Tên chương trình(<span style="color:red">*</span>)</label>
+                        <input class="form-control" id="PayBatchBill_Name" value="@Model.PayBatchBill.Name" type="text" name="name" required maxlength="@HLS.Topup.BalanceManager.PayBatchBillConsts.MaxNameLength" minlength="@HLS.Topup.BalanceManager.PayBatchBillConsts.MinNameLength" />
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBatchBill_TotalBlockBill">Block số lượng hóa đơn(<span style="color:red">*</span>)</label>
+                        <input class="form-control m-input" id="PayBatchBill_TotalBlockBill" value="" type="number" name="totalBlockBill" maxlength="5" />
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBatchBill_AmountPayBlock">Số tiền trả cho mỗi block (<span style="color:red">*</span>)</label>
+                        <input class="form-control m-input" id="PayBatchBill_AmountPayBlock" value="" type="number" name="amountPayBlock" maxlength="10" />
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBatchBill_MinBillAmount">Giá trị thanh toán tối thiểu</label>
+                        <input class="form-control m-input" id="PayBatchBill_MinBillAmount" value="" type="number" name="minBillAmount" maxlength="12" />
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBatchBill_MaxAmountPay">Giá trị thưởng tối đa/đại lý</label>
+                        <input class="form-control m-input" id="PayBatchBill_MaxAmountPay" value="" type="number" name="maxAmountPay" maxlength="12" />
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="form-group">
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBatchBill_FromDate">Kỳ thanh toán từ<span style="color:red">*</span>)</label>
+                        <input class="form-control m-input date-picker" id="PayBatchBill_FromDate" type="text" name="fromDate" value="@DateTime.Now.ToShortDateString()" />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBatchBill_ToDate">Tới(<span style="color:red">*</span>)</label>
+                        <input class="form-control m-input date-picker" id="PayBatchBill_ToDate" type="text" name="toDate" value="@DateTime.Now.ToShortDateString()" />
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="selectCategoryItem">Loại sản phẩm(<span style="color:red">*</span>)</label>
+                        <select class="form-control" name="selectCategoryItem" id="selectCategoryItem">
+                            <option value="">Chọn loại sản phẩm</option>
+                            @foreach (var item in Model.Categorys)
+                            {
+                                <option value="@item.Value">@item.DisplayText</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="Product">Nhà cung cấp</label>
+                        <select id="selectProductItem" name="selectProductItem" class="form-control">
+                            <option value="">Chọn nhà cung cấp</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <span class="input-group-btn">
+                <button id="SearchPayBatchBillsButton" class="btn btn-success">Xác nhận</button>
+                <button id="CancelPayBatchBillsButton" class="btn btn-success">Hủy bỏ</button>
+            </span>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="dataTablePayBatch" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <th>Mã đại lý</th>
+                                <th>Số điện thoại</th>
+                                <th>Họ và tên</th>
+                                <th>Số lượng giao dịch</th>
+                                <th>Số tiền thưởng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tbody class="f">
+                            <tr>
+                                <td colspan="4">
+                                    <b>Tổng cộng</b>
+                                </td>
+                                <td style="text-align:right"></td>                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,64 @@
+﻿@* ﻿@{ *@
+@*     Layout = $"~/Views/Layout/_LayoutAccount.cshtml"; *@
+@* } *@
+@* @model HLS.Topup.VttDataUrlCaptcha *@
+@* @{ *@
+@*     ViewBag.CurrentPageName = FrontEndPageNames.AgentManagement; *@
+@*     ViewBag.Title = "Tạo tài khoản MyViettel"; *@
+@* } *@
+@* *@
+@* @section Scripts *@
+@* { *@
+@*     <script src="/view-resources/Views/Profile/RegisterMyViettel.js" asp-append-version="true"></script> *@
+@* } *@
+@* *@
+@* <form id="Form"> *@
+@*      *@
+@*     <div class="page-body"> *@
+@*         <div class="col-md-12"> *@
+@*             <div class="form-group"> *@
+@*                 <label class="title">Nhập số điện thoại đăng ký MyViettel</label> *@
+@*                 <div class="input-group"> *@
+@*                     <input type="tel" maxlength="10" required id="txtPhoneNumber" name="isdn" class="form-control" placeholder="Nhập số điện thoại đăng ký" value=""> *@
+@*                     <span class="input-group-btn"> *@
+@*                         <button id="btnSentOtp" class="btn btn-success btn-search-icon" type="button"> *@
+@*                             <i class="fas fa-share-square" aria-label="@L("Search")"></i> *@
+@*                         </button> *@
+@*                     </span> *@
+@*                 </div> *@
+@*             </div> *@
+@*         </div> *@
+@*         <div id="box-info" class="hidden"> *@
+@*             <div class="col-md-12"> *@
+@*                 <div class="form-group"> *@
+@*                     <label class="title">Nhập OTP gửi về số điện thoại đăng ký</label> *@
+@*                     <input type="text" class="form-control" name="otp" id="txtOtp"/> *@
+@*                 </div> *@
+@*             </div> *@
+@*             $1$ <div class="col-md-6"> #1# *@
+@*             $1$     <div class="form-group"> #1# *@
+@*             $1$         <label class="title">Nhập mật khẩu đăng ký MyViettel(8 ký tự. Có chữ, số và ký tự đặc biệt)</label> #1# *@
+@*             $1$         <input type="password" class="form-control" name="password" required="required" minlength="8" id="txtPassword"/> #1# *@
+@*             $1$     </div> #1# *@
+@*             $1$ </div> #1# *@
+@*             <div class="col-md-6"> *@
+@*                 <div class="form-group"> *@
+@*                     $1$ <label class="title">Captcha</label> #1# *@
+@*                     <img src="@Model.Url" alt="Nhập lại ..." id="captcha"/> *@
+@*                     <input type="hidden" value="@Model.Sid" name="sid" id="txtSid"/> *@
+@*                     <input type="hidden" value="@Model.Sid" name="captcha" id="txtSid1"/> *@
+@*                     <span data-v-c1ff4e02="" id="btnResetCaptcha"><i style="font-size:35px;padding: 4px;color: #fbaa00;" class="fas fa-sync-alt"></i></span> *@
+@*                 </div> *@
+@*             </div> *@
+@*             <div class="col-md-6"> *@
+@*                 <div class="form-group"> *@
+@*                     <label class="title">Nhập mã captcha từ hình bên</label> *@
+@*                     <input type="text" class="form-control" name="captcha_code" id="txtCaptcha"/> *@
+@*                 </div> *@
+@*             </div> *@
+@*             <div class="col-md-12 m-30-0 text-center"> *@
+@*                 <button class="btn btn-main btn-checkout" id="btnRegister" type="button"> Đăng ký</button> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </form> *@

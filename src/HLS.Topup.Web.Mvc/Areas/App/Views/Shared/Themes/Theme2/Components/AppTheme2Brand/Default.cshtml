@@ -1,0 +1,33 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Layout
+@using HLS.Topup.Web.Areas.App.Views.Shared.Components.AppLogo
+@model HeaderViewModel
+@{
+    Layout = null;
+}
+
+@section Styles{
+    <style>
+        a.logo_text span {
+            background: #ff574d;
+            line-height: 1;
+            display: inline-block;
+            padding: 5px;
+            color: #fff;
+            font-weight: 900;
+            font-size: 20px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+    </style>
+    @await RenderSectionAsync("Styles", false)
+}
+
+<div class="header-logo">
+    @* <a href="@Url.Action("Index", "Home", new {area = string.Empty})" class="brand-logo"> *@
+    @*     @await Component.InvokeAsync(typeof(AppLogoViewComponent), new {logoClass = "logo-default max-h-40px"}) *@
+    @*     @await Component.InvokeAsync(typeof(AppLogoViewComponent), new {logoSkin = "light", logoClass = "logo-sticky max-h-40px"}) *@
+    @* </a> *@
+    <a href="@Url.Action("Index", "Home", new {area = string.Empty})" class="logo_text">
+        <span>NT</span>
+    </a>
+</div>

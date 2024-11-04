@@ -1,0 +1,116 @@
+@model HLS.Topup.Web.Models.TopupRequest.CreateOrEditTopupRequestModalViewModel
+<div class="section-tab">
+    <form class="step step1" id="topupForm" autocomplete="off">
+        <div class="section-body-p1 no-border-top">
+            @*             <div class="form-group margin-big"> *@
+            @*                 <label for="" class="title"> *@
+            @*                     <img src="/themes/topup/images/ic_dark/ic-01.svg" alt=""> Số điện thoại &nbsp; *@
+            @*                     <span *@
+            @*                         class="lightred"> *@
+            @*                         (*) *@
+            @*                     </span> *@
+            @*                 </label> *@
+            @*                 <div class="form-group-wrap"> *@
+            @*                     <input tabindex="1" required="required" numbers-only placeholder="Nhập số điện thoại" *@
+            @*                            type="tel" *@
+            @*                            maxlength="15" name="phoneNumber" *@
+            @*                            class="form-control input-width-50 mobile-input-width-100" autocomplete="off"> *@
+            @*                 </div> *@
+            @*             </div> *@
+            @* *@
+            @*             <div class="form-group"> *@
+            @*                 <label for="" class="title"> *@
+            @*                     <img src="/themes/topup/images/ic_dark/ic-201.svg" alt=""> Chọn nhà mạng *@
+            @*                 </label> *@
+            @*                 <div class="row"> *@
+            @*                     <div class="col-md-12"> *@
+            @*                         <div class="tab-pane"> *@
+            @*                             <div class="form-group margin-big"> *@
+            @*                                 <div class="form-group-wrap"> *@
+            @*                                     <span class="down-arrow-black arrow-big"></span> *@
+            @*                                     <img src="/themes/topup/images/1ceilings-service.png" class="form-logo ng-scope"> *@
+            @* *@
+            @*                                     <select class="form-control select2 form-control-big form-blue select2-card-telco" style="width: 100%;" data-location="card-value-items" data-form="topupForm" name="cardTelco"> *@
+            @*                                         @foreach (var item in Model.Categorys) *@
+            @*                                         { *@
+            @*                                             <option value="@item.CategoryCode" data-image="@item.Image">@item.CategoryName</option> *@
+            @*                                         } *@
+            @*                                     </select> *@
+            @*                                 </div> *@
+            @*                             </div> *@
+            @*                         </div> *@
+            @*                     </div> *@
+            @*                 </div> *@
+            @*             </div> *@
+
+            <div class="row">
+                <div class="form-group margin-big col-md-6">
+                    <label for="" class="title sm-margin">
+                        <img src="/themes/topup/images/ic_dark/ic-01.svg" alt=""> Số điện thoại <span class="lightred">*</span>
+                    </label>
+                    <div class="form-group-wrap">
+                        <input tabindex="1" required="required" numbers-only placeholder="Nhập số điện thoại"
+                               type="tel"
+                               maxlength="15" name="phoneNumber"
+                               class="form-control input-width-100 mobile-input-width-100" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group margin-big col-md-6">
+                    <label for="" class="title sm-margin">
+                        <img src="/themes/topup/images/ic_dark/ic-201.svg" alt=""> Chọn nhà mạng <span class="lightred">*</span>
+                    </label>
+                    <div class="form-group-wrap">
+                        <span class="down-arrow-black arrow-big"></span>
+                        <img src="/themes/topup/images/1ceilings-service.png" class="form-logo ng-scope">
+
+                        <select class="form-control select2 form-control-big form-blue select2-card-telco" style="width: 100%;" id="select2-card-telco" data-location="card-value-items" data-form="topupForm" name="cardTelco">
+                            @foreach (var item in Model.Categorys)
+                            {
+                                <option value="@item.CategoryCode" data-image="@item.Image">@item.CategoryName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="title">
+                    <img src="/themes/topup/images/ic_dark/ic-43.png" alt=""> Chọn mệnh giá
+                </label>
+                <div id="card-value-items">
+
+                </div>
+            </div>
+        </div>
+        <div class="section-body-p2">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="" name="isReadTerm" checked="checked">
+                            <span class="checkbox-custom visible cbutton cbutton--effect-boris"></span>
+                        </label>
+                        <a class="checkbox-agree" target="_blank">
+                            <span>Tôi đã đọc và đồng ý với chính sách</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-5 text-right force-center">
+                    <button type="button" onClick="ctrl.nextToStep()" class="hlsCtrl button btn-custom btn-blue">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form class="step step2" id="topupInfoForm" style="display:none">
+        <div class="section-body-p1 no-border-top"></div>
+        <input type="hidden" id="ServiceCode" value="@Model.TopupRequest.ServiceCode" />
+        <div class="section-body-p2">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" onClick="ctrl.activeStep(1)" class="button btn-custom btn-grey">Quay lại</button>
+                    <button type="button" onClick="ctrl.nextToStep2()" class="button btn-custom btn-blue">Nạp tiền ngay</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

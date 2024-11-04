@@ -1,0 +1,70 @@
+﻿@using Abp.Json
+@using HLS.Topup.Localization
+@model HLS.Topup.Web.Models.Account.ConfirmLoginViewModel
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Account/ConfirmLogin.js" asp-append-version="true"></script>
+}
+
+@section Styles{
+    <link href="/metronic/common/css/login-1@(CultureHelper.IsRtl ? ".rtl" : "").css" rel="stylesheet"/>
+}
+
+@{
+    //var text = "Nhập OTP để đăng nhập";
+    //if (Model.IsOdpEnable && Model.IsOdpAvailable)
+    //{
+    //    text = "Nhập ODP để đăng nhập";
+    //}
+    //else if (Model.IsOdpEnable)
+    //{
+    //    text = "Nhập ODP mới của bạn để đăng nhập";
+    //}
+}
+
+<div class="login-form">
+    <div class="pb-13 pt-lg-0 pt-5">
+        <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">@(Model.IsOdpEnable ? "Nhập ODP để đăng nhập" : "Nhập OTP để đăng nhập")</h3>
+    </div>
+    <form class="form" id="form-confirm-login" asp-action="ConfirmLogin" method="post">
+        <p>
+            @Html.Raw(Model.Message)
+        </p>
+        @if (@ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-danger">
+                <div class="alert-icon">
+                    <i class="fa fa-exclamation-triangle"></i>
+                </div>
+                <div class="alert-text">@ViewBag.ErrorMessage</div>
+            </div>
+        }
+        <input type="hidden" name="ConfirmId" value="@Model.ConfirmId">
+        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl">
+        <input type="hidden" name="PhoneNumber" id="txtPhoneNumber" value="@Model.PhoneNumber">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-7">
+                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="password" id="Otp" placeholder="@(Model.IsOdpEnable ? "Nhập mã ODP" : "Nhập OTP")" name="Otp" required/>
+                </div>
+                <div class="col-md-5">
+                    <div id="show-text-otp" class="show-text-otp-resend" style="ma">
+                        <i class="fas fa-share-square"></i>
+                        @(Model.IsOdpEnable ? "Gửi lại ODP sau " : "Gửi lại OTP sau ")<span style="color: red" id="timeOtp"></span><span>s</span>
+                    </div>
+                    <div id="show-resend-otp" class="hidden show-text-otp-resend">
+                        <a class="saction btn-resend-code" href="#">
+                            <i class="fas fa-share"></i>
+                            @(Model.IsOdpEnable ? "Gửi lại ODP?" : "Gửi lại OTP?")
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pb-lg-0 pb-5">
+            <span>&nbsp;</span>
+            <button type="submit" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">@L("Submit")</button>
+        </div>
+    </form>
+</div>

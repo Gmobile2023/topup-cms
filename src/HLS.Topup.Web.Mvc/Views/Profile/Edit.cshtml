@@ -1,0 +1,95 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutProfile.cshtml";
+}
+@using Abp.Timing
+@model HLS.Topup.Authorization.Accounts.Dto.CreateOrEditAgentModalViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Profile_Edit;
+    ViewBag.Title = "Chỉnh sửa thông tin tài khoản";
+    //ViewBag.ImageTitle = Url.Action("GetProfilePicture", "Profile", new {area = string.Empty});
+    ViewBag.ImageTitle = "/themes/topup/images/ic_banner_top/profile-white.svg";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Profile/Edit.js" asp-append-version="true"></script>
+}
+
+<style>.radio-inline:first-child{    padding-left: 0px;}</style>
+<div id="Profile_Edit_Page" class="section-body-middle">
+    <form style="display: none" id="profileAvatar">
+        <input type="file" name="avatar" accept="image/*"/>
+    </form>
+    <form class="step step1" id="profileForm">
+        <div class="section-body-middle-form-p1 no-border-top">
+
+            <div class="form-group ">
+                <label for="" class="title"> Mã tài khoản &nbsp; </label>
+                <div class="form-group-wrap">
+                    <input tabindex="4" required="required" placeholder="Loại tài khoản" class="form-control"
+                           type="text" name="accountCode" value="@Model.User.AccountCode" readonly="readonly">
+                    <input tabindex="1"
+                           type="hidden" name="userName" value="@Model.User.UserName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="" class="title"> Họ &nbsp; <span class="lightred">(*)</span></label>
+                        <div class="form-group-wrap">
+                            <input tabindex="1" required="required" placeholder="Nhập họ" class="form-control"
+                                   type="text" name="surname" value="@Model.User.Surname" maxlength="32">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="" class="title"> Tên &nbsp; <span class="lightred">(*)</span></label>
+                        <div class="form-group-wrap">
+                            <input tabindex="2" required="required" placeholder="Nhập tên" class="form-control"
+                                   type="text" name="name" value="@Model.User.Name" maxlength="32">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="" class="title"> Loại tài khoản &nbsp; </label>
+                        <div class="form-group-wrap">
+                            <input tabindex="4" required="required" placeholder="Loại tài khoản" class="form-control"
+                                   type="text" name="accountText" value="@L("Enum_AccountType_" + Model.User.AccountType)" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <label for="" class="title"> Số điện thoại &nbsp; </label>
+                        <div class="form-group-wrap">
+                            <input required="required" placeholder="Số điện thoại" class="form-control"
+                                   type="text" name="phoneNumber" value="@Model.User.PhoneNumber" readonly="readonly" maxlength="15">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if (Model.User.AccountType != (byte) CommonConst.SystemAccountType.Staff && Model.User.AccountType != (byte) CommonConst.SystemAccountType.StaffApi)
+            {
+                <div class=" ">
+                    <label for="" class="title"> <strong>@(Model.User.IsVerifyAccount ? "Tài khoản đã xác thực thông tin" : "Tài khoản chưa xác thực thông tin")</strong> &nbsp; </label>
+                    <a class="action_verify" href="javascript:void(0)" onclick="ctrl.showVerifyAccount()">@(Model.User.IsVerifyAccount ? "Xem thông tin xác thực." : "Xác thực ngay.")</a>
+                </div>
+
+                <div id="blockVerify" style="display: none">
+                    @await Html.PartialAsync("_Verify", Model)
+                </div>
+            }
+        </div>
+        <div class="section-body-middle-form-p2">
+            <div class="row">
+                <div tabindex="7" class="col-md-12 text-right">
+                    <button type="button" onclick="ctrl.back()" class="button btn-custom btn-grey">Quay lại</button>
+                    <button type="button" onClick="ctrl.nextToStep()" class="button btn-custom btn-blue">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

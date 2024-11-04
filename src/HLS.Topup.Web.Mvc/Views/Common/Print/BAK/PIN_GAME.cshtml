@@ -1,0 +1,52 @@
+﻿@using HLS.Topup.Web.TagHelpers
+@model HLS.Topup.Web.Models.Transaction.TransactionDetailsInfoModel
+@if (!Model.Items.Any() || !Model.Vendors.Any())
+{
+    <h1>Không có thông tin giao dịch</h1>
+}
+else
+{
+    foreach (var item in Model.Items)
+    {
+        var prod = item.ProductCode.Split("_");
+        var vendor = Model.Vendors.FirstOrDefault(x => x.Code == prod[0]);
+        <div class="section-card ">
+            <div class="section-card-content ">
+                <div class="section-card-header">
+                    <div class="logo">
+                        <img src="/themes/topup/images/nt.png" alt="">
+                    </div>
+                    <h2>@(Model.Network.AgentName)</h2>
+                </div>
+                <div class="section-card-line">
+                    <label class="col-xs-12 control-label">
+                        @L("PrintCard_CarType") <span class="telco">@(vendor?.Name)</span> <span class="value">@item.CardValue.ToFormat()</span>
+                    </label>
+                </div>
+                <div class="section-card-line">
+                    <label class="col-xs-12 control-label">
+                        @L("PrintCard_Serial") <span class="serial">@item.Serial</span>
+                    </label>
+                </div>
+                <div class="section-card-line">
+                    <label class="col-xs-12 control-label">
+                        @L("PrintCard_CardCode") <span class="code">@item.CardCode</span>
+                    </label>
+                </div>
+                <div class="section-card-line">
+                    <label class="col-xs-12 control-label">@L("PrintCard_HSD") @item.ExpiredDate.ToString("dd/MM/yyyy") </label>
+                </div>
+                <div class="section-card-line">
+                    <label class="col-xs-12 control-label">@L("PrintCard_TransCode") @Model.Transcode</label>
+                </div>
+                <div class="section-card-line">
+                    <label class="col-xs-12 control-label">@L("PrintCard_CreatedDate") @Model.TransactionInfo.CreatedTime.ToString("dd/MM/yyyy hh:mm:ss") </label>
+                </div> 
+                <div class="section-card-line">
+                    <label class="col-xs-12 control-label">@Html.Raw(vendor?.Print_Suport.Nl2Br()) </label>
+                </div>
+            </div>
+        </div>
+        // }
+    }
+}

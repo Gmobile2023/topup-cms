@@ -1,0 +1,220 @@
+button[disabled],
+html input[disabled],
+.button.disabled {
+    opacity: 0.2;
+    cursor: not-allowed
+}
+
+.section-top-right-2 {
+    width: auto;
+    text-align: left
+}
+
+.section-top-right-2 img {
+    height: 27px;
+    margin-right: 0.2em
+}
+
+.section-top-right-2__link {
+    display: inline-block;
+    color: white;
+    padding: 0 0.8em;
+}
+
+.section-top-right-2__link:hover {
+    color: white
+}
+
+.section-top-right-2__link:first-child {
+    border-right: 2px solid #CBDDF2
+}
+
+.section-top-right-2__link:last-child {
+    margin-left: -4px
+}
+
+li.dropdown.mega-dropdown {
+    width: 20%
+}
+
+.mega-menu>.container-fluid {
+    width: 200%;
+    max-width: 200%;
+    padding: 0;
+}
+
+.mega-menu--more {
+    -webkit-animation: moonwalk 1s forwards;
+    animation: moonwalk 1s forwards;
+}
+
+.mega-menu--less {
+    -webkit-animation: moonwalk-inverse 1s forwards;
+    animation: moonwalk-inverse 1s forwards;
+}
+
+.mega-menu .navbar-nav {
+    width: 31.3%;
+    position: relative;
+}
+
+.mega-menu .navbar-nav:first-child>li:nth-of-type(4)>ul {
+    width: 570px
+}
+
+.mega-dropdown__hot a {
+    position: relative;
+}
+
+.mega-dropdown__hot a:after {
+    content: "Hot";
+    clear: both;
+    font-weight: 600;
+    font-size: 10px;
+    padding: 0.7em;
+    -webkit-border-radius: 10px 10px 10px 0;
+    border-radius: 10px 10px 10px 0;
+    background-color: #ed3237;
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 17%;
+    z-index: 999
+}
+
+@-webkit-keyframes moonwalk {
+    50% {
+        -webkit-transform: translateX(3%);
+        transform: translateX(3%);
+        -webkit-animation-duration: 0.7s;
+        animation-duration: 0.7s
+    }
+    40% {
+        opacity: 1
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+        opacity: 1
+    }
+}
+
+@keyframes moonwalk {
+    50% {
+        -webkit-transform: translateX(30px);
+        transform: translateX(30px);
+        -webkit-animation-duration: 0.7s;
+        animation-duration: 0.7s
+    }
+    40% {
+        opacity: 1
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes moonwalk-inverse {
+    0% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+        opacity: 1
+    }
+    50% {
+        -webkit-transform: translateY(30px);
+        transform: translateY(30px);
+        -webkit-animation-duration: 0.7s;
+        animation-duration: 0.7s
+    }
+    40% {
+        opacity: 1
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1
+    }
+}
+
+@keyframes moonwalk-inverse {
+    0% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+        opacity: 1
+    }
+    50% {
+        -webkit-transform: translateX(-105%);
+        transform: translateX(-105%);
+        -webkit-animation-duration: 0.7s;
+        animation-duration: 0.7s
+    }
+    40% {
+        opacity: 1
+    }
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1
+    }
+}
+
+li.dropdown.mega-dropdown.mega-show-more:hover,
+li.dropdown.mega-dropdown.mega-show-less:hover {
+    background: #0c2c63;
+    -webkit-transition: background-position 0.2s ease-in;
+    -o-transition: background-position 0.2s ease-in;
+    transition: background-position 0.2s ease-in
+}
+
+li.dropdown.mega-dropdown.mega-show-more:hover .mega-icon,
+li.dropdown.mega-dropdown.mega-show-less:hover .mega-icon {
+    -webkit-transition: background-position 0.2s ease-in;
+    -o-transition: background-position 0.2s ease-in;
+    transition: background-position 0.2s ease-in
+}
+
+.mega-dropdown.mega-show-more,
+.mega-dropdown.mega-show-less {
+    display: none;
+}
+
+li.mega-dropdown.mega-show-less {
+    position: absolute !important;
+    right: 0;
+    bottom: -108px;
+}
+
+
+
+
+
+/*end */
+
+@media (max-width: 1600px) {
+    .mega-menu .navbar-nav:first-child>li:nth-of-type(4)>ul {
+        width: 466px
+    }
+    .mega-menu .navbar-nav:first-child>li:nth-of-type(4)>ul .pull-left {
+        width: 50%
+    }
+}
+
+@media (max-width:768px) {
+    li.dropdown.mega-dropdown {
+        width: 33.33333333333%
+    }
+    .mega-menu>.container-fluid {
+        max-height: 240px;
+        overflow-x: hidden;
+    }
+    .mega-dropdown.mega-show-more,
+    .mega-dropdown.mega-show-less {
+        display: block;
+    }
+    .mega-menu .navbar-nav {
+        width: 50%;
+        float: left;
+    }
+}

@@ -1,0 +1,31 @@
+﻿@model List<HLS.Topup.Dtos.Discounts.DiscountDetailDto>
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Thông tin chiết khẩu tài khoản"))
+
+<div class="col-md-12">
+    <table id="tbl-discount-detail" class="display table table-striped table-bordered table-hover dt-responsive nowrap dataTable no-footer dtr-column">
+        <thead>
+            <tr role="row">
+                <th class="sorting_disabled" style="text-align:center">STT</th>
+                <th class="sorting_disabled">@L("ServiceName")</th>
+                <th class="sorting_disabled">@L("DiscountValue")</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var stt = 0;}
+            @foreach (var item in Model)
+            {
+                stt++;
+                <tr>
+                    <td style="text-align:center">@stt</td>
+                    <td>@item.CategoryName</td>
+                    <td>
+                        <input type="text" style="text-align:right" readonly required data-id="@item.CategoryId" value="@(item.DiscountValue?.ToString("###") +" %")" class="form-control discount-mask discount-value" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@await Html.PartialAsync("~/Views/Common/Modals/_ModalFooterWithClose.cshtml")

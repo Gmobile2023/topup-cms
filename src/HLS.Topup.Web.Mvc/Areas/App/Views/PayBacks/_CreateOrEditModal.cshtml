@@ -1,0 +1,92 @@
+@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.PayBacks
+@model CreateOrEditPayBacksModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewPayBacks")))
+
+<div class="modal-body">
+    <div id="PayBacksFormTab">
+        <form name="PayBacksInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBacksName">
+                            @L("PayBacks_Name") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input" id="PayBacksName" type="text" name="name" required/>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBacksName">
+                            @L("PayBacks_Payment_Period") <span class="lightred">(*)</span>
+                        </label>
+                        <div class="input-group">
+                            <input class="form-control m-input date-picker" type="text" placeholder="@L("MinValue")" name="fromDate" id="FromDate" required>
+                            <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                            <input class="form-control m-input date-picker" type="text" placeholder="@L("MaxValue")" name="toDate" value="" id="ToDate" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="importCardsFromExcel" style="color:red">
+                            @L("PayBacks_Choose_File") <span class="lightred">(*)</span>
+                        </label>
+                        <label class="form-control" style="width: 100%">
+                            <span >Chọn file</span>
+                            <input id="ImportFromExcel" class="hidden" type="file" name="files" accept=".xlsx, .xls, .csv">
+                        </label>
+                        <div class="form-group">
+                            <a target="_blank" href="/assets/SampleFiles/ImportPayBacksSampleFile.xlsx">@L("File Mau Import")</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <p>@L("AgentPayBacksTable_Des")</p>
+                    <p><strong>@L("PayBacks_Note")</strong></p>
+                </div>
+                <div class="col-md-4">
+                    <a href="javascript:;" id="DeleteAllTableRow" class="pull-right">@L("DeleteAll")</a>
+                </div>
+
+                <div class="col-sm-12">
+                    <table id="AgentPayBacksTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>@L("AgentCode")</th>
+                            <th>@L("PhoneNumber")</th>
+                            <th>@L("FullName")</th>
+                            <th>@L("Amount")</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tbody class="f">
+                        <tr>
+                            <td colspan="4">
+                                <b>Tổng cộng</b>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">@L("Cancel")</button>
+    <button type="button" id="btnUpload" class="btn btn-primary save-button">
+        <i class="fa fa-save"></i> <span>@L("Save")</span>
+    </button>
+</div>

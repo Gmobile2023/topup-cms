@@ -1,0 +1,126 @@
+@model HLS.Topup.AgentManagerment.AgentSupperDetailView
+
+<div class="card">
+    <div class="card-header" id="headingContact">
+        <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#box-contact" aria-expanded="true" aria-controls="collapseOne">
+                Thông tin liên hệ
+            </button>
+        </h5>
+    </div>
+
+    <div id="box-contact" class="collapse" aria-labelledby="headingContact" data-parent="#accordion">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="cob_Province">
+                            Tỉnh/TP
+                        </label>
+                        <select class="form-control" data-id="@Model.Province" name="cityId" id="cob_Province"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="cob_District">
+                            Quận/Huyện
+                        </label>
+                        <select class="form-control" data-id="@Model.District" name="districtId" id="cob_District"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="cob_Ward">
+                            Phường Xã
+                        </label>
+                        <select class="form-control" data-id="@Model.Ward" name="wardId" id="cob_Ward"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Address">
+                            Địa chỉ chi tiết
+                        </label>
+                        <input class="form-control" id="Address" value="@Model.Address" type="text" name="address" maxlength="500"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Giám đốc </label>
+                        <input class="form-control" value="@Model.ManagerFullName" name="txtManagerFullName" id="txtManagerFullName" placeholder="Họ và tên" maxlength="200"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group" style="margin-top:5px">
+                        <label> </label>
+                        <input class="form-control" value="@Model.ManagerPhone" name="txtManagerPhone" id="txtManagerPhone" placeholder="Số điện thoại" type="text" maxlength="15"/>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group" style="margin-top:5px">
+                        <label> </label>
+                        <input class="form-control" value="@Model.ManagerEmail" name="txtManagerEmail" id="txtManagerEmail" placeholder="Email" type="text" maxlength="200"/>
+                        <span id="spanManagerEmail" class="lightred"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="">Kỹ thuật </label>
+                        <input class="form-control" value="@Model.TechnicalFullName" name="txtTechnicalFullName" id="txtTechnicalFullName" placeholder="Họ và tên" maxlength="200"/>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top:5px">
+                    <label for=""></label>
+                    <input class="form-control" value="@Model.TechnicalPhone" name="txtTechnicalPhone" id="txtTechnicalPhone" placeholder="Số điện thoại" type="text" maxlength="15"/>
+                </div>
+                <div class="col-md-4" style="margin-top:5px">
+                    <label for=""></label>
+                    <input class="form-control" value="@Model.TechnicalEmail" name="txtTechnicalEmail" id="txtTechnicalEmail" placeholder="Email" type="text" maxlength="200"/>
+                    <span id="spanTechnicalEmail" class="lightred"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Đối soát</label>
+                        <input class="form-control" value="@Model.CompareFullName" name="txtCompareFullName" id="txtCompareFullName" placeholder="Họ và tên" maxlength="200"/>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top:5px">
+                    <label></label>
+                    <input class="form-control" value="@Model.ComparePhone" name="txtComparePhone" id="txtComparePhone" placeholder="Số điện thoại" type="text" maxlength="15"/>
+                </div>
+                <div class="col-md-4" style="margin-top:5px">
+                    <label></label>
+                    <input class="form-control" value="@Model.CompareEmail" name="txtCompareEmail" id="txtCompareEmail" placeholder="Email" type="text" maxlength="200"/>
+                    <span id="spanCompareEmail" class="lightred"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Kế toán </label>
+                        <input class="form-control" value="@Model.AccountancyFullName" name="txtAccountancyFullName" id="txtAccountancyFullName" placeholder="Họ và tên" maxlength="200"/>
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top:5px">
+                    <label></label>
+                    <input class="form-control" value="@Model.AccountancyPhone" name="txtAccountancyPhone" id="txtAccountancyPhone" placeholder="Số điện thoại" type="text" maxlength="15"/>
+                </div>
+                <div class="col-md-4" style="margin-top:5px">
+                    <label></label>
+                    <input class="form-control" value="@Model.AccountancyEmail" id="txtAccountancyEmail" placeholder="Email" type="text" maxlength="200"/>
+                    <span id="spanAccountancyEmail" class="lightred"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.SaleLimitDebts
+@model CreateOrEditSaleLimitDebtModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? "Chỉnh sửa" : "Thêm mới"))
+
+<div class="modal-body">
+    <div id="SaleLimitDebtInformationsTab">
+        <form name="SaleLimitDebtInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.SaleLimitDebt.Id" />
+            }
+
+
+            <div class="form-group m-form__group">
+                <label for="UserName">Nhân viên<span class="lightred">(*)</span></label>
+                @if (Model.IsEditMode)
+                {
+                    <div class="input-group">
+                        <select id="userId" name="userId" class="form-control select2" required style="width:800px" disabled>
+                            @if (Model.IsEditMode)
+                            {
+                                <option value="@Model.SaleLimitDebt.UserId">@Model.UserName</option>
+                            }
+                        </select>
+                    </div>
+                }
+                else
+                {
+                    <div class="input-group">
+                        <select id="userId" name="userId" class="form-control select2" required style="width:800px">
+                        </select>
+                    </div>
+                }
+
+            </div>
+            <div class="form-group">
+                <label for="SaleLimitDebt_LimitAmount">Hạn mức công nợ<span class="lightred">(*)</span></label>
+                <input class="form-control m-input amount-mask" id="SaleLimitDebt_LimitAmount" value="@(Model.SaleLimitDebt.LimitAmount==0?"": Convert.ToDouble(Model.SaleLimitDebt.LimitAmount).ToString(CultureInfo.InvariantCulture))" type="text" name="LimitAmount" maxlength="12" />
+                <br>
+                <div class="amount-to-text"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="SaleLimitDebt_DebtAge">Tuổi nợ(ngày)<span class="lightred">(*)</span></label>
+                <input class="form-control m-input" id="SaleLimitDebt_DebtAge" value="@(Model.SaleLimitDebt.DebtAge==0?"":Model.SaleLimitDebt.DebtAge.ToString(CultureInfo.InvariantCulture))" type="text" name="debtAge" maxlength="5" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+            </div>
+
+            @{
+                var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.DebtLimitAmountStatus));
+                foreach (var selectOption in selectListStatus)
+                {
+                    selectOption.Text = L("Enum_DebtLimitAmountStatus_" + selectOption.Value);
+                }
+            }
+            <div class="form-group m-form__group">
+                <label for="SaleLimitDebt_Status">Trạng thái</label>
+                <select class="form-control m-input m-input--square" name="status" id="SaleLimitDebt_Status" asp-for="@Model.SaleLimitDebt.Status" asp-items="@selectListStatus">
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,65 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutProfile.cshtml";
+}
+@model HLS.Topup.Web.Models.Account.ProfileModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Notification;
+    ViewBag.Title = "Quản lý thông báo";
+}
+
+@section Styles {
+    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/Notifications/Index.css" asp-append-version="true"/>
+}
+
+@section Scripts {
+    <script abp-src="/view-resources/Views/Profile/Notifications.js" asp-append-version="true"></script>
+}
+
+<div class="transaction-history">
+    @* <div class="page-title text-right"> *@
+    @*     <a href="javascript:;" onclick="Sv.goBackHistory()"> *@
+    @*         <button class="btn-file-export" style="float: left !important;"> *@
+    @*             <i class="fa fa-chevron-left" aria-hidden="true"></i> @L("Back") *@
+    @*         </button> *@
+    @*     </a> *@
+    @*     <div class="add-button"> *@
+    @*         <button id="ExportToExcelButton" class=" btn-file-export"> *@
+    @*             <i class="fa fa-file-excel"></i> @L("ExportToExcel") *@
+    @*         </button> *@
+    @*     </div> *@
+    @* </div> *@
+
+    <div class="page-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input id="StartEndRange" type="text" placeholder="@L("DateRange")" class="form-control date-range-picker"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <select id="TargetValueFilterSelectionCombobox" class="form-control bs-select">
+                        <option value="">@L("All")</option>
+                        <option value="UNREAD">@L("Unread")</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tb-notifications">
+                    <table id="NotificationsTable" class="fixed-size-table-content display table table-separate table-head-custom no-footer dtr-inline dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>@L("Notification")</th>
+                            @* <th style="width: 100px;text-align:center">@L("CreationTime")</th> *@
+                            <th style="width: 50px;text-align:center">@L("Actions")</th>
+                            @* <th style="width: 50px;text-align:center">@L("Severity")</th> *@
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

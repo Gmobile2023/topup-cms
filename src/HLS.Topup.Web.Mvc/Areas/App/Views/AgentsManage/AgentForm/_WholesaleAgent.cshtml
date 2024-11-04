@@ -1,0 +1,50 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.AgentsManage
+@using HLS.Topup.Common
+@model CreateOrEditAgentViewModel
+
+<div class="row">
+    <div class="col-md-12" style="margin-bottom: 20px;">
+        <strong>Thông tin theo loại đại lý</strong>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ContractNumber">
+                Số hợp đồng
+            </label>
+            <input class="form-control" id="ContractNumber" value="@Model.Agent.ContractNumber" type="text" name="contractNumber" maxlength="30"/>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ContractRegister">
+                Ngày ký hợp đồng
+            </label>
+            <input class="form-control date-picker" id="ContractRegister" value="@Model.Agent.ContractRegister?.ToShortDateString()" type="text" name="sigDate"/>
+        </div>
+    </div>
+    <div class="col-md-6">
+        @{
+            var selectListMethod = Html.GetEnumSelectList(typeof(CommonConst.MethodReceivePassFile));
+            foreach (var selectOption in selectListMethod)
+            {
+                selectOption.Text = L("Enum_MethodReceivePassFile_" + selectOption.Value);
+            }
+        }
+        <div class="form-group">
+            <label for="MethodReceivePassFile">
+                Nhận Pass file Zip qua <span class="lightred">(*)</span>
+            </label>
+            <select class="form-control m-input m-input--square" name="methodReceivePassFile" id="MethodReceivePassFile" asp-for="@Model.Agent.MethodReceivePassFile" asp-items="@selectListMethod" required>
+                <option value="">Chọn phương thức</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ValueReceivePassFile">
+                Email/Số điện thoại nhận pass <span class="lightred">(*)</span>
+            </label>
+            <input class="form-control" id="ValueReceivePassFile" value="@Model.Agent.ValueReceivePassFile" type="text" required name="valueReceivePassFile"/>
+        </div>
+    </div>
+</div>

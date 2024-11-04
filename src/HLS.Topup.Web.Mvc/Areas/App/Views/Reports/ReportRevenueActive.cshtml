@@ -1,0 +1,161 @@
+﻿@using HLS.Topup.Web.Areas.App.Startup
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.ReportRevenueActive;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/Reports/ReportRevenueActive.js" asp-append-version="true"></script>
+}
+
+@model HLS.Topup.Web.Areas.App.Models.Reports.ReportRevenueActiveViewModel
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title="Báo cáo" description="Danh sách đại lý acctive trong kỳ báo cáo">
+        <button id="ExportToExcelButton" class="btn btn-outline-success">
+            <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+        </button>
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div id="AdvacedAuditFiltersArea" class="row mb-4 filter-block-header">
+                    <div class="col-md-12">
+                        <div class="kt-separator kt-separator--border-dashed"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="FromFilter">Thời gian từ</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MinValue")" value="@DateTime.Now.ToShortDateString()" id="fromDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="FromFilter">Thời gian tới</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MaxValue")" value="@DateTime.Now.ToShortDateString()" id="toDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="TypeSale">Loại đại lý</label>
+                            <select class="form-control" name="agentType" id="agentType">
+                                <option value="0">Tất cả</option>
+                                @foreach (var item in Model.AgentTypes)
+                                {
+                                    <option value="@item.AgentTypeId">@item.AgentTypeName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="UserAgent">Đại lý</label>
+                            <select id="selectAgent" name="selectAgent" class="form-control ignore select2" required></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="UserSaleLeader">Sale Leader</label>
+                            <select id="selectUserSaleLeader" name="selectUserSaleLeader" class="form-control ignore select2" required></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="UserUserSale">Nhân viên Sale</label>
+                            <select id="selectUserSale" name="selectUserSale" class="form-control ignore select2" required></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="selectCity">Tỉnh/TP</label>
+                            <select class="form-control" name="selectCity" id="selectCity">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="selectDistrict">Quận/huyện</label>
+                            <select class="form-control" name="selectDistrict" id="selectDistrict">
+                                <option value="">Tất cả</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="selectXa">Phường/xã</label>
+                            <select class="form-control" name="selectWard" id="selectWard">
+                                <option value="">Tất cả</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="Status">Trạng thái</label>
+                            <select class="form-control" name="selectStatus" id="selectStatus">
+                                <option value="0">Tất cả</option>
+                                <option value="1">Đạt</option>
+                                <option value="2">Không đạt</option>
+                            </select>
+                        </div>
+                    </div>                   
+                    <div class="col-md-12"></div>
+                    <div class="col-md-4">
+                        <div class="euiFlexItem euiFlexItem--flexGrowZero">
+                            <span class="euiToolTipAnchor">
+                                <button id="GetProvidersButton" class="euiButton euiButton--primary euiSuperUpdateButton euiButton--fill" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.271 11.978l3.872 3.873a.502.502 0 00.708 0 .502.502 0 000-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 004.949 2.05.5.5 0 000-1 5.96 5.96 0 01-4.242-1.757 6.01 6.01 0 010-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 010 8.486.5.5 0 00.034.738z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Tìm kiếm</span>
+                                    </span>
+                                </button>
+
+                                <button class="euiButton-reset euiButton--primary" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon-reset euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.228 2.942a.5.5 0 11-.538.842A5 5 0 1013 8a.5.5 0 111 0 6 6 0 11-2.772-5.058zM14 1.5v3A1.5 1.5 0 0112.5 6h-3a.5.5 0 010-1h3a.5.5 0 00.5-.5v-3a.5.5 0 111 0z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Đặt lại</span>
+                                    </span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>              
+                <div class="row align-items-center">
+                    <table id="activeRevenueTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th colspan="9">Tổng cộng</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>Loại đại lý</th>
+                            <th>Đại lý</th>
+                            <th>Tên cửa hàng</th>
+                            <th>Nhân viên quản lý</th>
+                            <th>Sale Leader</th>
+                            <th>Tình/TP</th>
+                            <th>Quận/Huyện</th>
+                            <th>Xã/Phường</th>
+                            <th>Số giấy tờ</th>
+                            <th>Tổng tiền nạp trong kỳ</th>
+                            <th>Tổng tiền bán hàng trong kỳ</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutProfile.cshtml";
+}
+@model HLS.Topup.Web.Areas.App.Models.Users.UsersViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.BalanceHistory;
+    ViewBag.Title = "Biến động số dư";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Transactions/BalanceHistory.js" asp-append-version="true"></script>
+}
+
+<div class="balance-history">
+    <div class="page-title text-right">
+        <a href="javascript:;" onclick="Sv.goBackHistory()">
+            <button class="btn-file-export" style="float: left !important;">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i> @L("Back")
+            </button>
+        </a>
+        <div class="add-button mob">
+            Số dư hiện tại: <span class="balance-account"><strong style="color:#2188C9;">@await Component.InvokeAsync(typeof(BalanceViewComponent))</strong> đ</span>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group align-items-center">
+                    <label>Tìm kiếm: </label>
+                    <div class="input-group">
+                        <input type="text" id="TableFilter" class="form-control" placeholder="@L("SearchWithThreeDot")" value="">
+                        <span class="input-group-btn">
+                            <button id="btnSearch" class="btn btn-success btn-blue btn-search-icon" type="submit">
+                                <i class="flaticon-search-1" aria-label="@L("Search")"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label for="ServiceCodeFilter">Loại giao dịch:</label>
+                    <span class="down-arrow-black arrow-small" style="top:25px"></span>
+                    <select id="ServiceCodeFilter" class="form-control">
+                        <option value="0">-- Loại giao dịch --</option>
+                        <option value="1">Chuyển tiền</option>
+                        <option value="2">Nạp tiền</option>
+                        <option value="4">Thanh toán</option>
+                        <option value="5">Hoàn tiền</option>
+                        <option value="19">Điều chỉnh tăng</option>
+                        <option value="20">Điều chỉnh giảm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-6">
+                <div class="form-group">
+                    <label for="FromDateFilterId">Thời gian: </label>
+                    <div class="dis-flex" style="display: flex;">
+                        <input class="form-control m-input date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="FromDateFilterId">
+                        <span style="line-height: 40px;padding: 0 15px 0 15px;"> — </span>
+                        <input class="form-control m-input date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="ToDateFilterId">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="align-items-center col-md-12">
+                <table id="Table" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>@L("TransCode")</th>
+                        <th>@L("CreatedDate")</th>
+                        <th>@L("TransactionType")</th>
+                        <th>@L("Increment")</th>
+                        <th>@L("Decrement")</th>
+                        <th>@L("BalanceAfterTrans")</th>
+                        <th>Nội dung</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

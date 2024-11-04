@@ -1,0 +1,98 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.AgentsManage
+@using HLS.Topup.Common
+@model CreateOrEditAgentViewModel
+
+<div class="row">
+    <div class="col-md-12" style="margin-bottom: 20px;">
+        <strong>Thông tin theo loại đại lý</strong>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ParentId">
+                Đại lý tổng <span class="lightred">(*)</span>
+            </label>
+            <select id="ParentAccount" name="parentAccount" class="form-control select2">
+                @if (@Model.Agent.ParentId > 0)
+                {
+                    <option value="@Model.Agent.ParentAccount">@Model.Agent.ParentName</option>
+                }
+            </select>
+            @if (Model.IsEditMode)
+            {
+                <script>
+                    let data = {
+                        id: @Model.Agent.ParentAccount,
+                        text: '@Model.Agent.ParentName'
+                    };
+
+                    let newOption = new Option(data.text, data.id, false, false);
+                    $('#ParentId').append(newOption).trigger('change');
+                </script>
+            }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="AgentName">
+                Tên cửa hàng
+            </label>
+            <input class="form-control" id="AgentName" value="@Model.Agent.AgentName" type="text" name="agentName">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="IdIdentityType">
+                Loại giấy tờ
+            </label>
+            <select class="form-control" value="@Model.Agent.IdType" name="idType" id="IdIdentityType">
+                <option value="">Tất cả</option>
+                <option value="1" selected="@(Model.Agent.IdType == CommonConst.IdType.IdentityCard)">CMND</option>
+                <option value="2" selected="@(Model.Agent.IdType == CommonConst.IdType.CitizenIdentity)">Căn cước</option>
+                <option value="3" selected="@(Model.Agent.IdType == CommonConst.IdType.Passport)">Hộ chiếu</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="IdIdentity">
+                Số giấy tờ
+            </label>
+            <input class="form-control" value="@Model.Agent.IdIdentity" name="idIdentity" id="IdIdentity"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="IdentityIdExpireDate">
+                Ngày hết hạn
+            </label>
+            <input class="form-control date-picker" id="IdentityIdExpireDate" value="@(Model.Agent.IdentityIdExpireDate != null ? Model.Agent.IdentityIdExpireDate.Value.ToString("dd/MM/yyyy") : "")" type="text" name="identityIdExpireDate"/>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="">
+                Ảnh giấy tờ
+            </label>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group text-center">
+            <label for="FrontPhoto">
+                Mặt trước
+            </label>
+            <input class="form-control" id="FrontPhotoUpload" type="file" name="files">
+            <input type="hidden" id="FrontPhoto" name="frontPhoto" value=""/>
+            <img class="front-image-preview" src="https://via.placeholder.com/200x100" alt="" style="margin-top: 15px"/>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group text-center">
+            <label for="BackSitePhoto">
+                Mặt sau
+            </label>
+            <input class="form-control" id="BackSitePhotoUpload" type="file" name="files">
+            <input type="hidden" id="BackSitePhoto" name="backSitePhoto" value=""/>
+            <img class="back-image-preview" src="https://via.placeholder.com/200x100" alt="" style="margin-top: 15px"/>
+        </div>
+    </div>
+</div>

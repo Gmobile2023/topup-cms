@@ -1,0 +1,112 @@
+﻿@using System.Globalization
+@using HLS.Topup.Common
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.AccountBlockBalances
+@model CreateOrEditAccountBlockBalanceModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditAccountBlockBalance")) : L("CreateNewAccountBlockBalance")))
+
+<div class="modal-body">
+    <div id="AccountBlockBalanceInformationsTab">
+        <form name="AccountBlockBalanceInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.AccountBlockBalance.Id"/>
+            }
+
+            <div class="row">
+                @{
+                    var selectListTypes = Html.GetEnumSelectList(typeof(CommonConst.BlockBalanceType));
+                    foreach (var selectOption in selectListTypes)
+                    {
+                        selectOption.Text = L("Enum_BlockBalanceType_" + selectOption.Value);
+                    }
+                }
+                <div class="col-md-6">
+                    <div class="form-group m-form__group">
+                        <label for="AccountBlockBalanc_Type">Chọn loại<span class="lightred">(*)</span></label>
+                        <select class="form-control m-input m-input--square" name="type" id="AccountBlockBalanc_Type" asp-for="@Model.AccountBlockBalance.Type" asp-items="@selectListTypes">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group m-form__group">
+                        <label for="select_UserId">Chọn đại lý <span class="lightred">(*)</span></label>
+                        <div class="input-group">
+                            <div class="input-group">
+                                @if (Model.IsEditMode)
+                                {
+                                    <select id="select_UserId" name="userId" class="form-control select2" required style="width:800px" disabled>
+                                        <option value="@Model.AccountBlockBalance.UserId">@Model.UserName</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select id="select_UserId" name="userId" class="form-control select2" required style="width:800px">
+                                    </select>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Số dư hiện tại</label>
+                        <input disabled="disabled" id="txtBalance" class="form-control m-input amount-mask"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Số dư khả dụng</label>
+                        <input disabled="disabled" id="txtAvailableBalance" class="form-control m-input amount-mask"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Số tiền đã phong tỏa</label>
+                        <input disabled="disabled" id="txtBlockedMoney" class="form-control m-input amount-mask"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AccountBlockBalance_BlockMoney">
+                            <span id="lbl-amount">Nhập số tiền phong tỏa</span><span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input amount-mask" id="AccountBlockBalance_BlockMoney" value="@Model.AccountBlockBalance.Amount" type="text" required="required" name="amount"/>
+                        <br>
+                        <div class="amount-to-text"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="FileAttachment">
+                            @L("AccountingEntry_Document")
+                            <span class="lightred">(*)</span>
+                        </label>
+                        <label class="form-control" style="width: 100%">
+                            @* <span >Chọn tập tin</span> *@
+                            <input id="FileAttachment" type="file" name="files" required="required">
+                            <input type="hidden" id="FileAttachmentSrc" name="Attachments" accept=".png, .jpg, .jpeg, .pdf">
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="AccountBlockBalance_Description">@L("Description")<span class="lightred">(*)</span></label>
+                <textarea class="form-control" required="required" id="AccountBlockBalance_Description" type="text" name="description" rows="3">@Model.AccountBlockBalance.Description</textarea>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

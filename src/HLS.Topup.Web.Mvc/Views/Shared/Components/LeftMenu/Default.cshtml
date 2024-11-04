@@ -1,0 +1,34 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Layout
+@model HLS.Topup.Web.Areas.App.Models.Layout.MenuViewModel
+    <nav id="sidebar" class="">
+        <div class="icon-menu" id="sidebarCollapse">
+            <i class="fa fa-bars"></i>
+        </div>
+        
+        <div class="menu-left">
+            @*<h1><a href="index.html" class="logo">@User.Identity.Name</a></h1>*@
+            <div class="user-acc">@User.Identity.Name</div>
+            <ul class="list-unstyled components mb-5">
+                @for (var i = 0; i < Model.Menu.Items.Count; i++) {
+                    var menuItem = Model.Menu.Items[i];
+                    @await Html.PartialAsync("Components/LeftMenu/_LeftMenuItem", new UserMenuItemViewModel
+                    {
+                        MenuItem = menuItem,
+                        MenuItemIndex = i,
+                        RootLevel = true,
+                        CurrentPageName = Model.CurrentPageName
+                    })
+                }
+            </ul>
+            @* <div class="footer"> *@
+            @*     <p> *@
+            @*         Copyright © *@
+            @*         Công ty ABC *@
+            @*         Tầng 3 Tòa Intracom - Ngõ 82 Dịch Vọng Hậu *@
+            @*         hotro@TOPUP *@
+            @*         096 9898 836 *@
+            @*     </p> *@
+            @* </div> *@
+        </div>
+    </nav>
+

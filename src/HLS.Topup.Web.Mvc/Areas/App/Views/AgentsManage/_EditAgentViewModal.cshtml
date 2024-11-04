@@ -1,0 +1,158 @@
+@using HLS.Topup.Common;
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@model HLS.Topup.AgentManagerment.AgentDetailView
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Chỉnh sửa đại lý"))
+
+<div class="modal-body">
+    <div id="AgentInformationsTab">
+        <form name="AgentInformationsForm" role="form" novalidate class="form-validation">
+
+            <input type="hidden" name="UserId" value="@Model.UserId" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AccountCode">
+                            Mã đại lý
+                        </label>
+                        <input class="form-control" id="AccountCode" value="@Model.AccountCode" type="text" name="accountCode" disabled/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="PhoneNumber">
+                            Số điện thoại
+                        </label>
+                        <input class="form-control" id="PhoneNumber" value="@Model.PhoneNumber" type="text" name="phoneNumber" disabled/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Surname">
+                            Họ <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Surname" value="@Model.Surname" type="text" name="surname" required maxlength="15"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Name">
+                            Tên <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Name" value="@Model.Name" type="text" name="name" required maxlength="15"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="SaleLeader">
+                            Sale Leader
+                        </label>
+                        <input class="form-control" id="SaleLeader" value="@Model.SaleLeadName" type="text" name="saleLead" disabled/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="UserManage">
+                            NV quản lý
+                        </label>
+                        <input class="form-control" id="UserManage" value="@Model.ManagerName" type="text" name="userManage" disabled/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Thông tin Xác thực tài khoản</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Province">
+                            Tỉnh/TP
+                        </label>
+                        <select class="form-control" data-id="@Model.Province" name="cityId" id="Province"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="District">
+                            Quận/Huyện
+                        </label>
+                        <select class="form-control" data-id="@Model.District" name="districtId" id="District"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Ward">
+                            Phường Xã
+                        </label>
+                        <select class="form-control" data-id="@Model.Ward" name="wardId" id="Ward"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Address">
+                            Địa chỉ chi tiết
+                        </label>
+                        <input class="form-control" id="Address" value="@Model.Address" type="text" name="address"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AgentName">
+                            Tên cửa hàng
+                        </label>
+                        <input class="form-control" id="AgentName" value="@Model.AgentName" type="text" name="agentName"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="IdIdentityType">
+                            Loại giấy tờ
+                        </label>
+                        <select class="form-control" value="@Model.IdIdentityType" name="idType" id="IdIdentityType">
+                            <option value="">Tất cả</option>
+                            <option value="1" selected="@(Model.IdIdentityType == CommonConst.IdType.IdentityCard)">CMND</option>
+                            <option value="2" selected="@(Model.IdIdentityType == CommonConst.IdType.CitizenIdentity)">Căn cước</option>
+                            <option value="3" selected="@(Model.IdIdentityType == CommonConst.IdType.Passport)">Hộ chiếu</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Exhibit">
+                            Số giấy tờ
+                        </label>
+                        <input class="form-control" value="@Model.Exhibit" name="identityId" id="Exhibit"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="IdentityIdExpireDate">
+                            Ngày hết hạn
+                        </label>
+                        <input class="form-control date-picker" value="@Model.IdentityIdExpireDate" name="identityIdExpireDate" id="IdentityIdExpireDate"/>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,58 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Products
+@model ProductViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ProductInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-5">
+                <h6>@L("ProductCode") :</h6>
+                @Model.Product.ProductCode
+            </div>
+            <div class="col-6 mb-5">
+                <h6>@L("ProductName") :</h6>
+                @Model.Product.ProductName
+            </div>
+            <div class="col-6 mb-5">
+                <h6>@L("Order") :</h6>
+                @Model.Product.Order
+            </div>
+            <div class="col-6 mb-5">
+                <h6>@L("ProductValue") :</h6>
+                @Model.Product.ProductValue
+            </div>
+            @* <div class="col-6 mb-3"> *@
+            @*     <h6>@L("ProductType") :</h6> *@
+            @*     @L("Enum_ProductType_" + (int)Model.Product.ProductType) *@
+            @* </div> *@
+            <div class="col-6 mb-5">
+                <h6>@L("Status") :</h6>
+                @L("Enum_ProductStatus_" + (int) Model.Product.Status)
+            </div>
+            <div class="col-6 mb-5">
+                <h6>@L("Unit") :</h6>
+                @Model.Product.Unit
+            </div>
+
+            <div class="col-6 mb-5">
+                <h6>@L("CategoryName")</h6>
+                @Model.CategoryCategoryName
+            </div>
+
+            <div class="col-6 mb-5">
+                <h6>@L("CustomerSupportNote")</h6>
+                @Model.Product.CustomerSupportNote
+            </div>
+
+            <div class="col-6 mb-5">
+                <h6>@L("UserManualNote")</h6>
+                @Model.Product.UserManualNote
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

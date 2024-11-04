@@ -1,0 +1,42 @@
+﻿@using HLS.Topup.Web.TagHelpers
+@model HLS.Topup.Web.Models.TopupInfoDto
+<div class="section-body-right bg-white affix-wrap affix-top">
+     
+    <input type="hidden" name="_TotalAmount" value="@Model.TotalAmount"/>
+    
+    <div class="section-body-right-header">
+        <div class="cart"></div>
+        <p>Thông tin giao dịch</p>
+    </div>
+    <div class="form-group form-group-dashed row">
+        <label class="col-md-4 col-xs-6 control-label">Nhà cung cấp</label>
+        <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.CategoryName.ToUpper()</label>
+    </div>
+    @* <div class="form-group form-group-dashed row"> *@
+    @*     <label class="col-md-4 col-xs-6 control-label">Email</label> *@
+    @*     <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.Email</label> *@
+    @* </div> *@
+    <div class="form-group form-group-dashed row">
+        <label class="col-md-4 col-xs-6 control-label">Mệnh giá thẻ</label>
+        <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.CardValue.ToFormat("")</label>
+    </div>
+
+
+    <div class="form-group form-group-dashed row">
+        <label class="col-md-4 col-xs-6 control-label">Số lượng</label>
+        <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.Quantity.ToFormat("")</label>
+    </div>
+    <div class="form-group form-group-dashed row">
+        <label class="col-md-4 col-xs-6 control-label">Số tiền giao dịch</label>
+        <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.Amount.ToFormat()</label>
+    </div>
+    <div class="form-group form-group-dashed row">
+        <label class="col-md-4 col-xs-6 control-label">Số tiền chiết khấu</label>
+        <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.Discount.ToFormat()</label>
+    </div>
+    <div class="form-group form-group-dashed row">
+        <label class="col-md-4 col-xs-6 control-label">Tổng tiền thanh toán</label>
+        <label class="col-md-8 col-xs-6 control-label control-label-result">@Model.TotalAmount.ToFormat()</label>
+    </div>
+
+</div>

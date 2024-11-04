@@ -1,0 +1,12 @@
+﻿@{
+    var selectListAccount = Html.GetEnumSelectList(typeof(CommonConst.AgentType));
+    var newList = selectListAccount.Where(x => x.Value != "99").ToList();
+    foreach (var selectOption in newList.Where(x => x.Value != "99"))
+    {
+        selectOption.Text = L("Enum_AgentType_" + selectOption.Value);
+    }
+}
+<label for="AgentTypeFilter">@L("AgentsManage_Agent_Type")</label>
+<select class="form-control select2" name="agentType" id="AgentTypeFilter" asp-items="@newList">
+    <option value="99" selected>Tất cả</option>
+</select>

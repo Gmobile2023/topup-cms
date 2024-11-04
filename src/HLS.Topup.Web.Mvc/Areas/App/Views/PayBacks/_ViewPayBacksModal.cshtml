@@ -1,0 +1,205 @@
+@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.PayBacks
+@model CreateOrEditPayBacksModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsViewMode == true ? L("ViewPayBacks") : L("EditPayBacks")))
+
+<div class="modal-body">
+    <div id="PayBacksFormTab">
+        <form name="PayBacksInformationsForm" role="form" novalidate class="form-validation">
+            <input type="hidden" name="id" value="@Model.PayBacks.Id"/>
+            <input type="hidden" id="pbStatus" value="@Model.PayBacks.Status"/>
+            @if (Model.IsViewMode)
+            {
+                <input type="hidden" name="mode" value="view"/>
+            }
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBacksCode">
+                            @L("PayBacks_Code") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input" id="PayBacksCode" type="text" name="code" value="@Model.PayBacks.Code" required disabled/>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="PayBacksName">
+                            @L("PayBacks_Name") <span class="lightred">(*)</span>
+                        </label>
+                        @if (Model.IsViewMode)
+                        {
+                            <input class="form-control m-input" id="PayBacksName" type="text" name="name" value="@Model.PayBacks.Name" required disabled/>
+                        }
+                        else
+                        {
+                            <input class="form-control m-input" id="PayBacksName" type="text" name="name" value="@Model.PayBacks.Name" required/>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="FromDate">
+                            @L("PayBacks_Payment_Period") <span class="lightred">(*)</span>
+                        </label>
+                        <div class="input-group">
+                            @if (Model.IsViewMode)
+                            {
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MinValue")" name="fromDate" id="FromDate" value="@Model.PayBacks.FromDate.ToString("dd/MM/yyyy")" disabled>
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MaxValue")" name="toDate" id="ToDate" value="@Model.PayBacks.ToDate.ToString("dd/MM/yyyy")" disabled>
+                            }
+                            else
+                            {
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MinValue")" name="fromDate" id="FromDate" value="@Model.PayBacks.FromDate">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MaxValue")" name="toDate" id="ToDate" value="@Model.PayBacks.ToDate">
+                            }
+
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsViewMode)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="PayBacksName">
+                                @L("Status") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" id="Status" type="text" name="status" value="@L("Enum_PayBacksStatus_" + (int) Model.PayBacks.Status)" required disabled/>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.IsViewMode)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("PayBacks_Date_CreationTime") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" value="@Model.CreationTime.ToString("dd/MM/yyyy HH:mm:ss")" required disabled/>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.IsViewMode)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("PayBacks_User_CreationTime") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" value="@Model.UserName" required disabled/>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.IsViewMode)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("PayBacks_Date_Approved") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" value="@Model.PayBacks.DateApproved" required disabled/>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.IsViewMode)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("PayBacks_User_Approved") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" value="@Model.UserApproved" required disabled/>
+                        </div>
+                    </div>
+                }
+
+                @if (!Model.IsViewMode)
+                {
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="importCardsFromExcel" style="color:red">
+                                @L("PayBacks_Choose_File") <span class="lightred">(*)</span>
+                            </label>
+                            <label class="form-control" style="width: 100%">
+                                <span >Chọn file</span>
+                                <input id="ImportFromExcel" class="hidden" type="file" name="files" accept=".xlsx, .xls, .csv">
+                            </label>
+                            <div class="form-group">
+                                <a target="_blank" href="/assets/SampleFiles/ImportPayBacksSampleFile.xlsx">@L("File Mau Import")</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="col-md-8">@L("AgentPayBacksTable_Des")</div>
+                <div class="col-md-4">
+                    @if (Model.PayBacks.Status == CommonConst.PayBackStatus.Approval)
+                    {
+                        <a href="javascript:;" id="ExportDetail" class="pull-right">@L("ExportToExcel")</a>
+                    }
+                </div>
+
+                <div class="col-sm-12">
+                    <table id="AgentPayBacksTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>@L("AgentCode")</th>
+                            <th>@L("PhoneNumber")</th>
+                            <th>@L("FullName")</th>
+                            <th>@L("Amount")</th>
+                            @if (Model.IsViewMode)
+                            {
+                                <th>@L("PayBacks_TransCode")</th>
+                            }
+                            else
+                            {
+                                 <th></th>
+                            } 
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tbody class="f">
+                        <tr>
+                            <td colspan="4">
+                                <b>Tổng cộng</b>
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">Hủy bỏ</button>
+    @if (!Model.IsViewMode)
+    {
+        <button type="button" id="btnUpload" class="btn btn-primary save-button">
+            <i class="fa fa-save"></i> <span>Lưu thông tin</span>
+        </button>
+    }
+    
+    @if (Model.PayBacks.Status == CommonConst.PayBackStatus.Init)
+        {
+            <button type="button" id="approvalButton" data-id="@Model.PayBacks.Id" class="btn btn-primary">
+                <i class="fa fa-check" style="font-size: 1.1rem !important;"></i> <span>Duyệt</span>
+            </button>
+        }
+</div>

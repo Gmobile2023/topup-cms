@@ -1,0 +1,656 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/themes/default/js/main.min.js",
+    "inputFiles": [
+      "wwwroot/themes/default/js/main.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Deposits/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Deposits/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Banks/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Banks/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Categories/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Categories/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Topup/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Topup/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Discounts/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Discounts/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Transactions/Deposit.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Transactions/Deposit.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Common/Scripts/Service.min.js",
+    "inputFiles": [
+      "wwwroot/Common/Scripts/Service.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Common/Scripts/query-mask/inputmask.min.js",
+    "inputFiles": [
+      "wwwroot/Common/Scripts/query-mask/inputmask.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Common/Scripts/query-mask/jquery.inputmask.bundle.min.js",
+    "inputFiles": [
+      "wwwroot/Common/Scripts/query-mask/jquery.inputmask.bundle.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Common/Scripts/query-mask/jquery.mask.min.js",
+    "inputFiles": [
+      "wwwroot/Common/Scripts/query-mask/jquery.mask.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/CardBatchs/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/CardBatchs/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Cards/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Cards/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/CardStocks/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/CardStocks/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/CardStocks/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/CardStocks/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/CardStocks/_TransferModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/CardStocks/_TransferModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Cards/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Cards/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Cards/_CreateCardsModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Cards/_CreateCardsModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Cards/_CreateCardsModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Cards/_CreateCardsModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Common/Scripts/bootbox/bootbox.min.js",
+    "inputFiles": [
+      "wwwroot/Common/Scripts/bootbox/bootbox.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BillPayment/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BillPayment/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BillPayment/BillCommon.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BillPayment/BillCommon.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BillPayment/PayElectricBill.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BillPayment/PayElectricBill.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BillPayment/PayWaterBill.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BillPayment/PayWaterBill.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/ServiceConfigurations/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/ServiceConfigurations/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/TransactionManagement/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/TransactionManagement/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Transactions/TransactionDetailBuyCard.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Transactions/TransactionDetailBuyCard.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Transactions/TransactionHistory.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Transactions/TransactionHistory.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Profile/ChangePassword.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Profile/ChangePassword.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Profile/ChangePassword2.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Profile/ChangePassword2.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Profile/CreateOrEditStaff.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Profile/CreateOrEditStaff.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Profile/StaffManager.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Profile/StaffManager.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Home/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Home/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Profile/SalesPolicy.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Profile/SalesPolicy.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Common/Scripts/Notification.min.js",
+    "inputFiles": [
+      "wwwroot/Common/Scripts/Notification.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Profile/Notifications.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Profile/Notifications.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/SaleMans/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/SaleMans/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/SaleMans/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/SaleMans/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Report/Detail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Report/Detail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Report/TotalDay.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Report/TotalDay.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Deposits/_CreateDebtModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Deposits/_CreateDebtModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Deposits/_DepositUserLookupTableAgentModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Deposits/_DepositUserLookupTableAgentModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Deposits/_ApprovedBankModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Deposits/_ApprovedBankModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/SaleClearDebts/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/SaleClearDebts/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/SaleClearDebts/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/SaleClearDebts/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportServiceDetail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportServiceDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportAgentBalance.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportAgentBalance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportServiceTotal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportServiceTotal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/AgentsManage/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/AgentsManage/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/AgentsManage/_MappingSale.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/AgentsManage/_MappingSale.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportRefundDetail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportRefundDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/SaleLimitDebts/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/SaleLimitDebts/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/SaleLimitDebts/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/SaleLimitDebts/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportRevenueAgent.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportRevenueAgent.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportRevenueCity.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportRevenueCity.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportTotalSaleAgent.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportTotalSaleAgent.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/TotalDebtBalance.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/TotalDebtBalance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/AccountDebtDetail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/AccountDebtDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/AgentsManage/_LockOrUnlockAgent.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/AgentsManage/_LockOrUnlockAgent.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportRevenueActive.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportRevenueActive.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/CardStockImExPort.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/CardStockImExPort.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Deposits/_CreateOrEditDepositCashModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Deposits/_CreateOrEditDepositCashModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/BalanceAccount.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/BalanceAccount.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/BalanceAccounts.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/BalanceAccounts.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/PayBacks/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/PayBacks/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/PayBacks/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/PayBacks/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/LimitProducts/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/LimitProducts/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/LimitProducts/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/LimitProducts/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/LimitProducts/_ViewLimitProductModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/LimitProducts/_ViewLimitProductModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/PayBatchBills/_ViewDetailModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/PayBatchBills/_ViewDetailModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/PayBatchBills/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/PayBatchBills/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/PayBatchBills/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/PayBatchBills/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Discounts/_ViewDiscountModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Discounts/_ViewDiscountModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/AuditActivities/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/AuditActivities/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/TotalBalance.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/TotalBalance.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/TransactionManagement/_PinCodeDetailModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/TransactionManagement/_PinCodeDetailModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportTransferDetail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportTransferDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/CardStockImExProvider.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/CardStockImExProvider.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/SecureMethod.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/SecureMethod.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Products/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Products/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/Refund.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/Refund.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/_ViewRefund.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/_ViewRefund.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/_Reponse.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/ProviderReconcile/_Reponse.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BatchTopup/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BatchTopup/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BatchTopup/History.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BatchTopup/History.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BatchTopup/TopupDetail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BatchTopup/TopupDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BatchTopup/Result.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BatchTopup/Result.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Report/DashRevenue.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Report/DashRevenue.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/AgentsManage/_ConvertPhoneModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/AgentsManage/_ConvertPhoneModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/AgentsSupper/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/AgentsSupper/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/AgentsSupper/_EditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/AgentsSupper/_EditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/AgentsSupper/_ViewAgentModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/AgentsSupper/_ViewAgentModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportComparePartner.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportComparePartner.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/ReportServiceProvider.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/ReportServiceProvider.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/CardBatchs/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/CardBatchs/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/ReportsRose/ReportRoseDetail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/ReportsRose/ReportRoseDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/ReportsRose/ReportRoseTotal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/ReportsRose/ReportRoseTotal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Report/RoseDetail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Report/RoseDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Report/RoseTotal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Report/RoseTotal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Report/DashAgentGeneral.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Report/DashAgentGeneral.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Report/CommissionDetail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Report/CommissionDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Report/CommissionTotal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Report/CommissionTotal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/Reports/CommissionDetail.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Reports/CommissionDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/ServiceConfigurations/_CreateOrEditModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/ServiceConfigurations/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/BillPayment/BillPayment.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/BillPayment/BillPayment.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/TransactionManagement/OffsetTopup.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/TransactionManagement/OffsetTopup.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Common/Scripts/appUserNotificationHelper.min.js",
+    "inputFiles": [
+      "wwwroot/Common/Scripts/appUserNotificationHelper.js"
+    ]
+  }
+]

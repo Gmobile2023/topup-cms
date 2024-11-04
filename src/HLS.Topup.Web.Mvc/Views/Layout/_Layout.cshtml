@@ -1,0 +1,186 @@
+﻿@using System.Globalization
+@using Abp.AspNetZeroCore.Timing
+@using Abp.Web.Mvc.Alerts
+@using HLS.Topup.Web.Resources
+@using Abp.Web.Security.AntiForgery
+@using HLS.Topup.UiCustomization.Dto
+@using HLS.Topup.Url
+@using HLS.Topup.Web.Session
+@using HLS.Topup.Web.Views.Shared.Components.Header
+@using CultureHelper = HLS.Topup.Localization.CultureHelper
+@using HeaderViewModel = HLS.Topup.Web.Areas.App.Models.Layout.HeaderViewModel
+@inject ScriptPaths ScriptPaths
+@inject AppTimes AppTimes
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IWebUrlService WebUrlService
+@inject IPerRequestSessionCache SessionCache
+@inject IAlertManager AlertManager
+@{
+    Layout = null;
+    AbpAntiForgeryManager.SetCookie(Context);
+    UiCustomizationSettingsDto theme = await GetTheme();
+    var headerViewModel = new HeaderViewModel();
+}
+<!DOCTYPE html>
+<html lang="vi" @(CultureHelper.IsRtl ? "dir=\" rtl\"" : "") class="">
+<head>
+    <title>Topup</title>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <meta property="og:title" content="Topup" />
+    <meta property="og:image" content="@headerViewModel.GetLogoUrl(ApplicationPath, theme.BaseSettings.Menu.AsideSkin)" />
+    <meta property="og:description" content="MobileGo" />
+    <meta property="og:url" content="@($" {Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")">
+
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    <style>
+        .select2-container {
+            display: block !important;
+        }
+    </style>
+    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/vendors.bundle.css" asp-append-version="true" />
+    <link rel="stylesheet" abp-href="/Common/Scripts/Datatables/datatables@(CultureHelper.IsRtl ? "-rtl":"").css" asp-append-version="true" />
+
+    <link href="~/themes/default/plugins/slick/style.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/themes/default/css/style.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/themes/default/css/custom.min.css" rel="stylesheet" asp-append-version="true" />
+
+    @await RenderSectionAsync("Styles", false)
+    <script type="text/javascript">
+        @* This is used to get the application's root path from javascript.
+        It's useful if you're running application in a virtual directory under IIS. *@
+        var abp = abp || {}; abp.appPath = '@ApplicationPath';
+    </script>
+
+</head>
+<body>
+    <div class="preloader-wrapp" id="preloader">
+        <img src="~/themes/default/images/logo_transparent.png" alt="" />
+        <div class="preloader"></div>
+    </div>
+    <div class="page home">
+        @*<div class="html_ajax_load" data-url="/Include/Announce"></div>*@
+        <!--section header -->
+        <section class="section-header">
+            <!-- top navigation -->
+            @await Component.InvokeAsync(typeof(HeaderViewComponent), new { currentPageName = ViewBag.CurrentPageName })
+            <!-- end top navigation -->
+            @await Html.PartialAsync("~/Views/Shared/Components/Header/_Slider.cshtml")
+        </section>
+        <!--end section header -->
+        <!-- ./header -->
+        <!-- section main: topup -->
+        <section id="main">
+            @RenderBody()
+        </section>
+        <!--end section main -->
+        @await Html.PartialAsync("~/Views/Shared/Components/Home/_IntroduceInHome.cshtml")
+        @await Html.PartialAsync("~/Views/Shared/Components/Home/_FunctionInHome.cshtml")
+        @await Html.PartialAsync("~/Views/Shared/Components/Home/_NewsInHome.cshtml")
+
+        <!-- section product intro -->
+        @* @await Html.PartialAsync("~/Views/Shared/Components/ProductIntro/Default.cshtml") *@
+        <!-- end section product intro -->
+        <!--section download app -->
+        @* @await Html.PartialAsync("~/Views/Shared/Components/DownloadApp/Default.cshtml") *@
+        <!-- end section download app-->
+        <!-- global footer -->
+        @* @await Html.PartialAsync("~/Views/Shared/Components/Footer/_Footer.cshtml") *@
+        <!-- end global footer -->
+    </div>
+    <nav id="mobile-menu" class="html_ajax_load" data-url="/Includes/MenuMobile"></nav>
+    @* @await Html.PartialAsync("~/Views/Shared/Components/Header/_HeaderMenuMobile.cshtml") *@
+@* Base JS *@
+    <script>KTAppSettings={}</script>
+    <script abp-src="/view-resources/Areas/App/Views/_Bundles/app-layout-libs.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Areas/App/Views/_Bundles/@theme.BaseSettings.Theme.ToLowerInvariant()-scripts.bundle.js" asp-append-version="true"></script>
+    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="@(ApplicationPath)AbpServiceProxies/GetAll?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+    <script src="@(ApplicationPath)AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+    <script type="text/javascript">
+        abp.localization.currentCulture = $.extend({}, abp.localization.currentCulture, { displayNameEnglish: '@CultureInfo.CurrentUICulture.EnglishName' });
+        moment.locale('@(GetMomentLocale())'); //Localizing moment.js
+    </script>
+    <script abp-src="/view-resources/Areas/App/Views/_Bundles/common-scripts.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Areas/App/Views/_Bundles/app-common-scripts.js" asp-append-version="true"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="~/themes/default/js/main.js" asp-append-version="true"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    @*
+        <script src="../apis.google.com/js/platform.js" async defer></script>*@
+
+    <script src="~/themes/default/plugins/slick/scripts.min.js" asp-append-version="true"></script>
+    <script src="~/Common/Scripts/query-mask/jquery.inputmask.bundle.js"></script>
+    <script src="~/Common/Scripts/Service.min.js" asp-append-version="true"></script>
+    <script src="~/view-resources/Views/Header/Index.min.js" asp-append-version="true"></script>
+    @*<script type="text/javascript">
+            abp.localization.defaultSourceName = '@LocalizationSourceName';
+            abp.security.antiForgery.tokenCookieName = "Public-XSRF-TOKEN";
+            abp.security.antiForgery.tokenHeaderName = "Public-X-XSRF-TOKEN";
+        </script>*@
+    <script>
+        if ($('#home-slider').length) {
+            $('#home-slider').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                lazyLoad: 'ondemand'
+            });
+        }
+
+        $('#top_news_content').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
+
+
+    </script>
+
+    <script src="~@ScriptPaths.JQuery_Validation_Localization" asp-append-version="true"></script>
+    <script src="~@ScriptPaths.Bootstrap_Select_Localization" asp-append-version="true"></script>
+    <script src="~@ScriptPaths.JQuery_Timeago_Localization" asp-append-version="true"></script>
+    <script src="~@ScriptPaths.Select2_Localization" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", false)
+
+</body>
+
+</html>

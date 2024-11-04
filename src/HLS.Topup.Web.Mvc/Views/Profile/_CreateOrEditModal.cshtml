@@ -1,0 +1,76 @@
+﻿@using Abp.Authorization.Users
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@model HLS.Topup.Authorization.Accounts.Dto.CreateOrEditAgentModalViewModel
+
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Cập nhật thông tin"))
+
+<div class="modal-body">
+    <form name="UserInformationsForm" role="form" novalidate class="form-validation" autocomplete="off">
+        @if (Model.IsEditMode)
+        {
+            <input type="hidden" name="Id" value="@Model.User.Id"/>
+        }
+    <div class="row">
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label for="Name">@L("Name")</label>
+                <input id="Name" class="form-control" disabled="@Model.IsView" value="@Model.User.Name" type="text" name="Name" required maxlength="30" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label for="Surname">@L("Surname")</label>
+                <input id="Surname" type="text" name="Surname" disabled="@Model.IsView" class="form-control" value="@Model.User.Surname" required maxlength="30" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label for="PhoneNumber">@L("PhoneNumber")</label>
+                <input id="PhoneNumber" type="text" name="PhoneNumber" disabled="@(Model.IsEditMode || Model.IsView)" class="form-control" required value="@Model.User.PhoneNumber" maxlength="15" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <div class="form-group">
+                <label for="EmailAddress">@L("EmailAddress")</label>
+                <input id="EmailAddress" type="email" name="EmailAddress" disabled="@(Model.IsEditMode || Model.IsView)" class="form-control" value="@Model.User.EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 hidden">
+            <div class="form-group form-md-line-input form-md-floating-label">
+                <label for="UserName">@L("UserName")</label>
+                <input id="UserName" type="text" name="UserName" disabled class="form-control" value="@Model.User.UserName" required maxlength="30" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <span class="form-text text-muted">Cập nhật mật khẩu, <a href="javascript:void(0)" id="btnChangePass">bấm vào đây</a>.</span>
+            </div>
+        </div>
+        <div id="showChangePassword" class="hidden">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="CurrentPassword">@L("CurrentPassword")</label>
+                    <input id="CurrentPassword" type="password" autocomplete="new-password" name="CurrentPassword" class="form-control" required maxlength="@HLS.Topup.Authorization.Users.User.MaxPlainPasswordLength">
+                    <span class="form-text text-muted">@Html.Raw(L("PasswordChangeDontRememberMessage", "<a href=\"" + Url.Action("ForgotPassword", "Account", new { area = "" }) + "\">" + L("ClickHere") + "</a>"))</span>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group user-password">
+                    <label for="EditUser_Password">@L("Password")</label>
+                    <input id="EditUser_Password" required disabled="@Model.IsView" type="password" name="Password" @Html.Raw(!Model.IsEditMode ? "required" : "") class="form-control auto-complete-off"
+                           maxlength="@AbpUserBase.MaxPlainPasswordLength" autocomplete="new-password">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group user-password">
+                    <label for="PasswordRepeat">@L("PasswordRepeat")</label>
+                    <input id="PasswordRepeat" required disabled="@Model.IsView" type="password" name="PasswordRepeat" @Html.Raw(!Model.IsEditMode ? "required" : "") class="form-control auto-complete-off"
+                           maxlength="@AbpUserBase.MaxPlainPasswordLength" equalto="#EditUser_Password" autocomplete="new-password">
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+@await Html.PartialAsync("~/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,39 @@
+﻿﻿@using Abp.Collections.Extensions
+@using Abp.Collections.Extensions
+@model UserMenuItemViewModel
+<li class="@(Model.MenuItem.Items.IsNullOrEmpty()?"sub-menu":"sub-menu")">
+    @if (Model.MenuItem.Items.IsNullOrEmpty())
+    {
+        <a href="@Model.MenuItem.Url">
+            <img src="/themes/topup/images/ic_dark/ic-01.svg" width="20" alt="">
+            <p> @Model.MenuItem.DisplayName</p>
+        </a>
+    }
+    else
+    {
+        <a href="@Model.MenuItem.Url" data-toggle="dropdown">
+            <img src="/themes/topup/images/ic_dark/ic-01.svg" width="20" alt="">
+            <p> @Model.MenuItem.DisplayName</p>
+            <div class="arrow">
+                <img src="/themes/topup/images/down-arrow.svg" alt="">
+            </div>
+        </a>
+        <ul class="dropdown-menu">
+            @for (var i = 0; i < Model.MenuItem.Items.Count; i++)
+            {
+                var childMenuItem = Model.MenuItem.Items[i];
+                if (!childMenuItem.IsVisible)
+                {
+                    continue;
+                }
+                @await Html.PartialAsync("Components/MenuMobile/_MenuItem", new UserMenuItemViewModel
+                {
+                    MenuItem = childMenuItem,
+                    MenuItemIndex = i,
+                    CurrentPageName = Model.CurrentPageName,
+                    RootLevel = false
+                })
+            }
+        </ul>
+    }
+</li>

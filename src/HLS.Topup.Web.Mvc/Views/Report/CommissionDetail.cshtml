@@ -1,0 +1,178 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutFull.cshtml";
+}
+@model HLS.Topup.Web.Models.Report.ReportRoseViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Report_RoseDetail;
+    ViewBag.Title = "Báo cáo chi tiết bán hàng đại lý cấp 1";
+    ViewBag.ImageTitle = "/themes/topup/images/transaction-history-white.svg";
+}
+
+@section Scripts
+{
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Views/Report/CommissionDetail.js" asp-append-version="true"></script>
+}
+
+<style>
+    td.ctrl-ss {
+        padding: 0 10px 0 0 !important;
+    }
+
+        td.ctrl-ss i.fa {
+            padding: 8px 12px !important;
+        }
+</style>
+
+<div class="report-detail">
+    <div class="page-title text-right">
+        <a href="javascript:;" onclick="Sv.goBackHistory()">
+            <button class="btn-file-export" style="float: left !important;">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i> @L("Back")
+            </button>
+        </a>
+        <div class="add-button">
+            <button id="ExportToExcelButton" class=" btn-file-export">
+                <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+            </button>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="row">
+            <div class="col-md-2 col-xs-12 col-xs-100">
+                <div class="form-group">
+                    <label for="FromDate">Thời gian từ:</label>
+                    <div class="dis-flex" style="display: flex;">
+                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="txtFromDate">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-12 col-xs-100">
+                <div class="form-group">
+                    <label for="ToDate">Thời gian tới:</label>
+                    <div class="dis-flex" style="display: flex;">
+                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="txtToDate">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-xs-100">
+                <div class="form-group">
+                    <label>Mã giao dịch</label>
+                    <input type="text" id="txttransCode" class="form-control m-input" maxlength="50" placeholder="Mã giao dịch">
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-xs-100">
+                <div class="form-group">
+                    <label for="">Đại lý cấp 1:</label>
+                    <select id="selectAgent" name="selectAgent" class="form-control select2">
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-xs-100">
+                <div class="form-group">
+                    <label for="selectService">Dịch vụ:</label>
+                    <span class="down-arrow-black arrow-small"></span>
+                    <select id="selectService" class="form-control">
+                        <option value="">-- @L("TransType") --</option>
+                        <option value="TOPUP">Nạp tiền điện thoại</option>
+                        <option value="TOPUP_DATA">Topup Data</option>
+                        <option value="PIN_CODE">Mua mã thẻ</option>
+                        <option value="PIN_DATA">Mua thẻ Data</option>
+                        <option value="PIN_GAME">Mua thẻ Game</option>
+                        <option value="PAY_BILL">Thanh toán hóa đơn</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-xs-100">
+                <div class="form-group">
+                    <label for="">Loại sản phẩm:</label>
+                    <span class="down-arrow-black arrow-small"></span>
+                    <select class="form-control" name="selectCategory" id="selectCategory">
+                        <option value="">Chọn loại sản phẩm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-xs-100">
+                <div class="form-group" >
+                    <label for="">Sản phẩm:</label>
+                    <span class="down-arrow-black arrow-small"></span>
+                    <select class="form-control" name="selectProduct" id="selectProduct">
+                        <option value="">Chọn sản phẩm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-xs-100">
+                <div class="form-group">
+                    <label for="">Trạng thái giao dịch:</label>
+                    <span class="down-arrow-black arrow-small"></span>
+                    <select class="form-control" name="selectStatus" id="selectStatus">
+                        <option value="-1">--Tất cả--</option>
+                        <option value="1">Thành công</option>
+                        <option value="3">Lỗi</option>
+                        <option value="2">Chưa có kết quả</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-xs-100">
+                <div class="form-group">
+                    <label for="">Trạng thái:</label>
+                    <span class="down-arrow-black arrow-small"></span>
+                    <select class="form-control" name="selectPaymentStatus" id="selectPaymentStatus">
+                        <option value="-1">--Tất cả--</option>
+                        <option value="1">Đã trả</option>
+                        <option value="0">Chưa trả</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 col-xs-2">
+                <div class="form-group align-items-center">
+                    <div class="input-group">
+                        <span class="input-group-btn" style="top:25px">
+                            <button id="btnSearch" class="btn btn-success btn-blue btn-search-icon" type="submit" style="height: 39px; border-radius: 3px;">
+                                <i class="flaticon-search-1" aria-label="@L("Search")"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row align-items-center" style="margin-left:10px">
+                    <table id="Table" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th colspan="2"></th>
+                                <th colspan="2"></th>
+                                <th colspan="2"></th>
+                                <th colspan="10"></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Đại lý cấp 1</th>
+                                <th>Mã GD trả hoa hồng</th>
+                                <th>Hoa hồng</th>
+                                <th>Tình trạng</th>
+                                <th>Thời gian trả hoa hồng</th>
+                                <th>Mã GD</th>
+                                <th>Dịch vụ</th>
+                                <th>Loại sản phẩm</th>
+                                <th>Sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th>Chiết khấu</th>
+                                <th>Phí</th>
+                                <th>Thành tiền</th>
+                                <th>Trạng thái GD</th>
+                                <th>Thời gian giao dịch</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="hdnAccountCode" value="@Model.AccountCode" />
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Gán nhân viên quản lý"))
+@model HLS.Topup.AgentManagerment.MappingSaleView
+<div class="modal-body">
+    <div id="MappingSaleInformationsTab">
+        <form name="MappingSaleInformationsForm" role="form" novalidate class="form-validation">
+            <input type="hidden" name="type" id="hdnAgentId" value="@Model.AgentId"/>
+            <div class="row">
+                <div class="col-6">
+                    <h6>Nhân viên quản lý</h6>
+                    <select id="selectSale" name="selectSale" class="form-control select2" required></select>
+                </div>
+                <div class="col-6">
+                    <h6>Sale Leader</h6>
+                    <input type="text" id="txtSaleLeader" class="form-control m-input" maxlength="200" disabled>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

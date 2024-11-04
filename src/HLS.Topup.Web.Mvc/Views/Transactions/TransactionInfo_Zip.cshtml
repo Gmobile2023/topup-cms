@@ -1,0 +1,111 @@
+﻿@using HLS.Topup.Web.Models.Transaction
+@using HLS.Topup.Web.TagHelpers
+@model TransactionInfoModel
+@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.TransactionInfo;
+    var methodReceivePass = ViewBag.MethodReceivePassFile.ToString();
+    ViewBag.Title = "Kết quả giao dịch";
+}
+
+<div id="Topup_Page" class="section-body-middle">
+    <form class="" id="transactionInfoForm">
+        <div class="section-body-middle-form-p1 no-border-top" style="padding-bottom: 0;">
+            <div class="section-body-right bg-white affix-wrap affix-top">
+                <div class="section-body-right-header">
+                    <div class="cart"></div>
+                    <p>@((Model.Code == "01") ? "Giao dịch thành công" : "Giao dịch không thành công")</p>
+                </div>
+
+                @if (Model.Code == "01")
+                {
+                    if (Model.TransType == CommonConst.TransactionType.PinCode.ToString("G"))
+                    {
+                        var type = L("ServiceNameByCode_" + Model.TransInfo.ServiceCode);
+                        <div class="form-group form-group-dashed row">
+                            <label class="col-md-12 col-xs-12 control-label text-center">
+                                <span>Chúc mừng bạn đã thanh toán thành công cho giao dịch @type.<br /> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="color-red"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group form-group-dashed row">
+                            <label class="col-md-12 col-xs-12 control-label text-center">
+                                <span>Chúc mừng bạn đã thanh toán thành công cho giao dịch có mã: <strong>@Model.TransCode</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                            </label>
+                        </div>
+                        @if (Model.TransType == CommonConst.TransactionType.PinCode.ToString("G") && !string.IsNullOrEmpty(Model.Message))
+                        {
+                            <div class="form-group form-group-dashed row">
+                                <label class="col-md-12 col-xs-12 control-label text-center">
+                                    <span>@Model.Message</span>
+                                </label>
+                            </div>
+                        }
+                    }
+                }
+                else
+                {
+                    <div class="form-group form-group-dashed row">
+                        <label class="col-md-12 col-xs-12 control-label text-center">
+                            <span>@Model.Message</span>
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="section-body-middle-form-p2">
+            <div class="row">
+                <div tabindex="12" class="col-md-12 text-center">
+                    <button type="button" onclick="back()" class="button btn-custom btn-grey">Quay lại</button>
+                    @if (Model.Code == "01")
+                    {
+                        <button type="button" onclick="zipTopupCode()" class="button btn-custom btn-blue" style="width: auto !important; padding: 0 20px;">Tải xuống</button>
+                    }
+                    <button type="button" onclick="historyNext()" class="button btn-custom btn-blue" style="width: auto !important; padding: 0 20px;">Xem lịch sử giao dịch</button>
+                
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+    <script>
+    var sendMethod = '@methodReceivePass';
+    function  historyBalance() {
+      window.location.href = '@Url.Action("Detail", "Report")';
+    }
+    function  zipTopupCode() {
+      // window.location.href = '@Url.Action("TopupCodeZipFile","Common",   new { transcode = Model.TransCode})';
+       let v1 = sendMethod == "Email" ? "Email" : "Số điện thoại" ;
+       let v2 = sendMethod == "Email" ? "email" : "tin nhắn" ;
+       var msg= "Tiến trình tải xuống đang diễn ra. Vui lòng đợi trong giây lát. File tải xuống đã được đặt mã bảo mật, mật khẩu đã được gửi về "+v1+" của bạn. Vui lòng kiểm tra  "+v2+"  để nhận mã.";
+       if(sendMethod == "Email" || sendMethod == "Sms" ){
+           abp.message.info(msg);
+       }
+      abp.ui.setBusy();
+      abp.services.app.transactions.zipCards('@Model.TransCode') 
+      .done(function (result) {
+          app.downloadTempFile(result); 
+         
+      }).always(function () {
+         abp.ui.clearBusy();
+      });
+      
+    }
+    function  historyNext() {
+        @*window.location.href = '@Url.Action("TransactionHistory", "Transactions")';*@
+        window.location.href = '@Url.Action("Detail", "Report")';
+    }
+    function  back() {
+      //window.history.back();
+      location.replace(document.referrer);//Load lại trang luôn để check 1 số điều kiện
+    }
+    </script>
+}

@@ -1,0 +1,98 @@
+@{
+    Layout = $"~/Views/Layout/_LayoutProfile.cshtml";
+}
+@model HLS.Topup.Web.Areas.App.Models.Users.UsersViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Profile_SalesPolicy;
+    ViewBag.Title = "Chính sách bán hàng";
+    ViewBag.ImageTitle = "/themes/topup/images/nhattran/discount-white.svg";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Profile/SalesPolicy.js" asp-append-version="true"></script>
+}
+
+<div class="section-body-middle no-border" id="Page-Sales-Policy">
+    <p style="padding-top:30px"></p>
+    <div class="group-help__section">
+        <ul class="group-help grid3">
+            <li>
+                <a href="javascript:;" onclick="ctrl.getProductDiscounts('TOPUP','Nạp điện thoại')" class="group-help__frame active">
+                    <div class="group-help__ic">
+                        <img src="/themes/topup/images/ic_dark/ic-01.svg" alt="">
+                    </div>
+                    <div class="group-help__title">
+                        Nạp điện thoại
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="ctrl.getProductDiscounts('PIN_CODE','Mua mã thẻ')" class="group-help__frame">
+                    <div class="group-help__ic">
+                        <img src="/themes/topup/images/ic_dark/ic-05.svg" alt="">
+                    </div>
+                    <div class="group-help__title">
+                        Mua mã thẻ
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="ctrl.getProductDiscounts('TOPUP_DATA','Nạp Topup Data')" class="group-help__frame">
+                    <div class="group-help__ic">
+                        <img src="/themes/topup/images/ic_dark/ic-topup-data.svg" alt="">
+                    </div>
+                    <div class="group-help__title">
+                        Nạp Topup Data
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="ctrl.getProductDiscounts('PIN_DATA','Mã thẻ Data')" class="group-help__frame">
+                    <div class="group-help__ic">
+                        <img src="/themes/topup/images/ic_dark/ic-05.svg" alt="">
+                    </div>
+                    <div class="group-help__title">
+                        Mã thẻ Data
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="ctrl.getProductDiscounts('PIN_GAME','Mã thẻ Game')" class="group-help__frame">
+                    <div class="group-help__ic">
+                        <img src="/themes/topup/images/nhattran/video-game-single.svg" alt="">
+                    </div>
+                    <div class="group-help__title">
+                        Mã thẻ Game
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="ctrl.getProductDiscounts('PAY_BILL','Thanh toán hoá đơn')" class="group-help__frame">
+                    <div class="group-help__ic">
+                        <img src="/themes/topup/images/nhattran/bill.svg" alt="">
+                    </div>
+                    <div class="group-help__title">
+                        Thanh toán hoá đơn
+                    </div>
+                </a>
+            </li>
+            <div class="clearfix"></div>
+        </ul>
+    </div>
+    <h4 class="text-center" style="text-transform: uppercase" id="showTitle"></h4>
+    <div class="group-help__section group-help__section--link clearfix group-help-link__ul--padding-bg" id="table-pay-topup">
+        <table class="display table table-striped table-bordered table-hover dt-responsive nowrap" id="productDiscoutTable">
+            <thead>
+            <tr>
+                <th></th>
+                <th scope="col">DỊCH VỤ</th>
+                <th scope="col">SẢN PHẨM</th>
+                <th scope="col">CHIẾT KHẤU</th>
+                <th scope="col">GIÁ BÁN</th>
+                <th scope="col">PHÍ GIAO DỊCH</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>

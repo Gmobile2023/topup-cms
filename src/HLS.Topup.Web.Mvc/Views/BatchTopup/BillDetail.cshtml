@@ -1,0 +1,116 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@model HLS.Topup.Web.Models.TopupRequest.HistoryModalDetailViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.DetailLot;
+    ViewBag.Title = "Chi tiết lô";
+    ViewBag.ImageTitle = "/themes/topup/images/transaction-history-white.svg";
+}
+
+@section Scripts
+{
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Views/BatchTopup/BillDetail.js" asp-append-version="true"></script>
+}
+<div class="section-body-middle">
+    <div class="section-body-middle-introduce">
+        <div class="page-body">
+            <div class="row">
+                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
+                    <div class="form-group">
+                        <label for="">Loại lô : @Model.BatchName</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
+                    <div class="form-group">
+                        <label for="">Mã lô : @Model.BatchCode</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
+                    <div class="form-group">
+                        <label for="">Số lượng giao dịch : @Model.Quantity.ToString("N0")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
+                    <div class="form-group">
+                        <label for="">Số lượng giao dịch thành công : @Model.QuantitySuccess.ToString("N0")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
+                    <div class="form-group">
+                        <label for="">Tổng số tiền : @Model.Price.ToString("N0")</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
+                    <div class="form-group">
+                        <label for="">Tổng số tiền thành công : @Model.PriceSuccess.ToString("N0")</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
+                    <div class="form-group">
+                        <label for="">Trạng thái lô</label>
+                        <select class="form-control" name="selectBatchStatus" id="selectBatchStatus">
+                            <option value="-1">--Tất cả--</option>
+                            <option value="0">Khởi tạo</option>
+                            <option value="1">Hoàn tất</option>
+                            <option value="2">Đang xử lý</option>
+                            <option value="3">Dừng</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
+                    <div class="form-group">
+                        <label for="StatusFilterId">Trạng thái giao dịch</label>
+                        <select class="form-control" name="selectStatusTrans" id="selectStatusTrans">
+                            <option value="-1">--Tất cả--</option>
+                            <option value="1">Thành công</option>
+                            <option value="2">Chưa có kết quả</option>
+                            <option value="3">Lỗi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
+                    <div class="form-group">
+                        <button type="button" id="btnSeachDetail" class="hlsCtrl button btn-custom btn-blue">Tìm kiếm</button>
+                        <button type="button" id="btnUndo" class="button btn-custom btn-grey">Quay lại</button>
+                        <button type="button" id="btnExportDetail" class="button btn-custom btn-grey">@L("ExportToExcel")</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:20px">
+                <div class="col-md-12">
+                    <div class="align-items-center">
+                        <table id="tableDetail" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center" colspan="4">Tổng cộng</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th colspan="2"></th>
+                                </tr>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hóa đơn điện</th>
+                                    <th>Nhà cung cấp</th>
+                                    <th>Mã khách hàng</th>
+                                    <th>Số tiền</th>
+                                    <th>Chiết khấu</th>
+                                    <th>Phí</th>
+                                    <th>Thành tiền</th>
+                                    <th>Trạng thái giao dịch</th>
+                                    <th>Ngày cập nhật</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="hdnBatchCode" value="@Model.BatchCode" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.SaleMans
+@model SaleManViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="SaleManInformationsTab">
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("UserName")</h6>
+                @Model.SaleMan.UserName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("PhoneNumber")</h6>
+                @Model.SaleMan.PhoneNumber
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("SaleName")</h6>
+                @Model.SaleMan.Name
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("SaleType")</h6>
+                @L("Enum_SaleManType_" + (int) Model.SaleMan.AccountType)
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("SaleManager")</h6>
+                @Model.SaleMan.SaleLeadName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Status")</h6>
+                @L("Enum_SaleManStatus_" + (Convert.ToInt32(Model.SaleMan.IsActive)))
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("SaleCreatedAt")</h6>
+                @Model.SaleMan.CreationTime
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Created")</h6>
+                @Model.SaleMan.CreatorName
+            </div>
+            <div class="col-12 mb-3">
+                <h6>@L("Description")</h6>
+                @Model.SaleMan.Description
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

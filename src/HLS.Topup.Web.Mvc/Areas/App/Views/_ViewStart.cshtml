@@ -1,0 +1,9 @@
+﻿@using HLS.Topup.UiCustomization.Dto
+@using Abp.Localization
+@inherits HLS.Topup.Web.Views.TopupRazorPage<TModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, HLS.Topup.Web.Mvc
+@{
+    UiCustomizationSettingsDto theme = await GetTheme();
+    Layout = "~/Areas/App/Views/Layout/" + theme.BaseSettings.Theme + "/_Layout.cshtml";
+}

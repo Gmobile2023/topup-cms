@@ -1,0 +1,97 @@
+@using HLS.Topup.Common;
+@using HLS.Topup.Authorization
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Providers
+@model RefundCompareViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Xem chi tiết hoàn tiền"))
+
+<div class="modal-body" style="width:100%">
+    <div id="RefundProviderionsTab" >
+        <form name="RefundProviderInformationsForm" role="form" novalidate class="form-validation">
+            <div class="card-body">
+                <div id="AdvacedFiltersArea" class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="kt-separator kt-separator--border-dashed"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="Provider">@L("Provider")</label>
+                        <input class="form-control m-input date-picker" type="text" id="txtProvider" value="@Model.Provider" disabled="disabled">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="TransDate">Ngày giao dịch</label>
+                        <input class="form-control m-input date-picker" type="text" id="txtTransDate" value='@Model.TransDate.ToString("dd/MM/yyyy")' disabled="disabled">
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="tableViewData" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th>Tổng số lượng</th>
+                                <th>Tổng số tiền</th>
+                                <th>SL đã hoàn</th>
+                                <th>Số tiền đã hoàn</th>
+                                <th>SL chưa hoàn</th>
+                                <th>Số tiền chưa hoàn</th>
+                            </tr>
+                        </thead>
+                        @if (Model.CompareRefunDto != null)
+                        {
+                            <tr>
+                                <th>@Model.CompareRefunDto.Quantity.ToString("N0")</th>
+                                <th>@Model.CompareRefunDto.Amount.ToString("N0")</th>
+                                <th>@Model.CompareRefunDto.RefundQuantity.ToString("N0")</th>
+                                <th>@Model.CompareRefunDto.RefundAmount.ToString("N0")</th>
+                                <th>@Model.CompareRefunDto.RefundWaitQuantity.ToString("N0")</th>
+                                <th>@Model.CompareRefunDto.RefundWaitAmount.ToString("N0")</th>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+                <input type="hidden" id="hdnProvider" value="@Model.Provider" />
+                <input type="hidden" id="hdnTrandate" value="@Model.TransDateSearch" />
+                <input type="hidden" id="hdnKeyCode" value="@Model.KeyCode" />
+                <div class="row align-items-center">
+                    <table id="tableRefundDetail" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                       <thead>
+                            <tr>
+                                <th></th>
+                                @*<th></th>*@
+                                <th><input type="checkbox" name="select_all" id="checkAll"></th>
+                                <th>Thời gian GD</th>
+                                <th>Đại lý</th>
+                                <th>Mã giao dịch</th>
+                                <th>Mã NCC</th>
+                                <th>Mệnh giá</th>
+                                <th>Thành tiền</th>
+                                <th>Số thụ hưởng</th>
+                                <th>Loại sản phẩm</th>
+                                <th>Tình trạng</th>
+                                <th>Mã GD hoàn tiền</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">
+            @L("Cancel")
+        </button>
+
+        @if (IsGranted(AppPermissions.Pages_RefundsReconcile_Approval))
+        {
+            <button type="button" id="btnRefund" class="btn btn-primary save-button">
+                <i class="fa fa-save"></i><span>Hoàn tiền</span>
+            </button>
+        }
+        <button type="button" id="btnExportRefundDetial" class="btn btn-primary save-button">
+            <i class="fa fa-save"></i><span>Xuất Excel</span>
+        </button>
+    </div>
+</div>

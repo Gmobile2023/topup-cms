@@ -1,0 +1,56 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@model HLS.Topup.Web.Models.TopupRequest.TopupListModalViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.ResultLot;
+    ViewBag.Title = "Kết quả giao dịch";
+    ViewBag.ImageTitle = "/themes/topup/images/transaction-history-white.svg";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/BatchTopup/Result.js" asp-append-version="true"></script>
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+}
+<div class="section-body-middle">
+    <div class="section-body-middle-introduce">
+        <div class="section-body-right-header">
+            <div class="cart"></div>
+            <p>Tạo lô thành công</p>
+        </div>
+        <div class="page-body" style="margin-top:30px">
+            @if (Model.Status == 1)
+            {
+                <div class="form-group form-group-dashed row">
+                    <label class="col-md-4 col-xs-6 control-label"></label>
+                    <label class="col-md-8 col-xs-6 control-label control-label-result ">Chúc mừng bạn đã tạo lô thành công</label>
+                </div>
+
+                <div class="form-group form-group-dashed row">
+                    <label class="col-md-4 col-xs-6 control-label"></label>
+                    <label class="col-md-8 col-xs-6 control-label control-label-result ">Loại lô : <span>@Model.BatchName</span></label>
+                </div>
+                <div class="form-group form-group-dashed row">
+                    <label class="col-md-4 col-xs-6 control-label"></label>
+                    <label class="col-md-8 col-xs-6 control-label control-label-result">Số lượng giao dịch : <span>@Model.Quantity.ToString("N0")</span></label>
+                </div>
+                <div class="form-group form-group-dashed row">
+                    <label class="col-md-4 col-xs-6 control-label"></label>
+                    <label class="col-md-8 col-xs-6 control-label control-label-result">Tổng số tiền : <span>@Model.Price.ToString("N0")</span></label>
+                </div>
+            }
+            else
+            {
+                <div class="form-group form-group-dashed row">
+                    <label class="col-md-4 col-xs-6 control-label"></label>
+                    <label class="col-md-8 col-xs-6 control-label control-label-result">Giao dịch không thành công. Chưa tiếp nhận được kết quả.</label>
+                </div>
+            }
+            <div class="col-md-12 text-center">
+                <button type="button" id="btnUndo" class="button btn-custom btn-grey">Quay lại</button>
+                <button type="button" id="btnHistory" class="button btn-custom btn-blue">Xem lịch sử lô</button>
+            </div>
+        </div>
+    </div>
+</div>

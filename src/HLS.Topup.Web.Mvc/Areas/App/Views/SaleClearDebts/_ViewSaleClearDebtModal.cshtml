@@ -1,0 +1,66 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.SaleClearDebts
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@model SaleClearDebtViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="SaleClearDebtInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-6">
+                <h6>Mã giao dịch</h6>
+                <input class="form-control m-input" id="V_SaleClearDebt_TransCode" value="@Model.SaleClearDebt.TransCode" type="text" required="required" disabled maxlength="100" />
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Nhân viên</h6>
+                <input class="form-control m-input" id="V_SaleClearDebt_SaleInfo" value="@Model.SaleClearDebt.SaleInfo" type="text" required="required" disabled maxlength="250" />
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Hình thức thanh toán</h6>
+                <input class="form-control m-input" id="V_SaleClearDebt_Type" value="@L("Enum_ClearDebtType_" + (int)Model.SaleClearDebt.Type)" type="text" required="required" disabled maxlength="200" />
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Ngân hàng/Nơi nhận tiền</h6>
+                @if (Model.SaleClearDebt.Type == HLS.Topup.Common.CommonConst.ClearDebtType.CashInBank)
+                {
+                    <input class="form-control m-input" id="V_SaleClearDebt_BankBankName" value="@Model.BankBankName" type="text" required="required" disabled maxlength="250" />
+                }
+                else
+                {
+                    <input class="form-control m-input" id="V_SaleClearDebt_Descriptions" value="@Model.SaleClearDebt.Descriptions" type="text" required="required" disabled maxlength="250" />
+                }
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Số tiền</h6>
+                <input class="form-control m-input amount-mask" id="V_SaleClearDebt_Amount" value='@Model.SaleClearDebt.Amount.ToString("N0") đ' type="text" required="required" name="amount" disabled />
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Mã ngân hàng</h6>
+                <input class="form-control m-input" id="V_SaleClearDebt_TransCodeBank" value="@Model.SaleClearDebt.TransCodeBank" type="text" required="required" disabled maxlength="100" />
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Tình trạng</h6>
+                <input class="form-control m-input" id="V_SaleClearDebt_Status" value="@Model.StatusName" type="text" required="required" disabled maxlength="100" />
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Thời gian duyệt</h6>
+                <input class="form-control m-input" id="V_SaleClearDebt_ModifyDate" value='@(Model.SaleClearDebt.ModifyDate!=null? Model.SaleClearDebt.ModifyDate.Value.ToString("dd/MM/yyyy HH:mm:ss"):"")' type="text" required="required" disabled maxlength="250" />
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Người duyệt</h6>
+                <input class="form-control m-input" id="V_SaleClearDebt_UserModify" value="@Model.SaleClearDebt.UserModify" type="text" required="required" disabled maxlength="250" />
+            </div>
+            <div class="col-12 mb-12">
+                <h6>Ghi chú</h6>
+                <input class="form-control m-input" id="V_SaleClearDebt_Descriptions" value="@Model.SaleClearDebt.ApprovalNote" type="text" required="required" disabled maxlength="500" />
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

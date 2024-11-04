@@ -1,0 +1,20 @@
+﻿@model string
+@section Scripts
+{
+    @* <script src="/Common/Scripts/UploadFile.js" asp-append-version="true"></script> *@
+    @* <script> *@
+    @* *@
+    @* *@
+    @*             $(document).ready(function() { *@
+    @*                                 $("#imageId").on('change', function () { *@
+    @*                                     alert("a"); *@
+    @*                                     app.uploadImage($("#imageId"), $('#thumbImageId')); *@
+    @*                                 }); *@
+    @*             }); *@
+    @* </script> *@
+}
+<div class="form-group">
+    <label>@L("Image")</label>
+    <input type="file" id="imageId"/>
+    <img id="thumbImageId" class="table-thumb-image" src="@Model" alt=""/>
+</div>

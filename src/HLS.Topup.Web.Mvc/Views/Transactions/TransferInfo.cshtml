@@ -1,0 +1,90 @@
+﻿﻿@{
+    Layout = $"~/Views/Layout/_LayoutAccount.cshtml";
+}
+@using HLS.Topup.Transactions.Dtos
+@model TransferInfo
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.TrasferMoney;
+}
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Profile/TransferMoney.js" asp-append-version="true"></script>
+}
+<div class="transactions-money">
+    <div class="page-title">
+        @*<div class="add-button mob">
+                Số dư hiện tại: <span class="balance-account">@await Component.InvokeAsync(typeof(BalanceViewComponent)) đ</span>
+            </div>*@
+    </div>
+    <div class="page-body">
+        @if (Model.Code == "01")
+        {
+            <div class="transfer-info">
+                <div class="row inputs">
+                    <div class="col-sm-12 text-center">
+                        <p class="text-center icon-success"><i class="fas fa-check-circle"></i></p>
+                        <h1 class="success-title">Chuyển tiền thành công</h1>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-offset-2 col-md-8 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
+                        <p class="text-center">
+                            <span>Bạn vừa chuyển tiền cho tài khoản <strong>@Model.Account</strong> số tiền là: <strong class="color-red"> @(string.Format("{0:N0}", Convert.ToDouble(Model.Amount)).Replace(",", ".")) đ</strong></span>
+                        </p>
+                        <p class="text-center">
+                            <span> Số dư sau giao dịch là: <strong class="color-red">@await Component.InvokeAsync(typeof(BalanceViewComponent)) đ </strong></span>
+                        </p>
+                        <p class="text-center">
+                            <span>Ghi chú: @Model.Description</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        @* <a href="@Url.Action("TransactionHistory","Transactions")" class="color-blue"> *@
+                        @*     Xem lịch sử giao dịch *@
+                        @* </a> *@
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="transfer-info">
+                <div class="row inputs">
+                    <div class="col-sm-12 text-center">
+                        <p class="text-center icon-error"><i class="fas fa-times"></i></p>
+                        <h1 class="success-title">Chuyển thất bại</h1>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-offset-2 col-md-8 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
+                        <p class="text-center">
+                            <span>@Model.Message</span>
+                        </p>
+                        <p class="text-center">
+                            <span>Giao dịch chuyển tiền cho tài khoản <strong>@Model.Account</strong>  không thành công. Vui lòng thử lại</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        <a href="@Url.Action("TransferMoney","Transactions")" class="color-blue">
+                            Quay lại
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,66 @@
+﻿
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Vendors
+@model CreateOrEditVendorModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditVendor")) : L("CreateNewVendor")))
+
+<div class="modal-body">
+        <div id="VendorInformationsTab">
+            <form name="VendorInformationsForm" role="form" novalidate class="form-validation">
+
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.Vendor.Id" />
+                }
+
+				
+
+				
+								<div class="form-group">
+									<label for="Vendor_Code">@L("Code")</label>
+									<input class="form-control" id="Vendor_Code" value="@Model.Vendor.Code" type="text" name="code"   maxlength="@HLS.Topup.Vendors.VendorConsts.MaxCodeLength"  minlength="@HLS.Topup.Vendors.VendorConsts.MinCodeLength"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="Vendor_Name">@L("Name")</label>
+									<input class="form-control" id="Vendor_Name" value="@Model.Vendor.Name" type="text" name="name"     />
+								</div>
+					
+								<div class="form-group">
+									<label for="Vendor_Description">@L("Description")</label>
+									<input class="form-control" id="Vendor_Description" value="@Model.Vendor.Description" type="text" name="description"     />
+								</div>
+					
+								<div class="form-group">
+									<label for="Vendor_Print_Help">@L("Print_Help")</label>
+									<input class="form-control" id="Vendor_Print_Help" value="@Model.Vendor.Print_Help" type="text" name="print_Help"     />
+								</div>
+					
+								<div class="form-group">
+									<label for="Vendor_Print_Suport">@L("Print_Suport")</label>
+									<input class="form-control" id="Vendor_Print_Suport" value="@Model.Vendor.Print_Suport" type="text" name="print_Suport"     />
+								</div>
+					
+								<div class="form-group">
+									<label for="Vendor_Status">@L("Status")</label>
+									<input class="form-control m-input" id="Vendor_Status" value="@Model.Vendor.Status.ToString(CultureInfo.InvariantCulture)" type="number" name="status"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="Vendor_Address">@L("Address")</label>
+									<input class="form-control" id="Vendor_Address" value="@Model.Vendor.Address" type="text" name="address"     />
+								</div>
+					
+								<div class="form-group">
+									<label for="Vendor_HotLine">@L("HotLine")</label>
+									<input class="form-control" id="Vendor_HotLine" value="@Model.Vendor.HotLine" type="text" name="hotLine"     />
+								</div>
+					
+
+            </form>
+        </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

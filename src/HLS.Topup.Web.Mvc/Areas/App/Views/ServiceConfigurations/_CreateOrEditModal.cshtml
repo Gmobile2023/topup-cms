@@ -1,0 +1,225 @@
+﻿@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.ServiceConfigurations
+@model CreateOrEditServiceConfigurationModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditServiceConfiguration")) : L("CreateNewServiceConfiguration")))
+
+<div class="modal-body">
+    <div id="ServiceConfigurationInformationsTab">
+        <form name="ServiceConfigurationInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.ServiceConfiguration.Id" />
+            }
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="providerId">
+                            @L("Provider") <span class="lightred">(*)</span>
+                        </label>
+                        @Html.DropDownList("providerId", new SelectList(Model.ServiceConfigurationProviderList, "Id", "DisplayName", (Model.IsEditMode ? Model.ServiceConfiguration.ProviderId.ToString() : "")), "Chọn nhà cung cấp", new { @class = "form-control select2", required = "required" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="serviceId">
+                            @L("Service") <span class="lightred">(*)</span>
+                        </label>
+                        @Html.DropDownList("serviceId", new SelectList(Model.ServiceConfigurationServiceList, "Id", "DisplayName", (Model.IsEditMode ? Model.ServiceConfiguration.ServiceId.ToString() : "")), "Chọn dịch vụ", new { @class = "form-control select2", required = "required" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="categoryId">
+                            @L("Category") <span class="lightred">(*)</span>
+                        </label>
+                        @Html.DropDownList("categoryId", new SelectList(Model.ServiceConfigurationCategoryList, "Id", "DisplayName", (Model.IsEditMode ? Model.ServiceConfiguration.CategoryId.ToString() : "")), "Chọn loại sản phẩm", new { @class = "form-control select2" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group m-form__group">
+                        <label for="ProductProductName">@L("Product")</label>
+                        <div class="input-group">
+                            <input class="form-control" id="ProductProductName" name="productProductName" value="@Model.ProductProductName" type="text" disabled>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" id="OpenProductLookupTableButton" type="button">
+                                    <i class="fa fa-search"></i> @L("Pick")
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-danger btn-icon" type="button" id="ClearProductProductNameButton">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    @if (Model.IsEditMode)
+                    {
+                        <input class="form-control" id="ServiceConfiguration_ProductId" value="@Model.ServiceConfiguration.ProductId" type="text" name="productId" hidden />
+                    }
+                    else
+                    {
+                        <input class="form-control" id="ServiceConfiguration_ProductId" value="" type="text" name="productId" hidden />
+                    }
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group m-form__group">
+                        <label for="UserName">Cấu hình cho một tài khoản</label>
+                        <div class="input-group">
+                            <input class="form-control" id="UserName" name="userName" value="@Model.UserName" type="text" disabled>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary blue" id="OpenUserLookupTableButton" type="button">
+                                    <i class="fa fa-search"></i> @L("Pick")
+                                </button>
+                            </div>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-danger btn-icon" type="button" id="ClearUserNameButton">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (Model.IsEditMode)
+                    {
+                        <input class="form-control" id="ServiceConfiguration_UserId" value="@Model.ServiceConfiguration.UserId" type="text" name="userId" hidden />
+                    }
+                    else
+                    {
+                        <input class="form-control" id="ServiceConfiguration_UserId" value="" type="text" name="userId" hidden />
+                    }
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ServiceConfiguration_Name">Tên cấu hình dịch vụ<span class="lightred">(*)</span></label>
+                        <input class="form-control" id="ServiceConfiguration_Name" value="@Model.ServiceConfiguration.Name" type="text" name="name" required maxlength="@HLS.Topup.Configuration.ServiceConfigurationConsts.MaxNameLength" minlength="@HLS.Topup.Configuration.ServiceConfigurationConsts.MinNameLength" style='text-transform:uppercase' />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <br>
+                        <label for="ServiceConfiguration_IsOpened" class="kt-checkbox">
+                            <input id="ServiceConfiguration_IsOpened" type="checkbox" name="isOpened" value="true" @Html.Raw(Model.ServiceConfiguration.IsOpened ? "checked=\"checked\"" : "") />
+                            @L("IsOpened")
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ServiceConfiguration_Priority">
+                            @L("Priority") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input" id="ServiceConfiguration_Priority" value="@Model.ServiceConfiguration.Priority.ToString(CultureInfo.InvariantCulture)" type="number" name="priority" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="ServiceConfiguration_Description">@L("Description")</label>
+                        <textarea class="form-control" id="ServiceConfiguration_Description" type="text" name="description" rows="5">@Model.ServiceConfiguration.Description</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <h5 style="padding-left:12px">@L("DeclaredSlowTopup")</h5>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ServiceConfiguration_ProviderMaxWaitingTimeout">@L("ProviderMaxWaitingTimeout")</label>
+                        <input class="form-control" id="ServiceConfiguration_ProviderMaxWaitingTimeout" type="text" name="providerMaxWaitingTimeout" value="@Model.ServiceConfiguration.ProviderMaxWaitingTimeout">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ServiceConfiguration_ProviderSetTransactionTimeout">@L("ProviderSetTransactionTimeout")</label>
+                        <input class="form-control" id="ServiceConfiguration_ProviderSetTransactionTimeout" type="text" name="providerSetTransactionTimeout" value="@Model.ServiceConfiguration.ProviderSetTransactionTimeout">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="ServiceConfiguration_WaitingTimeResponseWhenJustReceived">@L("WaitingTimeResponseWhenJustReceived")</label>
+                        <input class="form-control" id="ServiceConfiguration_WaitingTimeResponseWhenJustReceived" type="text" name="waitingTimeResponseWhenJustReceived" value="@Model.ServiceConfiguration.WaitingTimeResponseWhenJustReceived">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @*<label for="ServiceConfiguration_IsEnableResponseWhenJustReceived">@L("IsEnableResponseWhenJustReceived")</label>*@
+                        <div class="m-checkbox-list">
+                            <br>
+                            <br>
+                            <label for="ServiceConfiguration_IsEnableResponseWhenJustReceived" class="kt-checkbox">
+                                <input id="ServiceConfiguration_IsEnableResponseWhenJustReceived" type="checkbox" name="isEnableResponseWhenJustReceived" value="true" @Html.Raw(Model.ServiceConfiguration.IsEnableResponseWhenJustReceived == true ? "checked=\"checked\"" : "") />
+                                @L("IsEnableResponseWhenJustReceived")
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="categoryId">@L("StatusResponseWhenJustReceived")</label>
+                        @Html.DropDownList("StatusResponseWhenJustReceived", new SelectList(Model.StatusResponseConfigurationCategoryList, "ResponseCode", "ResponseMessage", (Model.IsEditMode ? Model.ServiceConfiguration.StatusResponseWhenJustReceived : "")), "Chọn trạng thái trả trước", new { @class = "form-control select2" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <br>
+                        <label for="ServiceConfiguration_IsLastConfiguration" class="kt-checkbox">
+                            <input id="ServiceConfiguration_IsLastConfiguration" type="checkbox" name="isLastConfiguration" value="true" @Html.Raw(Model.ServiceConfiguration.IsLastConfiguration ? "checked=\"checked\"" : "") />
+                            @L("IsLastConfiguration")
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="AllowTopupReceiverType">Cấu hình chỉ chạy Trả trước/Trả sau</label>
+                        <select id="AllowTopupReceiverType" name="AllowTopupReceiverType" class="form-control">
+                            <option value="">Cả trả Trước và Trả sau</option>
+                            <option value="PREPAID" selected="@(Model.ServiceConfiguration.AllowTopupReceiverType == "PREPAID" ? true : false)">Chỉ chạy trả trước</option>
+                            <option value="POSTPAID" selected="@(Model.ServiceConfiguration.AllowTopupReceiverType == "POSTPAID" ? true : false)">Chỉ chạy trả sau</option>
+                        </select>
+                    </div>
+                </div>
+                @if (Model.IsDispalyRate)
+                {
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="RateRunning">Tỉ lệ (%)</label>
+                            <input class="form-control" id="RateRunning" type="number" name="RateRunning" value="@Convert.ToInt32(Model.ServiceConfiguration.RateRunning)">
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <input class="form-control" id="RateRunning" type="hidden" name="RateRunning" value="@Convert.ToInt32(Model.ServiceConfiguration.RateRunning)">
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

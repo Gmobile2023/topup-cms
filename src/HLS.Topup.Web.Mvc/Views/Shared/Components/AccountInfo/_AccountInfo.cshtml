@@ -1,0 +1,37 @@
+﻿@using HLS.Topup.Web.Views.Shared.Components.AccountInfo
+@using HLS.Topup.Web.Views.Shared.Components.LimitAmount
+@using HLS.Topup.Authorization
+@model AccountInfoHeaderModel
+<div class="section-top-right" style="text-align: left;">
+    @* <img src="/themes/topup/images/help-icon.svg" alt="Trợ giúp"> Trợ giúp *@
+    @{
+        if (Model.AccountType == CommonConst.SystemAccountType.Agent|| Model.AccountType == CommonConst.SystemAccountType.MasterAgent ||
+            Model.AccountType == CommonConst.SystemAccountType.Company)
+        {
+            <span style="display: block;">Mã ĐL: <strong>@Model.AccountCode</strong></span>
+            <span style="display: block; margin-bottom: 5px;">Số dư: <strong>@Model.Balance</strong></span>
+            @if (IsGranted(AppPermissions.Pages_RequestDeposit))
+            {
+                <a href="@Url.Action("Deposit", "Transactions")" class="button btn-custom btn-custom-transparent" style="display: block; margin: 0 auto;">Nạp tiền tài khoản</a>
+            }
+        }
+        else if (Model.AccountType == CommonConst.SystemAccountType.Staff)
+        {
+            <span style="display: block;">Mã NV: <strong>@Model.AccountCode</strong></span>
+            <span style="display: block; margin-bottom: 5px;">Hạn mức: <strong>@await Component.InvokeAsync(typeof(LimitAmountViewComponent))</strong></span>
+        }
+        else if (Model.AccountType == CommonConst.SystemAccountType.StaffApi)
+        {
+            <span style="display: block;">Mã ĐL: <strong>@Model.AccountCode</strong></span>
+            <span style="display: block; margin-bottom: 5px;">Số dư: <strong>@Model.Balance</strong></span>
+            @if (IsGranted(AppPermissions.Pages_RequestDeposit))
+            {
+                <a href="@Url.Action("Deposit", "Transactions")" class="button btn-custom btn-custom-transparent" style="display: block; margin: 0 auto;">Nạp tiền tài khoản</a>
+            }
+        }
+        else
+        {
+            <span style="display: block;">Mã TK: <strong>@Model.AccountCode</strong></span>
+        }
+    }
+</div>

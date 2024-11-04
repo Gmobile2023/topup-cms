@@ -1,0 +1,81 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Cards
+@model ImportCardsFileModalModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("ImportCardsExcel")))
+
+<div class="modal-body">
+    <div id="CardsImportFormTab">
+        <form name="ImportCardInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="providerCode">
+                            @L("Provider") <span class="lightred">(*)</span>
+                        </label>
+                        @Html.DropDownList("providerCode", new SelectList(Model.ProviderList, "Id", "DisplayName", ""), @L("SelectAProvider"), new {@class = "select2 form-control", @required = "required"})
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="importCardsFromExcel" style="color:red">
+                            @L("Message_UploadFileCards") <span class="lightred">(*)</span>
+                        </label>
+                        <label class="form-control" style="width: 100%">
+                            <span >Chọn file</span>
+                            <input id="importCardsFromExcel" class="hidden" type="file" name="files" accept=".xlsx, .xls, .csv">
+                        </label>
+                        <div class="form-group">
+                            <a target="_blank" href="/assets/SampleFiles/ImportCardsSampleFile.xlsx">@L("File Mau Import")</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="Cards_Description">@L("Description")</label>
+                        <textarea rows="3" class="form-control" name="description" id="Cards_Description">@Model.Description</textarea>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12">
+                    <table id="ProductFileTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>@L("Service")</th>
+                            <th>@L("Category")</th>
+                            <th>@L("Product")</th>
+                            <th>@L("CardValue")</th>
+                            <th>@L("QuantityRequest")</th>
+                            <th>@L("Discounted")</th>
+                            <th>@L("Amount")</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                        <tbody class="f">
+                        <tr>
+                            <td colspan="4"><b>Tổng cộng</b></td>
+                            <td class="text-right"></td>
+                            <td></td>
+                            <td class="text-right"></td> 
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">@L("Cancel")</button>
+    <button type="button" id="btnUpload" class="btn btn-primary save-button">
+        <i class="fa fa-save"></i> <span>@L("Save")</span>
+    </button>
+</div>

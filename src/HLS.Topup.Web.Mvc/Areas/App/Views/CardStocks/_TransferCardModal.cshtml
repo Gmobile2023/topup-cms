@@ -1,0 +1,155 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.CardStocks
+@model TransferCardStockModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Điều chuyển thẻ sang kho khác"))
+
+<div class="modal-body">
+    <div id="CardStockInformationsTab">
+        <form name="CardStockInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="srcStockCode">Chọn kho nguồn <span class="lightred">(*)</span></label>
+                        @Html.DropDownList("srcStockCode",
+                            new SelectList(Model.StockCodes, "Id", "DisplayName", (Model.IsEditMode ? Model.SrcStockCode.ToString() : "")),
+                            @L("SelectAStockCode"), new {@class = " form-control", @required = "required"})
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="desStockCode">Chọn kho đích <span class="lightred">(*)</span></label>
+                        @Html.DropDownList("desStockCode",
+                            new SelectList(Model.StockCodes, "Id", "DisplayName", (Model.IsEditMode ? Model.DesStockCode.ToString() : "")),
+                            @L("SelectAStockCode"), new {@class = " form-control", @required = "required"})
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="">@L("TransferType")</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="transferType" id="transferType1" value="batch" checked>
+                                    <label class="form-check-label" for="transferType1">@L("TransferType_Batch")</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="transferType" id="transferType2" value="prod">
+                                    <label class="form-check-label" for="transferType2">@L("TransferType_Prod")</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-xs-12">
+
+                    <div class="block_data_query">
+                        <div id="block_TransferType_Batch" class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="batchCode">
+                                        @L("CardBatch") <span class="lightred">(*)</span>
+                                    </label>
+                                    <select class="form-control select2 " name="batchCode">
+                                        <option value="">@L("SelectACardBatch")</option>
+                                        @foreach (var item in Model.BatchList)
+                                        {
+                                            <option value="@item.Id"
+                                                    data-providerCode="@item.ProviderCode"
+                                                    data-providerName="@item.ProviderName">
+                                                @item.DisplayName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="providerCode">@L("Provider")</label>
+                                    <input type="hidden" class="form-control" name="providerCode" value=""/>
+                                    <input class="form-control" name="providerName" disabled value=""/>
+                                </div>
+                            </div>
+                            <div class="col-sm-1">
+                                &nbsp;
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="TransferType_Batch_search">&nbsp;</label>
+                                <div class="text-right">
+                                    <button id="TransferType_Batch_add" class="btn btn-primary" type="button">
+                                        @L("Select")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="block_TransferType_Prod" class="row" style="display: none">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="">
+                                        @L("Service") <span class="lightred">(*)</span>
+                                    </label>
+                                    @Html.DropDownList("serviceCode",
+                                        new SelectList(Model.ServicesCard, "Id", "DisplayName", ""),
+                                        @L("SelectAService"), new {@class = "select2 form-control"})
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="">
+                                        @L("Category") <span class="lightred">(*)</span>
+                                    </label>
+                                    <select class="form-control select2 form-control" name="categoryCode">
+                                        <option value="">Chọn loại sản phẩm</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="">@L("Product")</label>
+                                    <select class="form-control select2" name="productCode">
+                                        <option value="">Chọn sản phẩm</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="TransferType_Batch_search">&nbsp;</label>
+                                <div class="text-right">
+                                    <button id="TransferType_Prod_add" class="btn btn-primary" type="button">
+                                        @L("Add")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-xs-12">
+                    <table id="TransferProdCardTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>@L("Service")</th>
+                            <th>@L("Categories")</th>
+                            <th>@L("Product")</th>
+                            <th>@L("CardValue")</th>
+                            <th>@L("Inventory_ab")</th>
+                            <th>@L("Quantity_transfer")</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

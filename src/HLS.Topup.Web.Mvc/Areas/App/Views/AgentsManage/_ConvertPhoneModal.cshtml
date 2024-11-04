@@ -1,0 +1,61 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.SystemAccountTransfers
+@model HLS.Topup.AgentManagerment.AgentDetailView
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Thay đổi số điện thoại đại lý"))
+
+<div class="modal-body">
+    <div id="ConvertPhoneInformationsTab">
+        <form name="ConvertPhoneInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Mã đại lý</label>
+                        <input disabled="disabled" id="txtAccountCode" value="@Model.AccountCode" class="form-control m-input" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Họ và tên</label>
+                        <input disabled="disabled" id="txtFullName" value="@Model.FullName" class="form-control m-input" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">
+                            Số điện thoại cũ
+                        </label>
+                        <input disabled="disabled" id="txtPhoneOld" value="@Model.PhoneNumber" class="form-control m-input"  />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        Số điện thoại mới<span class="lightred">(*)</span>
+                        <input id="txtPhoneNew" class="form-control m-input" type="number" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="FileAttachment">
+                        @L("AccountingEntry_Document")
+                        <span class="lightred">(*)</span>
+                    </label>
+                    <label class="form-control" style="width: 100%">
+                        <input id="FileAttachment" type="file" name="files">
+                        <input type="hidden" id="FileAttachmentSrc" name="attachments" value="" />
+                       
+                    </label>
+                </div>
+
+            </div> <input type="hidden" id="hdnUserId" value="@Model.UserId" />
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,63 @@
+@using NPOI.SS.Formula.Functions
+@model HLS.Topup.Web.Models.Faqs.FaqsViewModel;
+@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Faqs;
+    ViewBag.Title = "FAQs";
+    ViewBag.ImageTitle = "/themes/topup/images/help-icon.svg";
+}
+
+@section Scripts
+{
+    <script src="/view-resources/Views/Faqs/TransferMoney.js" asp-append-version="true"></script>
+}
+
+@section Styles{
+    <style>
+        .group-help-link__ul > li {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        
+        .group-help-link__ul > li a {
+            color: #2188C9;
+            font-size: 15px;
+            font-weight: 500;
+        }
+    </style>
+}
+
+<div id="Faqs_Page" class="section-body-middle">
+    <div class="section-body-middle-introduce text-center">
+        <h1 class="h1-dark">Câu hỏi thường gặp</h1>
+    </div>
+
+    <div class="group-help__section group-help__section--link clearfix group-help-link__ul--padding-bg">
+        @{
+            var indexQuestionType = 1;
+        }
+        
+        @foreach (var item in Model.Items)
+        {
+            var indexQuestion = 1;
+            <p style="font-weight: 500; font-size: 16px;">@indexQuestionType. Chủ đề: @item.QuestionType</p>
+            <ul class="group-help-link__ul">
+                @foreach (var q in item.GroupContent)
+                {
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#accordion-tab-1-content-@indexQuestion">@indexQuestionType.@indexQuestion. @q.Title</a>
+                        <div class="collapse" id="accordion-tab-1-content-@indexQuestion" style="margin-top:10px; font-size: 15px;">
+                            @Html.Raw(@q.Answer)
+                        </div>
+                    </li>
+
+                    indexQuestion++;
+                }
+            </ul>
+
+            indexQuestionType++;
+        }
+    </div>
+</div>

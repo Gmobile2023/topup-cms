@@ -1,0 +1,24 @@
+@{
+    Layout = $"~/Views/Layout/_LayoutBase.cshtml";
+}
+
+@section Styles{
+    @await RenderSectionAsync("Styles", false)
+}
+
+@section Scripts{
+    @await RenderSectionAsync("Scripts", false)
+}
+
+@await RenderSectionAsync("headerImg", false)
+<div class="header-img-1">
+    <img src="/themes/topup/images/city2.jpg" alt="">
+</div>
+<div class="container main">
+    @await Html.PartialAsync("~/Views/Layout/Section/_breadcrumb_homepage.cshtml")
+    <div class="section-body row">
+        <div class="col-md-12">
+            @RenderBody()
+        </div>
+    </div>
+</div>

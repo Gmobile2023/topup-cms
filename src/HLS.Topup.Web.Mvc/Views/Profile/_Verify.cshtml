@@ -1,0 +1,174 @@
+﻿@using Abp.Timing
+@using Microsoft.EntityFrameworkCore.Storage.ValueConversion
+@model HLS.Topup.Authorization.Accounts.Dto.CreateOrEditAgentModalViewModel
+<style>
+.radio-inline:first-child{    padding-left: 0px;}
+.preview_img{ width: 100%; height: 200px; background: #e8ebef; text-align: center; vertical-align: middle; cursor: pointer; }
+.preview_img img{ max-height: 200px; max-width: 100%;    z-index: 1; }
+.preview_img i{ font-size: 30px; z-index: 0; position: absolute; top: 40%; left: 50%;}
+.checkbox-disabled{ }
+</style>
+
+@if (Model.User.AccountType != (byte) CommonConst.SystemAccountType.Staff && Model.User.AccountType != (byte) CommonConst.SystemAccountType.StaffApi)
+{
+    var agency = Model.AgentProfile != null ? Model.AgentProfile : new UserProfileDto();
+    if ((byte) agency.IdType == 0)
+    {
+        agency.IdType = CommonConst.IdType.IdentityCard;
+    }
+    var disabled = Model.User.IsVerifyAccount ? "disabled" : "";
+    <div class="row">
+        <div class="col-md-12">
+            <label for="" class="title"> @(L("Name_Agent")) &nbsp;&nbsp;<span class="lightred">(*)</span> </label>
+            <input type="hidden" name="isVerifyAccount" value="@(Model.User.IsVerifyAccount ? 1 : 0)">
+        </div>
+        <div class="col-md-12">
+            <div class="form-group ">
+                <div class="form-group-wrap">
+                    <input placeholder="Nhập tên đại lý" class="form-control" required="required"
+                           type="text" name="agentName" value="@agency.AgentName" maxlength="50">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <label for="" class="title"> <strong>@(L("Address_Agent"))</strong> &nbsp;<span class="lightred">(*)</span> </label>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group ">
+                <label for="" class="title">@(L("Province")) &nbsp; </label>
+                <div class="form-group-wrap">
+                    <select id="Province" name="cityId" class="form-control select2" data-value="@agency.CityId" select-auto="CityId" required="required" @disabled>
+                        <option value="">Chọn Tỉnh/ TP</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group ">
+                <label for="" class="title">@(L("District")) &nbsp; </label>
+                <div class="form-group-wrap">
+                    <select id="District" name="districtId" class="form-control select2" data-value="@agency.DistrictId" select-auto="DistrictId" required="required" @disabled>
+                        <option value="">Chọn Quận/ Huyện</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group ">
+                <label for="" class="title">@(L("Ward")) &nbsp; </label>
+                <div class="form-group-wrap">
+                    <select id="Ward" name="wardId" class="form-control select2" data-value="@agency.WardId" select-auto="WardId" required="required" @disabled>
+                        <option value="">Chọn Phường/ Xã</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group ">
+                <label for="" class="title">@(L("Address_Detail")) &nbsp; </label>
+                <div class="form-group-wrap">
+                    <textarea class="form-control"
+                        type="text" name="address"  required="required"
+                        placeholder="@(L("Address_Detail"))" @disabled >@agency.Address</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <label for="" class="title"> <strong>@(L("Identification"))</strong> &nbsp;<span class="lightred">(*)</span> </label>
+        </div>
+        <div class="block clearfix">
+            <div class="col-md-6">
+                <div class="form-group ">
+                    <label for="" class="title">@(L("Identification_Image Before")) &nbsp; </label>
+                    <div class="form-group-wrap">
+                        <label class="preview_img">
+                            @if (string.IsNullOrEmpty(disabled))
+                            {
+                                <input type='file' id="img_before" onchange="ctrl.readURL(this, 'pre_before')" style="display:none" accept="image/*"/>
+                            }
+                            <div id="pre_before" data-src="@agency.FrontPhoto" alt="">
+                                @if (!string.IsNullOrEmpty(agency.FrontPhoto))
+                                {
+                                    <img alt="" src="@agency.FrontPhoto"/>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-camera"></i>
+                                }
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group " style="display:@(agency.IdType == CommonConst.IdType.Passport ? "none" : "block")">
+                    <label for="" class="title">@(L("Identification_Image After")) &nbsp; </label>
+                    <div class="form-group-wrap">
+                        <label class="preview_img">
+                            @if (string.IsNullOrEmpty(disabled))
+                            {
+                                <input type='file' id="img_after" onchange="ctrl.readURL(this, 'pre_after')" style="display:none" accept="image/*"/>
+                            }
+                            <div id="pre_after" data-src="@agency.BackSitePhoto" alt="">
+                                @if (!string.IsNullOrEmpty(agency.BackSitePhoto))
+                                {
+                                    <img alt="" src="@agency.BackSitePhoto"/>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-camera"></i>
+                                }
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group ">
+                <label for="" class="title">@(L("Identification_type")) &nbsp; </label>
+                <div class="form-group-wrap">
+                    <div class="checkbox radio radio-inline m-0">
+                        <label class="checkbox-radio__label" style="text-transform: none;">
+                            <input class="checkbox-radio__input ng-untouched ng-valid ng-dirty"
+                                   type="radio" required="required" name="idType" @disabled value="1" doc="OLD ID"
+                                   @Html.Raw((byte) agency.IdType == 1 ? "checked=\"checked\"" : "")>
+                            <span class="@(!string.IsNullOrEmpty(disabled) ? "checkbox-disabled" : "") checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> @L("CMND")
+                        </label>
+                    </div>
+                    <div class="checkbox radio radio-inline">
+                        <label class="checkbox-radio__label" style="text-transform: none;">
+                            <input class="checkbox-radio__input ng-untouched ng-valid ng-dirty"
+                                   type="radio" required="required" name="idType" @disabled value="2" doc="NEW ID"
+                                   @Html.Raw((byte) agency.IdType == 2 ? "checked=\"checked\"" : "")>
+                            <span class="@(!string.IsNullOrEmpty(disabled) ? "checkbox-disabled" : "") checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> @L("CCCD")
+                        </label>
+                    </div>
+                    <div class="checkbox radio radio-inline">
+                        <label class="checkbox-radio__label" style="text-transform: none;">
+                            <input class="checkbox-radio__input ng-untouched ng-valid ng-dirty"
+                                   type="radio" required="required" name="idType" @disabled value="3" doc="PASSPORT"
+                                   @Html.Raw((byte) agency.IdType == 3 ? "checked=\"checked\"" : "")>
+                            <span class="@(!string.IsNullOrEmpty(disabled) ? "checkbox-disabled" : "") checkbox-custom checkbox-disabled checkbox-custom--big visible cbutton cbutton--effect-boris"></span> @L("Passport")
+                        </label>
+                    </div>
+                    <input type="hidden" name="identity_info" value="@agency.Desscription">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group ">
+                <label for="" class="title">@(L("Identification_Numbers")) &nbsp; </label>
+                <div class="form-group-wrap">
+                    <input placeholder="@(L("Identification_Numbers"))" class="form-control" required="required"
+                           type="text" name="identityId" value="@agency.IdIdentity" @disabled>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}

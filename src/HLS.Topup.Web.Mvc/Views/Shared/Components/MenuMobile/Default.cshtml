@@ -1,0 +1,51 @@
+﻿﻿@using Abp.Timing
+@model HLS.Topup.Web.Areas.App.Models.Layout.MenuViewModel
+@* <ul class="nav navbar-nav pull-right" ng-top-menu=""> *@
+@*     @for (var i = 0; i < Model.Menu.Items.Count; i++) *@
+@*     { *@
+@*         var menuItem = Model.Menu.Items[i]; *@
+@*         @await Html.PartialAsync("Components/MenuMobile/_MenuItem", new UserMenuItemViewModel *@
+@*         { *@
+@*             MenuItem = menuItem, *@
+@*             MenuItemIndex = i, *@
+@*             RootLevel = true, *@
+@*             CurrentPageName = Model.CurrentPageName *@
+@*         }) *@
+@*     } *@
+@* </ul> *@
+
+
+<ul class="nav navbar-nav pull-right" ng-top-menu="">
+    <li class="sub-menu">
+        <a href="/topup">
+            <img src="/themes/topup/images/ic_dark/ic-01.svg" width="20" alt="">
+            <p>Nạp tiền điện thoại</p>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="" data-toggle="dropdown">
+            <img src="/themes/topup/images/ic_dark/ic-05.svg" width="20" alt="">
+            <p>Mua mã thẻ điện thoại</p>
+            <div class="arrow">
+                <img src="/themes/topup/images/down-arrow.svg" alt="">
+            </div>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="topup/pincode">Mua mã thẻ điện thoại</a>
+            </li>
+
+            <li>
+                <a href="topup/pincode">Mã thẻ data 3G-4G</a>
+            </li>
+        </ul>
+    </li>
+    <li class="sub-menu">
+        <a href="/billPayment">
+            <img src="/themes/topup/images/ic_dark/ic-03.svg" width="20" alt="">
+            <p>Thanh toán hóa đơn</p>
+        </a>
+    </li>
+</ul>
+
+

@@ -1,0 +1,72 @@
+﻿@using HLS.Topup.Web.TagHelpers
+@model HLS.Topup.Web.Models.Transaction.TransactionDetailsInfoModel
+@if (!Model.Items.Any() || !Model.Vendors.Any())
+{
+    <h1>Không có thông tin giao dịch</h1>
+}
+else
+{
+    foreach (var item in Model.Items)
+    {
+        var prod = item.ProductCode.Split("_");
+        var vendor = Model.Vendors.FirstOrDefault(x => x.Code == prod[0]);
+
+        <div id="invoice-POS">
+            <center id="top">
+                <div class="info-label">
+                    <h2 class="brand">@L("PrintCard_Header_Brand")</h2>
+                </div>
+                <!--End Info-->
+            </center>
+            <!--End InvoiceTop-->
+            <div id="mid">
+                <div class="info-label">
+                    <h2>@L("PrintCard_CardCode") @L("PrintCard_PinCode_Type") @(vendor?.Name) @item.CardValue.ToFormat()</h2>
+                </div>
+                <div class="info">
+                    <p>@L("PrintCard_TransCode") @Model.Transcode</p>
+                    <p>@L("PrintCard_CreatedDate") @Model.TransactionInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</p>
+                </div>
+            </div>
+            <div id="mid">
+                <div class="info-label" style="text-align: left;">
+                    @{
+                        var serial = string.Join(string.Empty, item.Serial.Select((x, i) => i > 0 && i % 4 == 0 ? string.Format(" {0}", x) : x.ToString()));
+                    }
+                    <p>
+                        @L("PrintCard_Serial") <strong style="font-size:17px;">@serial</strong>
+                    </p>
+                </div>
+                <div class="info">
+                    <p>@L("PrintCard_CardCode")</p>
+                    @{
+                        var cardCode = string.Join(string.Empty, item.CardCode.Select((x, i) => i > 0 && i % 4 == 0 ? string.Format(" {0}", x) : x.ToString()));
+                    }
+                    <p class="pin_code">@cardCode</p>
+                    <p>@L("PrintCard_HSD") @item.ExpiredDate.ToString("dd/MM/yyyy")</p>
+                </div>
+            </div>
+            <!--End Invoice Mid-->
+            <div id="bot">
+                <!--End Table-->
+                <div id="legalcopy">
+                    @if (!string.IsNullOrEmpty(Model.TransactionInfo.UserManualNote))
+                    {
+                        <p class="legal">@L("PrintCard_Help_Title") @(Model.TransactionInfo.UserManualNote)</p>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.TransactionInfo.CustomerSupportNote))
+                    {
+                        <p class="legal">@L("PrintCard_Customer_Help_Title") @(Model.TransactionInfo.CustomerSupportNote)</p>
+                    }
+
+                    <p class="legal">@L("Agent_Label"): @(Model.Network.AgentName)</p>
+                    <p class="legal">@L("Address"): @(Model.Address)</p>
+                </div>
+            </div>
+            <!--End InvoiceBot-->
+        </div>
+        <div id="scissors">
+        </div>
+    }
+}

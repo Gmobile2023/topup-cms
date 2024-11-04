@@ -1,0 +1,69 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.CardStocks
+@model CreateOrEditCardStockModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditQuantityStock")))
+
+<div class="modal-body">
+    <div id="CardStockInformationsTab">
+        <form name="CardStockInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                <input type="hidden" id="ActionType" value="@ViewBag.ActionType" name="actionType"/>
+               
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="CardStock_StockCode">
+                                @L("StockCode") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control" disabled id="CardStock_StockCode" value="@Model.CardStock.StockCode" type="text" name="stockCode" required maxlength="@HLS.Topup.StockManagement.CardStockConsts.MaxStockCodeLength" minlength="@HLS.Topup.StockManagement.CardStockConsts.MinStockCodeLength"/>
+                             <input type="hidden" name="keyCode" value="@Model.CardStock.ProductCode" />
+                             <input type="hidden" name="productCode" value="@Model.CardStock.ProductCode" />
+                        </div>
+                    </div>                                
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <h6>@L("Service") :</h6>
+                            <input class="form-control" disabled value="@Model.CardStock.ServiceName"/>
+                            <input type="hidden" name="serviceCode" value="@Model.CardStock.ServiceCode" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6  col-xs-12">
+                        <div class="form-group">
+                            <h6>@L("Categories") :</h6>
+                            <input class="form-control" disabled value="@Model.CardStock.CategoryName"/>
+                            <input type="hidden" name="categoryCode" value="@Model.CardStock.CategoryCode" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6  col-xs-12">
+                        <div class="form-group">
+                            <h6>@L("CardValue") :</h6>
+                            <input class="form-control" disabled value="@Model.CardStock.CardValue.ToFormat()"/>
+                             <input type="hidden" name="cardValue" value="@Model.CardStock.CardValue" />
+                        </div>
+                    </div>                                                           
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="CardStock_Inventory">@L("Inventory")</label>
+                            <input class="form-control m-input" id="CardStock_Inventory" value="@Model.CardStock.Inventory.ToString(CultureInfo.InvariantCulture)" type="number" name="inventory"/>
+                        </div>
+                    </div>                                            
+            </div>
+        </form>
+    </div>
+</div>
+
+<script >
+@if (Model.IsEditMode)
+{
+    <text>
+    $("form[name=CardStockInformationsTab] #CardStock_ProductCode").prop("disabled", true);
+    $("form[name=CardStockInformationsTab] #CardStock_StockCode").prop("disabled", true);
+    $("form[name=CardStockInformationsTab] #cardValue").prop("disabled", true);
+    </text>
+}
+</script>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,54 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Districts
+@model CreateOrEditDistrictModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditDistrict")) : L("CreateNewDistrict")))
+
+<div class="modal-body">
+    <div id="DistrictInformationsTab">
+        <form name="DistrictInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.District.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="cityId">@L("City")</label>
+                @Html.DropDownList("cityId", new SelectList(Model.DistrictCityList, "Id", "DisplayName", (Model.IsEditMode ? Model.District.CityId.ToString() : "")), @L("SelectACity"), new {@class = "form-control", @required = "required"})
+            </div>
+
+
+            <div class="form-group">
+                <label for="District_DistrictCode">@L("DistrictCode")</label>
+                <input class="form-control" id="District_DistrictCode" value="@Model.District.DistrictCode" type="text" name="districtCode" required maxlength="@HLS.Topup.Address.DistrictConsts.MaxDistrictCodeLength" minlength="@HLS.Topup.Address.DistrictConsts.MinDistrictCodeLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="District_DistrictName">@L("DistrictName")</label>
+                <input class="form-control" id="District_DistrictName" value="@Model.District.DistrictName" type="text" name="districtName" required maxlength="@HLS.Topup.Address.DistrictConsts.MaxDistrictNameLength" minlength="@HLS.Topup.Address.DistrictConsts.MinDistrictNameLength"/>
+            </div>
+
+            @{
+                var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.DistrictStatus));
+                foreach (var selectOption in selectListStatus)
+                {
+                    selectOption.Text = L("Enum_DistrictStatus_" + selectOption.Value);
+                }
+            }
+            <div class="form-group m-form__group">
+                <label for="District_Status">@L("Status")</label>
+                <select class="form-control m-input m-input--square" name="status" id="District_Status" asp-for="@Model.District.Status" asp-items="@selectListStatus">
+                </select>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

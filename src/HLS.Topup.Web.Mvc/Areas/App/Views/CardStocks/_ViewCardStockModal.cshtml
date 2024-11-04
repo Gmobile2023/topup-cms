@@ -1,0 +1,78 @@
+﻿@using HLS.Topup.Common
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.CardStocks
+@model CardStockViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="CardStockInformationsTab">
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <h6>@L("StockCode") :</h6>
+                    <input class="form-control" disabled value="@Model.CardStock.StockCode"/>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <h6>@L("Service") :</h6>
+                    <input class="form-control" disabled value="@Model.CardStock.ServiceName"/>
+                </div>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("Categories") :</h6>
+                    <input class="form-control" disabled value="@Model.CardStock.CategoryName"/>
+                </div>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("CardValue") :</h6>
+                    <input class="form-control" disabled value="@Model.CardStock.CardValue.ToFormat()"/>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("InventoryLimit") :</h6>
+                    <input class="form-control" disabled value="@Model.CardStock.InventoryLimit.ToFormat("")"/>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("MinimumInventoryLimit") :</h6>
+                    <input class="form-control" disabled value="@Model.CardStock.MinimumInventoryLimit.ToFormat("")"/>
+                </div>
+            </div>
+
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("Inventory") :</h6>
+                    <input class="form-control" disabled value="@Model.CardStock.Inventory.ToFormat("")"/>
+                </div>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("Status") :</h6>
+                    <input class="form-control" disabled value="@L("Enum_CardStockStatus_" + (int) Model.CardStock.Status)"/>
+                </div>
+            </div>
+
+            <div class="col-12 mb-12">
+                <div class="form-group">
+                    <h6>@L("Description") :</h6>
+                    <textarea class="form-control" disabled >@Model.CardStock.Description</textarea> 
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

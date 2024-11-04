@@ -1,0 +1,159 @@
+﻿@using HLS.Topup.Authorization
+@using HLS.Topup.Web.Views.Shared.Components.AppRecentNotifications
+@model HLS.Topup.Web.Views.Shared.Components.Header.HeaderViewModel
+
+@functions
+{
+    public static string ActiveLinkClass(string page, string pageActive)
+    {
+        if (page == pageActive)
+            return "active";
+        return "";
+    }
+}
+
+<header>
+    <nav class="headroom navbar white navbar-default navbar-fixed-top navbar-top" id="navbar-top">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/themes/topup/images/nt.png" alt="">
+                </a>
+                <h1 style="display: none">
+                    Nap tien dien thoai, thanh toan hoa don, mua ve may bay, mua ma the, mua ma the tra truoc, chuyen
+                    tien vao visa, thanh toan vay tin dung
+                </h1>
+                <h2 style="display: none">
+                    Nạp tiền điện thoại, thanh toán hóa đơn, mua vé máy bay, mua mã thẻ, Mua mã thẻ trả trước, chuyển
+                    tiền vào visa, thanh toán vay tín dụng
+                </h2>
+            </div>
+
+            <ul class="nav navbar-nav float-right search visible-md visible-sm visible-xs">
+                @* <li class="dropdown-search"> *@
+                @*     <a href="#" data-toggle="dropdown"> *@
+                @*         <div class="cbutton cbutton--effect-boris"> *@
+                @*             *@
+                @*         </div> *@
+                @*     </a> *@
+                @* </li> *@
+                @await Component.InvokeAsync(typeof(AppRecentNotificationsViewComponent), new {cssClass = "btn btn-icon btn-clean btn-dropdown btn-lg mr-1"})
+            </ul>
+
+            <div class="navbar-header">
+                <button id="burger" type="button" class="navbar-toggle collapsed burger" data-toggle="collapse"
+                        data-parent="#navbar-1" data-target="#navbar-1" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar top-bar"></span>
+                    <span class="icon-bar middle-bar"></span>
+                    <span class="icon-bar bottom-bar"></span>
+                </button>
+            </div>
+
+            <div id="navbar-1" class="navbar-collapse collapse">
+                <div class="full-nav animated fadeIn">
+                    @* @await Component.InvokeAsync(typeof(MenuMobileViewComponent), new {currentPageName = ViewBag.CurrentPageName}) *@
+                    <ul class="nav navbar-nav pull-right" ng-top-menu="">
+                        @if (IsGranted(AppPermissions.Pages_CreatePayment))
+                        {
+                            <li class="sub-menu">
+                                <a href="/topup">
+                                    <img src="/themes/topup/images/ic_dark/ic-01.svg" width="20" alt="">
+                                    <p>Nạp tiền điện thoại</p>
+                                </a>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="/topup/pincode" data-toggle="dropdown">
+                                    <img src="/themes/topup/images/ic_dark/ic-05.svg" width="20" alt="">
+                                    <p>Mua mã thẻ trả trước</p>
+                                    <div class="arrow">
+                                        <img src="/themes/topup/images/down-arrow.svg" alt="">
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/Topup/PinCode">Mua mã thẻ điện thoại</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Topup/PinCode">Mã thẻ data 3G-4G</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Topup/PinCode">Mã thẻ game</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="/billPayment">
+                                    <img src="/themes/topup/images/ic_dark/ic-03.svg" width="20" alt="">
+                                    <p>Thanh toán hóa đơn</p>
+                                </a>
+                            </li>
+                            <li class="hidden-xs hidden-md hidden-sm @ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Home)">
+                                <a href="/">Trang chủ</a>
+                            </li>
+                            <li class="hidden-xs hidden-md hidden-sm @ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Topup)">
+                                <a href="/Topup">Nạp tiền điện thoại</a>
+                            </li>
+                            <li class="hidden-xs hidden-md hidden-sm dropdown sub-menu dropdown-sub--hover @ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.PinCode)">
+                                <a href="/Topup/PinCode" class="dropdown-sub--hover__a" style="font-size: inherit !important;">
+                                    Mua mã thẻ
+                                    <div class="arrow">
+                                        <img src="/themes/topup/images/down-arrow.svg" alt="">
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu hidden-xs">
+                                    <li>
+                                        <a href="/Topup/PinCode">Mua mã thẻ điện thoại</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Topup/PinCode">Mã thẻ data 3G-4G</a>
+                                    </li>
+                                    <li>
+                                        <a href="/Topup/PinCode">Mã thẻ game</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="hidden-xs hidden-md hidden-sm @ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.BillPayment)">
+                                <a href="/Billpayment">Thanh toán hóa đơn</a>
+                            </li>
+                            <li class="hidden-xs hidden-md hidden-sm @ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.TopupData)">
+                                <a href="/Topup/TopupData">Topup Data</a>
+                            </li>
+                        }
+                        @if (Model.LoginInformations?.User != null)
+                        {
+                            @await Component.InvokeAsync(typeof(AppRecentNotificationsViewComponent), new { cssClass = "btn btn-icon btn-clean btn-dropdown btn-lg mr-1" })
+
+                            <li class="dropdown sub-menu dropdown-sub--hover">
+                                <a href="@Url.Action("Index", "Profile")" data-toggle="dropdown" class="dropdown-sub--hover__a" aria-expanded="false">
+                                    <i class="fa fa-user" style="color: #2188C9; font-size: 11px;"></i> &nbsp; @Model.LoginInformations.User.FullName
+                                    <div class="arrow">
+                                        <img src="/themes/topup/images/down-arrow.svg" alt="">
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <div class="triangle-border triangle-border__dropdown"></div>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Profile")">Thông tin tài khoản</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Logout", "Account")"><i class="fa fa-sign-out"></i>&nbsp;Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@Url.Action("Login", "Account")">
+                                    <span class="name"><i class="fa fa-lock"></i> &nbsp; Đăng nhập</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+</header>

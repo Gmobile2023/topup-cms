@@ -1,0 +1,438 @@
+﻿@using HLS.Topup.Common;
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Providers
+@model CreateOrEditProviderModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new
+    ModalHeaderViewModel(Model.IsEditMode ? (L("EditProvider")) : L("CreateNewProvider")))
+<style>
+    .separator {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 25px;
+        margin-top: 25px;
+        font-size: 1.3em;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+        .separator::before,
+        .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid;
+        }
+
+        .separator:not(:empty)::before {
+            margin-right: .25em;
+        }
+
+        .separator:not(:empty)::after {
+            margin-left: .25em;
+        }
+</style>
+<div class="modal-body">
+<div id="ProviderInformationsTab">
+<form name="ProviderInformationsForm" role="form" novalidate class="form-validation">
+
+@if (Model.IsEditMode)
+{
+    <input type="hidden" name="id" value="@Model.Provider.Id"/>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Provider_Code">
+                @L("Code") <span class="lightred">(*)</span>
+            </label>
+            <input class="form-control" id="Provider_Code" value="@Model.Provider.Code" type="text"
+                   name="code" required maxlength="@HLS.Topup.Providers.ProviderConsts.MaxCodeLength"
+                   minlength="@HLS.Topup.Providers.ProviderConsts.MinCodeLength"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Provider_Name">
+                @L("Name") <span class="lightred">(*)</span>
+            </label>
+            <input class="form-control" id="Provider_Name" value="@Model.Provider.Name" type="text"
+                   name="name" required maxlength="@HLS.Topup.Providers.ProviderConsts.MaxNameLength"
+                   minlength="@HLS.Topup.Providers.ProviderConsts.MinNameLength"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="ParentProvider">
+                NCC cha (Dùng cho chạy chia tải TK)
+            </label>
+            @Html.DropDownList("ParentProvider", new SelectList(Model.ProviderList, "Id", "DisplayName",
+                    @Model.Provider.ParentProvider),
+                @L("SelectAProvider"), new { @class = "select2 form-control" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Provider_PhoneNumber">@L("PhoneNumber")</label>
+            <input class="form-control" id="Provider_PhoneNumber" value="@Model.Provider.PhoneNumber"
+                   type="text" name="phoneNumber"
+                   maxlength="@HLS.Topup.Providers.ProviderConsts.MaxPhoneNumberLength"
+                   minlength="@HLS.Topup.Providers.ProviderConsts.MinPhoneNumberLength"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Provider_EmailAddress">@L("EmailAddress")</label>
+            <input class="form-control" id="Provider_EmailAddress" value="@Model.Provider.EmailAddress"
+                   type="text" name="emailAddress"
+                   maxlength="@HLS.Topup.Providers.ProviderConsts.MaxEmailAddressLength"
+                   minlength="@HLS.Topup.Providers.ProviderConsts.MinEmailAddressLength"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        @{
+            var selectListProviderStatus = Html.GetEnumSelectList(typeof(CommonConst.ProviderStatus));
+            foreach (var selectOption in selectListProviderStatus)
+            {
+                selectOption.Text = L("Enum_ProviderStatus_" + selectOption.Value);
+            }
+        }
+        <div class="form-group m-form__group">
+            <label for="Provider_ProviderStatus">@L("ProviderStatus")</label>
+            <select class="form-control m-input m-input--square" name="providerStatus"
+                    id="Provider_ProviderStatus" asp-for="@Model.Provider.ProviderStatus"
+                    asp-items="@selectListProviderStatus">
+            </select>
+        </div>
+    </div>
+</div>
+<div class="separator">Thông tin kết nối</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_User">UserName</label>
+            <input class="form-control" id="Provider_User" value="@Model.ProviderUpdate.Username"
+                   type="text" name="Username"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_Passs">Password</label>
+            <input class="form-control" id="Provider_Passs" value="@Model.ProviderUpdate.Password"
+                   type="password" name="Password"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_User">ApiUser</label>
+            <input class="form-control" id="Provider_ApiUser" value="@Model.ProviderUpdate.ApiUser"
+                   type="text" name="ApiUser"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_ApiPassword">ApiPassword</label>
+            <input class="form-control" id="Provider_ApiPassword" value="@Model.ProviderUpdate.ApiPassword"
+                   type="password" name="ApiPassword"/>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="Provider_User">ApiUrl</label>
+            <input class="form-control" id="Provider_ApiUrl" value="@Model.ProviderUpdate.ApiUrl"
+                   type="text" name="ApiUrl"/>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="TransCodeConfig">Cấu hình Mã GD</label>
+            <input class="form-control" id="TransCodeConfig" value="@Model.Provider.TransCodeConfig"
+                   type="text" name="transCodeConfig" maxlength="20"/>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Provider_User">PublicKey</label>
+            <input class="form-control" id="Provider_PublicKey" value="@Model.ProviderUpdate.PublicKey"
+                   type="text" name="PublicKey"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Provider_ApiPassword">PublicKeyFile</label>
+            <input class="form-control" id="Provider_PublicKeyFile"
+                   value="@Model.ProviderUpdate.PublicKeyFile" type="text" name="PublicKeyFile"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="Provider_ApiPassword">PrivateKeyFile</label>
+            <input class="form-control" id="Provider_PrivateKeyFile"
+                   value="@Model.ProviderUpdate.PrivateKeyFile" type="text" name="PrivateKeyFile"/>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="Provider_ApiPassword">TimeOut</label>
+            <input class="form-control" id="Provider_Timeout" value="@Model.ProviderUpdate.Timeout"
+                   type="number" name="Timeout"/>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="Provider_ApiPassword">TimeOut Provider</label>
+            <input class="form-control" id="Provider_TimeoutProvider"
+                   value="@Model.ProviderUpdate.TimeoutProvider" type="number" name="TimeoutProvider"/>
+        </div>
+    </div>
+</div>
+<div class="separator">Cấu hình cảnh báo số dư NCC</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="MinBalance">Số dư tối thiểu bắt đầu cảnh báo <span class="lightred">(*)</span></label>
+            <input class="form-control" id="MinBalance"
+                   value="@Model.Provider.MinBalance" type="number" name="MinBalance"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="MinBalanceToDeposit">Số dư tối thiểu bắt nạp tiền <span class="lightred">(*)</span></label>
+            <input class="form-control" id="MinBalanceToDeposit"
+                   value="@Model.Provider.MinBalanceToDeposit" type="number"
+                   name="MinBalanceToDeposit"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="DepositAmount">Số tiền nạp mỗi lần <span class="lightred">(*)</span></label>
+            <input class="form-control" id="DepositAmount"
+                   value="@Model.Provider.DepositAmount" type="number" name="DepositAmount"/>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="m-checkbox-list">
+            <label for="IsRoundRobinAccount" class="kt-checkbox">
+                <input id="IsRoundRobinAccount" type="checkbox" name="IsRoundRobinAccount" value="true"
+                       @Html.Raw(Model.Provider.IsRoundRobinAccount ? "checked=\"checked\"" : "")/>
+                Chạy nhiều tài khoản con (Hiện chỉ hỗ trợ VT)
+                <span></span>
+            </label>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="m-checkbox-list">
+            <label for="IsAutoDeposit" class="kt-checkbox">
+                <input id="IsAutoDeposit" type="checkbox" name="IsAutoDeposit" value="true"
+                       @Html.Raw(Model.Provider.IsAutoDeposit ? "checked=\"checked\"" : "")/>
+                Tự động nạp tiền khi số dư hết
+                <span></span>
+            </label>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="m-checkbox-list">
+            <label for="IsSlow" class="kt-checkbox">
+                <input id="IsSlow" type="checkbox" name="IsSlowTrans" value="true"
+                       @Html.Raw(Model.Provider.IsSlowTrans ? "checked=\"checked\"" : "")/>
+                Kích hoạt nạp chậm
+                <span></span>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="separator">Cấu hình đóng tự động</div>
+<dv class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_User">Số lượng GD không thành công liên tiếp</label>
+            <input class="form-control" id="Provider_TotalTransError" required
+                   value="@Model.ProviderUpdate.TotalTransError" type="number" name="TotalTransError"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_User">Thời gian đóng</label>
+            <input class="form-control" id="Provider_TimeClose" required
+                   value="@Model.ProviderUpdate.TimeClose" type="number" name="TimeClose"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_User">Bỏ qua các mã lỗi (Mã lỗi của NT)</label>
+            <input class="form-control" id="Provider_IgnoreCode" value="@Model.ProviderUpdate.IgnoreCode"
+                   type="text" name="IgnoreCode"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="m-checkbox-list">
+            <br>
+            <br>
+            <label for="IsAutoCloseFail" class="kt-checkbox">
+                <input id="IsAutoCloseFail" type="checkbox" name="IsAutoCloseFail" value="true"
+                       @Html.Raw(Model.ProviderUpdate.IsAutoCloseFail ? "checked=\"checked\"" : "")/>
+                Tính GD lỗi
+                <span></span>
+            </label>
+        </div>
+    </div>
+</dv>
+
+<dv class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_TotalTransDubious">Số lượng GD nghi ngờ</label>
+            <input class="form-control" id="Provider_TotalTransDubious"
+                   value="@Model.ProviderUpdate.TotalTransDubious" type="number" name="TotalTransDubious"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_TimeScan">Thời gian quét</label>
+            <input class="form-control" id="Provider_TimeScan" value="@Model.ProviderUpdate.TimeScan"
+                   type="number" name="TimeScan"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_TotalTransScan">Tổng số giao dịch quét</label>
+            <input class="form-control" id="Provider_TotalTransScan"
+                   value="@Model.ProviderUpdate.TotalTransScan" type="number" name="TotalTransScan"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_TotalTransErrorScan">Số lượng giao dịch lỗi</label>
+            <input class="form-control" id="Provider_TotalTransErrorScan"
+                   value="@Model.ProviderUpdate.TotalTransErrorScan" type="number"
+                   name="TotalTransErrorScan"/>
+        </div>
+    </div>
+</dv>
+<div class="separator">Cấu hình cảnh báo lỗi NCC</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="m-checkbox-list">
+            <br>
+            <label for="IsAlarm" class="kt-checkbox">
+                <input id="IsAlarm" type="checkbox" name="IsAlarm" value="true"
+                       @Html.Raw(Model.ProviderUpdate.IsAlarm ? "checked=\"checked\"" : "")/>
+                Bật cảnh báo lỗi NCC
+                <span></span>
+            </label>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="Provider_ProcessTimeAlarm">Cảnh báo xử lý GD chậm (s)</label>
+            <input class="form-control" id="Provider_ProcessTimeAlarm"
+                   value="@Model.ProviderUpdate.ProcessTimeAlarm" type="number"
+                   name="ProcessTimeAlarm"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="AlarmChannel">Kênh cảnh báo</label>
+            <select id="AlarmChannel" name="AlarmChannel" class="form-control">
+                <option value="Telegram" selected="@(Model.ProviderUpdate.AlarmChannel == "Telegram" ? true : false)">Telegram</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="AlarmTeleChatId">Nhóm cảnh báo (ChatID)</label>
+            <input class="form-control" id="AlarmTeleChatId" value="@Model.ProviderUpdate.AlarmTeleChatId"
+                   type="text" name="AlarmTeleChatId"/>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="ErrorCodeNotAlarm">Bỏ qua các mã lỗi (Mã lỗi NCC)</label>
+            <input class="form-control" id="ErrorCodeNotAlarm" value="@Model.ProviderUpdate.ErrorCodeNotAlarm"
+                   type="text" name="ErrorCodeNotAlarm"/>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="MessageNotAlarm">Bỏ qua lỗi có nội dung (Message NCC)</label>
+            <input class="form-control" id="MessageNotAlarm" value="@Model.ProviderUpdate.MessageNotAlarm"
+                   type="text" name="MessageNotAlarm"/>
+        </div>
+    </div>
+    @if (Model.IsDisplayRate)
+    {
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="WorkShortCode">Nhãn</label>
+                <input class="form-control" id="WorkShortCode" value="@Model.Provider.WorkShortCode"
+                       type="text" name="WorkShortCode"/>
+            </div>
+        </div>
+    }
+    else
+    {
+        <input class="form-control" id="WorkShortCode" value="@Model.Provider.WorkShortCode"
+               type="hidden" name="WorkShortCode"/>
+    }
+</div>
+
+@* <div class="row"> *@
+@* <div class="col-md-12"> *@
+@* <label for="Provider_Address">ProviderServices</label> *@
+@* <textarea class="form-control" id="Provider_ProviderServices" disabled="@Model.IsEditMode" name="address"
+            rows="2">@Model.ProviderUpdate.ProviderServices.ToJson()</textarea> *@
+@* </div> *@
+@* </div> *@
+@* </div> *@
+@* <div class="row">
+            <div class="col-md-12">@await Html.PartialAsync("Components/UploadFile/_UploadImages",
+            Model.Provider.Images)
+            </div>
+            </div> *@
+@* <div class="separator">Thông tin chung</div> *@
+@* <div class="row"> *@
+@*     <div class="col-md-12"> *@
+@*         <div class="form-group"> *@
+@*             <label for="Provider_EmailAddress">@L("EmailAddress")</label> *@
+@*             <input class="form-control" id="Provider_EmailAddress" value="@Model.Provider.EmailAddress" *@
+@*                    type="text" name="emailAddress" *@
+@*                    maxlength="@HLS.Topup.Providers.ProviderConsts.MaxEmailAddressLength" *@
+@*                    minlength="@HLS.Topup.Providers.ProviderConsts.MinEmailAddressLength"/> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* <div class="row"> *@
+@*     <div class="col-md-12"> *@
+@*         <div class="form-group"> *@
+@*             <label for="Provider_Address">@L("Address")</label> *@
+@*             <textarea class="form-control" id="Provider_Address" name="address" *@
+@*                             rows="2">@Model.Provider.Address</textarea> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* <div class="form-group"> *@
+@*     <label for="Provider_Description">@L("Description")</label> *@
+@*     <textarea class="form-control" id="Provider_Description" name="description" *@
+@*                     rows="5">@Model.Provider.Description</textarea> *@
+@* </div> *@
+
+</form>
+</div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

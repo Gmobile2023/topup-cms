@@ -1,0 +1,1468 @@
+﻿
+  <Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <Import Project="..\..\common.props"></Import>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp6.0</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>HLS.Topup.Web.Mvc</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>HLS.Topup.Web.Mvc</PackageId>
+    <UserSecretsId>HLS-Topup-894FDFC1-6482-4A56-926A-3C46C9FE0329</UserSecretsId>
+    <RootNamespace>HLS.Topup.Web</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>4.1</TypeScriptToolsVersion>
+    <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="App_Data\**" />
+    <Content Remove="App_Data\**" />
+    <EmbeddedResource Remove="App_Data\**" />
+    <None Remove="App_Data\**" />
+    <Content Update="Areas\App\Views\Shared\Components\AppQuickThemeSelectComponent\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Shared\Components\AppLanguageSwitch\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Shared\Components\AppChatToggler\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Shared\Components\AppUserMenu\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Shared\Components\AppRecentNotifications\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\BatchTopup\Result.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme10\js\settings.min.js">
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme11\js\settings.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme11\js\settings.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme2\js\settings.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme2\js\settings.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme3\js\settings.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme3\js\settings.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme4\js\settings.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme4\js\settings.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme5\js\settings.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme5\js\settings.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme6\js\settings.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme6\js\settings.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme7\js\settings.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme7\js\settings.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme8\js\settings.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme8\js\settings.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme9\js\settings.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\metronic\themes\theme9\js\settings.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>settings.js</DependentUpon>
+    </Content>
+    <Content Update="Areas\App\Views\DynamicProperty\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\DynamicProperty\_CreateOrEditModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\DynamicProperty\_ManageValuesModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\DynamicProperty\_SelectAnEntityModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\DynamicEntityPropertiesList.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\DynamicEntityPropertiesList.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\Index.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\Index.min.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\Index.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_CreateOrEditModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_CreateOrEditModal.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_ManageValuesModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_ManageValuesModal.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_SelectAnEntityModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_SelectAnEntityModal.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Balance\_ViewBalance.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Footer\_Footer.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Header\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Header\_HeaderMenuDesktop.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Header\_HeaderMenuMobile.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Header\_ShowDiscountAccountModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Header\_Slider.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Home\_FunctionInHome.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Home\_IntroduceInHome.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\Home\_NewsInHome.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\LeftMenu\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\LeftMenu\_LeftMenuItem.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\MenuMobile\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\MenuMobile\_MenuItem.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\ProductIntro\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Layout\_Layout.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Layout\_LayoutAccount.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Scripts\Service.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Scripts\Service.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\query-mask\inputmask.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\query-mask\inputmask.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\query-mask\jquery.inputmask.bundle.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\query-mask\jquery.mask.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootbox\bootbox.all.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootbox\bootbox.all.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootbox\bootbox.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootbox\bootbox.locales.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootbox\bootbox.locales.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\lib\bootbox\bootbox.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <None Update="Views\Common\Modals\Empty\README.txt">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <Content Update="Views\Common\Modals\Empty\_Empty.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\Modals\_EntityTypeHistoryModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\Modals\_InactivityControllerNotifyModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\Modals\_LookupModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\Modals\_ModalFooterWithClose.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\Modals\_ModalFooterWithSaveAndCancel.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\Modals\_ModalHeader.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\Modals\_PermissionTreeModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\_FeaturesTree.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\_FeaturesTreeItem.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\_OrganizationTree.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\_OrganizationUnitTreeItem.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\_PermissionTree.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Common\_PermissionTreeItem.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Transactions\BalanceHistory.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Transactions\BalanceHistory.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Transactions\TransactionDetailBuyCard.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Transactions\TransactionDetailBuyCard.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Transactions\TransactionHistory.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Transactions\TransactionHistory.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Transactions\TransferMoney.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Transactions\TransferMoney.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\CheckChargesViettel\CheckChargesDetail.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\CheckChargesViettel\CheckChargesHistory.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\CheckChargesViettel\CheckChargesViettel.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\DiscountManagement\CollectDiscount.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\DiscountManagement\CollectDiscount.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\DiscountManagement\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\DiscountManagement\Index.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\DiscountManagement\_CreateOrEditModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\DiscountManagement\_CreateOrEditModal.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Header\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Header\Index.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Profile\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Profile\Index.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Profile\RegisterMyViettel.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Profile\_CreateOrEditModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Topup\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Topup\Index.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Topup\PinCode.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Topup\PinCode.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Topup\_CreateOrEditModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Home\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Includes\MenuMobile.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Profile\Discount.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Profile\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Profile\RegisterMyViettel.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Profile\_CreateOrEditModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Transactions\BalanceHistory.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Transactions\TransactionDetailBuyCard.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Transactions\TransactionHistory.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Transactions\TransactionInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Transactions\TransferInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Transactions\TransferMoney.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Styles\custom.less">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Reports\BalanceAccount.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\BalanceAccount.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\BalanceAccount.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>Index.js</DependentUpon>
+    </Content>
+    <Content Update="Areas\App\Views\Reports\BalanceAccounts.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Reports\TotalBalance.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Reports\CardStockHistories.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Reports\CardStockInventory.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\BalanceAccounts.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\BalanceAccounts.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>BalanceAccounts.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\TotalBalanceAccount.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>CardStockHistories.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\TotalBalance.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\TotalBalance.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>TotalBalanceAccount - Copy.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\CardStockHistories.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\CardStockHistories.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>CardStockInventory.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\CardStockInventory.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Reports\CardStockInventory.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>BalanceAccount - Copy.js</DependentUpon>
+    </Content>
+    <Content Update="Views\BillPayment\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\BillPayment\BillPaymentInfo.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\BillPayment\ChooseBillService.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Transactions\Deposit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Transactions\_RecentDeposit.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Transactions\Deposit.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\TransactionManagement\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\TransactionManagement\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\TransactionManagement\Index.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>BalanceAccount.js</DependentUpon>
+    </Content>
+    <Content Update="Views\Account\Login.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\BillPayment\PayWaterBill.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content> 
+    <Content Update="Views\Shared\Components\MenuBottom\Default.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\MenuBottom\_MenuItem.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\BillPayment\BillCommon.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\BillPayment\BillPayment.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\themes\topup\css\custom.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ConfirmLogin.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Account\ConfirmLogin.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Account\ConfirmLogin.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>ConfirmLogin.js</DependentUpon>
+    </Content>
+    <Content Update="Views\Home\Message.cshtml">
+	 <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	</Content>
+    <Content Update="Views\Profile\StaffManager.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Profile\CreateOrEditStaff.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Profile\CreateOrEditStaff.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Profile\StaffManager.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\LimitAmount\_ViewLimitAmount.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ForgotPassword - Copy.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Account\ConfirmResetPassword.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Account\ForgotPassword - Copy.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Account\ForgotPassword - Copy.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>ForgotPassword - Copy.js</DependentUpon>
+    </Content>
+    <Content Update="Views\Layout\_LayoutHomepage.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Layout\Section\_breadcrumb_homepage.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Home\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\UploadFile\_UploadImages.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Scripts\UploadFile.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Shared\Components\AccountCode\_ViewAccountCode.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Profile\_SalesPolicyProductList.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Profile\SalesPolicy.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Scripts\Notification.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Scripts\Notification.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>_Header.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\lib\select2\dist\js\select2.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\themes\topup\js\swiper.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Topup\PinCode\_PinCode.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Topup\PinCode\_PinData.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Topup\PinCode\_PinGame.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Profile\Notifications.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Scripts\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Scripts\Index.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>Index.js</DependentUpon>
+    </Content>
+    <Content Update="Areas\App\Views\Deposits\_CreateOrEditAccountingEntryModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Deposits\_CreateOrEditAccountingEntryModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Deposits\_ViewAccountingEntryModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\themes\topup\css\form.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\AgentsManage\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\AgentsManage\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\AgentsManage\_AgentDetailViewModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\AgentsManage\_ViewAgentModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\AgentsManage\_LockOrUnlockAgent.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\AgentsManage\_LockOrUnlockAgent.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\firebase-messaging-sw.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\Common\Scripts\appUserNotificationBackendHelper.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Deposits\_CreateOrEditDepositCashModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Deposits\_CreateOrEditDepositCashModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\Deposits\_ApprovedBankModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Deposits\_ApprovedBankModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\PayBacks\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\PayBacks\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\PayBacks\_CreateOrEditModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\PayBacks\_CreateOrEditModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\PayBacks\_ViewPayBacksModel.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\PayBacks\_ViewPayBacksModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\AccountBlockBalances\_ViewModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\AccountBlockBalances\_ViewModal.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>_ViewModal.js</DependentUpon>
+    </Content>
+    <Content Remove="Views\Layout\_LayoutMain.cshtml" />
+    <Content Update="Areas\App\Views\AuditActivities\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\TransactionManagement\_PinCodeDetailModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\TransactionManagement\_PinCodeDetailModal.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\themes\topup\print\print_20210118.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Profile\SecurityMethod.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\Profile\SecureMethod.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\UserAccounts\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\UserAccounts\_CreateOrEditModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\UserAccounts\_LoginAttemptsModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\App\Views\UserAccounts\_PermissionsModal.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Users\UserAccounts.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Areas\App\Views\Users\UserAccounts.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>UserAccounts.js</DependentUpon>
+    </Content>
+    <Content Update="Views\PostManagement\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\PostManagement\Index.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\PostManagement\Index.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>Index.js</DependentUpon>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\PostManagement\Detail.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\view-resources\Views\PostManagement\Detail.min.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <DependentUpon>_EditModal.js</DependentUpon>
+    </Content>
+    <Content Update="Views\PostManagement\Detail.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <None Update="Aspose_total_20220516.lic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Update="package.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Remove="Views\Topup\_DataPrice.cshtml" />
+  </ItemGroup> 
+  
+  <ItemGroup>
+    <Content Remove="wwwroot\swagger\ui\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\swagger\ui\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="wwwroot\Plugins\.gitkeep" />
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="wwwroot\**\*;Areas\**\*;Views\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HLS.Topup.EventBus\HLS.Topup.EventBus.csproj" />
+    <ProjectReference Include="..\HLS.Topup.Web.Core\HLS.Topup.Web.Core.csproj" />
+  </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Abp.Castle.Log4Net" Version="7.4.0" />
+      <PackageReference Include="AspNetCore.HealthChecks.UI" Version="6.0.4" />
+      <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="6.0.4" />
+      <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" Version="6.0.4" />
+      <PackageReference Include="Aspose.Cells" Version="20.9.0" />
+      <PackageReference Include="Aspose.PDF" Version="23.4.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="6.0.10" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.10" />
+      <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.9">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
+      <PackageReference Include="NLog.Extensions.Logging" Version="1.6.5" />
+      <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+      <PackageReference Include="System.Private.ServiceModel" Version="4.10.0" />
+      <PackageReference Include="IdentityServer4" Version="4.1.2" />
+      <PackageReference Include="IdentityServer4.EntityFramework.Storage" Version="4.1.2" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\App\Views\PostManagement" />
+    <Folder Include="Areas\App\Views\Shared\Themes\Theme10\Components" />
+    <Folder Include="Areas\App\Views\Shared\Themes\Theme11\Components" />
+    <Folder Include="Areas\App\Views\Shared\Themes\Theme4\Components" />
+    <Folder Include="Areas\App\Views\Shared\Themes\Theme5\Components" />
+    <Folder Include="Areas\App\Views\Shared\Themes\Theme6\Components" />
+    <Folder Include="Areas\App\Views\Shared\Themes\Theme7\Components" />
+    <Folder Include="Areas\App\Views\Shared\Themes\Theme8\Components" />
+    <Folder Include="Areas\App\Views\Shared\Themes\Theme9\Components" />
+    <Folder Include="wwwroot\assets\Upload" />
+    <Folder Include="wwwroot\Uploads\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme12Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme12Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme9Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme9Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppDefaultBrand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppDefaultFooter\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme2Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme2Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme3Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme3Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme4Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme4Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme5Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme5Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme6Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme6Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme7Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme7Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme8Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme8Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme10Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme10Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme11Brand\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTheme11Footer\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Layout\Theme12\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Scripts\Service.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme12\datatables-rtl.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme12\datatables-rtl.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme12\datatables.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme12\datatables.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme12\metronic-customize.less" />
+    <_ContentIncludedByDefault Remove="wwwroot\Common\Styles\Themes\theme12\metronic-customize.min.css" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Shared\Components\AppTopBar\Default.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\DynamicProperty\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\DynamicProperty\_CreateOrEditModal.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\DynamicProperty\_CreateOrEditValueModal.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\DynamicProperty\_ManageValuesModal.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\DynamicProperty\_SelectAnEntityModal.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\Categories\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\Deposits\_CreateOrEditDepositCashModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\DynamicEntityPropertiesList.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\DynamicEntityPropertiesList.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\Index.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\Index.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\Index.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_CreateOrEditModal.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_CreateOrEditModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_ManageValuesModal.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_ManageValuesModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_SelectAnEntityModal.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\DynamicProperties\_SelectAnEntityModal.min.js" />
+    <_ContentIncludedByDefault Remove="Views\Layout\Section\_breadcrumb.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Layout\Section\_header.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Layout\Section\_sidebar.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\TabHome\_Tab1.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\TabHome\_Tab2.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\TabHome\_Tab3.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\TabHome\_Tab4.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\TabHome\_Tab5.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\TabHome\_Tab6.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Components\AccountCode\_ViewAccountCode.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\StockAirtime\Index.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\StockAirtime\Index.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\StockAirtime\_CreateOrEditModal.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\StockAirtime\_CreateOrEditModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\StockAirtime\_TransferModal.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Areas\App\Views\StockAirtime\_TransferModal.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\BatchTopup\History.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\view-resources\Views\BatchTopup\TopupDetail.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\wwwroot\lib\calendar\jquery.amlich.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-am_ET.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-am_ET.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ar_AR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ar_AR.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-bg_BG.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-bg_BG.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-cs_CZ.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-cs_CZ.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-da_DK.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-da_DK.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-de_DE.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-de_DE.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-en_US.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-en_US.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-es_CL.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-es_CL.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-es_ES.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-es_ES.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-et_EE.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-et_EE.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-eu.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-eu.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-fa_IR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-fa_IR.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-fi_FI.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-fi_FI.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-fr_FR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-fr_FR.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-hr_HR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-hr_HR.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-hu_HU.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-hu_HU.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-id_ID.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-id_ID.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-it_IT.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-it_IT.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ja_JP.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ja_JP.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-kh_KM.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-kh_KM.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ko_KR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ko_KR.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-lt_LT.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-lt_LT.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-lv_LV.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-lv_LV.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-nb_NO.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-nb_NO.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-nl_NL.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-nl_NL.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-pl_PL.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-pl_PL.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-pt_BR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-pt_BR.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-pt_PT.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-pt_PT.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ro_RO.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ro_RO.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ru_RU.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ru_RU.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-sk_SK.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-sk_SK.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-sl_SI.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-sl_SI.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-sr_SP.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-sr_SP.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-sv_SE.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-sv_SE.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-th_TH.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-th_TH.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-tr_TR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-tr_TR.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ua_UA.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-ua_UA.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-vi_VN.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-vi_VN.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-zh_CN.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-zh_CN.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-zh_TW.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap-select\dist\js\i18n\defaults-zh_TW.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ar.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ar.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_az.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_az.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_bg.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_bg.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_bn_BD.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_bn_BD.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ca.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ca.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_cs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_cs.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_da.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_da.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_de.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_de.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_el.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_el.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_es.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_es.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_es_AR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_es_AR.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_es_PE.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_es_PE.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_et.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_et.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_eu.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_eu.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_fa.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_fa.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_fi.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_fi.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_fr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_fr.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ge.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ge.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_gl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_gl.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_he.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_he.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_hr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_hr.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_hu.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_hu.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_hy_AM.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_hy_AM.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_id.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_id.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_is.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_is.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_it.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_it.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ja.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ja.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ka.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ka.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_kk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_kk.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ko.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ko.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_lt.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_lt.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_lv.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_lv.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_mk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_mk.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_my.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_my.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_nl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_nl.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_no.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_no.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_pl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_pl.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_pt_BR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_pt_BR.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_pt_PT.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_pt_PT.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ro.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ro.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ru.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ru.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sd.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sd.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_si.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_si.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sk.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sl.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sr.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sr_lat.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sr_lat.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sv.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_sv.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_th.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_th.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_tj.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_tj.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_tr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_tr.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_uk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_uk.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ur.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_ur.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_vi.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_vi.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_zh.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_zh.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_zh_TW.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\messages_zh_TW.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_de.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_de.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_es_CL.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_es_CL.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_fi.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_fi.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_it.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_it.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_nl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_nl.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_pt.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\jquery-validation\dist\localization\methods_pt.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\morris.js\morris.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\af.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ar.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\az.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\bg.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\bn.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\bs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ca.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\cs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\da.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\de.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\dsb.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\el.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\en.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\es.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\et.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\eu.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\fa.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\fi.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\fr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\gl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\he.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\hi.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\hr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\hsb.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\hu.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\hy.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\id.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\is.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\it.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ja.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ka.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\km.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ko.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\lt.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\lv.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\mk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ms.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\nb.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ne.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\nl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\pl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ps.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\pt-BR.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\pt.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ro.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\ru.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\sk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\sl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\sq.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\sr-Cyrl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\sr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\sv.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\th.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\tk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\tr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\uk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\vi.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\zh-CN.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\select2\dist\js\i18n\zh-TW.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.af.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.am.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.ar.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.az-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.az.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.be.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.bg.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.bs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.ca.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.cs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.cy.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.da.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.de-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.de.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.dv.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.el.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.en-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.en.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.es-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.es.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.et.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.eu.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.fa-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.fa.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.fi.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.fr-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.fr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.gl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.he.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.hr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.hu.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.hy.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.id.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.is.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.it-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.it.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.ja.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.jv.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.ko.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.ky.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.lt.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.lv.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.mk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.nl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.no.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.pl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.pt-br-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.pt-br.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.pt-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.pt.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.ro.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.rs.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.ru.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.rw.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.si.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.sk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.sl.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.sq.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.sr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.sv.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.th.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.tr-short.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.tr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.uk.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.ur.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.uz.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.vi.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.zh-CN.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\timeago\locales\jquery.timeago.zh-TW.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\lib\calendar\jquery.amlich.min.css" />
+    <_ContentIncludedByDefault Remove="Areas\App\Views\Common\SelectFilter\_AgentType.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>Aspose.Cells.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

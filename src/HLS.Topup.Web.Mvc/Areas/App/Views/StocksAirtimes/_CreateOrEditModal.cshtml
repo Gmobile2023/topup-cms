@@ -1,0 +1,61 @@
+@using HLS.Topup.StockManagement;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.StocksAirtimes
+@model CreateOrEditStocksAirtimeModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditStocksAirtime")) : L("CreateNewStocksAirtime")))
+
+<div class="modal-body">
+    <div id="StocksAirtimeInformationsTab">
+        <form name="StocksAirtimeInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                @if (Model.IsEditMode)
+                {
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="StocksAirtime_StockCode">@L("ProviderCode")</label>
+                            <input class="form-control" value="@Model.StocksAirtime.ProviderCode - @Model.StocksAirtime.ProviderName"
+                                   required type="text" disabled=""/>
+                            <input value="@Model.StocksAirtime.KeyCode" type="hidden" name="keyCode"/>
+                            <input value="@Model.StocksAirtime.ProviderCode" type="hidden" name="providerCode"/>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="providerCode">@L("ProviderCode")</label>
+                            @Html.DropDownList("providerCode", new SelectList(Model.ProviderList, "Id", "DisplayName", ("")),
+                                @L("SelectAProvider"), new {@class = "select2 form-control"})
+                        </div>
+                    </div>
+                }
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="StocksAirtime_TotalAirtime">@L("MinLimitAirtime")</label>
+                        <input class="form-control m-input amount-mask" id="StocksAirtime_TotalAirtime" 
+                               value="@Model.StocksAirtime.MinLimitAirtime.ToString("####")"  type="text" name="minLimitAirtime"/> 
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="StocksAirtime_TotalAmount">@L("MaxLimitAirtime")</label>
+                        <input class="form-control m-input amount-mask" id="StocksAirtime_TotalAmount" 
+                               value="@Model.StocksAirtime.MaxLimitAirtime.ToString("####")"  type="text" name="maxLimitAirtime"/> 
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="StocksAirtime_Description">@L("Description")</label>
+                        <textarea class="form-control" id="StocksAirtime_Description" name="description" rows="3">@Model.StocksAirtime.Description</textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

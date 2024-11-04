@@ -1,0 +1,188 @@
+﻿@model HLS.Topup.Web.Areas.App.Views.Shared.Components.AppMenu.UserMenuItemViewModel
+
+@* <li class="nav-item @(Model.MenuItem.IsMenuActive(Model.CurrentPageName) ? "active" : "")"> *@
+@*     @if (Model.MenuItem.Items.IsNullOrEmpty()) *@
+@*     { *@
+@*         <h3> *@
+@*             <a href="@Model.MenuItem.Url" title="@Model.MenuItem.DisplayName">@Model.MenuItem.DisplayName</a> *@
+@*         </h3> *@
+@*     } *@
+@*     else *@
+@*     { *@
+@*         <h3> *@
+@*             <a href="@Model.MenuItem.Url" title="@Model.MenuItem.DisplayName">@Model.MenuItem.DisplayName</a> *@
+@*         </h3> *@
+@*         <ul class="sub-menu"> *@
+@*             @for (var i = 0; i < Model.MenuItem.Items.Count; i++) *@
+@*             { *@
+@*                 var childMenuItem = Model.MenuItem.Items[i]; *@
+@*                 if (!childMenuItem.IsVisible) *@
+@*                 { *@
+@*                     continue; *@
+@*                 } *@
+@*                 @await Html.PartialAsync("Components/Header/_HeaderMenuDesktop", new UserMenuItemViewModel *@
+@*                 { *@
+@*                     MenuItem = childMenuItem, *@
+@*                     MenuItemIndex = i, *@
+@*                     CurrentPageName = Model.CurrentPageName, *@
+@*                     RootLevel = false *@
+@*                 }) *@
+@*             } *@
+@*         </ul> *@
+@*     } *@
+@* </li> *@
+
+<ul class="nav navbar-nav pull-right" ng-top-menu="">
+    <li class="sub-menu">
+        <a href="/dich-vu/nap-tien-dien-thoai.aspx">
+            <img src="/Resources/images/ic_dark/ic-01.svg" width="20" alt="">
+            <p>Nạp tiền điện thoại</p>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="/dich-vu/mua-ma-the.aspx" data-toggle="dropdown">
+            <img src="/Resources/images/ic_dark/ic-05.svg" width="20" alt="">
+            <p>Mua mã thẻ trả trước</p>
+            <div class="arrow">
+                <img src="/Resources/images/down-arrow.svg" alt="">
+            </div>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/dich-vu/mua-ma-the.aspx?tab=mobile">Mua mã thẻ điện thoại</a>
+            </li>
+
+            <li>
+                <a href="/dich-vu/mua-ma-the.aspx?tab=datamg">Mã thẻ data 3G-4G</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown sub-menu">
+        <a href="/dich-vu/mua-ve-may-bay.aspx" data-toggle="dropdown">
+            <img src="/Resources/images/ic_dark/ic-02.svg" width="20" alt="">
+            <p>Mua vé máy bay</p>
+            <div class="arrow">
+                <img src="/Resources/images/down-arrow.svg" alt="">
+            </div>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/dich-vu/mua-ve-may-bay.aspx?tab=noi-dia">Đặt vé máy bay nội địa</a>
+            </li>
+            <li>
+                <a href="/dich-vu/mua-ve-may-bay.aspx?tab=quoc-te">Đặt vé máy bay quốc tế</a>
+            </li>
+            <li>
+                <a href="/dich-vu/tra-cuu-thanh-toan-ve-may-bay.aspx">Thanh toán mã đặt chỗ</a>
+            </li>
+
+        </ul>
+    </li>
+    <li class="sub-menu">
+        <a href="/dich-vu/thanh-toan-hoa-don.aspx" data-toggle="dropdown">
+            <img src="/Resources/images/ic_dark/ic-03.svg" width="20" alt="">
+            <p>Thanh toán hóa đơn</p>
+            <div class="arrow">
+                <img src="/Resources/images/down-arrow.svg" alt="">
+            </div>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/dich-vu/thanh-toan-hoa-don-di-dong.aspx">Hóa đơn di động trả sau</a>
+            </li>
+            <li>
+                <a href="/dich-vu/thanh-toan-hoa-don-pstn.aspx">Điện thoại cố định - Homephone</a>
+            </li>
+            <li>
+                <a href="/dich-vu/thanh-toan-hoa-don-adsl.aspx">Hóa đơn ADSL</a>
+            </li>
+            <li>
+                <a href="/dich-vu/thanh-toan-hoa-don-truyen-hinh-cap.aspx">Hóa đơn truyền hình</a>
+            </li>
+            <li>
+                <a href="/dich-vu/thanh-toan-hoa-don-tien-dien.aspx">Hóa đơn điện</a>
+            </li>
+            <li>
+                <a href="/dich-vu/thanh-toan-hoa-don-nuoc-online.aspx">Hóa đơn tiền nước</a>
+            </li>
+        </ul>
+    </li>
+    <li class="sub-menu">
+        <a href="/dich-vu/chuyen-tien-visa-direct.aspx">
+            <img src="/Resources/images/ic_dark/ic-44.svg" width="20" alt="">
+            <p>Chuyển tiền vào thẻ VISA/MasterCard</p>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a href="/dich-vu/fe-credit-vay-tieu-dung-tin-chap.aspx" data-toggle="dropdown">
+            <img src="/Resources/images/ic_dark/ic-47.svg" width="20" alt="">
+            <p>Thanh toán vay tín dụng</p>
+            <div class="arrow">
+                <img src="/Resources/images/down-arrow.svg" alt="">
+            </div>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="/dich-vu/fe-credit-vay-tieu-dung-tin-chap.aspx?p=fecredit">FE Credit</a>
+            </li>
+            <li>
+                <a href="/dich-vu/fe-credit-vay-tieu-dung-tin-chap.aspx?p=homecredit">Home Credit</a>
+            </li>
+        </ul>
+    </li>
+    <li class="sub-menu">
+        <a href="/mua-ve-xem-phim">
+            <img src="/Resources/images/ic_dark/ic-201.svg" width="20" alt="">
+            <p>Vé xem phim</p>
+        </a>
+    </li>
+    <li class="active">
+        <a href="/">Trang chủ</a>
+    </li>
+    <li>
+        <a href="/gioi-thieu-vban.html">Giới thiệu</a>
+    </li>
+    <li>
+        <a href="/tin-tuc.html">Khuyến mại</a>
+    </li>
+    <li>
+        <a href="/dich-vu.html">Dịch vụ</a>
+    </li>
+    <li class="dropdown sub-menu dropdown-sub--hover">
+        <a href="/tro-giup.html" class="dropdown-sub--hover__a" style="font-size: inherit;">
+            Trợ giúp
+            <div class="arrow">
+                <img src="/Resources/images/down-arrow.svg" alt="">
+            </div>
+        </a>
+        <ul class="dropdown-menu">
+            <div class="triangle-border triangle-border__dropdown"></div>
+            <li class="dropdown-menu__header">Hướng dẫn sử dụng</li>
+            <li>
+                <a href="/tro-giup.html#huong-dan-dich-vu">Hướng dẫn sử dụng dịch vụ</a>
+            </li>
+            <li>
+                <a href="/tro-giup.html#huong-dan-thanh-toan">Hướng dẫn thanh toán</a>
+            </li>
+            <li class="dropdown-menu__header">Quy đinh chung</li>
+            <li>
+                <a href="/tro-giup/Quy-dinh-ve-bao-mat-thong-tin-47.html">Quy định về bảo mật</a>
+            </li>
+            <li>
+                <a href="/tro-giup/Thong-bao-ve-viec-thu-Phi-xu-ly-giao-dich-ap-dung-doi-voi-cac-giao-dich-thanh-toan-bang-the-quoc-te-48.html">Chính sách thanh toán</a>
+            </li>
+            <li>
+                <a href="/tro-giup/Quy-dinh-ve-xu-ly-khieu-nai-45.html">Quy định về xử lý khiếu nại</a>
+            </li>
+            <li>
+                <a href="/tro-giup/Chinh-sach-giao-hang-huy-va-hoan-tra-san-pham-dich-vu-46.html" class="dropdown-menu__longword">Chính sách giao hàng, đổi và trả <br> sản phẩm dịch vụ</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="/doi-tac-thanh-toan-va-nha-cung-cap-dich-vu.html">Đối tác</a>
+    </li>
+    <li>
+        <a href="/lien-he.html">Liên hệ</a>
+    </li>
+</ul>

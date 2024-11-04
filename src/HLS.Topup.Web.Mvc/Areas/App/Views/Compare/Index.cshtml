@@ -1,0 +1,86 @@
+﻿@using HLS.Topup.Web.Areas.App.Startup
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.ReportDetailBalanceAccount;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/Compare/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title="Đối soát" description="Đối soát Nhà cung cấp">
+        <button id="ExportToExcelButton" class="btn btn-outline-success">
+            <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+        </button>
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div id="AdvacedAuditFiltersArea" class="row mb-4">                    
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="">Ngày đối soát</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MinValue")" value="" id="FromDateCompare">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MaxValue")" value="" id="ToDateCompare">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="FromFilterId">Ngày giao dịch</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MinValue")" value="" id="FromDateTran">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MaxValue")" value="" id="ToDateTran">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="ServiceCodeFilter">Nhà cung cấp:</label>
+                            <span class="down-arrow-black arrow-small" style="top:25px"></span>
+                            <select id="ServiceCodeFilter" class="form-control">
+                                <option value="">-- @L("TransType") --</option>                             
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <span class="input-group-btn">
+                            <button id="GetProvidersButton" class="btn btn-primary" type="submit" style="margin-top:22px">
+                                <i class="flaticon-search-1"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>             
+                <div class="row align-items-center">
+                    <table id="ProvidersTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>                           
+                            <tr>
+                                <th></th>
+                                <th>Ngày đối soát</th>
+                                <th>Ngày giao dịch</th>
+                                <th>Nhà cung cấp</th>
+                                <th>Tên BF NT</th>
+                                <th>Tên BF NCC</th>
+                                <th>Tổng SL BF NT</th>
+                                <th>Tổng Mệnh giá BF NT</th>
+                                <th>Tổng SL BF NCC</th>
+                                <th>Tổng Mệnh giá BF NCC</th>
+                                <th>SL khớp</th>
+                                <th>SL lệch</th>
+                                <th>NT có NCC không có</th>
+                                <th>NCC có NT không có</th>
+                                <th>Người đối soát</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

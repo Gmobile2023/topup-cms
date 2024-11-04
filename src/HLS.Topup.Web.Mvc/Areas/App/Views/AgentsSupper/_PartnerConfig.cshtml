@@ -1,0 +1,290 @@
+@using ServiceStack
+@model HLS.Topup.AgentManagerment.AgentSupperDetailView
+<input type="hidden" id="txtServiceConfigs" value="@Model.PartnerConfig.ServiceConfig">
+<input type="hidden" id="txtCategoryConfigs" value="@Model.PartnerConfig.CategoryConfigs">
+<input type="hidden" id="txtProductConfigsNotAllow" value="@Model.PartnerConfig.ProductConfigsNotAllow">
+<input type="hidden" id="txtAllowedScopes" value="@Model.IdentityServerStorage.AllowedScopes.ToJson()">
+<input type="hidden" id="txtAllowedGrantTypes" value="@Model.IdentityServerStorage.AllowedGrantTypes.ToJson()">
+<input type="hidden" id="txtClientSecrets" value="@Model.IdentityServerStorage.ClientSecrets.ToJson()">
+<div class="card">
+    <div class="card-header" id="headingConfig">
+        <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#box-config" aria-expanded="true"
+                aria-controls="collapseOne">
+                Cấu hình tài khoản API
+            </button>
+        </h5>
+    </div>
+
+    <div id="box-config" class="collapse" aria-labelledby="headingConfig" data-parent="#accordion">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ClientId">
+                            ClientId
+                        </label>
+                        <input class="form-control" required id="ClientId" value="@Model.PartnerConfig.ClientId"
+                            type="text" name="ClientId" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="SecretKey">
+                            SecretKey
+                        </label>
+                        <input class="form-control" required id="SecretKey" value="@Model.PartnerConfig.SecretKey"
+                            type="text" name="SecretKey" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="PublicKeyFile">
+                            Partner PublicKey
+                        </label>
+                        <input class="form-control" required id="PublicKeyFile"
+                            value="@Model.PartnerConfig.PublicKeyFile" type="text" name="PublicKeyFile" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="PrivateKeyFile">
+                            PrivateKey
+                        </label>
+                        <input class="form-control" required id="PrivateKeyFile"
+                            value="@Model.PartnerConfig.PrivateKeyFile" placeholder="NT_PrivateKey.pem" type="text"
+                            name="PrivateKeyFile" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AllowedGrantTypes">
+                            Allowed Grant Types
+                        </label>
+                        <select class="form-control  select2 AllowedGrantTypes" required multiple
+                            name="AllowedGrantTypes" id="AllowedGrantTypes">
+                            <option value="password">password</option>
+                            <option value="hybrid">hybrid</option>
+                            <option value="client_credentials">client_credentials</option>
+                            <option value="authorization_code">authorization_code</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AllowedScopes">
+                            Allowed Scopes
+                        </label>
+                        <select class="form-control select2 AllowedScopes" required multiple name="AllowedScopes"
+                            id="AllowedScopes">
+                            <option value="openid">openid</option>
+                            <option value="profile">profile</option>
+                            <option value="email">email</option>
+                            <option value="phone">phone</option>
+                            <option value="default-api">default-api</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <label for="AllowOfflineAccess" class="kt-checkbox">
+                            <input id="AllowOfflineAccess" type="checkbox" name="AllowOfflineAccess" value="true"
+                            @Html.Raw(Model.IdentityServerStorage.AllowOfflineAccess ? "checked=\"checked\"" :
+                                "") />
+                            Allow Offline Access
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <label for="RequireConsent" class="kt-checkbox">
+                            <input id="RequireConsent" type="checkbox" name="RequireConsent" value="true"
+                            @Html.Raw(Model.IdentityServerStorage.RequireConsent ? "checked=\"checked\"" : "") />
+                            Require Consent
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Ips">
+                            RedirectUris (Các IP cách nhau dấu ; )
+                        </label>
+                        <input class="form-control" id="RedirectUris"
+                            value="@(Model.IdentityServerStorage.RedirectUris?.FromJson<List<string>>().Join(";"))"
+                            type="text" name="RedirectUris" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Ips">
+                            PostLogoutRedirectUris (Các IP cách nhau dấu ;)
+                        </label>
+                        <input class="form-control" id="PostLogoutRedirectUris"
+                            value="@(Model.IdentityServerStorage.PostLogoutRedirectUris?.FromJson<List<string>>().Join(";"))"
+                            type="text" name="PostLogoutRedirectUris" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ServiceConfig">
+                            Dịch vụ cho phép
+                        </label>
+                        <select class="form-control select2 ServiceConfigs" multiple name="ServiceConfigs"
+                            id="ServiceConfig">
+                            <option value="PIN_CODE">Mua mã thẻ</option>
+                            <option value="PIN_DATA">Mua thẻ Data</option>
+                            <option value="PIN_GAME">Mua thẻ Game</option>
+                            <option value="TOPUP">Nạp tiền ĐT</option>
+                            <option value="TOPUP_DATA">Nạp data</option>
+                            <option value="PAY_BILL">Thanh toán hóa đơn</option>
+                            <option value="QUERY_BILL">Truy vấn hóa đơn</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="CategoryConfigs">
+                            Loại sản phẩm cho phép
+                        </label>
+                        <select class="form-control select2 ProductConfigs" multiple name="CategoryConfigs"
+                            id="CategoryConfigs">
+                            <option value="">Vui lòng chọn</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6"></div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ProductConfigsNotAllow">
+                            Sản phẩm không cho phép
+                        </label>
+                        <select class="form-control select2 ProductConfigsNotAllow" multiple
+                            name="ProductConfigsNotAllow" id="ProductConfigsNotAllow">
+                            <option value="">Vui lòng chọn</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="LimitChannel">
+                            Số lượng kênh tối đa
+                        </label>
+                        <input class="form-control" id="LimitChannel" value="@Model.LimitChannel" type="number"
+                            name="limitChannel" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="LastTransTimeConfig">
+                            Cảnh báo không phát sinh GD (phút)
+                        </label>
+                        <input class="form-control" id="LastTransTimeConfig"
+                            value="@Model.PartnerConfig.LastTransTimeConfig" required type="number" name="" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="MaxTotalTrans">
+                            Hạn mức mua thẻ
+                        </label>
+                        <input class="form-control" id="MaxTotalTrans" value="@Model.PartnerConfig.MaxTotalTrans"
+                            required type="number" name="" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Ips">
+                            Danh sách IP kết nối (Các IP cách nhau dấu ; )
+                        </label>
+                        <input class="form-control" id="Ips" value="@Model.PartnerConfig.Ips" type="text" name="Ips" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <label for="EnableSig" class="kt-checkbox">
+                            <input id="EnableSig" type="checkbox" name="EnableSig" value="true"
+                            @Html.Raw(Model.PartnerConfig.EnableSig ? "checked=\"checked\"" : "") />
+                            Sử dụng chữ ký điện tử
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <label for="IsApplySlowTrans" class="kt-checkbox">
+                            <input id="IsApplySlowTrans" type="checkbox" name="IsApplySlowTrans" value="true"
+                            @Html.Raw(Model.IsApplySlowTrans ? "checked=\"checked\"" : "") />
+                            Áp dụng nạp chậm
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <label for="IsCheckPhone" class="kt-checkbox">
+                            <input id="IsCheckPhone" type="checkbox" name="IsCheckPhone" value="true"
+                            @Html.Raw(Model.PartnerConfig.IsCheckPhone ? "checked=\"checked\"" : "") />
+                            Check phone khi nạp chập
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <label for="IsCheckReceiverType" class="kt-checkbox">
+                            <input id="IsCheckReceiverType" type="checkbox" name="IsCheckReceiverType" value="true"
+                            @Html.Raw(Model.PartnerConfig.IsCheckReceiverType ? "checked=\"checked\"" : "") />
+                            Check loại thuê bao TT/TS
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <label for="IsNoneDiscount" class="kt-checkbox">
+                            <input id="IsNoneDiscount" type="checkbox" name="IsNoneDiscount" value="true"
+                            @Html.Raw(Model.PartnerConfig.IsNoneDiscount ? "checked=\"checked\"" : "") />
+                            Tính chiết khấu sau cho trả sau
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="m-checkbox-list">
+                        <br>
+                        <label for="IsCheckAllowTopupReceiverType" class="kt-checkbox">
+                            <input id="IsCheckAllowTopupReceiverType" type="checkbox"
+                                name="IsCheckAllowTopupReceiverType" value="true"
+                            @Html.Raw(Model.PartnerConfig.IsCheckAllowTopupReceiverType ? "checked=\"checked\"" :
+                                "") />
+                            Áp dụng chỉ topup Trả trước/Trả sau
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="DefaultReceiverType">
+                            Cấu hình mặc định TT/TS nếu không check được
+                        </label>
+                        <select class="form-control" name="DefaultReceiverType" id="DefaultReceiverType">
+                            <option value="">Không trả ra thông tin</option>
+                            <option selected="@(Model.PartnerConfig.DefaultReceiverType=="TT")" value="TT">Trả trước</option>
+                            <option selected="@(Model.PartnerConfig.DefaultReceiverType=="TS")" value="TS">Trả sau</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

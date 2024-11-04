@@ -1,0 +1,139 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Cards
+@model CreateOrEditCardModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditCard")) : L("CreateNewCard")))
+
+<div class="modal-body">
+    <div id="CardInformationsTab">
+        <form name="CardInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                @if (Model.IsEditMode)
+                {
+                    <input type="hidden" name="id" value="@Model.Card.Id"/>
+                }
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <h6>@L("BatchCode") :</h6>
+                        <input class="form-control" disabled value="@Model.Card.BatchCode"/>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <h6>@L("Provider") :</h6>
+                        <input class="form-control" disabled value="@Model.Card.ProviderName"/>
+                    </div>
+                </div>
+                <div class="col-sm-6  col-xs-12">
+                    <div class="form-group">
+                        <h6>@L("StockCode") :</h6>
+                        <input class="form-control" disabled value="@Model.Card.StockCode"/>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="Card_Serial">
+                            @L("Serial") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Card_Serial" value="@Model.Card.Serial" type="text" name="serial" required maxlength="@HLS.Topup.StockManagement.CardConsts.MaxSerialLength" minlength="@HLS.Topup.StockManagement.CardConsts.MinSerialLength"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="Card_CardCode">
+                            @L("CardCode") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Card_CardCode" value="@Model.Card.CardCode" type="text" name="cardCode" required maxlength="@HLS.Topup.StockManagement.CardConsts.MaxCardCodeLength" minlength="@HLS.Topup.StockManagement.CardConsts.MinCardCodeLength"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="Card_ExpiredDate">
+                            @L("ExpiredDate") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input date-picker" id="Card_ExpiredDate" type="text" name="expiredDate" value="@Model.Card.ExpiredDate"/>
+                    </div>
+                </div>
+
+                @{
+                    var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.CardStatus));
+                    foreach (var selectOption in selectListStatus)
+                    {
+                        selectOption.Text = L("Enum_CardStatus_" + selectOption.Value);
+                    }
+                }
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="Card_Status">
+                            @L("Status") <span class="lightred">(*)</span>
+                        </label>
+                        <select class="form-control m-input m-input--square" name="status" id="Card_Status" asp-for="@Model.Card.Status" asp-items="@selectListStatus">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-6  col-xs-12">
+                    <div class="form-group">
+                        <h6>@L("CardValue") :</h6>
+                        <input class="form-control" disabled value="@Model.Card.CardValue.ToFormat()"/>
+                    </div>
+                </div>
+                <div class="col-sm-6  col-xs-12">
+                    <div class="form-group">
+                        <h6>@L("Service") :</h6>
+                        <input class="form-control" disabled value="@Model.Card.ServiceName"/>
+                    </div>
+                </div>
+                <div class="col-sm-6  col-xs-12">
+                    <div class="form-group">
+                        <h6>@L("Categories") :</h6>
+                        <input class="form-control" disabled value="@Model.Card.CategoryName"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-6  col-xs-12">
+                    <div class="form-group">
+                        <h6>@L("ImportedDate") :</h6>
+                        <input class="form-control" disabled value="@(Model.Card.ImportedDate != DateTime.MinValue ? Model.Card.ImportedDate.ToString("dd/MM/yyyy HH:mm:ss") : "")"/>
+                    </div>
+                </div>
+                <div class="col-sm-6  col-xs-12">
+                    <div class="form-group">
+                        <h6>@L("ExportedDate") :</h6>
+                        <input class="form-control" disabled value="@(Model.Card.ExportedDate != DateTime.MinValue ? Model.Card.ExportedDate.ToString("dd/MM/yyyy HH:mm:ss") : "")"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-6  col-xs-12">
+                    <div class="form-group">
+                        <h6>@L("Status") :</h6>
+                        <input class="form-control" disabled value=" @L("Enum_CardStatus_" + (int) Model.Card.Status)"/>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+
+    </div>
+    <script>
+  @if (Model.IsEditMode)
+  {
+      <text>
+        $("form[name=CardInformationsForm] #batchCode").prop("disabled", true) ;
+        $("form[name=CardInformationsForm] #Card_Status").prop("disabled", true) ;
+        $("form[name=CardInformationsForm] #cardValue").prop("disabled", true) ;
+    </text>
+  }
+</script>
+
+    @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</div>

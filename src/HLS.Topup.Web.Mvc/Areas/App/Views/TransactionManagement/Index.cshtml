@@ -1,0 +1,286 @@
+﻿@using HLS.Topup.Authorization;
+@using HLS.Topup.Web.Areas.App.Startup
+@using HLS.Topup.Common
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.TransactionMangerment;
+}
+
+@section Scripts
+    {
+    <script abp-src="/view-resources/Areas/App/Views/TransactionManagement/Index.js" asp-append-version="true"></script>
+}
+
+<style>
+    .s2icon {
+        position: absolute;
+        top: 12px;
+        right: 30px;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title="Quản lý giao dịch" description="Quản lý thông tin giao dịch">
+
+        <button id="ExportToExcelButton" class="btn btn-outline-success">
+            <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+        </button>
+        @if (IsGranted(AppPermissions.Pages_TransactionManagements_StatusFile))
+        {
+            <button id="btnOpenImportButton" class="btn btn-primary blue">
+                <i class="fa fa-plus"></i>Cập nhật trạng thái qua file
+            </button>
+        }
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div class="form">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-xl-12">
+                            <div class="form-group align-items-center">
+                                <div class="input-group">
+                                    <input type="text" id="txtTransCode" class="form-control m-input" placeholder="Mã giao dịch" />
+                                    <input type="text" id="txtTranRef" class="form-control m-input" placeholder="Mã giao dịch đối tác" />
+                                    <input type="text" id="txtProviderTransCode" class="form-control m-input" placeholder="Mã giao dịch NCC" />
+                                    <input type="text" id="txtProviderResponseCode" class="form-control m-input" placeholder="Mã NCC trả" />
+                                    <span class="input-group-btn">
+                                        <button id="GetProvidersButton1" class="btn btn-primary btn-search-transaction" type="submit">
+                                            <i class="flaticon-search-1"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4 filter-block-header">
+                    <div class="col-md-12">
+                        <div class="kt-separator kt-separator--border-dashed"></div>
+                    </div>
+                    @* <div class="col-md-4"> *@
+                    @*     <div class="form-group"> *@
+                    @*         <label for="TransRefFilterId">Mã giao dịch</label> *@
+                    @*         <input type="text" class="form-control" name="transRefFilter" id="TransRefFilterId"> *@
+                    @*     </div> *@
+                    @* </div> *@
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label>@L("CreatedTime")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input datetime-index" type="text" placeholder="@L("MinValue")" value="@DateTime.Today.ToString("dd/MM/yyyy HH:mm:ss")" name="FromDateFilterId" id="FromDateFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input datetime-index" type="text" placeholder="@L("MaxValue")" value="@DateTime.Today.AddHours(23).AddMinutes(59).AddSeconds(59).ToString("dd/MM/yyyy HH:mm:ss")" name="ToDateFilterId" id="ToDateFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="SaleTypeFilter">Loại giao dịch</label>
+                        <select class="form-control" name="saleType" id="SaleTypeFilter">
+                            <option value="99">@L("All")</option>
+                            <option value="0">@L("Enum_SaleType_0")</option>
+                            <option value="1">@L("Enum_SaleType_1")</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        @await Html.PartialAsync("~/Views/Common/SelectFilter/_AgentType.cshtml")
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="AgentFilter">Đại lý</label>
+                            <select class="form-control ignore" id="AgentFilter">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="StaffAccountFilter">@L("CreatorUser")</label>
+                            <select class="form-control ignore" id="StaffAccountFilter">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ServiceSelect">@L("LimitProducts_Service")</label>
+                            @Html.DropDownList("serviceFilter", new SelectList(Model.TransactionsServiceList, "Code", "DisplayName", null), @L("SelectAService"), new { @id = "ServiceSelect", @class = "form-control select2", multiple = "multiple" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ProductType">@L("LimitProducts_ProductType")</label>
+                            <select class="form-control select2" id="ProductType" multiple disabled>
+                                <option value="">Tất cả</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ProductList">@L("LimitProducts_Product")</label>
+                            <select class="form-control select2" id="ProductList" multiple disabled>
+                                <option value="">Tất cả</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="StatusFilterId">@L("Status")</label>
+                        <select class="form-control select2" multiple name="StatusFilter" id="StatusFilterId">
+                            <option value="">Tất cả</option>
+                            <option value="99">Tất cả GD chưa có kết quả cuối</option>
+                            <option value="0">@L("Enum_TopupStatus_0")</option>
+                            <option value="1">@L("Enum_TopupStatus_1")</option>
+                            <option value="2">@L("Enum_TopupStatus_2")</option>
+                            <option value="3">@L("Enum_TopupStatus_3")</option>
+                            <option value="4">@L("Enum_TopupStatus_4")</option>
+                            <option value="6">@L("Enum_TopupStatus_6")</option>
+                            <option value="7">@L("Enum_TopupStatus_7")</option>
+                            <option value="8">@L("Enum_TopupStatus_8")</option>
+                            <option value="9">@L("Enum_TopupStatus_9")</option>
+                            <option value="10">@L("Enum_TopupStatus_10")</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ProviderSelect">Nhà cung cấp</label>
+                            @Html.DropDownList("providerFilter", new SelectList(Model.ProviderList, "Id", "DisplayName",null), @L("SelectAProvider"), new { @id = "ProviderSelect",@multiple = "multiple", @class = "form-control select2" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ProviderSelect">Nhà cung cấp cha</label>
+                            @Html.DropDownList("parentProviderFilter", new SelectList(Model.ProviderList, "Id", "DisplayName", null), @L("SelectAProvider"), new { @id = "ParentProviderSelect", @class = "form-control select2" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="MobileNumberFilterId">Tài khoản thụ hưởng</label>
+                            <input type="text" class="form-control" name="mobileNumberFilter" id="MobileNumberFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Loại thuê bao</label>
+                            <select class="form-control" name="selectReceiverType" id="selectReceiverType">
+                                <option value="">Tất cả</option>
+                                <option value="PREPAID">Trả trước</option>
+                                <option value="POSTPAID">Trả sau</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Loại thuê bao NCC trả</label>
+                            <select class="form-control" name="selectReceiverTypeResponse" id="selectReceiverTypeResponse">
+                                <option value="">Tất cả</option>
+                                <option value="TT">Trả trước</option>
+                                <option value="TS">Trả sau</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12"></div>
+                    <div class="col-md-4">
+                        <div class="euiFlexItem euiFlexItem--flexGrowZero">
+                            <span class="euiToolTipAnchor">
+                                <button id="GetProvidersButton2" class="euiButton euiButton--primary euiSuperUpdateButton euiButton--fill btn-search-transaction" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.271 11.978l3.872 3.873a.502.502 0 00.708 0 .502.502 0 000-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 004.949 2.05.5.5 0 000-1 5.96 5.96 0 01-4.242-1.757 6.01 6.01 0 010-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 010 8.486.5.5 0 00.034.738z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Tìm kiếm</span>
+                                    </span>
+                                </button>
+
+                                <button class="euiButton-reset euiButton--primary" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon-reset euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.228 2.942a.5.5 0 11-.538.842A5 5 0 1013 8a.5.5 0 111 0 6 6 0 11-2.772-5.058zM14 1.5v3A1.5 1.5 0 0112.5 6h-3a.5.5 0 010-1h3a.5.5 0 00.5-.5v-3a.5.5 0 111 0z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Đặt lại</span>
+                                    </span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    @* <div class="col-md-3"> *@
+                    @*     <div class="form-group"> *@
+                    @*         <label for="PartnerCodeFilterId">Tài khoản đại lý</label> *@
+                    @*         $1$<input type="text" class="form-control select2" name="partnerCodeFilter" id="PartnerCodeFilterId">#1# *@
+                    @*         <select id="PartnerCodeFilterId" class="form-control select2"></select> *@
+                    @*     </div> *@
+                    @* </div> *@
+
+                    @*<div class="col-md-3">
+                    <div class="form-group">
+                    <label for="TransCodeFilterId">Mã giao dịch</label>
+                    <input type="text" class="form-control" name="transCodeFilter" id="TransCodeFilterId">
+                    </div>
+                    </div>*@
+                    @* <div class="col-md-3"> *@
+                    @*     <div class="form-group"> *@
+                    @*         <label for="ServiceCodeFilter">Loại giao dịch</label> *@
+                    @*         <select id="ServiceCodeFilter" class="form-control select2"> *@
+                    @*             <option value="">-- @L("TransType") --</option> *@
+                    @*             <option value="TOPUP">Nạp tiền điện thoại</option> *@
+                    @*             <option value="PIN_CODE">Mua mã thẻ</option> *@
+                    @*             <option value="PIN_DATA">Mua thẻ Data</option> *@
+                    @*             <option value="PIN_GAME">Mua thẻ Game</option> *@
+                    @*             <option value="PAY_BILL">Thanh toán hóa đơn</option> *@
+                    @*         </select> *@
+                    @*     </div> *@
+                    @* </div> *@
+                </div>
+                <div class="row mb-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item">
+                            <i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")
+                        </span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none">
+                            <i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")
+                        </span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="ProvidersTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap cleafix">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>@L("Actions")</th>
+                                <th>Loại đại lý</th>
+                                <th>Mã đại lý</th>
+                                <th>Nhà cung cấp</th>
+                                <th>Trạng thái</th>
+                                <th>Số thụ hưởng</th>
+                                <th>Dịch vụ</th>
+                                <th>Loại sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th>Tổng chiết khấu</th>
+                                <th>Phí thanh toán</th>
+                                <th>Thành tiền</th>
+                                <th>Thời gian</th>
+                                <th>Người thực hiện</th>
+                                <th>Mã giao dịch</th>
+                                <th>Mã GD đối tác</th>
+                                <th>Mã GD NCC</th>
+                                <th>TG bắt đầu</th>
+                                <th>TG kết thúc</th>
+                                <th>TG xử lý (s)</th>
+                                <th>Loại giao dịch</th>
+                                <th>Loại thuê bao</th>
+                                <th>Nhà cung cấp trả về</th>
+                                <th>Loại thuê bao NCC trả về</th>
+                                <th>Nhà cung cấp cha</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Countries
+@model CreateOrEditCountryModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditCountry")) : L("CreateNewCountry")))
+
+<div class="modal-body">
+    <div id="CountryInformationsTab">
+        <form name="CountryInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.Country.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="Country_CountryCode">@L("CountryCode")</label>
+                <input class="form-control" id="Country_CountryCode" value="@Model.Country.CountryCode" type="text" name="countryCode" required maxlength="@HLS.Topup.Address.CountryConsts.MaxCountryCodeLength" minlength="@HLS.Topup.Address.CountryConsts.MinCountryCodeLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="Country_CountryName">@L("CountryName")</label>
+                <input class="form-control" id="Country_CountryName" value="@Model.Country.CountryName" type="text" name="countryName" required maxlength="@HLS.Topup.Address.CountryConsts.MaxCountryNameLength" minlength="@HLS.Topup.Address.CountryConsts.MinCountryNameLength"/>
+            </div>
+
+            @{
+                var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.CountryStatus));
+                foreach (var selectOption in selectListStatus)
+                {
+                    selectOption.Text = L("Enum_CountryStatus_" + selectOption.Value);
+                }
+            }
+            <div class="form-group m-form__group">
+                <label for="Country_Status">@L("Status")</label>
+                <select class="form-control m-input m-input--square" name="status" id="Country_Status" asp-for="@Model.Country.Status" asp-items="@selectListStatus">
+                </select>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

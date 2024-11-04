@@ -1,0 +1,102 @@
+﻿@using HLS.Topup.Common;
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.PartnerServiceConfigurations
+@model CreateOrEditPartnerServiceConfigurationModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditServiceConfiguration")) : L("CreateNewServiceConfiguration")))
+
+<div class="modal-body">
+    <div id="ServiceConfigurationInformationsTab">
+        <form name="ServiceConfigurationInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.ServiceConfiguration.Id" />
+            }
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="providerId">@L("Provider") <span class="lightred">(*)</span></label>
+                        @Html.DropDownList("providerId", new SelectList(Model.PartnerServiceConfigurationProviderList, "Id", "DisplayName", (Model.IsEditMode ? Model.ServiceConfiguration.ProviderId.ToString() : "")), "Chọn nhà cung cấp", new { @class = "form-control select2", required = "required" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="serviceId">@L("Service") <span class="lightred">(*)</span></label>
+                        @Html.DropDownList("serviceId", new SelectList(Model.PartnerServiceConfigurationServiceList, "Id", "DisplayName", (Model.IsEditMode ? Model.ServiceConfiguration.ServiceId.ToString() : "")), "Chọn dịch vụ", new { @class = "form-control select2", required = "required" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="categoryId">@L("Category") <span class="lightred">(*)</span></label>
+                        @Html.DropDownList("categoryId", new SelectList(Model.PartnerServiceConfigurationCategoryList, "Id", "DisplayName", (Model.IsEditMode ? Model.ServiceConfiguration.CategoryId.ToString() : "")), "Chọn loại sản phẩm", new { @class = "form-control select2"})
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ServiceConfiguration_Name">Tên cấu hình <span class="lightred">(*)</span></label>
+                        <input class="form-control" id="ServiceConfiguration_Name" value="@Model.ServiceConfiguration.Name" type="text" name="name" required maxlength="@HLS.Topup.Configuration.ServiceConfigurationConsts.MaxNameLength" minlength="@HLS.Topup.Configuration.ServiceConfigurationConsts.MinNameLength" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @{
+                        var selectStatus = Html.GetEnumSelectList(typeof(CommonConst.PartnerServiceConfigurationStatus));
+                        foreach (var selectOption in selectStatus)
+                        {
+                            selectOption.Text = L("Enum_PartnerServiceConfigurationStatus_" + selectOption.Value);
+                        }
+                    }
+                    <div class="form-group m-form__group">
+                        <label for="Partner_ServiceConfigurationStatus">@L("ProviderStatus")</label>
+                        <select class="form-control m-input m-input--square" name="status" id="Partner_ServiceConfigurationStatus" asp-for="@Model.ServiceConfiguration.Status" asp-items="@selectStatus">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group m-form__group">
+                    <label for="UserName">Cấu hình cho một tài khoản</label>
+                    <div class="input-group">
+                        <input class="form-control" id="UserName" name="userName" value="@Model.UserName" type="text" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary blue" id="OpenUserLookupTableButton" type="button">
+                                <i class="fa fa-search"></i> @L("Pick")
+                            </button>
+                        </div>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-danger btn-icon" type="button" id="ClearUserNameButton">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.IsEditMode)
+                {
+                    <input class="form-control" id="ServiceConfiguration_UserId" value="@Model.ServiceConfiguration.UserId" type="text" name="userId" hidden />
+                }
+                else
+                {
+                    <input class="form-control" id="ServiceConfiguration_UserId" value="" type="text" name="userId" hidden />
+                }
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="ServiceConfiguration_Description">@L("Description")</label>
+                        <textarea class="form-control" id="ServiceConfiguration_Description" type="text" name="description" rows="5">@Model.ServiceConfiguration.Description</textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

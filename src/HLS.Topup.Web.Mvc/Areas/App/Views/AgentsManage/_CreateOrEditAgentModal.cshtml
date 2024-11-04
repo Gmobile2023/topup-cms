@@ -1,0 +1,19 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.AgentsManage
+@model CreateOrEditAgentViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditAgent")) : L("CreateNewAgent")))
+
+<div class="modal-body">
+    <div id="AgentGeneralInformationsTab">
+        <form name="AgentGeneralInformationsForm" role="form" novalidate class="form-validation">
+            @await Html.PartialAsync("_AgentBaseInfo", Model)
+            @await Html.PartialAsync("AgentForm/_" + Model.Agent.AgentType, Model)
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

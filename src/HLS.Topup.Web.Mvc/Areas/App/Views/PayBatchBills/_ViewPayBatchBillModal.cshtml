@@ -1,0 +1,120 @@
+﻿
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.PayBatchBills
+@using HLS.Topup.Authorization
+@using HLS.Topup.BalanceManager.Dtos;
+@model PayBatchBillViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="PayBatchBillInformationsTab">
+        <input type="hidden" id="idPayBatchBill" value="@Model.PayBatchBill.Id" />
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>Mã chương trình :</h6>
+                <input type="text" class="form-control" name="codeView" id="codeView" value="@Model.PayBatchBill.Code" disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Tên chương trình :</h6>
+                <input type="text" class="form-control" name="nameView" id="nameView" value="@Model.PayBatchBill.Name" disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Block số lượng hóa đơn :</h6>
+                <input type="text" class="form-control" name="totalBlockBillView" id="totalBlockBillView" value='@(string.Format("{0:N0}",Model.PayBatchBill.TotalBlockBill))' disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Số tiền trả cho mỗi block :</h6>
+                <input type="text" class="form-control" name="amountPayBlockView" id="amountPayBlockView" value='@(string.Format("{0:N0}",Model.PayBatchBill.AmountPayBlock))' disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Giá trị thưởng tối thiểu/đại lý :</h6>
+                <input type="text" class="form-control" name="minBillAmountView" id="minBillAmountView" value='@(string.Format("{0:N0}",Model.PayBatchBill.MinBillAmount))' disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Giá trị thưởng tối đa/đại lý :</h6>
+                <input type="text" class="form-control" name="maxAmountPayView" id="maxAmountPayView" value='@(string.Format("{0:N0}",Model.PayBatchBill.MaxAmountPay))' disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("FromDate") :</h6>
+                <input type="text" class="form-control" name="fromDateView" id="fromDateView" value='@Model.PayBatchBill.FromDate.ToString("dd/MM/yyyy HH:mm:ss")' disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("ToDate") :</h6>
+                <input type="text" class="form-control" name="toDateView" id="toDateView" value='@Model.PayBatchBill.ToDate.ToString("dd/MM/yyyy HH:mm:ss")' disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Loại sản phẩm :</h6>
+                <input type="text" class="form-control" name="categoryNameView" id="categoryNameView" value="@Model.CategoryName" disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Nhà cung cấp :</h6>
+                <input type="text" class="form-control" name="productNameView" id="productNameView" value="@Model.ProductName" disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Trạng thái :</h6>
+                <input type="text" class="form-control" name="statusView" id="statusView" value="@L("Enum_PayBatchBillStatus_" + (int)Model.PayBatchBill.Status)" disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Thời gian tạo :</h6>
+                <input type="text" class="form-control" name="creationTimeView" id="creationTimeView" value='@Model.PayBatchBill.CreationTime.ToString("dd/MM/yyyy HH:mm:ss")' disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Người tạo</h6>
+                <input type="text" class="form-control" name="userCreatedView" id="userCreatedView" value="@Model.UserCreated" disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Thời gian duyệt :</h6>
+                <input type="text" class="form-control" name="dateApprovedeView" id="dateApprovedeView" value='@(Model.PayBatchBill.DateApproved!=null ? Model.PayBatchBill.DateApproved.Value.ToString("dd/MM/yyyy HH:mm:ss"):"")' disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3" >
+                <h6>Người duyệt :</h6>
+                <input type="text" class="form-control" name="userApprovalView" id="userApprovalView" value="@Model.UserApproval" disabled="disabled" />
+            </div>
+            <div class="col-6 mb-3">
+                <a href="javascript:;" id="ViewExportDetail" class="pull-right">@L("ExportToExcel")</a>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <table id="dataTablePayBatchDetail" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <th>Mã đại lý</th>
+                        <th>Số điện thoại</th>
+                        <th>Họ và tên</th>
+                        <th>Số lượng giao dịch</th>
+                        <th>Số tiền thưởng</th>
+                        <th>Trạng thái</th>
+                        <th>Mã giao dịch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tbody class="f">
+                    <tr>
+                        <td colspan="4">
+                            <b>Tổng cộng</b>
+                        </td>
+                        <td style="text-align:right"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">Hủy bỏ</button>
+    @if (IsGranted(AppPermissions.Pages_PayBatchBills_Approval) && Model.PayBatchBill.Status == 0)
+    {
+        <button id="ApprovalPayBatchBillButton" class="btn btn-primary blue">
+            <i class="fa fa-check" style="font-size: 1.1rem !important;"></i> <span>Duyệt</span>
+        </button>
+    }
+</div>
+
+

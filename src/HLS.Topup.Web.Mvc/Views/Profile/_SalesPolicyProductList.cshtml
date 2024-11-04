@@ -1,0 +1,103 @@
+@model HLS.Topup.Web.Models.Account.ProductDiscountAccount
+
+@if (Model != null && Model.Products != null && Model.Products.Any())
+{
+    if (Model.ServiceCode == CommonConst.ServiceCodes.PAY_BILL)
+    {
+        <table class="display table table-striped table-bordered table-hover dt-responsive nowrap dataTable no-footer dtr-column">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col" style="width:50%">DỊCH VỤ</th>
+                <th scope="col" style="width:30%">SẢN PHẨM</th>
+                <th scope="col" style="width:20%">CHIẾT KHẤU</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Products.GroupBy(x => x.CategoryName)
+                .OrderBy(movie => movie.Key))
+            {
+                var secondRowOrHigher = false;
+                @:<tr>
+                @:<td style="width:20%;text-align: center" rowspan="@item.Count()+1">@item.Key</td>
+
+                foreach (var pro in item.OrderBy(x => x.Order))
+                {
+                    if (secondRowOrHigher)
+                    {
+                        @:<tr>
+                    }
+                    secondRowOrHigher = true;
+
+                    <td style="width:50%">@pro.ProductName</td>
+                    <td style="text-align: center;width:10%">
+                        @if (pro.DiscountValue != null && pro.FixAmount != null)
+                        {
+                            <span>@pro.DiscountValue?.ToFormat("%") tối đa @pro.FixAmount?.ToFormat("đ")</span>
+                        }
+                        else if (pro.DiscountValue != null)
+                        {
+                            <span>@pro.DiscountValue?.ToFormat("%")</span>
+                        }
+                        else if (pro.FixAmount != null)
+                        {
+                            <span>@pro.FixAmount?.ToFormat("đ")</span>
+                        }
+                        else
+                        {
+                            <span></span>
+                        }
+                    </td>
+                    @:</tr>
+                }
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <table class="display table table-striped table-bordered table-hover dt-responsive nowrap dataTable no-footer dtr-column">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">DỊCH VỤ</th>
+                <th scope="col">SẢN PHẨM</th>
+                <th scope="col">CHIẾT KHẤU</th>
+                <th scope="col">GIÁ BÁN</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Products.GroupBy(x => x.CategoryName)
+                .OrderBy(movie => movie.Key))
+            {
+                var secondRowOrHigher = false;
+                @:<tr>
+                @:<td style="width:20%;text-align: center" rowspan="@item.Count()+1"><strong>@item.Key.ToUpper()</strong></td>
+
+                foreach (var pro in item.OrderBy(x => x.Order))
+                {
+                    if (secondRowOrHigher)
+                    {
+                        @:<tr>
+                    }
+                    secondRowOrHigher = true;
+
+                    <td style="width:50%">@pro.ProductName</td>
+                    <td style="text-align: center;width:10%">
+                        @if (pro.IsDiscount)
+                        {
+                            <span>@pro.DiscountValue?.ToFormat("%")</span>
+                        }
+                        else
+                        {
+                            <span>@pro.FixAmount?.ToFormat("đ")</span>
+                        }
+                    </td>
+                    <td style="text-align: center;width:10%">
+                        <span>@pro.PaymentAmount.ToFormat("đ")</span>
+                    </td>
+                    @:</tr>
+                }
+            }
+            </tbody>
+        </table>
+    }
+}

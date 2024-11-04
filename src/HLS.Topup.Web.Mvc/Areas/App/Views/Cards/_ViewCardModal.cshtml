@@ -1,0 +1,86 @@
+﻿@using HLS.Topup.Common
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Cards
+@model CardViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="CardInformationsTab">
+
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <h6>@L("BatchCode") :</h6>
+                    <input class="form-control" disabled value="@Model.Card.BatchCode"/>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <h6>@L("Provider") :</h6>
+                    <input class="form-control" disabled value="@Model.Card.ProviderName"/>
+                </div>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("StockCode") :</h6>
+                    <input class="form-control" disabled value="@Model.Card.StockCode"/>
+                </div>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("Serial") :</h6>
+                    <input class="form-control" disabled value="@Model.Card.Serial"/>
+                </div>
+            </div>
+            
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("ExpiredDate") :</h6>
+                    <input class="form-control" disabled value="@(Model.Card.ExpiredDate != DateTime.MinValue ? Model.Card.ExpiredDate.ToString("dd/MM/yyyy") : "")"/>
+                </div>
+            </div>
+
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("CardValue") :</h6>
+                    <input class="form-control" disabled value="@Model.Card.CardValue.ToFormat()"/>
+                </div>
+            </div>
+            
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("Service") :</h6>
+                    <input class="form-control" disabled value="@Model.Card.ServiceName"/>
+                </div>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("Categories") :</h6>
+                    <input class="form-control" disabled value="@Model.Card.CategoryName"/>
+                </div>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("ImportedDate") :</h6>
+                    <input class="form-control" disabled value="@(Model.Card.ImportedDate != DateTime.MinValue ? Model.Card.ImportedDate.ToString("dd/MM/yyyy HH:mm:ss") : "")"/>
+                </div>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("ExportedDate") :</h6>
+                    <input class="form-control" disabled value="@(Model.Card.ExportedDate != DateTime.MinValue ? Model.Card.ExportedDate.ToString("dd/MM/yyyy HH:mm:ss") : "")"/>
+                </div>
+            </div>
+            <div class="col-sm-6  col-xs-12">
+                <div class="form-group">
+                    <h6>@L("Status") :</h6>
+                    <input class="form-control" disabled value=" @L("Enum_CardStatus_" + (int) Model.Card.Status)"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

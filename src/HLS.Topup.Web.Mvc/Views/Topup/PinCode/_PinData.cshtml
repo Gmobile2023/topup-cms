@@ -1,0 +1,114 @@
+﻿@model HLS.Topup.Web.Models.TopupRequest.CreateOrEditTopupRequestModalViewModel
+<form class="step step1" id="pinDataForm">
+    <div class="section-body-middle-form-p1 no-border-top">
+        <div class="form-group">
+            @* <label for="" class="title"> *@
+            @*     <img src="/themes/topup/images/ic_dark/ic-201.svg" alt=""> Chọn nhà mạng *@
+            @* </label> *@
+
+            <div class="row">
+                @*                 <div class="col-md-12"> *@
+                @*                     <div id="menu-pindata" class="tab-pane"> *@
+                @*                         <div class="form-group margin-big"> *@
+                @*                             <div class="form-group-wrap"> *@
+                @*                                 <span class="down-arrow-black arrow-big"></span> *@
+                @*                                 <img src="/themes/topup/images/1ceilings-service.png" class="form-logo ng-scope"> *@
+                @* *@
+                @*                                 <select class="form-control select2 form-control-big form-blue select2-card-telco" style="width: 100%;" data-location="card-data-items" data-form="pinDataForm" name="cardTelco"> *@
+                @*                                     @foreach (var item in Model.PinDataCategory) *@
+                @*                                     { *@
+                @*                                         <option value="@item.CategoryCode" data-image="@item.Image">@item.CategoryName</option> *@
+                @*                                     } *@
+                @*                                 </select> *@
+                @*                             </div> *@
+                @*                         </div> *@
+                @*                     </div> *@
+                @*                 </div> *@
+                <div class="form-group margin-big col-md-8">
+                    <label for="" class="title sm-margin">
+                        <img src="/themes/topup/images/ic_dark/ic-201.svg" alt=""> Chọn nhà mạng <span class="lightred">*</span>
+                    </label>
+                    <div class="form-group-wrap">
+                        <div id="menu-pindata" class="tab-pane">
+                            <div class="form-group margin-big" style="margin-bottom: 0">
+                                <div class="form-group-wrap">
+                                    <span class="down-arrow-black arrow-big"></span>
+                                    <img src="/themes/topup/images/1ceilings-service.png" class="form-logo ng-scope">
+
+                                    <select class="form-control select2 form-control-big form-blue select2-card-telco" id="select2-pindata" style="width: 100%;" data-location="card-data-items" data-form="pinDataForm" name="cardTelco">
+                                        @foreach (var item in Model.PinDataCategory)
+                                        {
+                                            <option value="@item.CategoryCode" data-image="@item.Image">@item.CategoryName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group margin-big col-md-4">
+                    <label for="" class="title sm-margin">
+                        <img src="/themes/topup/images/ic_dark/ic-05.svg" alt=""> Số lượng <span class="lightred">*</span>
+                    </label>
+                    <div class="form-group-wrap">
+                        <input tabindex="1" numbers-only placeholder="Nhập số lượng mua" type="text" name="quantity" value="1" class="form-control amount-mask">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group margin-big" style="margin-bottom: 0">
+                    <label for="" class="title">
+                        <img src="/themes/topup/images/ic_dark/ic-43.png" alt=""> Chọn mệnh giá
+                    </label>
+                    <div id="card-data-items">
+                    </div>
+                </div>
+            </div>
+            @* <div class="col-md-3 col-exception"> *@
+            @*     <div class="form-group"> *@
+            @*         <label for="" class="title"> *@
+            @*             <img src="/themes/topup/images/ic_dark/ic-05.svg" alt=""> Số lượng &nbsp; *@
+            @*             <span class="lightred"> (*) </span> *@
+            @*         </label> *@
+            @*         <div class="form-group-wrap"> *@
+            @*             <input tabindex="1" numbers-only placeholder="Nhập số lượng mua" type="text" name="quantity" value="1" class="form-control amount-mask"> *@
+            @*         </div> *@
+            @*     </div> *@
+            @* </div> *@
+        </div>
+    </div>
+    <div class="section-body-middle-form-p2">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="checkbox" tabindex="4">
+                    <label>
+                        <input type="checkbox" value="" name="isReadTerm" checked="checked">
+                        <span class="checkbox-custom visible cbutton cbutton--effect-boris"></span>
+                    </label>
+                    <a class="checkbox-agree" target="_blank">
+                        <span>Tôi đã đọc và đồng ý với chính sách</span>
+                    </a>
+                </div>
+            </div>
+            <div tabindex="5" class="col-md-5 text-right">
+                <button type="button" onClick="ctrl.nextToStep()" class="hlsCtrl button btn-custom btn-blue">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</form>
+<form class="step step2" id="pinDataInfoForm" style="display:none">
+    <div class="section-body-middle-form-p1 no-border-top"></div>
+
+    <div class="section-body-middle-form-p2">
+        <div class="row">
+            <div tabindex="12" class="col-md-12 text-center">
+                <button type="button" onClick="ctrl.activeStep(1)" class="button btn-custom btn-grey">Quay lại</button>
+                <button type="button" onClick="ctrl.nextToStep2()" class="button btn-custom btn-blue">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+
+</form>

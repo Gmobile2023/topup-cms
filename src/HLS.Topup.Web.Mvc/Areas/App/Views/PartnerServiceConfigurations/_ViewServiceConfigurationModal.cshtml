@@ -1,0 +1,47 @@
+﻿
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.PartnerServiceConfigurations
+@model PartnerServiceConfigurationViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ServiceConfigurationInformationsTab">
+        
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("ConfigurationName") :</h6>
+                @Model.ServiceConfiguration.Name
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Status") :</h6>
+                @Model.ServiceConfiguration.Status
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Service")) @L("ServicesName") :</h6>
+                @Model.ServiceServicesName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Provider")) @L("Name") :</h6>
+                @Model.ProviderName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Category")) @L("CategoryName") :</h6>
+                @Model.CategoryCategoryName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("Product")) @L("ProductName") :</h6>
+                @Model.ProductProductName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>(@L("User")) @L("Name") :</h6>
+                @Model.UserName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

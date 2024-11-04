@@ -1,0 +1,152 @@
+@model HLS.Topup.AgentManagerment.AgentSupperDetailView
+
+<div class="card">
+    <div class="card-header" id="headingInfo">
+        <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#box-information" aria-expanded="true" aria-controls="collapseOne">
+                Thông tin Tài khoản
+            </button>
+        </h5>
+    </div>
+
+    <div id="box-information" class="collapse show" aria-labelledby="headingInfo" data-parent="#accordion">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AccountCode">
+                            Mã tài khoản
+                        </label>
+                        <input class="form-control" id="AccountCode" value="@Model.AccountCode" type="text" name="AccountCode" disabled/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="PhoneNumber">
+                            Số điện thoại<span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="PhoneNumber" value="@Model.PhoneNumber" type="text" name="phoneNumber" required disabled="@(Model.UserId > 0)"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Surname">
+                            Họ <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Surname" value="@Model.Surname" type="text" name="surname" required maxlength="100"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Name">
+                            Tên <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Name" value="@Model.Name" type="text" name="name" required maxlength="50"/>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AccountCode">
+                            Mật khẩu
+                        </label>
+                        <input class="form-control" id="txtPassword" value="@Model.Password" type="password" name="Password" required="@(Model.UserId == null)" maxlength="20"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AccountCode">
+                            Mật khẩu nhắc lại<span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="txtConfirmPassword" value="@Model.ConfirmPassword" type="password" name="ConfirmPassword" required="@(Model.UserId == null)" maxlength="20"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="UserManage">
+                            Ngày ký hợp đồng<span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input date-picker" type="datetime" value="@Model.ContractRegister?.ToShortDateString()" id="ContractRegister">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="SaleLeader">
+                            Hợp đồng số<span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="txtContract" value="@Model.Contract" type="text" name="ContractNumber" required maxlength="50"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="EmailTech">
+                            Email Tech (Nhận Tài liệu kết nối)<span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="EmailTech" value="@Model.EmailTech" type="text" name="EmailTech" required maxlength="100"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="txtEmailCompare">
+                            Email nhận đối soát
+                        </label>
+                        <input class="form-control" id="txtEmailCompare" value="@Model.EmailCompare" type="text" name="EmailCompare" placeholder="Quý khách nhập email cách nhau dấu ';'" maxlength="500"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="UserManage">
+                            Kỳ đối soát
+                        </label>
+                        <select class="form-control" value="@Model.CrossCheckPeriod" name="CrossCheckPeriod" id="CrossCheckPeriod">
+                            <option value="1" selected="@(Model.CrossCheckPeriod == 1)">1</option>
+                            <option value="5" selected="@(Model.CrossCheckPeriod == 5)">5</option>
+                            <option value="7" selected="@(Model.CrossCheckPeriod == 7)">7</option>
+                            <option value="10" selected="@(Model.CrossCheckPeriod == 10)">10</option>
+                            <option value="15" selected="@(Model.CrossCheckPeriod == 15)">15</option>
+                            <option value="30" selected="@(Model.CrossCheckPeriod == 30)">30</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="txtFolderFtp">
+                            Folder FTP
+                        </label>
+                        <input class="form-control" id="txtFolderFtp" value="@Model.FolderFtp" type="text" name="FolderFtp" placeholder="Nên nhập theo tên clientId" maxlength="50"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AgentName">
+                            Trạng thái
+                        </label>
+                        <select class="form-control" data-id="@Model.Status" name="Status" id="selectStatus">
+                            <option value="1" selected="@(Model.Status == 1)">Hoạt động</option>
+                            <option value="2" selected="@(Model.Status == 2)">Khóa</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ChatId">
+                            Telegram GroupID
+                        </label>
+                        <input class="form-control" id="ChatId" value="@Model.ChatId" type="text" name="chatId" maxlength="50"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

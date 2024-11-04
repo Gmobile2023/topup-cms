@@ -1,0 +1,180 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Products
+@model CreateOrEditProductModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditProduct")) : L("CreateNewProduct")))
+
+<div class="modal-body">
+    <div id="ProductInformationsTab">
+        <form name="ProductInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.Product.Id"/>
+            }
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="categoryId">
+                            @L("Category") <span class="lightred">(*)</span>
+                        </label>
+                        @Html.DropDownList("categoryId", new SelectList(Model.ProductCategoryList, "Id", "DisplayName", (Model.IsEditMode ? Model.Product.CategoryId.ToString() : "")), @L("SelectACategory"), new {@class = "select2 form-control", @required = "required"})
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Product_ProductName">
+                            @L("ProductName") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Product_ProductName" value="@Model.Product.ProductName" type="text" name="productName" required maxlength="@HLS.Topup.Products.ProductConsts.MaxProductNameLength" minlength="@HLS.Topup.Products.ProductConsts.MinProductNameLength"/>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Product_ProductCode">
+                            @L("ProductCode") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Product_ProductCode" value="@Model.Product.ProductCode" type="text" name="productCode" required maxlength="@HLS.Topup.Products.ProductConsts.MaxProductCodeLength" minlength="@HLS.Topup.Products.ProductConsts.MinProductCodeLength"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Product_ProductValue">
+                            @L("ProductValue") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input amount-mask" id="Product_ProductValue" required="required" value="@Model.Product.ProductValue" type="text" name="productValue"/>
+                        <br>
+                        <div class="amount-to-text"></div>
+                    </div>
+                </div>
+                @*                 <div class="col-md-4"> *@
+                @*                     @{ *@
+                @*                         var selectListProductType = Html.GetEnumSelectList(typeof(CommonConst.ProductType)); *@
+                @*                         foreach (var selectOption in selectListProductType) *@
+                @*                         { *@
+                @*                             selectOption.Text = L("Enum_ProductType_" + selectOption.Value); *@
+                @*                         } *@
+                @*                     } *@
+                @*                     <div class="form-group m-form__group"> *@
+                @*                         <label for="Product_ProductType">@L("ProductType")</label> *@
+                @*                         <select class="form-control m-input m-input--square" name="productType" id="Product_ProductType" asp-for="@Model.Product.ProductType" asp-items="@selectListProductType"> *@
+                @*                         </select> *@
+                @*                     </div> *@
+                @*                 </div> *@
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Product_Unit">@L("Unit")</label>
+                        <input class="form-control" id="Product_Unit" value="@Model.Product.Unit" type="text" name="unit" maxlength="@HLS.Topup.Products.ProductConsts.MaxUnitLength" minlength="@HLS.Topup.Products.ProductConsts.MinUnitLength"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Product_Order">
+                            @L("Order") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input" id="Product_Order" value="@Model.Product.Order.ToString(CultureInfo.InvariantCulture)" type="number" name="order"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @{
+                        var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.ProductStatus));
+                        foreach (var selectOption in selectListStatus)
+                        {
+                            selectOption.Text = L("Enum_ProductStatus_" + selectOption.Value);
+                        }
+                    }
+                    <div class="form-group m-form__group">
+                        <label for="Product_Status">@L("Status")</label>
+                        <select class="form-control m-input m-input--square" name="status" id="Product_Status" asp-for="@Model.Product.Status" asp-items="@selectListStatus">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @await Html.PartialAsync("Components/UploadFile/_UploadImages", Model.Product.Image)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Product_Description">@L("Description")</label>
+                <textarea class="form-control" id="Product_Description" name="description" rows="5">@Model.Product.Description</textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="CustomerSupportNote">
+                            @L("CustomerSupportNote")
+                        </label>
+                        <textarea class="form-control" id="CustomerSupportNote" rows="4" name="customerSupportNote">@Model.Product.CustomerSupportNote</textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="UserManualNote">
+                            @L("UserManualNote")
+                        </label>
+                        <textarea class="form-control" id="UserManualNote" rows="4" name="userManualNote">@Model.Product.UserManualNote</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Product_MinAmount">
+                            @L("Product_MinAmount")
+                        </label>
+                        <input class="form-control m-input amount-mask" id="Product_MinAmount" value="@Model.Product.MinAmount" type="text" name="minAmount"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Product_MaxAmount">
+                            @L("Product_MaxAmount")
+                        </label>
+                        <input class="form-control m-input amount-mask" id="Product_MaxAmount" value="@Model.Product.MaxAmount" type="text" name="maxAmount"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                @* <div class="col-md-6"> *@
+                @*     <div class="form-group"> *@
+                @*         <label for="Product_RefValue">@L("RefValue")</label> *@
+                @*         <input class="form-control m-input" id="Product_RefValue" value="@Model.Product.RefValue?.ToString(CultureInfo.InvariantCulture)" type="number" name="refValue"/> *@
+                @*     </div> *@
+                @* </div> *@
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="m-checkbox-list">
+                            <br>
+                            <br>
+                            <label for="Product_IsShowOnFrontend" class="kt-checkbox">
+                                <input id="Product_IsShowOnFrontend" type="checkbox" name="isShowOnFrontend" value="true"  @Html.Raw(Model.Product.IsShowOnFrontend==true ? "checked=\"checked\"" : "") />
+                                @L("IsShowOnFrontend")
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,166 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.AgentsManage
+@using HLS.Topup.Common
+@model CreateOrEditAgentViewModel
+
+<div class="base-information">
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom: 20px;">
+            <strong>Thông tin chung</strong>
+        </div>
+        <hr>
+        @if (Model.IsEditMode)
+        {
+            <input value="@Model.Agent.UserId" type="hidden" name="id"/>
+        }
+
+        <div class="col-md-6">
+            <div class="form-group">
+                @{
+                    var selectListAgent = Html.GetEnumSelectList(typeof(CommonConst.AgentType));
+                    foreach (var selectOption in selectListAgent)
+                    {
+                        selectOption.Text = L("Enum_AgentType_" + selectOption.Value);
+                    }
+                }
+                <div class="form-group m-form__group">
+                    <label for="AgentType">
+                        Loại đại lý <span class="lightred">(*)</span>
+                    </label>
+                    <select class="form-control m-input m-input--square" name="agentType" id="AgentType" asp-for="@Model.Agent.AgentType" asp-items="@selectListAgent.Where(x => x.Value != "99")" disabled required>
+                        <option value="">Chọn loại đại lý</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Phone">
+                    Số điện thoại <span class="lightred">(*)</span>
+                </label>
+                <input class="form-control" id="Phone" disabled="@Model.IsEditMode" value="@Model.Agent.PhoneNumber" type="text" name="phoneNumber" required maxlength="10"/>
+            </div>
+        </div>
+        @if (Model.IsEditMode)
+        {
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="AccountCode">
+                        Mã đại lý
+                    </label>
+                    <input class="form-control" id="AccountCode" value="@Model.Agent.AccountCode" type="text" name="accountCode" disabled/>
+                </div>
+            </div>
+        }
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Subname">
+                    Họ <span class="lightred">(*)</span>
+                </label>
+                <input class="form-control" id="Subname" value="@Model.Agent.Surname" type="text" name="surname" required maxlength="50"/>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Name">
+                    Tên <span class="lightred">(*)</span>
+                </label>
+                <input class="form-control" id="Name" value="@Model.Agent.Name" type="text" name="name" required maxlength="50"/>
+            </div>
+        </div>
+        @if (!Model.IsEditMode)
+        {
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Password">
+                        Mật khẩu <span class="lightred">(*)</span>
+                    </label>
+                    <input class="form-control" id="Password" value="" type="password" name="password" required maxlength="50"/>
+                </div>
+            </div>
+        }
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Province">
+                    Tỉnh/TP
+                </label>
+                <select class="form-control select2" name="cityId" id="Province">
+                    <option value="">@L("Selected")</option>
+                    @foreach (var item in Model.Provinces)
+                    {
+                        if (Model.Agent.CityId != null && Model.Agent.CityId == item.Id)
+                        {
+                            <option value="@item.Id" selected>@item.CityName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.CityName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="District">
+                    Quận/Huyện
+                </label>
+                <select class="form-control select2" name="districtId" id="District">
+                    <option value="">@L("Selected")</option>
+                    @foreach (var item in Model.Districts)
+                    {
+                        if (Model.Agent.DistrictId != null && Model.Agent.DistrictId == item.Id)
+                        {
+                            <option value="@item.Id" selected>@item.DistrictName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.DistrictName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Ward">
+                    Phường/Xã
+                </label>
+                <select class="form-control select2" name="wardId" id="Ward">
+                    <option value="">@L("Selected")</option>
+                    @foreach (var item in Model.Wards)
+                    {
+                        if (Model.Agent.WardId != null && Model.Agent.WardId == item.Id)
+                        {
+                            <option value="@item.Id" selected>@item.WardName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.WardName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Address">
+                    Địa chỉ chi tiết
+                </label>
+                <input class="form-control" id="Address" value="@Model.Agent.Address" type="text" name="address" maxlength="255"/>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Status">
+                    Trạng thái
+                </label>
+                <select class="form-control" name="isActive" id="Status">
+                    <option value="">Chọn</option>
+                    <option value="true" selected="@(Model.Agent.IsActive == true)">Hoạt động</option>
+                    <option value="false" selected="@(Model.Agent.IsActive == false)">Khoá</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>

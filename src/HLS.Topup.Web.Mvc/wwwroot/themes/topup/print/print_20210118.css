@@ -1,0 +1,163 @@
+@media print{
+    .noprint{
+        display:none;
+    }
+    body, html, .print-body, .print-body, .print-hls-content {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .section-card-line {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+@page {
+    margin: 10px 10px 10px 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.box-action {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 999;
+}
+
+.btn {
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #2188C9;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn:active,
+.btn:focus {
+    outline: 0;
+}
+
+#invoice-POS {
+    padding: 10px;
+    padding-left: 0 !important;
+    margin: 0 auto;
+    width: 250px;
+    background: #fff;
+    /*border: 1px solid #eee;*/
+}
+
+#invoice-POS ::selection {
+    background: #f31544;
+    color: #fff;
+}
+
+#invoice-POS ::moz-selection {
+    background: #f31544;
+    color: #fff;
+}
+
+#invoice-POS h2.brand {
+    font-size: 23px;
+    font-family: system-ui;
+}
+
+#invoice-POS h2 {
+    font-size: 20px;
+}
+
+#invoice-POS h3 {
+    font-size: 18px;
+    text-align: center;
+}
+
+#invoice-POS .pin_code {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+
+#invoice-POS p {
+    font-size: 18px;
+    color: #000;
+    line-height: 1.1em;
+    font-weight: 500;
+    margin: .6em 0;
+}
+
+#invoice-POS #top, #invoice-POS #mid {
+    border-bottom: 2px dashed #1a0403;
+}
+
+#invoice-POS #top {
+    min-height: 30px;
+}
+
+#invoice-POS #mid {
+    min-height: 65px;
+}
+
+#invoice-POS #bot {
+    min-height: 50px;
+}
+
+#invoice-POS .info {
+    display: block;
+    margin-left: 0;
+}
+
+#invoice-POS .info-label {
+    display: block;
+    margin-left: 0;
+    text-align: center;
+}
+
+#invoice-POS .title {
+    float: right;
+}
+
+#invoice-POS .title p {
+    text-align: right;
+}
+
+#invoice-POS table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#invoice-POS .service {
+    border-bottom: 1px solid #eee;
+}
+
+#invoice-POS .item {
+    width: 90px;
+}
+
+#invoice-POS #legalcopy {
+    margin-top: 15px;
+}
+
+#scissors {
+    height: 35px; /* image height */
+    width: 255px;
+    margin: auto auto;
+    border-top: 2px dashed #093333;
+    position: relative;
+    /*margin-top: 10px;*/
+}
+
+#scissors:after {
+    position: absolute;
+    content: "\2702";
+    top: 50%;
+    margin-top: -13px;
+    font-size: 15px;
+}

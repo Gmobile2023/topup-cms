@@ -1,0 +1,128 @@
+﻿@model HLS.Topup.Web.Models.BillPayment.BillPaymentCategoryModel
+
+@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.BillPayment;
+    ViewBag.Title = "Thanh toán hoá đơn";
+    ViewBag.ImageTitle = "/themes/topup/images/ic_banner_top/03.svg";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/BillPayment/BillCommon.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Views/BillPayment/BillPayment.js" asp-append-version="true"></script>
+}
+
+<div class="section-body-middle" data-target="1">
+    <ul class="group-pay-bill grid3">
+        @foreach (var item in Model.Categorys)
+        {
+            if (item.Status == CommonConst.CategoryStatus.Active)
+            {
+                <li class="pay-bill-category-code" data-category-code="@item.CategoryCode" data-src="@item.Image">
+                    <a href="javascript:;">
+                        <div class="group-pay-bill-icon icon1" style="background-image: url(@item.Image);"></div>
+                        <div class="group-pay-bill-content">@item.CategoryName</div>
+                        <span class="checkbox-custom"></span>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</div>
+
+<div class="section-body-middle" style="display: none;" data-target="2">
+    <div class="section-body-middle-introduce text-center padding-sx-big">
+        <div class="section-body-icon-pay-bill icon64"></div>
+        <h1 class="bill-type-name"></h1>
+    </div>
+    <div class="section-body-middle-form-p1" id="steponeForm">
+        <form id="billpayment-form" autocomplete="off">
+            <div class="form-group margin-big" id="show-product">
+                <label for="" class="title sm-margin">
+                    Nhà cung cấp <span class="lightred">(*)</span>
+                </label>
+                <div class="form-group-wrap">
+                    <span class="down-arrow-black arrow-big"></span>
+                    <img src="/themes/topup/images/1ceilings-service.png" class="form-logo ng-scope">
+                    <select class="form-control select2 form-control-big form-blue" style="width: 100%;" id="select2-product-code" name="productCode">
+                    </select>
+                </div>
+            </div>
+            <div class="form-group margin-big">
+                <label for="" class="title sm-margin">
+                    <span class="receiver-info-code">Mã khách hàng / Mã hoá đơn</span> <span class="lightred">(*)</span>
+                </label>
+                <div class="form-group-wrap">
+                    <input type="text" placeholder="Nhập mã khách hàng" class="form-control form-normal" name="ReceiverInfo" maxlength="50" autocomplete="off">
+                </div>
+                <div class="bill-request-info">
+                </div>
+            </div>
+            <div class="form-group margin-big request-by-type">
+                <label for="" class="title sm-margin">
+                    <span class="type-request">Truy vấn theo</span> <span class="lightred">(*)</span>
+                </label>
+                <div class="option-item-destiantion row" style="padding-top: 0;">
+                    <div class="form-group col-md-3 col-sm-4 col-xs-6">
+                        <div class="checkbox radio">
+                            <label class="checkbox-radio__label active" style="text-transform: none;">
+                                <input type="radio" class="checkbox-radio__input ng-untouched ng-valid ng-dirty ng-valid-parse" value="false" name="isInvoice" checked>
+                                <span class="checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> Mã khách hàng
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3 col-sm-4 col-xs-6">
+                        <div class="checkbox radio">
+                            <label class="checkbox-radio__label" style="text-transform: none;">
+                                <input class="checkbox-radio__input ng-untouched ng-valid ng-dirty" type="radio" value="true" name="isInvoice">
+                                <span class="checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> Mã hoá đơn
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group margin-big payment-amount-tele" style="display: none;">
+                <label for="" class="title sm-margin">
+                    Số tiền thanh toán <span class="lightred">*</span>
+                </label>
+                <div class="form-group-wrap">
+                    <input type="text" placeholder="Nhập số tiền thanh toán" id="txtPaymentAmount_Fill" numbers-only class="form-control txtPaymentAmount amount-mask" maxlength="50">
+                </div>
+                <span class="amount-to-text" id="amount-to-text"></span>
+                <div clasdatetimepicker-widgets="form-group-wrap text-right" style="margin-top:10px">
+                    <button type="button" class="button btn-custom btn-blue" id="btn-query-payment" style="font-size: 10px;">Truy vấn</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="section-body-middle-form-p2">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="" name="isReadTerm" checked="checked">
+                        <span class="checkbox-custom visible cbutton cbutton--effect-boris"></span>
+                    </label>
+                    <a class="checkbox-agree" target="_blank">
+                        <span>Tôi đã đọc và đồng ý với chính sách</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 btn-control text-right">
+                <a href="javascript:void(0)" class="button btn-custom btn-blue btn-to-prev" data-move-to="1" style="background: #aab2bd;"><img src="/themes/topup/images/left-arrow.svg" class="left-arrow" alt="">Quay lại</a>
+                <button class="button btn-custom btn-blue btn-query-bill">Tiếp tục</button>
+                @* <button class="button btn-custom btn-blue btn-create-pay" style="display: none;">Thanh toán</button> *@
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-body-middle" style="display: none;" data-target="3">
+    <div class="section-body-middle-form-p1">
+        @await Html.PartialAsync("_InfoBill")
+    </div>
+</div>

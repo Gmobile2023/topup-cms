@@ -1,0 +1,60 @@
+﻿@using HLS.Topup.Web.TagHelpers
+@model HLS.Topup.Web.Models.Transaction.TransactionDetailsInfoModel
+@if (string.IsNullOrEmpty(Model.TransactionInfo.TransCode))
+{
+    <h1>Không có thông tin giao dịch</h1>
+}
+else
+{
+    var prod = Model.TransactionInfo.ProductCode.Split("_");
+    var vendor = Model.Vendors.FirstOrDefault(x => x.Code == prod[0]);
+    
+    <div id="invoice-POS">
+        <center id="top">
+            <div class="info-label">
+                <h2 class="brand">@L("PrintCard_Header_Brand")</h2>
+            </div>
+            <!--End Info-->
+        </center>
+        <!--End InvoiceTop-->
+        <div id="mid">
+            <div class="info-label">
+                @*<h2>@L("PrintTopup_ServiceName") @(Model.TransactionInfo.CategoryName)</h2>*@
+                <h2>@(Model.TransactionInfo.CategoryName)</h2>
+            </div>
+            <div class="info">
+                <p>@L("PrintCard_TransCode") @Model.Transcode</p>
+                <p>@L("PrintCard_CreatedDate") @Model.TransactionInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</p>
+            </div>
+        </div>
+        <div id="mid">
+            <div class="info-label" style="text-align: left;">
+                <p>
+                    @L("PrintTopup_ReceiverPhone") <strong>@Model.TransactionInfo.ReceiverInfo</strong>
+                </p>
+                <p>
+                    Gói Data: <strong>@Model.TransactionInfo.Description</strong>
+                </p>
+                <p>
+                    @L("PrintTopup_Value") <strong>@Model.TransactionInfo.Amount.ToFormat()</strong>
+                </p>
+            </div>
+        </div>
+        <!--End Invoice Mid-->
+        <div id="bot">
+            <!--End Table-->
+            <div id="legalcopy">
+                @if (!string.IsNullOrEmpty(Model.TransactionInfo.CustomerSupportNote))
+                {
+                    <p class="legal">@L("PrintCard_Customer_Help_Title") @(Model.TransactionInfo.CustomerSupportNote)</p>
+                }
+
+                <p class="legal">@L("Agent_Label"): @(Model.Network.AgentName)</p>
+                <p class="legal">@L("Address"): @(Model.Address)</p>
+            </div>
+        </div>
+        <!--End InvoiceBot-->
+    </div>
+    <div id="scissors">
+    </div>
+}

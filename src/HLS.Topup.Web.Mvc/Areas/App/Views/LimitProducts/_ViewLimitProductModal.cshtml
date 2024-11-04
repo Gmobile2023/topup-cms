@@ -1,0 +1,313 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.LimitProducts
+@using HLS.Topup.Common
+@using Abp.Zero.Ldap.Configuration
+@using NPOI.SS.Formula.Functions
+@model CreateOrEditLimitProductModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsViewMode ? L("Details") : L("LimitProducts_Edit")))
+
+<div class="modal-body">
+    <div id="LimitProductInformationsTab">
+        <form name="LimitProductInformationsForm" role="form" novalidate class="form-validation">
+            <input type="hidden" name="id" value="@Model.LimitProduct.Id"/>
+            @if (Model.IsViewMode)
+            {
+                <input type="hidden" name="mode" value="view"/>
+            }
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="">
+                            @L("LimitProducts_Code") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input" type="text" name="code" value="@Model.LimitProduct.Code" required disabled/>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="">
+                            @L("LimitProducts_Name") <span class="lightred">(*)</span>
+                        </label>
+                        @if (Model.IsViewMode)
+                        {
+                            <input class="form-control m-input" type="text" name="name" value="@Model.LimitProduct.Name" required disabled/>
+                        }
+                        else
+                        {
+                            <input class="form-control m-input" type="text" name="name" value="@Model.LimitProduct.Name" required/>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="">
+                            @L("LimitProducts_AgentType") <span class="lightred">(*)</span>
+                        </label>
+                        @if (Model.IsViewMode)
+                        {
+                            <input class="form-control m-input" type="text" name="agentType" value="@L("Enum_AgentType_" + (int) Model.LimitProduct.AgentType)" required disabled/>
+                        }
+                        else
+                        {
+                            var selectListAgentType = Html.GetEnumSelectList(typeof(CommonConst.AgentType));
+                            foreach (var selectOption in selectListAgentType)
+                            {
+                                selectOption.Text = L("Enum_AgentType_" + selectOption.Value);
+                            }
+
+                            <select class="form-control m-input m-input--square" name="agentType" id="LimitProduct_AgentType" asp-for="@Model.LimitProduct.AgentType" asp-items="@selectListAgentType.Where(x => x.Value != "99")">
+                                <option value="">Tất cả</option>
+                            </select>
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="">
+                            @L("LimitProducts_Agent") (Đại lý cũ:
+                            <strong>
+                                @if (!Model.IsViewMode)
+                                {
+                                    @Model.AgentName
+                                }
+                            </strong>)
+                        </label>
+                        @if (Model.IsViewMode)
+                        {
+                            <input class="form-control m-input" type="text" name="userId" value="@Model.AgentName" required disabled/>
+                        }
+                        else
+                        {
+                            <select class="form-control select2" name="userId" id="AgentFilter" disabled>
+                            </select>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.IsViewMode)
+            {
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("LimitProducts_AppliedFromTime") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" name="fromDate" value="@Model.LimitProduct.FromDate.ToString("dd/MM/yyyy HH:mm:ss")" required disabled/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("LimitProducts_AppliedToTime") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" name="toDate" value="@Model.LimitProduct.ToDate.ToString("dd/MM/yyyy HH:mm:ss")" required disabled/>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("LimitProducts_AppliedFromTime") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" name="fromDate" value="@Model.LimitProduct.FromDate.ToString("dd/MM/yyyy HH:mm:ss")" required/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("LimitProducts_AppliedToTime") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" name="toDate" value="@Model.LimitProduct.ToDate.ToString("dd/MM/yyyy HH:mm:ss")" required/>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.IsViewMode)
+            {
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("LimitProducts_CreationTime") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" name="agentType" value="@Model.CreationTime.ToString("dd/MM/yyyy HH:mm:ss")" required disabled/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("Created") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" name="userId" value="@Model.UserName" required disabled/>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.IsViewMode && Model.LimitProduct.Status == CommonConst.LimitProductConfigStatus.Applying || Model.IsViewMode && Model.LimitProduct.Status == CommonConst.LimitProductConfigStatus.Approved)
+            {
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("LimitProducts_ApprovedTime") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" name="agentType" value="@Model.LimitProduct.DateApproved?.ToString("dd/MM/yyyy HH:mm:ss")" required disabled/>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("Updated") <span class="lightred">(*)</span>
+                            </label>
+                            <input class="form-control m-input" type="text" name="agentType" value="@Model.UserApproved" required disabled/>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (Model.IsViewMode)
+            {
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="">
+                                @L("Status")
+                            </label>
+                            <input class="form-control m-input" type="text" name="agentType" value="@L("Enum_LimitProductConfigStatus_" + (int) Model.LimitProduct.Status)" required disabled/>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (!Model.IsViewMode)
+            {
+                <div class="row">
+                    <div class="col-md-12" style="margin: 10px 0;">
+                        <strong>Chọn hình thức thêm sản phẩm</strong>
+                    </div>
+                    <div class="col-md-3" style="margin: 5px 0;">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="selectionRadioOptions" id="productMode" value="productMode" checked>
+                            <label class="form-check-label" for="productMode">Chọn theo danh mục sản phẩm</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="margin: 5px 0;">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="selectionRadioOptions" id="importMode" value="importMode">
+                            <label class="form-check-label" for="importMode">Import danh sách</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row" style="padding: 15px 0;" id="productModeBlock">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ServiceSelect">
+                                @L("LimitProducts_Service") <span class="lightred">(*)</span>
+                            </label>
+                            @Html.DropDownList("service", new SelectList(Model.LimitProductServiceList, "Code", "DisplayName", (Model.IsEditMode ? "" : "")), @L("SelectAService"), new {@id = "ServiceSelect", @class = "form-control select2"})
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ProductType">
+                                @L("LimitProducts_ProductType") <span class="lightred">(*)</span>
+                            </label>
+                            <select class="form-control select2" name="productType" id="ProductType" multiple disabled>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ProductList">@L("LimitProducts_Product")</label>
+                            <select class="form-control select2" name="productList" id="ProductList" multiple disabled>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="GetLimitProductsButton" class="btn btn-primary" type="button" style="margin-top: 25px;">
+                            <i class="flaticon-plus"></i> Thêm
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="row" id="importModeBlock" style="padding: 15px 0; display: none;">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label for="importCardsFromExcel" style="color:red">
+                                @L("PayBacks_Choose_File") <span class="lightred">(*)</span>
+                            </label>
+                            <label class="form-control" style="width: 100%">
+                                <span >Chọn file</span>
+                                <input id="ImportFromExcel" class="hidden" type="file" name="files" accept=".xlsx, .xls, .csv">
+                            </label>
+                            <div class="form-group">
+                                <a target="_blank" href="/assets/SampleFiles/ImportHanMucBanHang.xlsx">@L("File Mau Import")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-md-8">
+                    <p>@L("LimitProducts_ProductList_Des")</p>
+                </div>
+                @if (Model.IsViewMode)
+                {
+                    <div class="col-md-4" style="margin: 10px 0;">
+                        <a href="javascript:;" id="ExportLimitProductList" style="float: right;">Xuất excel</a>
+                    </div>
+                }
+                <div class="col-md-12 table-data">
+                    <table id="LimitProductsDetailTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>@L("LimitProducts_Service")</th>
+                            <th>@L("LimitProducts_ProductType")</th>
+                            <th>@L("LimitProducts_Product")</th>
+                            <th>@L("LimitProducts_LimitQty")</th>
+                            <th>@L("LimitProducts_LimitPayment")</th>
+                            @if (!Model.IsViewMode)
+                            {
+                                <th>@L("Delete")</th>
+                            }
+                            else
+                            {
+                                <th></th>
+                            }
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    @if (Model.IsViewMode)
+    {
+        <button type="button" class="btn btn-light-primary font-weight-bold close-button" data-dismiss="modal">Đóng</button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-light-primary font-weight-bold close-button" data-dismiss="modal">Hủy bỏ</button>
+        <button type="button" class="btn btn-primary save-button">
+            <i class="fa fa-save"></i> <span>Lưu thông tin</span>
+        </button>
+    }
+</div>

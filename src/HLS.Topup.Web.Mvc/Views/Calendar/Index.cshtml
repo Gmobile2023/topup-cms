@@ -1,0 +1,29 @@
+@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Calendar;
+    ViewBag.Title = "Lịch vạn niên";
+    ViewBag.ImageTitle = "/themes/topup/images/constellation-white.svg";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" abp-href="/lib/calendar/jquery.amlich.css" asp-append-version="true"/>
+}
+
+@section Scripts
+{
+    <script src="~/lib/calendar/jquery.amlich.js" asp-append-version="true"></script>
+    <script src="/view-resources/Views/Calendar/Index.js" asp-append-version="true"></script>
+}
+
+<div id="Calendar_Page" class="section-body-middle">
+    <div class="section-body-middle-introduce text-center">
+        @* <h1 class="h1-dark">Lịch vạn niên</h1> *@
+    </div>
+
+    <div class="group-help__section group-help__section--link clearfix group-help-link__ul--padding-bg">
+        <div class="lich-van-nien" style="margin: 0 auto;"></div>
+    </div>
+</div>

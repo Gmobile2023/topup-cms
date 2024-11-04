@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Layout/_LayoutTopup.cshtml";
+    ViewBag.Title = "Chi tiết giao dịch";
+}
+@using HLS.Topup.Transactions.Dtos
+@model TransactionDetailDto
+
+@section Scripts
+{
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+    <script src="~/view-resources/Views/Transactions/TransactionDetailBuyCard.js" asp-append-version="true"></script>
+}
+
+<div class="transaction-history">
+    <div class="page-title">
+        <div class="add-button text-right">
+            <a href="/Report/Detail" title="Lịch sử giao dịch">
+                <button class="btn-file-export" style="float: left !important;">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i> @L("Back")
+                </button>
+            </a>
+            <button id="ExportToPrintBluetoothButton" type="button"
+                    onclick="ngtAction.open('@Model.TransCode', 'print')"
+                    class="btn-file-export btn-printMobile">
+                <i class="fa fa-print"></i> @L("PrintBluetooth")
+            </button>
+            <button id="ExportToPrintButton" type="button"
+                    onclick="ngtAction.open('@Model.TransCode', 'print')"
+                    class="btn-file-export btn-printDesktop">
+                <i class="fa fa-print"></i> @L("Print")
+            </button>
+            <button id="ExportCopyButton" type="button"
+                    onclick="ngtAction.open('@Model.TransCode', 'copy')"
+                    class="btn-file-export">
+                <i class="fa fa-copy"></i> @L("Copy")
+            </button>
+            <button id="ExportToExcelButton" type="button"
+                    onclick="ngtAction.open('@Model.TransCode', 'export')"
+                    class="btn-file-export ">
+                <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+            </button>
+            <button id="ExportToPrintA4Button"
+                    onclick="ngtAction.open('@Model.TransCode', 'printA4')"
+                    type="button" class="btn-file-export">
+                <i class="fa fa-print"></i> @L("PrintA4")
+            </button>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="row">
+            <div class="align-items-center col-md-12">
+                <table id="Table" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Mệnh giá</th>
+                        <th>Serial</th>
+                        <th>Mã thẻ</th>
+                        <th>Ngày hết hạn</th>
+                        <th>Số tiền chiết khấu</th>
+                        <th>Số tiền thanh toán</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

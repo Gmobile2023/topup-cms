@@ -1,0 +1,159 @@
+﻿@model HLS.Topup.Web.Models.TopupRequest.CreateOrEditTopupRequestModalViewModel
+<div class="section-tab">
+    <form class="step step1" id="topupListForm" autocomplete="off">
+        <div class="section-body-p1 no-border-top">
+            <div class="form-group">
+                <label for="" class="title">
+                    <img src="/themes/topup/images/ic_dark/ic-201.svg" alt=""> Chọn nhà mạng
+                    <span
+                        class="lightred">
+                        (*)
+                    </span>
+                </label>
+                <div class="">
+                    <ul class="form-group-radio grid5 grid-telco" >
+                        @foreach (var item in Model.Categorys)
+                        {
+                            <li>
+                                <div class="radio radio-btn">
+                                    <label class="touch">
+                                        <input type="radio"
+                                               name="cardTelco"
+                                               data-servicecode="@item.CategoryCode"
+                                               data-servicename="@item.CategoryName"
+                                               value="@item.CategoryCode"
+                                               onchange="ctrlList.getTopupPrice('@item.CategoryCode')">
+                                        <img style="max-height: 100%;" src="@item.Image" alt="@item.CategoryName">
+                                        <span class="checkbox-custom"></span>
+                                    </label>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="input-number tab">
+                <ul class="nav nav-tabs">
+                    <li class="">
+                        <a data-toggle="tab" href="#input-number-box" class="active">Nhập số điện thoại</a>
+                    </li>
+                    <li>
+                        <a data-toggle="tab" href="#input-file-box">Nhập file</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="input-number-box" class="tab-pane fade show active">
+                        <div class="section-box">
+                        <div class="form-group margin-big">
+                                                        @* <label for="" class="title"> *@
+                                                        @*     <img src="/themes/topup/images/ic_dark/ic-43.png" alt=""> Chọn mệnh giá *@
+                                                        @* </label> *@
+                                                        <div id="topupList-card-value-items">
+                                                        </div>
+                                                    </div>
+                            <div class="form-group ">
+                                <label for="" class="title">
+                                    <img src="/themes/topup/images/ic_dark/ic-01.svg" alt=""> Nhập số điện thoại &nbsp;
+                                    <span
+                                        class="lightred">
+                                        (*)
+                                    </span>
+                                </label>
+                                <div class="row">
+                                    <div class="col-xs-8">
+                                        <div class="form-group-wrap">
+                                            <input required="required" numbers-only placeholder="Nhập số điện thoại"
+                                                   type="tel" maxlength="11" name="phoneNumberList"
+                                                   class="form-control">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="" class="title">&nbsp;</label>
+                                            <button type="button" onClick="ctrlList.addPhoneNumber()" class="hlsCtrl button btn-custom btn-blue btn-addPhone">Thêm</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div id="input-file-box" class="tab-pane fade">
+                        <div class="section-box">
+                            <div class="form-group margin-big">
+                                <label for="" class="title">
+                                    <img src="/themes/topup/images/ic_dark/ic-03.svg" alt=""> Chọn file nhập &nbsp;
+                                    <span
+                                        class="lightred">
+                                        (*)
+                                    </span>
+                                </label>
+                                <div class="form-group-wrap">
+                                    <input placeholder="Nhập file" type="file" class="form-control" name="fileInput" accept=".xlsx, .xls, .csv">
+                                </div>
+                                <div class="">
+                                    <a href="/assets/SampleFiles/Topup_List.xlsx">File mẫu</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+ 
+            <div class="form-group">
+                <label for="" class="title">
+                    <img src="/themes/topup/images/ic_dark/ic-43.png" alt=""> Danh sách số điện thoại
+                </label>
+                <div class="align-items-center">
+                    <table id="phoneNumberTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Nhà mạng</th>
+                            <th>Số điện thoại</th>
+                            <th>Mệnh giá</th>
+                            <th>Xóa</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="section-body-p2">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="checkbox" >
+                        <label>
+                            <input type="checkbox" value="" name="isReadTerm" checked="checked">
+                            <span class="checkbox-custom visible cbutton cbutton--effect-boris"></span>
+                        </label>
+                        <a class="checkbox-agree" target="_blank">
+                            <span>Tôi đã đọc và đồng ý với chính sách</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-5 text-right">
+                    <button type="button" onClick="ctrlList.nextToStep()" class="hlsCtrl button btn-custom btn-blue">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form class="step step2" id="topupListInfoForm" style="display:none">
+        <div class="section-body-p1 no-border-top"></div>
+
+        <div class="section-body-p2">
+            <div class="row">
+                <div  class="col-md-12 text-center">
+                    <button type="button" onClick="ctrlList.activeStep(1)" class="button btn-custom btn-grey">Quay lại</button>
+                    <button type="button" onClick="ctrlList.nextToStep2()" class="button btn-custom btn-blue">Nạp tiền ngay</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

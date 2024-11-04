@@ -1,0 +1,143 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Cards
+@model CreateCardsApiModalModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("ImportCardsApi")))
+
+<div class="modal-body">
+    <div id="CardsImportFormTab">
+        <form name="ImportCardsApiInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="providerCode">
+                            @L("Provider") <span class="lightred">(*)</span>
+                        </label>
+                        @Html.DropDownList("providerCode", new SelectList(Model.ProviderList, "Id", "DisplayName", (Model.ProviderCode ?? "")),
+                            @L("SelectAProvider"), new {@class = "select2 form-control", @required = "required"})
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="CardBatch_Description">@L("Description")</label>
+                        <textarea rows="3" class="form-control"  name="description" id="CardBatch_Description">@Model.Description</textarea>
+                    </div>
+                </div>                
+            </div>
+            <div class="panel">
+                <h3>Thêm danh sách thẻ</h3>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">@L("Service")</label>
+                            <select class="form-control serviceCode_api" name="serviceCode_api">
+                                <option value="">Chọn dịch vụ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">@L("Category")</label>
+                            <select class="form-control categoryCode_api" name="categoryCode_api">
+                                <option value="">Chọn loại sản phẩm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">@L("Product")</label>
+                            <select class="form-control productCode_api" name="productCode_api">
+                                <option value="">Chọn sản phẩm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">@L("CardValue")</label>
+                            <span class="form-control disabled cardValue" style="background: #ECF0F3">0</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="">@L("QuantityRequest")</label>
+                            <input class="form-control amount-mask quantity" value="1" type="text" name="quantity" max="999999999"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="">@L("Discounted")</label>
+                            <input class="form-control percentage-mask discount" value="" type="text" name="discount"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label for="">@L("Amount")</label>
+                            <span class="form-control total_amount" style="background: #ECF0F3">0</span>
+                        </div>
+                    </div>
+                   <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="ExpiredDate">Ngày hết hạn</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" name="expiredDate" placeholder="Ngày hết hạn" value="" id="expiredDate">
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">&nbsp;</label>
+                            <div class="text-right">
+                                <button type="button" class="button-add btn btn-sm btn-primary">
+                                    <i class="la la-plus"></i> @L("Add")
+                                </button>
+                            </div>
+                        </div>
+                    </div>                  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="ProductApiTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>@L("Service")</th>
+                            <th>@L("Category")</th>
+                            <th>@L("Product")</th>
+                            <th>@L("CardValue")</th>
+                            <th>@L("QuantityRequest")</th>
+                            <th>@L("Discounted")</th>
+                            <th>@L("Amount")</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                        <tbody class="f">
+                        <tr>
+                            <td colspan="4"><b>Tổng cộng</b></td>
+                            <td class="text-right"></td>
+                            <td></td>
+                            <td class="text-right"></td> 
+                            <td></td> 
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">@L("Cancel")</button>
+    <button type="button" id="btnUpload" class="btn btn-primary save-button">
+        <i class="fa fa-save"></i> <span>@L("Save")</span>
+    </button>
+</div>

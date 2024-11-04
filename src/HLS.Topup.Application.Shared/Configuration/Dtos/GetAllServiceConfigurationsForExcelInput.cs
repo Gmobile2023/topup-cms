@@ -1,0 +1,34 @@
+﻿using Abp.Application.Services.Dto;
+using System;
+using System.Collections.Generic;
+
+namespace HLS.Topup.Configuration.Dtos
+{
+    public class GetAllServiceConfigurationsForExcelInput
+    {
+        public string Filter { get; set; }
+
+        public string NameFilter { get; set; }
+
+        public int? IsOpenedFilter { get; set; }
+
+        public int? MaxPriorityFilter { get; set; }
+        public int? MinPriorityFilter { get; set; }
+
+        public string ServiceServicesNameFilter { get; set; }
+
+        public string ProviderNameFilter { get; set; }
+
+        public string CategoryCategoryNameFilter { get; set; }
+
+        public string ProductProductNameFilter { get; set; }
+
+        public string UserNameFilter { get; set; }
+
+        public List<int> ServiceIds { get; set; }
+        public List<int> CategoryIds { get; set; }
+        public List<int> ProductIds { get; set; }
+
+
+    }
+}

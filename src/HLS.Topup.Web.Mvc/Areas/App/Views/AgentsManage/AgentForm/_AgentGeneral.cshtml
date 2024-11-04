@@ -1,0 +1,24 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.AgentsManage
+@model CreateOrEditAgentViewModel
+
+<div class="row">
+    <div class="col-md-12" style="margin-bottom: 20px;">
+        <strong>Thông tin theo loại đại lý</strong>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="ContractNumber">
+                Số hợp đồng
+            </label>
+            <input class="form-control" id="ContractNumber" value="@Model.Agent.ContractNumber" type="text" name="contractNumber" maxlength="30"/>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="SigDate">
+                Ngày ký hợp đồng
+            </label>
+            <input class="form-control date-picker" id="SigDate" value="@Model.Agent.SigDate?.ToShortDateString()" type="text" name="sigDate" />
+        </div>
+    </div>
+</div>

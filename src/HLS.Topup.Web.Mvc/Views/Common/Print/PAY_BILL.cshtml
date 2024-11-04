@@ -1,0 +1,74 @@
+﻿@using HLS.Topup.Web.TagHelpers
+@model HLS.Topup.Web.Models.Transaction.TransactionDetailsInfoModel
+@if (string.IsNullOrEmpty(Model.TransactionInfo.TransCode))
+{
+    <h1>Không có thông tin giao dịch</h1>
+}
+else
+{
+    <div id="invoice-POS">
+        <center id="top">
+            <div class="info-label">
+                <h2 class="brand">@L("PrintCard_Header_Brand")</h2>
+            </div>
+            <!--End Info-->
+        </center>
+        <!--End InvoiceTop-->
+        @{
+            var extraInfo = Model.TransactionInfo.Invoice;
+        }
+        <div id="mid">
+            <div class="info-label">
+                <h2>@L("PrintBill_Receipt_Payment")</h2>
+            </div>
+            <div class="info">
+                <p>@Model.TransactionInfo.ProductName</p>
+                <p>@L("PrintCard_TransCode") @Model.Transcode</p>
+                <p>@L("PrintCard_CreatedDate") @Model.TransactionInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</p>
+            </div>
+        </div>
+        <div id="mid">
+            <div class="info">
+                <div class="info-label" style="text-align: left;">
+                    <p>
+                        <strong>@L("Print_Customer_Code") @extraInfo?.CustomerReference.ToUpper()</strong>
+                    </p>
+                </div>
+                <p>@L("Print_Customer_Name") @extraInfo?.FullName</p>
+                <p>@L("Print_Customer_Address") @extraInfo?.Address</p>
+            </div>
+        </div>
+        <div id="mid">
+            <div class="info">
+                <p>@L("Print_Customer_Period") @extraInfo?.Period</p>
+                <p style="display: none;">@L("Print_Amount") @Model.TransactionInfo.Amount.ToFormat()</p>
+                <p style="display: none;">@L("Print_Collection_Fee") @Model.TransactionInfo.Fee.ToFormat()</p>
+                <div class="info-label" style="text-align: left;">
+                    <p>
+                        @{
+                            var total = Model.TransactionInfo.Amount;
+                        }
+                        @* <strong>@L("Print_Total_Payment") @total.ToFormat()</strong> *@
+                        <strong>@L("Print_Amount") @total.ToFormat()</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--End Invoice Mid-->
+        <div id="bot">
+            <!--End Table-->
+            <div id="legalcopy">
+                @if (!string.IsNullOrEmpty(Model.TransactionInfo.CustomerSupportNote))
+                {
+                    <p class="legal">@L("PrintCard_Customer_Help_Title") @(Model.TransactionInfo.CustomerSupportNote)</p>
+                }
+
+                <p class="legal">@L("Agent_Label"): @(Model.Network.AgentName)</p>
+                <p class="legal">@L("Address"): @(Model.Address)</p>
+            </div>
+        </div>
+        <!--End InvoiceBot-->
+    </div>
+    <div id="scissors">
+    </div>
+}

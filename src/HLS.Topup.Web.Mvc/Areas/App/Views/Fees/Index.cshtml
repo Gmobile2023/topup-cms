@@ -1,0 +1,178 @@
+﻿@using HLS.Topup.Authorization
+@using HLS.Topup.Common
+@using HLS.Topup.Web.Areas.App.Models.Fees
+@using HLS.Topup.Web.Areas.App.Startup
+@model FeesViewModel
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.Fees;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/Fees/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+    <abp-page-subheader title="@L("Fees")" description="@L("FeesHeaderInfo")">
+        <button id="ExportToExcelButton" class="btn btn-outline-success">
+            <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+        </button>
+
+        @if (IsGranted(AppPermissions.Pages_Fees_Create))
+        {
+            <button id="CreateNewFeeButton" class="btn btn-primary blue">
+                <i class="fa fa-plus"></i> @L("CreateNewFee")
+            </button>
+        }
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4 filter-block-header">
+                    <div class="col-md-12">
+                        <div class="kt-separator kt-separator--border-dashed"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="NameFilter">@L("Fees_Name")</label>
+                            <input type="text" class="form-control" id="NameFilter">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="CodeFilterId">@L("Fees_PolicyCode")</label>
+                            <input type="text" class="form-control" name="codeFilter" id="CodeFilterId">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="FromCreatedTimeFilter">@L("Fees_TimeCreated")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MinValue")" id="FromCreatedTimeFilter">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MaxValue")" id="ToCreatedTimeFilter">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="FromApprovedTimeFilter">@L("Fees_TimeApproved")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MinValue")" id="FromApprovedTimeFilter">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MaxValue")" id="ToApprovedTimeFilter">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="FromAppliedTimeFilter">@L("Fees_TimeApplied")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MinValue")" id="FromAppliedTimeFilter">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MaxValue")" id="ToAppliedTimeFilter">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ProductTypeFilter">@L("Fees_ProductType")</label>
+                            <select class="form-control" name="productTypeFilter" id="ProductTypeFilter">
+                                <option value="">Tất cả</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="productFilter">@L("Product")</label>
+                            <select class="form-control select2" name="productFilter" id="productFilter">
+                                <option value="">Tất cả</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    @{
+                        var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.FeeStatus));
+                        foreach (var selectOption in selectListStatus)
+                        {
+                            selectOption.Text = L("Fees_FeeStatus_" + selectOption.Value);
+                        }
+                    }
+                    <div class="col-md-3">
+                        <label for="StatusFilterId">@L("Status")</label>
+                        <select class="form-control m-input m-input--square" name="StatusFilter" id="StatusFilterId" asp-items="@selectListStatus.Where(x => x.Value != "6" && x.Value != "1")">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </div>
+                    @* <div class="col-md-1"> *@
+                    @*     <button id="GetFeesButton" class="btn btn-primary" type="submit" style="margin-top: 25px;"> *@
+                    @*         <i class="flaticon-search-1"></i> *@
+                    @*     </button> *@
+                    @* </div> *@
+                    <div class="col-md-12"></div>
+                    <div class="col-md-4">
+                        <div class="euiFlexItem euiFlexItem--flexGrowZero">
+                            <span class="euiToolTipAnchor">
+                                <button id="GetFeesButton" class="euiButton euiButton--primary euiSuperUpdateButton euiButton--fill" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.271 11.978l3.872 3.873a.502.502 0 00.708 0 .502.502 0 000-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 004.949 2.05.5.5 0 000-1 5.96 5.96 0 01-4.242-1.757 6.01 6.01 0 010-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 010 8.486.5.5 0 00.034.738z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Tìm kiếm</span>
+                                    </span>
+                                </button>
+
+                                <button class="euiButton-reset euiButton--primary" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon-reset euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.228 2.942a.5.5 0 11-.538.842A5 5 0 1013 8a.5.5 0 111 0 6 6 0 11-2.772-5.058zM14 1.5v3A1.5 1.5 0 0112.5 6h-3a.5.5 0 010-1h3a.5.5 0 00.5-.5v-3a.5.5 0 111 0z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Đặt lại</span>
+                                    </span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item">
+                            <i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")
+                        </span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none">
+                            <i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")
+                        </span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="FeesTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>@L("Actions")</th>
+                            <th>@L("Fees_Name")</th>
+                            <th>@L("Fees_PolicyCode")</th>
+                            <th>@L("Fees_AgentType")</th>
+                            <th>@L("Fees_ApplyForAgent")</th>
+                            <th>@L("Status")</th>
+                            <th>@L("Fees_ApprovedDate")</th>
+                            <th>@L("CreationTime")</th>
+                            <th>@L("Fees_FromTimeApplied")</th>
+                            <th>@L("Fees_ToTimeApplied")</th>
+                            <th>@L("Fees_ApprovedUser")</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@model HLS.Topup.Web.Models.Report.ReportViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.HistoryLot;
+    ViewBag.Title = "Lịch sử nạp lô";
+    ViewBag.ImageTitle = "/themes/topup/images/transaction-history-white.svg";
+}
+
+@section Scripts
+{
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Views/BatchTopup/History.js" asp-append-version="true"></script>
+}
+
+<div class="batch-topup-history">
+
+    
+    <div class="section-body-middle">
+        <div class="page-title text-right">
+            <a href="javascript:;" onclick="Sv.goBackHistory()">
+                <button class="btn-file-export" style="float: left !important;">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i> @L("Back")
+                </button>
+            </a>
+            <div class="add-button">
+                <button id="ExportToExcelButton" class=" btn-file-export">
+                    <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+                </button>
+            </div>
+        </div>
+        <div class="section-body-middle-introduce">
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-md-6 col-xs-8 col-fix-mobi col-xs-100">
+                        <div class="form-group">
+                            <label for="FromDateFilterId">Ngày tạo</label>
+                            <div class="dis-flex" style="display: flex;">
+                                <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="FromDateFilterId">
+                                <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="ToDateFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12 col-fix-mobi col-xs-100">
+                        <div class="form-group">
+                            <label for="RequestTransFilter">Mã lô</label>
+                            <input type="text" id="txtRequestTrans" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-6 col-xs-100">
+                        <div class="form-group">
+                            <label for="BachType">Loại nạp lô</label>
+                            <select id="selectBachType" name="selectBachType" class="form-control select2">
+                                <option value="">--Tất cả--</option>
+                                <option value="TOPUP">Nạp tiền điện thoại</option>
+                                <option value="PINCODE">Mua mã thẻ</option>
+                                <option value="PAYBILL">Thanh toán hóa đơn</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xs-6 col-xs-100">
+                        <div class="form-group align-items-center">
+                            <label for="">Trạng thái</label>
+                            <span class="down-arrow-black arrow-small" style="top:25px"></span>
+                            <select class="form-control" name="StatusFilter" id="StatusFilterId">
+                                <option value="-1">--Tất cả--</option>
+                                <option value="0">Khởi tạo</option>
+                                <option value="1">Hoàn thành</option>
+                                <option value="2">Đang xử lý</option>
+                                <option value="3">Dừng</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="input-group-btn">
+                            <button id="btnSearch" class="button btn-custom btn-blue btn-search-icon" type="submit" style="margin-top:26px; line-height: 100%; max-width: 35%;">
+                                <i class="flaticon-search-1" aria-label="@L("Search")"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px">
+                    <div class="col-md-12">
+                        <div class="tb-transaction-history">
+                            <table id="tableHistory" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Hành động</th>
+                                        <th>Trạng thái</th>
+                                        <th>Mã lô</th>
+                                        <th>Loại</th>
+                                        <th>Người thực hiện</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Ngày cập nhật</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

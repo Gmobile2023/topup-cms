@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="32" height="32" viewBox="0 10.104 21.213 22.112" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 14.75 22.72 L 14.75 26.199 L 17.313 26.199" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(33, 136, 201);"/>
+  <path d="M 8.743 25.216 L 10.037 26.969 L 11.331 25.216" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(33, 136, 201);"/>
+  <path d="M 10.006 25.786 C 10.006 22.883 12.323 20.53 15.182 20.53 C 18.04 20.53 20.357 22.883 20.357 25.786 C 20.357 28.689 18.04 31.042 15.182 31.042 C 13.869 31.042 12.67 30.546 11.758 29.728" stroke-linecap="round" style="stroke: rgb(33, 136, 201);"/>
+  <path d="M 15.195 17.908 L 15.195 15.175 C 15.195 14.827 15.059 14.494 14.817 14.248 L 12.347 11.739 C 12.105 11.493 11.777 11.355 11.435 11.355 L 2.29 11.355 C 1.578 11.355 1 11.942 1 12.666 L 1 28.393 C 1 29.117 1.578 29.704 2.29 29.704 L 8.098 29.704" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(12, 44, 99); stroke-width: 0.8px;"/>
+  <path d="M 11.324 12.01 L 11.324 15.287 L 14.55 15.287" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(12, 44, 99); stroke-width: 0.8px;"/>
+  <line x1="4.065" y1="14.795" x2="8.259" y2="14.795" stroke-linecap="round" style="stroke: rgb(33, 136, 201);"/>
+  <line x1="4.065" y1="18.4" x2="9.549" y2="18.4" stroke-linecap="round" style="stroke: rgb(33, 136, 201);"/>
+  <line x1="4.065" y1="22.004" x2="6.968" y2="22.004" stroke-linecap="round" style="stroke: rgb(33, 136, 201);"/>
+</svg>

@@ -1,0 +1,404 @@
+.hm-icon {
+  display: inline-block;
+  text-indent: 200%;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-mask: url("svg/sprite.css.svg") no-repeat;
+          mask: url("svg/sprite.css.svg") no-repeat;
+  -webkit-mask-size: auto 100%;
+          mask-size: auto 100%;
+  background-color: #666666;
+}
+
+.hm-icon-account {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 0 0;
+          mask-position: 0 0;
+}
+
+.hm-icon-arrow-down {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 1.8181818181818181% 0;
+          mask-position: 1.8181818181818181% 0;
+}
+
+.hm-icon-arrow-left {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 3.6363636363636362% 0;
+          mask-position: 3.6363636363636362% 0;
+}
+
+.hm-icon-auth {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 5.454545454545454% 0;
+          mask-position: 5.454545454545454% 0;
+}
+
+.hm-icon-avatar {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 7.2727272727272725% 0;
+          mask-position: 7.2727272727272725% 0;
+}
+
+.hm-icon-balance {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 9.090909090909092% 0;
+          mask-position: 9.090909090909092% 0;
+}
+
+.hm-icon-bone {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 10.909090909090908% 0;
+          mask-position: 10.909090909090908% 0;
+}
+
+.hm-icon-calendar {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 12.727272727272727% 0;
+          mask-position: 12.727272727272727% 0;
+}
+
+.hm-icon-cancer {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 14.545454545454545% 0;
+          mask-position: 14.545454545454545% 0;
+}
+
+.hm-icon-cart {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 16.363636363636363% 0;
+          mask-position: 16.363636363636363% 0;
+}
+
+.hm-icon-category {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 18.181818181818183% 0;
+          mask-position: 18.181818181818183% 0;
+}
+
+.hm-icon-classroom {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 20% 0;
+          mask-position: 20% 0;
+}
+
+.hm-icon-clock {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 21.818181818181817% 0;
+          mask-position: 21.818181818181817% 0;
+}
+
+.hm-icon-contract {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 23.636363636363637% 0;
+          mask-position: 23.636363636363637% 0;
+}
+
+.hm-icon-doctor {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 25.454545454545453% 0;
+          mask-position: 25.454545454545453% 0;
+}
+
+.hm-icon-domain {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 27.272727272727273% 0;
+          mask-position: 27.272727272727273% 0;
+}
+
+.hm-icon-edit {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 29.09090909090909% 0;
+          mask-position: 29.09090909090909% 0;
+}
+
+.hm-icon-group {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 30.90909090909091% 0;
+          mask-position: 30.90909090909091% 0;
+}
+
+.hm-icon-health {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 32.72727272727273% 0;
+          mask-position: 32.72727272727273% 0;
+}
+
+.hm-icon-heart {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 34.54545454545455% 0;
+          mask-position: 34.54545454545455% 0;
+}
+
+.hm-icon-heart-rate {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 36.36363636363637% 0;
+          mask-position: 36.36363636363637% 0;
+}
+
+.hm-icon-history {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 38.18181818181818% 0;
+          mask-position: 38.18181818181818% 0;
+}
+
+.hm-icon-home {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 40% 0;
+          mask-position: 40% 0;
+}
+
+.hm-icon-insulin {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 41.81818181818182% 0;
+          mask-position: 41.81818181818182% 0;
+}
+
+.hm-icon-key {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 43.63636363636363% 0;
+          mask-position: 43.63636363636363% 0;
+}
+
+.hm-icon-list {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 45.45454545454545% 0;
+          mask-position: 45.45454545454545% 0;
+}
+
+.hm-icon-lock {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 47.27272727272727% 0;
+          mask-position: 47.27272727272727% 0;
+}
+
+.hm-icon-logout {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 49.09090909090909% 0;
+          mask-position: 49.09090909090909% 0;
+}
+
+.hm-icon-love-book {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 50.90909090909091% 0;
+          mask-position: 50.90909090909091% 0;
+}
+
+.hm-icon-mail {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 52.72727272727273% 0;
+          mask-position: 52.72727272727273% 0;
+}
+
+.hm-icon-money-transfer {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 54.54545454545455% 0;
+          mask-position: 54.54545454545455% 0;
+}
+
+.hm-icon-payment {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 56.36363636363637% 0;
+          mask-position: 56.36363636363637% 0;
+}
+
+.hm-icon-play-button {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 58.18181818181818% 0;
+          mask-position: 58.18181818181818% 0;
+}
+
+.hm-icon-plus {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 60% 0;
+          mask-position: 60% 0;
+}
+
+.hm-icon-price-tag {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 61.81818181818182% 0;
+          mask-position: 61.81818181818182% 0;
+}
+
+.hm-icon-profile {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 63.63636363636363% 0;
+          mask-position: 63.63636363636363% 0;
+}
+
+.hm-icon-question {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 65.45454545454545% 0;
+          mask-position: 65.45454545454545% 0;
+}
+
+.hm-icon-rating {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 67.27272727272727% 0;
+          mask-position: 67.27272727272727% 0;
+}
+
+.hm-icon-refresh {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 69.0909090909091% 0;
+          mask-position: 69.0909090909091% 0;
+}
+
+.hm-icon-rocket-launch {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 70.9090909090909% 0;
+          mask-position: 70.9090909090909% 0;
+}
+
+.hm-icon-save {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 72.72727272727273% 0;
+          mask-position: 72.72727272727273% 0;
+}
+
+.hm-icon-scale {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 74.54545454545455% 0;
+          mask-position: 74.54545454545455% 0;
+}
+
+.hm-icon-screen {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 76.36363636363636% 0;
+          mask-position: 76.36363636363636% 0;
+}
+
+.hm-icon-smartphone-call {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 78.18181818181819% 0;
+          mask-position: 78.18181818181819% 0;
+}
+
+.hm-icon-smartphone-plus {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 80% 0;
+          mask-position: 80% 0;
+}
+
+.hm-icon-smartphone-ring {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 81.81818181818181% 0;
+          mask-position: 81.81818181818181% 0;
+}
+
+.hm-icon-star {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 83.63636363636364% 0;
+          mask-position: 83.63636363636364% 0;
+}
+
+.hm-icon-stomach {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 85.45454545454545% 0;
+          mask-position: 85.45454545454545% 0;
+}
+
+.hm-icon-success {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 87.27272727272727% 0;
+          mask-position: 87.27272727272727% 0;
+}
+
+.hm-icon-team {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 89.0909090909091% 0;
+          mask-position: 89.0909090909091% 0;
+}
+
+.hm-icon-three-dot {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 90.9090909090909% 0;
+          mask-position: 90.9090909090909% 0;
+}
+
+.hm-icon-user {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 92.72727272727273% 0;
+          mask-position: 92.72727272727273% 0;
+}
+
+.hm-icon-warning {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 94.54545454545455% 0;
+          mask-position: 94.54545454545455% 0;
+}
+
+.hm-icon-webinar {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 96.36363636363636% 0;
+          mask-position: 96.36363636363636% 0;
+}
+
+.hm-icon-work {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 98.18181818181819% 0;
+          mask-position: 98.18181818181819% 0;
+}
+
+.hm-icon-world {
+  width: 16px;
+  height: 16px;
+  -webkit-mask-position: 100% 0;
+          mask-position: 100% 0;
+}
+

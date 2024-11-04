@@ -1,0 +1,80 @@
+﻿@using Abp.Timing;
+@model HLS.Topup.Web.Views.Shared.Components.Header.HeaderViewModel
+<header class="header header-home">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <div class=" header-logo">
+                    <a href="/">
+                        <img src="~/themes/default/images/logo.png" class="logo-topup" />
+                        <span class="site-title">Nạp tiền - Mua thẻ điện thoại Viettel, Mobifone, Vinaphone online</span>
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-4 col-xs-4 text-center">
+                <nav class="header-nav hidden-xs">
+
+                    <ul class="header-nav-wrapper">
+                        @for (var i = 0; i < Model.Menu.Items.Count; i++) {
+                            var menuItem = Model.Menu.Items[i];
+                            @await Html.PartialAsync("Components/Header/_HeaderMenuDesktop", new UserMenuItemViewModel
+                            {
+                                MenuItem = menuItem,
+                                MenuItemIndex = i,
+                                RootLevel = true,
+                                CurrentPageName = Model.CurrentPageName
+                            })
+                        }
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <div class="header-nav-right">
+                    <div class="hidden-xs hidden-sm user-logedin-section">
+                        @if (Model.LoginInformations?.User != null) {
+                            <div class="dropdown user-info">
+                                <a id="dLabel" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <div class="avatar">
+                                        <img src="@Url.Action("GetProfilePicture", "Profile", new {area = string.Empty})?t=@Clock.Now.Ticks.ToString()" alt="">
+                                    </div>
+                                    <span class="name">@Model.LoginInformations.User.UserName<i class="fa fa-caret-down p-0-10"></i></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel">
+                                    <li>
+                                        <a href="@Url.Action("Index", "Profile")"><i class="fa fa-user"></i>&nbsp;Thông tin tài khoản</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("BalanceHistory", "Transactions")"><i class="fas fa-file-medical-alt"></i>&nbsp;&nbsp;&nbsp;Biến động số dư</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("TransactionHistory","Transactions")"><i class="fa fa-history"></i>&nbsp;Lịch sử giao dịch</a>
+                                    </li>
+
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="@Url.Action("Logout", "Account")"><i class="fa fa-sign-out"></i>&nbsp;Đăng xuất</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                        else {
+                            <div class="hidden-xs hidden-sm btn-login-group">
+                                <a href="@Url.Action("Login", "Account")" class="btn-signin"><i class="fa fa-lock"></i> Đăng nhập</a>
+                                <a href="@Url.Action("Register", "Account")" class="btn-signin"><i class="fa fa-user-plus"></i></a>
+                            </div>
+                        }
+                    </div>
+                    <div class="visible-xs visible-sm">
+                        <a href="#mobile-menu" class="mobile-menu-icon">
+                            <i class="fa fa-bars fa-2x"></i>
+                        </a>
+                    </div>
+                    <!--./end desktop view -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>

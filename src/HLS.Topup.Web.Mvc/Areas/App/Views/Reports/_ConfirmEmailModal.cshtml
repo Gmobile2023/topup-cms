@@ -1,0 +1,27 @@
+@using HLS.Topup.Common;
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+
+@model HLS.Topup.Web.Areas.App.Models.Reports.ComaprePartnerEmailViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Gửi báo cáo"))
+
+<div class="modal-body">
+    <div id="ConfirmEmailTab">
+        <form name="ReponseConfirmEmailTab" role="form" novalidate class="form-validation">
+            <div class="card-body">
+                <div class="card card-custom gutter-b">
+                    <div>Bạn vui lòng nhập Email nhận báo cáo dữ liệu đối soát. Mỗi Email cách nhau dấu ";"  (*)</div>
+                    <br />
+                    <div class="col-md-12">
+                        <textarea class="form-control m-input" id="txtEmail" cols="40" rows="5" placeholder="Vui lòng nhập Email. Mỗi Email cách nhau dấu ';'"></textarea>
+                    </div>
+                    <input type="hidden" id="hdnAgentCode" value="@Model.AgentCode" />
+                    <input type="hidden" id="hdnFromDate" value="@Model.FromDateText" />
+                    <input type="hidden" id="hdnToDate" value="@Model.ToDateText" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

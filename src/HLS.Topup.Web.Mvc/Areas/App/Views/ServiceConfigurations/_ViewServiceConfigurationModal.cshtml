@@ -1,0 +1,52 @@
+﻿
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.ServiceConfigurations
+@model ServiceConfigurationViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ServiceConfigurationInformationsTab">
+        
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>Tên cấu hình dịch vụ :</h6>
+                @Model.ServiceConfiguration.Name.ToUpper()
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Trạng thái kênh :</h6>
+                @(Model.ServiceConfiguration.IsOpened ?"Mở":"Đóng")
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Priority") :</h6>
+                @Model.ServiceConfiguration.Priority
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>@L("Service") :</h6>
+                @Model.ServiceServicesName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Provider") :</h6>
+                @Model.ProviderName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Category")  :</h6>
+                @Model.CategoryCategoryName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Product") :</h6>
+                @Model.ProductProductName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("User") :</h6>
+                @Model.UserName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

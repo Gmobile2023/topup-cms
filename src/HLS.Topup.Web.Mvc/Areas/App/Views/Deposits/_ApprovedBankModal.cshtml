@@ -1,0 +1,27 @@
+@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Bạn có chắc chắn muốn duyệt giao dịch này?"))
+@model HLS.Topup.Web.Areas.App.Models.Deposits.ApprovedBankModalViewModel
+<div class="modal-body">
+    <div id="ApprovedBankInformationsTab">
+        <form name="ApprovedBankInformationsForm" role="form" novalidate class="form-validation">
+            <input type="hidden" name="transCode" id="transCode" value="@Model.TransCode"/>
+            <div class="row" style="display: flex; align-items: center;">
+                <div class="col-md-6">
+                    <h6>Mã giao dịch ngân hàng <span class="lightred">(*)</span></h6>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" id="txtTransCodeBank" name="transCodeBank" class="form-control m-input" maxlength="200" required>
+                    <p style="margin-bottom: 0; margin-top: 1rem;"><span class="lightred" id="ResponseError"></span></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer" style="justify-content: center;">
+    <button type="button" class="btn btn-light-primary font-weight-bold close-button" data-dismiss="modal">Hủy bỏ</button>
+    <button type="button" class="btn btn-primary approved-button"> <span>Đồng ý</span></button>
+</div>

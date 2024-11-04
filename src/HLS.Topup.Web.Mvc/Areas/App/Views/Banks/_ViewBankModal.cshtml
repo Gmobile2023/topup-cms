@@ -1,0 +1,46 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Banks
+@model BankViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="BankInformationsTab">
+        <div class="row">
+            <div class="col-6 mb-6">
+                <h6>@L("BankName") :</h6>
+                @Model.Bank.BankName
+            </div>
+            <div class="col-6 mb-6">
+                <h6>@L("ShortNameBank") :</h6>
+                @Model.Bank.ShortName
+            </div>
+            <div class="col-6 mb-6">
+                <h6>@L("BranchName") :</h6>
+                @Model.Bank.BranchName
+            </div>
+            <div class="col-6 mb-6">
+                <h6>@L("BankAccountName") :</h6>
+                @Model.Bank.BankAccountName
+            </div>
+            <div class="col-6 mb-6">
+                <h6>@L("BankAccountCode") :</h6>
+                @Model.Bank.BankAccountCode
+            </div>
+            <div class="col-6 mb-6">
+                <h6>@L("BankSmsPhoneNumber") :</h6>
+                @Model.Bank.SmsPhoneNumber
+            </div>
+            <div class="col-6 mb-6">
+                <h6>@L("BankSmsGatewayNumber") :</h6>
+                @Model.Bank.SmsGatewayNumber
+            </div>
+            <div class="col-6 mb-6">
+                <h6>@L("Status") :</h6>
+                @L("Enum_BankStatus_" + (int) Model.Bank.Status)
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

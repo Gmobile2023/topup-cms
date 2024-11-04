@@ -1,0 +1,96 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.CardBatchs
+@model CreateOrEditCardBatchModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditCardBatch")) : L("CreateNewCardBatch")))
+
+<div class="modal-body">
+    <div id="CardBatchInformationsTab">
+        <form name="CardBatchInformationsForm" role="form" novalidate class="form-validation">
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.CardBatch.Id"/>
+            }
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="providerCode">
+                            @L("Provider") <span class="lightred">(*)</span>
+                        </label>
+                        @Html.DropDownList("providerCode", new SelectList(Model.ProviderList, "Id", "DisplayName", (Model.IsEditMode ? Model.CardBatch.ProviderCode.ToString() : "")),
+                            @L("SelectAProvider"), new {@class = "select2 form-control"})
+                    </div>
+                </div>
+
+@*                 <div class="col-sm-6 col-xs-12"> *@
+@*                     <div class="form-group"> *@
+@*                         <label for="vendorCode"> *@
+@*                             @L("Categories") <span class="lightred">(*)</span> *@
+@*                         </label> *@
+@*                         @Html.DropDownList("vendorCode", new SelectList(Model.VendorList, "Id", "DisplayName", (Model.IsEditMode ? Model.CardBatch.VendorCode.ToString() : "")), *@
+@*                             @L("SelectACategory"), new {@class = "select2 form-control"}) *@
+@*                     </div> *@
+@*                 </div> *@
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="CardBatch_BatchCode">
+                            @L("BatchCode") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="CardBatch_BatchCode" value="@Model.CardBatch.BatchCode" type="text" name="batchCode" required maxlength="@HLS.Topup.StockManagement.CardBatchConsts.MaxBatchCodeLength" minlength="@HLS.Topup.StockManagement.CardBatchConsts.MinBatchCodeLength"/>
+                    </div>
+                </div>
+
+                @* <div class="col-sm-6 col-xs-12"> *@
+                @*     <label for="CardBatch_BatchName">@L("BatchName")</label> *@
+                @*     <input class="form-control" id="CardBatch_BatchName" value="@Model.CardBatch.BatchName" type="text" name="batchName" required maxlength="@HLS.Topup.StockManagement.CardBatchConsts.MaxBatchNameLength" minlength="@HLS.Topup.StockManagement.CardBatchConsts.MinBatchNameLength"/> *@
+                @* </div> *@
+
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="CardBatch_CreatedDate">
+                            @L("CreatedDate") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input date-picker" id="CardBatch_CreatedDate" type="text" name="createdDate" value="@Model.CardBatch.CreatedDate"/>
+                    </div>
+                </div>
+                @* <div class="col-sm-4"> *@
+                @*     <div class="form-group"> *@
+                @*         <label for="BatchAirtime_Discount">@L("Discounted")</label> *@
+                @*         <input class="form-control m-input percentage-mask" id="BatchAirtime_Discount" *@
+                @*                value="@Model.CardBatch.Discount.ToString(CultureInfo.InvariantCulture)" required type="text" name="discount"/> *@
+                @*     </div> *@
+                @* </div> *@
+
+                @{
+                    var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.CardPackageStatus)).Where(x => x.Value != "3" || x.Value != "99");
+                    foreach (var selectOption in selectListStatus)
+                    {
+                        selectOption.Text = L("Enum_CardPackageStatus_" + selectOption.Value);
+                    }
+                }
+                <div class="col-sm-6 col-xs-12 m-form__group">
+                    <div class="form-group">
+                        <label for="CardBatch_Status">@L("Status")</label>
+                        <select class="form-control m-input m-input--square" name="status" id="CardBatch_Status" asp-for="@Model.CardBatch.Status" asp-items="@selectListStatus">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label for="CardBatch_Description">@L("Description")</label>
+                        <textarea rows="3" class="form-control"  name="description" id="CardBatch_Description" maxlength="@HLS.Topup.StockManagement.CardBatchConsts.MaxDescriptionLength">@Model.CardBatch.Description</textarea>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

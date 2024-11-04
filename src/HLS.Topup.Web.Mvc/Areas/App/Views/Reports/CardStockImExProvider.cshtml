@@ -1,0 +1,145 @@
+﻿@using HLS.Topup.Web.Areas.App.Startup
+@model HLS.Topup.Web.Areas.App.Models.CardStocks.CardStocksViewModel
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.ReportCardStockImExProvider;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/Reports/CardStockImExProvider.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title="Báo cáo" description="Báo cáo nhập xuất tồn theo sản phẩm">
+        <button id="ExportToExcelButton" class="btn btn-outline-success">
+            <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+        </button>
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                <div id="AdvacedAuditFiltersArea" class="row mb-4 filter-block-header">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="FromFilter">Thời gian từ</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MinValue")" value="@DateTime.Now.ToShortDateString()" id="fromDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="FromFilter">Thời gian tới</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MaxValue")" value="@DateTime.Now.ToShortDateString()" id="toDate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="StockCode">@L("StockCode")</label>
+                            <select class="form-control" name="StockCode" id="StockCode">
+                                <option value="STOCK_TEMP">Kho tạm</option>
+                                <option value="STOCK_SALE">Kho bán thẻ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="selectService">Dịch vụ</label>
+                            <select class="form-control" name="selectService" id="selectService">
+                                <option value="">Tất cả</option>
+                                <option value="PIN_CODE">Mua mã thẻ</option>
+                                <option value="PIN_DATA">Mua thẻ Data</option>
+                                <option value="PIN_GAME">Mua thẻ Game</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="selectCategory">Loại sản phẩm</label>
+                            <select class="form-control" name="selectCategory" id="selectCategory">
+                                <option value="">Chọn loại sản phẩm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="Product">Sản phẩm</label>
+                            <select id="selectProduct" name="selectProduct" class="form-control select2" required>
+                                <option value="">Chọn sản phẩm</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="Provider">Nhà cung cấp</label>
+                            <select id="selectProvider" name="selectProvider" class="form-control select2" required>
+                                <option value="">Tất cả</option>
+                                @foreach (var x in Model.Providers)
+                                {
+                                    <option value="@(x.Value)">@(x.DisplayText)</option>
+                                }
+                            </select>
+                        </div>
+                    </div>                 
+                    <div class="col-md-12"></div>
+                    <div class="col-md-4">
+                        <div class="euiFlexItem euiFlexItem--flexGrowZero">
+                            <span class="euiToolTipAnchor">
+                                <button id="GetProvidersButton" class="euiButton euiButton--primary euiSuperUpdateButton euiButton--fill" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.271 11.978l3.872 3.873a.502.502 0 00.708 0 .502.502 0 000-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 004.949 2.05.5.5 0 000-1 5.96 5.96 0 01-4.242-1.757 6.01 6.01 0 010-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 010 8.486.5.5 0 00.034.738z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Tìm kiếm</span>
+                                    </span>
+                                </button>
+
+                                <button class="euiButton-reset euiButton--primary" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon-reset euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.228 2.942a.5.5 0 11-.538.842A5 5 0 1013 8a.5.5 0 111 0 6 6 0 11-2.772-5.058zM14 1.5v3A1.5 1.5 0 0112.5 6h-3a.5.5 0 010-1h3a.5.5 0 00.5-.5v-3a.5.5 0 111 0z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Đặt lại</span>
+                                    </span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="ProvidersTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th colspan="3">Tổng cộng</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>Dịch vụ</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Mệnh giá</th>
+                            <th>Tồn đầu</th>
+                            <th>Nhập từ NCC</th>
+                            <th>Nhập từ kho khác</th>
+                            <th>Xuất bán</th>
+                            <th>Xuất cho kho khác</th>
+                            <th>Tồn cuối</th>
+                            <th>Tồn hiện tại</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

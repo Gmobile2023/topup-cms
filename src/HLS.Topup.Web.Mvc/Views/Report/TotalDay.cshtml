@@ -1,0 +1,82 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutFull.cshtml";
+}
+@model HLS.Topup.Web.Models.Report.ReportViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Report_TotalDay;
+    ViewBag.Title = "Báo cáo tổng hợp theo ngày";
+    ViewBag.ImageTitle = "/themes/topup/images/synthesis-report.svg";
+}
+
+@section Scripts
+{
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Views/Report/TotalDay.js" asp-append-version="true"></script>
+}
+
+<div class="report-detail">
+    <div class="page-title text-right">
+        <a href="javascript:;" onclick="Sv.goBackHistory()">
+            <button class="btn-file-export" style="float: left !important;">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i> @L("Back")
+            </button>
+        </a>
+        <div class="add-button">
+            <button id="ExportToExcelButton" class=" btn-file-export">
+                <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+            </button>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="row">
+            <div class="col-md-4 col-xs-5 col-xs-100">
+                <div class="form-group">
+                    <label for="FromDateFilterId">Thời gian từ:</label>
+                    <div class="dis-flex" style="display: flex;">
+                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="FromDateFilterId">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-5 col-xs-100">
+                <div class="form-group">
+                    <label for="FromDateFilterId">Thời gian tới:</label>
+                    <div class="dis-flex" style="display: flex;">
+                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="ToDateFilterId">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-2">
+                <div class="form-group align-items-center">
+                    <div class="input-group" style="margin-top:25px">
+                        <span class="input-group-btn">
+                            <button id="btnSearch" class="btn btn-success btn-blue btn-search-icon" type="submit" style="height: 39px; border-radius: 3px;">
+                                <i class="flaticon-search-1" aria-label="@L("Search")"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-md-12">
+                <div class="tb-transaction-history">
+                    <table id="Table" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>                         
+                            <tr>
+                                <th></th>
+                                <th class="text-center">Ngày</th>
+                                <th class="text-center">Số dư đầu kỳ</th>
+                                <th class="text-center">PS.Tăng - Nạp tiền</th>
+                                <th class="text-center">PS.Tăng - Khác</th>
+                                <th class="text-center">PS.Giảm - Bán hàng</th>
+                                <th class="text-center">PS.Giảm - Khác</th>
+                                <th class="text-center">Số dư cuối kỳ</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

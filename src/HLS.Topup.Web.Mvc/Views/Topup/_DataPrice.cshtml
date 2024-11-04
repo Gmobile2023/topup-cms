@@ -1,0 +1,50 @@
+@using HLS.Topup.Web.TagHelpers
+@model List<HLS.Topup.Dtos.Discounts.ProductDiscountDto>
+<div class="row row10">
+    <ul class="form-group-radio grid4" tabindex="2">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="radio radio-btn">
+                    <label class="label-height-auto">
+                        <div class="radio-btn-upperlogo"></div>
+                        <input type="radio" name="cardPrice"
+                               data-productcode="@item.ProductCode"
+                               data-amount="@item.ProductValue.ToString("###")"
+                               value="@item.ProductValue.ToString("###")"
+                               class="ng-pristine ng-untouched ng-valid">
+                        <div style="color: #023f88;">@item.ProductValue.ToFormat()</div>
+                        <span class="checkbox-custom"></span>
+                    </label>
+                </div>
+                <p class="card-note" data-state="false">
+                    @{
+                        var salePrice = item.ProductValue - item.DiscountAmount;
+                    }
+                    <a class="eye-view-card" href="javascript:;">
+                        <span class="card-note__name" style="display: none;">Giá: </span><span class="card-note__price animate__fadeInTopLeft" style="display: none;"><strong style="color: #ED1C24; padding-left: 5px;">@item.PaymentAmount.ToFormat()</strong></span>
+                        <span class="text-view">Giá bán</span> <i class="las la-eye la-2x" style="padding-left: 5px;"></i>
+                    </a>
+                    <span class="card-note__name" style="display: none;">Giá: </span><span class="card-note__price animate__fadeInTopLeft" style="display: none;">@item.PaymentAmount.ToFormat()</span>
+                </p>
+            </li>
+        }
+    </ul>
+</div>
+<script >
+    // Con mắt âm dương
+    $(document).ready(function() {
+        let i = 0, timeOut = 0;
+      
+        $('.eye-view-card').on('mousedown touchstart', function(e) {
+            $(this).find('.text-view').hide();
+            $(this).find('.card-note__name, .card-note__price').show();
+            timeOut = setInterval(function(){
+            }, 100);
+        }).bind('mouseup mouseleave touchend', function() {
+            $(this).find('.text-view').show();
+            $(this).find('.card-note__name, .card-note__price').hide();
+            clearInterval(timeOut);
+        });
+    });
+</script>

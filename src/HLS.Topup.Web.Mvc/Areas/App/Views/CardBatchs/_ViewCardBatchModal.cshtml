@@ -1,0 +1,73 @@
+﻿@using HLS.Topup.Common
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.CardBatchs
+@using ServiceStack
+@model CardBatchViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="CardBatchInformationsTab">
+
+        <div class="row">
+
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <h6>@L("BatchCode") :</h6>
+                @Model.CardBatch.BatchCode
+            </div>
+
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <h6>@L("Provider") :</h6>
+                @Model.CardBatch.ProviderCode - @Model.CardBatch.ProviderName
+            </div>
+            
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <h6>@L("CreatedDate") :</h6>
+                @Model.CardBatch.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")
+            </div>
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <h6>@L("Status") :</h6>
+                @L("Enum_CardPackageStatus_" + (int) Model.CardBatch.Status)
+            </div>
+
+
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <h6>@L("TotalQuantity") :</h6>
+                @Model.CardBatch.TotalQuantity.ToFormat("")
+            </div>
+
+            <div class="col-sm-6 col-xs-12 mb-3">
+                <h6>@L("TotalAmount") :</h6>
+                @(Model.CardBatch.TotalAmount > 0 ? Model.CardBatch.TotalAmount.ToFormat("đ") : "0")
+            </div>
+
+
+        </div>
+
+
+        <div class="row align-items-center">
+            <div class="col-sm-12">
+                <table id="ProductTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                    <tr> 
+                        <th>@L("Service")</th> 
+                        <th>@L("Category")</th> 
+                        <th>@L("Product")</th> 
+                        <th>@L("CardValue")</th>
+                        <th>@L("QuantityRequest")</th>
+                        <th>@L("QuantityImport")</th>
+                        <th>@L("Discounted")</th>
+                        <th>@L("Amount")</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <script type="text/javascript"> window.cardBatchItems = @Html.Raw(Model.CardBatch.StockBatchItems.ToJson())</script>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

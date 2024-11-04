@@ -1,0 +1,44 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutAccount.cshtml";
+    ViewBag.Title = "Thông báo hệ thống";
+}
+<div class="topup-napdanhsach">
+    <div class="page-body">
+        <div class="transfer-info">
+            <div class="row inputs">
+                <div class="col-sm-12 text-center">
+                    <p class="text-center icon-error">
+                        <i class="fas fa-times"></i>
+                    </p>
+                    <h1 class="success-title">Thông báo dịch vụ tạm dừng</h1>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-offset-2 col-md-8 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
+                    <p class="text-center">
+                        <span>Xin lỗi! Dịch vụ này đang tạm đóng. Xin vui lòng quay lại sau</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <a href="#" onclick="back()" class="color-blue">
+                        Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+    function  back() {
+      window.history.back();
+    }
+    </script>
+}

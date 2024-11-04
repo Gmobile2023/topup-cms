@@ -1,0 +1,175 @@
+﻿@using HLS.Topup.Common;
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Discounts
+@model CreateOrEditDiscountModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditDiscount")) : L("CreateNewDiscountTitle")))
+
+<div class="modal-body">
+    <div id="DiscountInformationsTab">
+        <form name="DiscountInformationsForm" role="form" novalidate class="form-validation">
+            @if (Model.IsEditMode || Model.IsViewMode)
+            {
+                <input type="hidden" name="id" id="txtId" value="@Model.Discount.Id"/>
+            }
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Discount_Name">
+                            @L("DiscountPolicyName") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" disabled="@Model.IsViewMode" id="Discount_Name" value="@Model.Discount.Name" type="text" name="name" required maxlength="@HLS.Topup.DiscountManager.DiscountConsts.MaxNameLength" minlength="@HLS.Topup.DiscountManager.DiscountConsts.MinNameLength"/>
+                    </div>
+                </div>
+            </div>
+            @{
+                var selectListAgentType = Html.GetEnumSelectList(typeof(CommonConst.AgentType));
+                selectListAgentType = selectListAgentType.Where(x => x.Value != "99").ToList();
+                foreach (var selectOption in selectListAgentType)
+                {
+                    selectOption.Text = L("Enum_AgentType_" + selectOption.Value);
+                }
+            }
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Discount_AgentType">
+                            @L("DiscountPolicyAgentType") <span class="lightred">(*)</span>
+                        </label>
+                        <select disabled="@Model.IsViewMode" class="form-control m-input m-input--square" name="agentType" id="Discount_AgentType" asp-for="@Model.Discount.AgentType" asp-items="@selectListAgentType"></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        @if (Model.IsViewMode)
+                        {
+                            <label for="UserId">Đại lý áp dụng</label>
+                            <input type="text" class="form-control" name="userId" value="@Model.UserName" disabled="disabled"/>
+                        }
+                        else
+                        {                         
+                            <select id="UserId" name="listUserId" class="form-control" multiple>
+                                @if (Model.Discount.UserId > 0)
+                                {
+                                    <option value="@Model.Discount.UserId">@Model.UserName</option>
+                                }
+                            </select>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Discount_FromDate">
+                            @L("FromDateRange") <span class="lightred">(*)</span>
+                        </label>
+                        <input disabled="@Model.IsViewMode" class="form-control m-input date-picker" id="Discount_FromDate" type="text" name="fromDate" value=""/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Discount_ToDate">
+                            @L("ToDateRange") <span class="lightred">(*)</span>
+                        </label>
+                        <input disabled="@Model.IsViewMode" class="form-control m-input date-picker" id="Discount_ToDate" type="text" name="toDate" value=""/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12" style="margin: 10px 0;">
+                    <strong>Chọn hình thức thêm sản phẩm</strong>
+                </div>
+                <div class="col-md-3" style="margin: 5px 0;">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="selectionRadioOptions" id="productMode" value="productMode" checked>
+                        <label class="form-check-label" for="productMode">Chọn theo danh mục sản phẩm</label>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin: 5px 0;">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="selectionRadioOptions" id="importMode" value="importMode">
+                        <label class="form-check-label" for="importMode">Import danh sách</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding: 15px 0;" id="productModeBlock">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ServiceSelect">
+                            @L("LimitProducts_Service") <span class="lightred">(*)</span>
+                        </label>
+                        @Html.DropDownList("service", new SelectList(Model.DiscountServiceList, "Code", "DisplayName", (Model.IsEditMode ? "" : "")), @L("SelectAService"), new {@id = "ServiceSelect", @class = "form-control select2"})
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ProductType">
+                            @L("LimitProducts_ProductType") <span class="lightred">(*)</span>
+                        </label>
+                        <select class="form-control select2" name="productType" id="ProductType" multiple disabled>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ProductList">@L("LimitProducts_Product")</label>
+                        <select class="form-control select2" name="productList" id="ProductList" multiple disabled>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button id="AddProductsButton" class="btn btn-primary" type="button" style="margin-top: 25px;">
+                        <i class="flaticon-plus"></i> Thêm
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" id="importModeBlock" style="padding: 15px 0; display: none;">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="importCardsFromExcel" style="color:red">
+                            @L("PayBacks_Choose_File") <span class="lightred">(*)</span>
+                        </label>
+                        <label class="form-control" style="width: 100%">
+                            <span >Chọn file</span>
+                            <input id="ImportFromExcel" class="hidden" type="file" name="files" accept=".xlsx, .xls, .csv">
+                        </label>
+                        <div class="form-group">
+                            <a target="_blank" href="/assets/SampleFiles/ImportCSChietKhau.xlsx">@L("File Mau Import")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="display table table-striped table-bordered table-hover dt-responsive nowrap" id="productDiscoutTable">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 5%" class="text-center">STT</th>
+                            <th scope="col" style="width: 20%" class="text-center">Danh mục sản phẩm</th>
+                            <th scope="col" style="width: 15%" class="text-center">Sản phẩm</th>
+                            <th scope="col" style="width: 20%" class="text-center">Mệnh giá</th>
+                            <th scope="col" style="width: 20%" class="text-center">Chiết khấu (%)</th>
+                            <th scope="col" style="width: 20%" class="text-center">Số tiền</th>
+                            <th scope="col" style="width: 20%" class="text-center"></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@if (Model.IsViewMode)
+{
+    @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+}
+else
+{
+    @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+}

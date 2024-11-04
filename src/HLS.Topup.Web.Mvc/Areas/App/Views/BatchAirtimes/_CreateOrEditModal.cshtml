@@ -1,0 +1,70 @@
+@using HLS.Topup.StockManagement;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.BatchAirtimes
+@model CreateOrEditBatchAirtimeModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditBatchAirtime")) : L("CreateNewBatchAirtime")))
+
+<div class="modal-body">
+    <div id="BatchAirtimeInformationsTab">
+        <form name="BatchAirtimeInformationsForm" role="form" novalidate class="form-validation">
+            <div class="row">
+                @if (Model.IsEditMode)
+                {
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="BatchAirtime_BatchCode">@L("BatchCode")</label>
+                            <input class="form-control" id="BatchAirtime_BatchCode" disabled value="@Model.BatchAirtime.BatchCode" type="text" name="batchCode"/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="">@L("Status")</label>
+                            <input class="form-control" id="" disabled value="@L("Enum_StocksAirtimeStatus_" + (byte) Model.BatchAirtime.Status)" type="text" name="status_name"/>
+                        </div>
+                    </div>
+                }
+                <input value="@Model.BatchAirtime.Status" type="hidden" name="status"/>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="providerCode">@L("ProviderCode")</label>
+                        @Html.DropDownList("providerCode", new SelectList(Model.ProviderList, "Id", "DisplayName", (Model.IsEditMode ? Model.BatchAirtime.ProviderCode.ToString() : "")),
+                            @L("SelectAProvider"), new {@class = "select2 form-control"})
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="BatchAirtime_Amount">@L("Amount")</label>
+                        <input class="form-control m-input amount-mask" id="BatchAirtime_Amount"
+                               value="@Model.BatchAirtime.Amount.ToString("####")" required type="text" name="amount"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="BatchAirtime_Discount">@L("Discounted")</label>
+                        <input class="form-control m-input percentage-mask" id="BatchAirtime_Discount"
+                               value="@Model.BatchAirtime.Discount.ToString(CultureInfo.InvariantCulture)" required type="text" name="discount"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="BatchAirtime_Airtime">@L("Airtime")</label>
+                        <input class="form-control m-input amount-mask" id="BatchAirtime_Airtime" disabled=""
+                               value="@Model.BatchAirtime.Airtime.ToString("####")" required type="text" name="airtime"/>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

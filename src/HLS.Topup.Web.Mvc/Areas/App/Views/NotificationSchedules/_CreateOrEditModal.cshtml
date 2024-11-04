@@ -1,0 +1,92 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.NotificationSchedules
+@using HLS.Topup.Common
+@model CreateOrEditNotificationScheduleModalViewModel
+<link href="~/Plugins/atwho/jquery.atwho.css" rel="stylesheet"/>
+<script src="~/Plugins/atwho/jquery.atwho.js"></script>
+<script src="~/Plugins/atwho/jquery.caret.js"></script>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditNotificationSchedule")) : L("CreateNewNotificationSchedule")))
+
+<div class="modal-body">
+    <div id="NotificationScheduleInformationsTab">
+        <form name="NotificationScheduleInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.NotificationSchedule.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="NotificationSchedule_Name">Tên thông báo</label>
+                <input class="form-control" id="NotificationSchedule_Name" value="@Model.NotificationSchedule.Name" type="text" name="name" required maxlength="@HLS.Topup.Notifications.NotificationScheduleConsts.MaxNameLength" minlength="@HLS.Topup.Notifications.NotificationScheduleConsts.MinNameLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="NotificationSchedule_Title">@L("Title")</label>
+                <input class="form-control" id="NotificationSchedule_Title" value="@Model.NotificationSchedule.Title" type="text" name="title" required maxlength="@HLS.Topup.Notifications.NotificationScheduleConsts.MaxTitleLength" minlength="@HLS.Topup.Notifications.NotificationScheduleConsts.MinTitleLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="NotificationSchedule_Body">@L("Body") @("Gõ @ để thêm các tham số cần gửi thông báo")</label>
+                <textarea class="form-control" id="NotificationSchedule_Body" type="text" name="body" required maxlength="@HLS.Topup.Notifications.NotificationScheduleConsts.MaxBodyLength" minlength="@HLS.Topup.Notifications.NotificationScheduleConsts.MinBodyLength">@Model.NotificationSchedule.Body</textarea>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    @{
+                        var selectListAgentType = Html.GetEnumSelectList(typeof(CommonConst.AgentType));
+                        foreach (var selectOption in selectListAgentType)
+                        {
+                            selectOption.Text = L("Enum_AgentType_" + selectOption.Value);
+                        }
+                    }
+                    <div class="form-group m-form__group">
+                        <label for="NotificationSchedule_AgentType">@L("AgentType")</label>
+                        <select class="form-control m-input m-input--square" name="agentType" id="NotificationSchedule_AgentType" asp-for="@Model.NotificationSchedule.AgentType" asp-items="@selectListAgentType.Where(x=>x.Value!="99")">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    @* <div class="form-group"> *@
+                    @*     <label for="userId">Đại lý áp dụng: @(Model.UserName)</label> *@
+                    @*     <select class="form-control" id="userId"> *@
+                    @*     </select> *@
+                    @* </div> *@
+
+                    <div class="form-group">
+                        <label for="userId">Đại lý</label>
+                        @Html.DropDownList("userId", new SelectList(Model.NotificationScheduleUserList, "Id", "DisplayName", (Model.IsEditMode ? Model.NotificationSchedule.UserId.ToString() : "")), @L("SelectAUser"), new {@class = "form-control select2"})
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="NotificationSchedule_DateSchedule">@L("DateSchedule")</label>
+                        <input class="form-control m-input date-picker" id="NotificationSchedule_DateSchedule" type="text" name="dateSchedule" value="@Model.NotificationSchedule.DateSchedule"/>
+                    </div>
+                </div>
+            </div>
+
+            @*             @{ *@
+            @*                 var selectListAccountType = Html.GetEnumSelectList(typeof(CommonConst.SystemAccountType)); *@
+            @*                 foreach (var selectOption in selectListAccountType) *@
+            @*                 { *@
+            @*                     selectOption.Text = L("Enum_SystemAccountType_" + selectOption.Value); *@
+            @*                 } *@
+            @*             } *@
+            @* <div class="form-group m-form__group"> *@
+            @*     <label for="NotificationSchedule_AccountType">@L("AccountType")</label> *@
+            @*     <select class="form-control m-input m-input--square" name="accountType" id="NotificationSchedule_AccountType" asp-for="@Model.NotificationSchedule.AccountType" asp-items="@selectListAccountType"> *@
+            @*     </select> *@
+            @* </div> *@
+
+            <div class="form-group">
+                <label for="NotificationSchedule_Description">@L("Description")</label>
+                <textarea class="form-control" id="NotificationSchedule_Description" type="text" name="description" maxlength="@HLS.Topup.Notifications.NotificationScheduleConsts.MaxDescriptionLength" minlength="@HLS.Topup.Notifications.NotificationScheduleConsts.MinDescriptionLength">@Model.NotificationSchedule.Description</textarea>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

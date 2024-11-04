@@ -1,0 +1,114 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Banks
+@model CreateOrEditBankModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditBank")) : L("CreateNewBank")))
+
+<div class="modal-body">
+    <div id="BankInformationsTab">
+        <form name="BankInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.Bank.Id"/>
+            }
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Bank_BankName">
+                            @L("BankName") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Bank_BankName" value="@Model.Bank.BankName" type="text" name="bankName" required maxlength="@HLS.Topup.Banks.BankConsts.MaxBankNameLength" minlength="@HLS.Topup.Banks.BankConsts.MinBankNameLength" spellcheck="false"/>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="Bank_ShortName">
+                            @L("ShortNameBank") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Bank_ShortName" value="@Model.Bank.ShortName" type="text" name="shortName" required/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Bank_BranchName">
+                            @L("BranchName") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Bank_BranchName" value="@Model.Bank.BranchName" type="text" name="branchName" required maxlength="@HLS.Topup.Banks.BankConsts.MaxBranchNameLength" minlength="@HLS.Topup.Banks.BankConsts.MinBranchNameLength" spellcheck="false"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Bank_BankAccountName">
+                            @L("BankAccountName") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Bank_BankAccountName" value="@Model.Bank.BankAccountName" type="text" name="bankAccountName" required maxlength="@HLS.Topup.Banks.BankConsts.MaxBankAccountNameLength" minlength="@HLS.Topup.Banks.BankConsts.MinBankAccountNameLength"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Bank_BankAccountCode">
+                            @L("BankAccountCode") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Bank_BankAccountCode" value="@Model.Bank.BankAccountCode" type="text" name="bankAccountCode" required maxlength="@HLS.Topup.Banks.BankConsts.MaxBankAccountCodeLength" minlength="@HLS.Topup.Banks.BankConsts.MinBankAccountCodeLength"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Bank_SmsPhoneNumber">
+                            @L("BankSmsPhoneNumber")
+                        </label>
+                        <input class="form-control" id="Bank_SmsPhoneNumber" value="@Model.Bank.SmsPhoneNumber" type="text" name="smsPhoneNumber" maxlength="30"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Bank_SmsGatewayNumber">
+                            @L("BankSmsGatewayNumber")
+                        </label>
+                        <input class="form-control" id="Bank_SmsGatewayNumber" value="@Model.Bank.SmsGatewayNumber" type="text" name="smsGatewayNumber" maxlength="30"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    @{
+                        var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.BankStatus));
+                        foreach (var selectOption in selectListStatus)
+                        {
+                            selectOption.Text = L("Enum_BankStatus_" + selectOption.Value);
+                        }
+                    }
+                    <div class="form-group m-form__group">
+                        <label for="Bank_Status">@L("Status")</label>
+                        <select class="form-control m-input m-input--square" name="status" id="Bank_Status" asp-for="@Model.Bank.Status" asp-items="@selectListStatus">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @await Html.PartialAsync("Components/UploadFile/_UploadImages", Model.Bank.Images)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Bank_Description">@L("Description")</label>
+                <textarea class="form-control" id="Bank_Description" value="@Model.Bank.Description" type="text" name="description" rows="5" spellcheck="false"></textarea>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

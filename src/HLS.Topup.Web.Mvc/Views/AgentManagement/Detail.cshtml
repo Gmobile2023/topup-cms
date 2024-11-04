@@ -1,0 +1,166 @@
+@{
+    Layout = $"~/Views/Layout/_LayoutProfile.cshtml";
+}
+@model HLS.Topup.Web.Models.Account.SubAgentManagementDto
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.SubAgentManagementDetail;
+
+    ViewBag.Title = "Thêm mới đại lý";
+    ViewBag.ImageTitle = "/themes/topup/images/user-manager-white.svg";
+}
+
+@if (Model.IsEditMode)
+{
+    ViewBag.Title = "Sửa thông tin đại lý: " + Model.AccountInfo.AccountCode;
+    ViewBag.ImageTitle = "/themes/topup/images/user-manager-white.svg";
+}
+@if (Model.IsViewMode)
+{
+    ViewBag.Title = "Thông tin đại lý: " + Model.AccountInfo.AccountCode;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/AgentManagement/Detail.js" asp-append-version="true"></script>
+}
+
+<div class="section-body-middle box-staff-manager" id="create-staff-page" style="min-height: 100%;">
+    <div class="section-body-middle-form-p1" style="padding:20px">
+        <form id="create-agent-form" autocomplete="off">
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.AccountInfo.UserId">
+            }
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="PhoneNumber" class="title sm-margin">
+                            SỐ ĐIỆN THOẠI<span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="PhoneNumber" maxlength="10" required value="@Model.AccountInfo.PhoneNumber" disabled="@Model.IsEditMode" type="text" name="phoneNumber"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Surname" class="title sm-margin">
+                            HỌ <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Surname" value="@Model.AccountInfo.Surname" disabled="@Model.IsViewMode" type="text" name="surname" required maxlength="15"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Name" class="title sm-margin">
+                            TÊN <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Name" value="@Model.AccountInfo.Name" disabled="@Model.IsViewMode" type="text" name="name" required maxlength="15"/>
+                    </div>
+                </div>
+            </div>
+
+            @if (!Model.IsEditMode)
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="title sm-margin">
+                                MẬT KHẨU<span class="lightred">(*)</span>
+                            </label>
+                            <input id="NewPassword" type="password" autocomplete="new-password" name="Password" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="title sm-margin">
+                                NHẬP LẠI MẬT KHẨU<span class="lightred">(*)</span>
+                            </label>
+                            <input id="NewPasswordRepeat" type="password" autocomplete="new-password" name="NewPasswordRepeat" class="form-control" required equalto="#NewPassword">
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="cityId" class="title sm-margin">
+                            TỈNH/TP<span class="lightred">(*)</span>
+                        </label>
+                        <select required class="form-control" data-id="@Model.AccountInfo.CityId" disabled="@Model.IsViewMode" name="cityId" id="cityId"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="districtId" class="title sm-margin">
+                            QUẬN/HUYỆN<span class="lightred">(*)</span>
+                        </label>
+                        <select class="form-control" required data-id="@Model.AccountInfo.DistrictId" disabled="@Model.IsViewMode" name="districtId" id="districtId"></select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="wardId" class="title sm-margin">
+                            PHƯỜNG/XÃ<span class="lightred">(*)</span>
+                        </label>
+                        <select class="form-control" required data-id="@Model.AccountInfo.WardId" disabled="@Model.IsViewMode" name="wardId" id="wardId"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Address" class="title sm-margin">
+                            Địa chỉ chi tiết<span class="lightred">(*)</span>
+                        </label>
+                        <textarea required maxlength="200"  class="form-control" disabled="@Model.IsViewMode" id="Address" name="address">@Model.AccountInfo.Address</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="" class="title sm-margin">
+                            <span class="receiver-info-code">Trạng thái</span>
+                        </label>
+                        <div class="form-group-wrap" style="margin-top:9px">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="isActive" id="status1" value="true" checked="@Model.AccountInfo.IsActive">
+                                        <label class="form-check-label" for="status1">Hoạt động</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="isActive" id="status0" value="false" checked="@(!Model.AccountInfo.IsActive)">
+                                        <label class="form-check-label" for="status0">Khoá</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Description" class="title sm-margin">
+                            Ghi chú
+                        </label>
+                        <textarea maxlength="200" class="form-control" disabled="@Model.IsViewMode" id="Description" name="description">@Model.AccountInfo.Desscription</textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="section-body-middle-form-p2">
+        <div class="row">
+            <div tabindex="12" class="col-md-12 text-center">
+                <button type="button" onclick="Sv.goBackHistory()" class="button btn-custom btn-grey">Quay lại</button>
+                @if (!Model.IsViewMode)
+                {
+                    <button type="button" id="btnSave" class="button btn-custom btn-blue btn-handle">Lưu</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

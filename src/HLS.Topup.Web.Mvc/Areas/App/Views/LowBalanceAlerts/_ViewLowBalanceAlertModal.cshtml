@@ -1,0 +1,42 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.LowBalanceAlerts
+@model BalanceAlertViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="LowBalanceAlertInformationsTab">
+        <div class="row">
+            <div class="col-md-12 mb-5">
+                <h6>@L("AccountCode")</h6>
+                @Model.LowBalanceAlert.AccountCode
+            </div>
+            <div class="col-md-12 mb-5">
+                <h6>@L("AccountName")</h6>
+                @Model.LowBalanceAlert.AccountName
+            </div>
+            <div class="col-md-12 mb-5">
+                <h6>@L("BalanceGetsLower")</h6>
+                @Model.LowBalanceAlert.MinBalance.ToString("N0")
+            </div>
+            <div class="col-md-12 mb-5">
+                <h6>@L("TelegramGroup")</h6>
+                @(Model.LowBalanceAlert.Channel ?? "Telegram")
+            </div>
+            <div class="col-md-12 mb-5">
+                <h6>@L("AlertChannel")</h6>
+                @Model.LowBalanceAlert.TeleChatId
+            </div>
+            <div class="col-md-12 mb-5">
+                <h6>@L("Status")</h6>
+                @(Model.LowBalanceAlert?.IsRun == true ? "Kích hoạt" : "Không kích hoạt")
+            </div>
+            <div class="col-md-12 mb-5">
+                <h6>@L("DateCreated")</h6>
+                @Model.LowBalanceAlert.CreatedDate?.ToString("dd/MM/yyyy hh:mm:ss")
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

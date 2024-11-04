@@ -1,0 +1,165 @@
+﻿@using HLS.Topup.Authorization
+@using HLS.Topup.Web.Areas.App.Models.SaleClearDebts
+@using HLS.Topup.Web.Areas.App.Startup
+@model SaleClearDebtsViewModel
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.SaleClearDebts;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/SaleClearDebts/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title="@L("SaleClearDebts")" description="@L("SaleClearDebtsHeaderInfo")">
+        <button id="ExportToExcelButton" class="btn btn-outline-success">
+            <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+        </button>
+
+        @if (IsGranted(AppPermissions.Pages_SaleClearDebts_Create))
+        {
+            <button id="CreateNewSaleClearDebtButton" class="btn btn-primary blue">
+                <i class="fa fa-plus"></i> @L("CreateNewSaleClearDebt")
+            </button>
+        }
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                @* <div class="form"> *@
+                @*     <div class="row align-items-center mb-4"> *@
+                @*         <div class="col-xl-12"> *@
+                @*             <div class="form-group align-items-center"> *@
+                @*                 <div class="input-group"> *@
+                @*                     <input type="text" id="SaleClearDebtsTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText"> *@
+                @*                     <span class="input-group-btn"> *@
+                @*                         <button id="GetSaleClearDebtsButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1"></i></button> *@
+                @*                     </span> *@
+                @*                 </div> *@
+                @*             </div> *@
+                @*         </div> *@
+                @*     </div> *@
+                @* </div> *@
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4 filter-block-header">
+                    <div class="col-md-12">
+                        <div class="kt-separator kt-separator--border-dashed"></div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="MinApprovedDateFilterId">Thời gian</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MinValue")" id="FromDateFilter">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MaxValue")" id="ToDateFilter">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="UserId">Nhân viên</label>
+                            <select id="UserId" name="UserNameFilterId" class="form-control ignore select2"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="TransCodeFilterId">Mã giao dịch</label>
+                            <input type="text" class="form-control" name="TransCodeFilter" id="TransCodeFilterId">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="TransCodeBank">Mã giao dịch ngân hàng</label>
+                            <input type="text" class="form-control" name="TransCodeBank" id="TransCodeBank">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="TypeFilterId">Hình thức thanh toán</label>
+                        <select class="form-control" name="TypeFilter" id="TypeFilterId">
+                            <option value="-1">@L("All")</option>
+                            <option value="1">@L("Enum_ClearDebtType_1")</option>
+                            <option value="2">@L("Enum_ClearDebtType_2")</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="StatusId">Tình trạng</label>
+                        <select class="form-control" name="StatusFilter" id="StatusFilterId">
+                            <option value="-1">@L("All")</option>
+                            <option value="0">@L("Enum_ClearDebtStatus_0")</option>
+                            <option value="1">@L("Enum_ClearDebtStatus_1")</option>
+                            <option value="2">@L("Enum_ClearDebtStatus_2")</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="BankId">Ngân hàng</label>
+                        <select class="form-control" name="BankId" id="BankId">
+                            <option value="0">@L("All")</option>
+                            @foreach (var item in Model.Banks)
+                            {
+                                <option value="@item.Value">@item.DisplayText</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-12" style="margin-top: 20px;"></div>
+                    <div class="col-md-4">
+                        <div class="euiFlexItem euiFlexItem--flexGrowZero">
+                            <span class="euiToolTipAnchor">
+                                <button id="GetSaleClearDebtsButton" class="euiButton euiButton--primary euiSuperUpdateButton euiButton--fill" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.271 11.978l3.872 3.873a.502.502 0 00.708 0 .502.502 0 000-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 004.949 2.05.5.5 0 000-1 5.96 5.96 0 01-4.242-1.757 6.01 6.01 0 010-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 010 8.486.5.5 0 00.034.738z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Tìm kiếm</span>
+                                    </span>
+                                </button>
+
+                                <button class="euiButton-reset euiButton--primary" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon-reset euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.228 2.942a.5.5 0 11-.538.842A5 5 0 1013 8a.5.5 0 111 0 6 6 0 11-2.772-5.058zM14 1.5v3A1.5 1.5 0 0112.5 6h-3a.5.5 0 010-1h3a.5.5 0 00.5-.5v-3a.5.5 0 111 0z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Đặt lại</span>
+                                    </span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i>Hiển thị bộ lọc nâng cao</span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i>Ẩn bộ lọc nâng cao</span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="SaleClearDebtsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th colspan="3">Tổng cộng</th>
+                                <th></th>
+                                <th colspan="8"></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Hành động</th>
+                                <th>Mã giao dịch</th>
+                                <th>Nhân viên</th>
+                                <th>Số tiền</th>
+                                <th>Tình trạng</th>
+                                <th>Mã ngân hàng</th>
+                                <th>Ngân hàng</th>
+                                <th>Hình thức thanh toán</th>
+                                <th>Thời gian duyệt</th>
+                                <th>Người duyệt</th>
+                                <th>Thời gian tạo</th>
+                                <th>Người tạo</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

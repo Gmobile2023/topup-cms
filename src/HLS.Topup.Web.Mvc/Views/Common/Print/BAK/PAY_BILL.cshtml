@@ -1,0 +1,76 @@
+﻿@using HLS.Topup.Web.TagHelpers
+@model HLS.Topup.Web.Models.Transaction.TransactionDetailsInfoModel
+@if (string.IsNullOrEmpty(Model.TransactionInfo.TransCode))
+{
+    <h1>Không có thông tin giao dịch</h1>
+}
+else
+{ 
+    <div class="section-card ">
+        <div class="section-card-content ">
+            <div class="section-card-header">
+                <div class="logo">
+                    <img src="/themes/topup/images/nt.png" alt="">
+                </div>
+                <h2>@(Model.Network.AgentName)</h2>
+            </div>
+            
+            @* <div class="section-card-line"> *@
+            @*     <label class="col-xs-12 control-label"> *@
+            @*         <span class="telco">@(Model.TransactionInfo.ServiceName)</span> *@
+            @*     </label> *@
+            @* </div> *@
+            @{
+                var extraInfo = Model.TransactionInfo.Invoice;
+            }
+            
+            <div class="section-card-line">
+                <label class="col-xs-12 control-label">
+                    @L("Print_Provider") <span class="data">@Model.TransactionInfo.ProductName</span>
+                </label>
+            </div>   
+            
+            <div class="section-card-line">
+                <label class="col-xs-12 control-label">
+                    @L("Print_Customer_Code") <span class="data telco">@extraInfo?.CustomerReference </span>
+                </label>
+            </div>  
+            
+            <div class="section-card-line">
+                <label class="col-xs-12 control-label">
+                    @L("Print_Customer_Name") <span class="data telco">@extraInfo?.FullName </span>
+                </label>
+            </div>  
+            
+            <div class="section-card-line">
+                <label class="col-xs-12 control-label">
+                    @L("Print_Customer_Address") <span class="data">@extraInfo?.Address </span>
+                </label>
+            </div>  
+            
+            <div class="section-card-line">
+                <label class="col-xs-12 control-label">
+                    @L("Print_Customer_Period") <span class="data">@extraInfo?.Period </span>
+                </label>
+            </div>  
+            
+            <div class="section-card-line">
+                <label class="col-xs-12 control-label">
+                    @L("Print_Amount") <span class="data telco">@Model.TransactionInfo.Amount.ToFormat()</span>
+                </label>
+            </div>
+            
+            <div class="section-card-line">
+                <label class="col-xs-12 control-label">
+                    @L("Print_TranCode") <span class="data">@Model.Transcode</span>
+                </label>
+            </div> 
+            
+            <div class="section-card-line">
+                <label class="col-xs-12 control-label">
+                    @L("Print_Date") <span class="data">@Model.TransactionInfo.CreatedTime.ToString("dd/MM/yyyy hh:mm:ss")</span>
+                </label>
+            </div>  
+        </div>
+    </div>
+}

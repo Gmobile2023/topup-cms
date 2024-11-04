@@ -1,0 +1,72 @@
+<div class="section-body-right bg-white affix-wrap affix-top">
+    <input type="hidden" name="_TotalAmount" value="0"/>
+    <div class="section-body-right-header">
+        <div class="cart"></div>
+        <p>Thông tin giao dịch</p>
+    </div>
+    <ul>
+        <div class="form-group form-group-dashed row">
+            <label class="col-md-12 col-xs-6 control-label">Nhà cung cấp</label>
+            <label class="col-md-12 col-xs-6 control-label control-label-result productName"></label>
+        </div>
+        <div class="form-group form-group-dashed row">
+            <label class="col-md-12 col-xs-6 control-label">Mã khách hàng</label>
+            <label class="col-md-12 col-xs-6 control-label control-label-result customerReference"></label>
+        </div>
+        <div class="form-group form-group-dashed row">
+            <label class="col-md-12 col-xs-6 control-label">Tên khách hàng</label>
+            <label class="col-md-12 col-xs-6 control-label control-label-result fullName"></label>
+        </div>
+        <div class="form-group form-group-dashed row">
+            <label class="col-md-12 col-xs-6 control-label">Địa chỉ</label>
+            <label class="col-md-12 col-xs-6 control-label control-label-result address"></label>
+        </div>
+        <div class="form-group form-group-dashed row">
+            <label class="col-md-12 col-xs-6 control-label">Kỳ thanh toán</label>
+            <label class="control-label control-label-result period" ></label>
+            <div class="periodList">               
+            </div>
+        </div>
+        <div class="form-group form-group-dashed row">
+            <label class="col-md-12 col-xs-6 control-label">Số tiền giao dịch</label>
+            <label class="control-label control-label-result amount"></label>
+        </div>
+        <div class="form-group form-group-dashed row">
+            <label class="col-md-12 col-xs-6 control-label">Phí giao dịch</label>
+            <label class="control-label control-label-result fee"></label>
+        </div>
+        <div class="form-group form-group-dashed row">
+            <label class="col-md-12 col-xs-6 control-label">Số tiền chiết khấu</label>
+            <label class="control-label control-label-result disountAmount"></label>
+        </div>
+        <div class="form-group form-group-dashed row" style="display: none;">
+            <label class="col-md-12 col-xs-6 control-label">Số tiền thanh toán</label>
+            <label class="col-md-12 col-xs-6 control-label control-label-result ng-binding">
+                <div class="form-group-wrap">
+                    <input type="text" placeholder="Nhập số tiền thanh toán" class="form-control form-normal amount-mask txtPaymentAmount">
+                </div>
+                <span class="amount-to-text" id="amount-to-text"></span>
+            </label>
+        </div>
+        <div class="form-group form-group-dashed row">
+            <label class="col-md-12 col-xs-6 control-label">Tổng tiền thanh toán</label>
+            <label class="col-md-12 col-xs-6 control-label control-label-resubtnCreateBillPaymentlt">
+                <span class="lightred paymentAmount"></span>
+            </label>
+        </div>
+    </ul>
+</div>
+
+<input type="hidden" id="txtFullName">
+<input type="hidden" id="txtCustomerReference">
+<input type="hidden" id="txtPeriod">
+<input type="hidden" id="txtAddress">
+
+<div class="section-body-middle-form-p2">
+    <div class="row">
+        <div class="col-md-12 btn-control text-center">
+            <a href="javascript:void(0)" class="button btn-custom btn-grey btn-to-prev" data-move-to="2"><img src="/themes/topup/images/left-arrow.svg" class="left-arrow" alt="">Quay lại</a>
+            <button class="button btn-custom btn-blue btn-to-next" id="btnCreateBillPayment" data-move-to="3">Thanh toán</button>
+        </div>
+    </div>
+</div>

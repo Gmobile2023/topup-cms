@@ -1,0 +1,109 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Categories
+@model CreateOrEditCategoryModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditCategory")) : L("CreateNewCategory")))
+
+<div class="modal-body">
+    <div id="CategoryInformationsTab">
+        <form name="CategoryInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.Category.Id"/>
+            }
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="parentCategoryId">@L("Category")</label>
+                        @Html.DropDownList("parentCategoryId", new SelectList(Model.CategoryCategoryList, "Id", "DisplayName", (Model.IsEditMode ? Model.Category.ParentCategoryId.ToString() : "")), @L("SelectACategory"), new {@class = "select2 form-control"})
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="serviceId">@L("Service")</label>
+                        @Html.DropDownList("serviceId", new SelectList(Model.CategoryServiceList, "Id", "DisplayName", (Model.IsEditMode ? Model.Category.ServiceId.ToString() : "")), "Chọn dịch vụ", new {@class = "select2 form-control"})
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Category_CategoryCode">
+                            @L("CategoryCode") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Category_CategoryCode" value="@Model.Category.CategoryCode" type="text" name="categoryCode" required maxlength="@HLS.Topup.Categories.CategoryConsts.MaxCategoryCodeLength" minlength="@HLS.Topup.Categories.CategoryConsts.MinCategoryCodeLength"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Category_CategoryName">
+                            @L("CategoryName") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="Category_CategoryName" value="@Model.Category.CategoryName" type="text" name="categoryName" required maxlength="@HLS.Topup.Categories.CategoryConsts.MaxCategoryNameLength" minlength="@HLS.Topup.Categories.CategoryConsts.MinCategoryNameLength"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="Category_Order">@L("Order")</label>
+                        <input class="form-control m-input" id="Category_Order" value="@Model.Category.Order.ToString(CultureInfo.InvariantCulture)" type="number" name="order"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @{
+                        var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.CategoryStatus));
+                        foreach (var selectOption in selectListStatus)
+                        {
+                            selectOption.Text = L("Enum_CategoryStatus_" + selectOption.Value);
+                        }
+                    }
+                    <div class="form-group m-form__group">
+                        <label for="Category_Status">@L("Status")</label>
+                        <select class="form-control m-input m-input--square" name="status" id="Category_Status" asp-for="@Model.Category.Status" asp-items="@selectListStatus">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @await Html.PartialAsync("Components/UploadFile/_UploadImages", Model.Category.Image)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Category_Description">@L("Description")</label>
+                        <textarea class="form-control" id="Category_Description" name="description" rows="5">@Model.Category.Description</textarea>
+                    </div>
+                </div>
+            </div>
+           
+            @*             @{ *@
+            @*                 var selectListType = Html.GetEnumSelectList(typeof(CommonConst.CategoryType)); *@
+            @*                 foreach (var selectOption in selectListType) *@
+            @*                 { *@
+            @*                     selectOption.Text = L("Enum_CategoryType_" + selectOption.Value); *@
+            @*                 } *@
+            @*             } *@
+            @*             <div class="form-group m-form__group"> *@
+            @*                 <label for="Category_Type">@L("Type")</label> *@
+            @*                 <select class="form-control m-input m-input--square" name="type" id="Category_Type" asp-for="@Model.Category.Type" asp-items="@selectListType"> *@
+            @*                 </select> *@
+            @*             </div> *@
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

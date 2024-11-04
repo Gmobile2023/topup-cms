@@ -1,0 +1,140 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutFull.cshtml";
+}
+@model HLS.Topup.Web.Models.Report.DashAgentGeneralViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Report_DashAgentGeneral;
+    ViewBag.Title = "Báo cáo tổng hợp doanh số đại lý cấp 1";
+    ViewBag.ImageTitle = "/themes/topup/images/transaction-history-white.svg";
+}
+
+@section Scripts
+{
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+    <script src="~/lib/canvas/canvasjs.min.js"></script>
+    <script src="~/lib/canvas/jquery.canvasjs.min.js"></script>
+    <script abp-src="/view-resources/Views/Report/DashAgentGeneral.js" asp-append-version="true"></script>
+}
+
+
+<style>
+    td.ctrl-ss {
+        padding: 0 10px 0 0 !important;
+    }
+
+        td.ctrl-ss i.fa {
+            padding: 8px 12px !important;
+        }
+</style>
+
+<div class="report-detail">
+    <div class="page-title text-right">        
+        <div class="add-button">
+            <button id="ExportToExcelButton" class=" btn-file-export">
+                <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+            </button>
+        </div>
+    </div>
+    <div class="page-body">
+        <div class="row">
+            <div class="col-md-4 col-xs-6 col-fix-mobi col-xs-100">
+                <div class="form-group">
+                    <label for="">Thời gian từ</label>
+                    <div class="dis-flex" style="display: flex;">
+                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@Model.FromDate.ToShortDateString()" type="datetime" id="FromDate">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6 col-fix-mobi col-xs-100">
+                <div class="form-group">
+                    <label for="">Thời gian tới</label>
+                    <div class="dis-flex" style="display: flex;">
+                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@Model.ToDate.ToShortDateString()" type="datetime" id="ToDate">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6 col-fix-mobi col-xs-100">
+                <div class="form-group">
+                    <label for="">Đại lý cấp 1:</label>
+                    <select id="selectAgent" name="selectAgent" class="form-control select2">
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6 col-xs-100 box-input-select">
+                <div class="form-group">
+                    <label for="ServiceCode">Dịch vụ</label>
+                    <span class="down-arrow-black arrow-small" style="top:25px"></span>
+                    <select id="selectService" class="form-control">
+                        <option value="">-- @L("TransType") --</option>
+                        <option value="TOPUP">Nạp tiền điện thoại</option>
+                        <option value="TOPUP_DATA">Topup Data</option>
+                        <option value="PIN_CODE">Mua mã thẻ</option>
+                        <option value="PIN_DATA">Mua thẻ Data</option>
+                        <option value="PIN_GAME">Mua thẻ Game</option>
+                        <option value="PAY_BILL">Thanh toán hóa đơn</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6 col-xs-100 box-input-select">
+                <div class="form-group">
+                    <label for="selectCategory">Loại sản phẩm</label>
+                    <select class="form-control" name="selectCategory" id="selectCategory">
+                        <option value="">Chọn loại sản phẩm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-6 col-xs-100">
+                <div class="form-group">
+                    <label for="ProductCode">Sản phẩm</label>
+                    <select id="selectProduct" name="selectProduct" class="form-control select2" required>
+                        <option value="">Chọn sản phẩm</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-6 col-xs-100">
+                <div class="form-group align-items-center">
+                    <div class="input-group" style="margin-top:25px">
+                        <span class="input-group-btn">
+                            <button id="btnSearch" class="btn btn-success btn-blue btn-search-icon" type="submit" style="height: 39px; border-radius: 3px;">
+                                <i class="flaticon-search-1" aria-label="@L("Search")"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-xs-6 col-xs-100 box-input-select">
+                <div class="form-group">
+                    <label style="color:red">Doanh số: </label>
+                    <span id="spanRevenue">0đ</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6 col-xs-100">
+                <div class="form-group">
+                    <label style="color:red">Hoa hồng: </label>
+                    <span id="spanCommistion">0đ</span>
+                </div>
+            </div>
+        </div>
+        <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto; display:none"></div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-md-12">
+                <div class="tb-transaction-history">
+                    <table id="Table" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Doanh số</th>
+                                <th>Hoa hồng</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="hdnAgentGeneral" value="@Model.AgentCodeGeneral" />
+    </div>
+</div>
+
+

@@ -1,0 +1,39 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@model HLS.Topup.Web.Models.TopupRequest.CreateOrEditTopupRequestModalViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Topup;
+    ViewBag.Title = "Nạp tiền điện thoại";
+    ViewBag.ImageTitle = "/themes/topup/images/ic_banner_top/01.svg";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Topup/Index.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Views/Topup/IndexTopupList.js" asp-append-version="true"></script>
+}
+
+<div id="Topup_Page" class="section-body-middle">
+    <div class="section-body-middle-introduce">
+        <ul class="navbar-card row mg0" style="display: none;">
+            <li onclick="ctrl.TabActive('card__slider_menu1')" class="card__slider_menu1 active">
+                <div class="navbar-card__slider"></div>
+                <a data-toggle="tab" href="#card__slider_menu1">Nạp trực tiếp</a>
+            </li>
+            @*<li onclick="ctrl.TabActive('card__slider_menu2')" class="card__slider_menu2">
+                <a data-toggle="tab" href="#card__slider_menu2"> Nạp danh sách</a>
+            </li>*@
+        </ul>
+        <div class="clearfix"></div>
+        <div class="tab-content tab-content--card">
+            <div id="card__slider_menu1" class="tab-pane fade active">
+                @await Html.PartialAsync("IndexTopup", Model)
+            </div>
+            <!--<div id="card__slider_menu2" class="tab-pane fade text-center">-->
+                @* @Html.Partial("IndexTopupList", Model) *@
+                <!--<label>Dịch vụ tạm thời dừng hoạt động, vui lòng quay lại sau!</label>
+            </div>-->
+        </div>
+    </div>
+</div>

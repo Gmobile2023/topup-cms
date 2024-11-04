@@ -1,0 +1,42 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Categories
+@model CategoryViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="CategoryInformationsTab">
+        <div class="row">
+            <div class="col-6 mb-4">
+                <h6>@L("CategoryCode")</h6>
+                @Model.Category.CategoryCode
+            </div>
+            <div class="col-6 mb-4">
+                <h6>@L("CategoryName")</h6>
+                @Model.Category.CategoryName
+            </div>
+            <div class="col-6 mb-4">
+                <h6>@L("Order")</h6>
+                @Model.Category.Order
+            </div>
+            <div class="col-6 mb-4">
+                <h6>@L("Status")</h6>
+                @L("Enum_CategoryStatus_" + (int) Model.Category.Status)
+            </div>
+            @* <div class="col-6 mb-3"> *@
+            @*     <h6>@L("Type") :</h6> *@
+            @*     @L("Enum_CategoryType_" + (int)Model.Category.Type) *@
+            @* </div> *@
+            <div class="col-6 mb-4">
+                <h6>@L("CategoryName")</h6>
+                @Model.CategoryCategoryName
+            </div>
+            <div class="col-6 mb-4">
+                <h6>@L("ServicesName")</h6>
+                @Model.ServiceServicesName
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

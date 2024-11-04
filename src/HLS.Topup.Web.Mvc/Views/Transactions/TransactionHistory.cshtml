@@ -1,0 +1,114 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutProfile.cshtml";
+}
+@model HLS.Topup.Web.Areas.App.Models.Users.UsersViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Report_Detail;
+    ViewBag.Title = "Lịch sử giao dịch";
+    ViewBag.ImageTitle = "/themes/topup/images/transaction-history-white.svg";
+}
+
+@section Scripts
+{
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Views/Transactions/TransactionHistory.js" asp-append-version="true"></script>
+}
+
+<div class="transaction-history">
+    <div class="page-title text-right">
+        <a href="javascript:;" onclick="Sv.goBackHistory()">
+            <button class="btn-file-export" style="float: left !important;">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i> @L("Back")
+            </button>
+        </a>
+        <div class="add-button">
+            <button id="ExportToExcelButton" class=" btn-file-export">
+                <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+            </button>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="row">
+            <div class="col-md-4 box-input-search">
+                <div class="form-group align-items-center">
+                    <label>Tìm kiếm: </label>
+                    <div class="input-group">
+                        <input type="text" id="Filter" class="form-control" placeholder="Tìm kiếm" value="">
+                        <span class="input-group-btn">
+                            <button id="btnSearch" class="btn btn-success btn-blue btn-search-icon" type="submit">
+                                <i class="flaticon-search-1" aria-label="@L("Search")"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6 col-xs-100 box-input-select">
+                <div class="form-group">
+                    <label for="ServiceCodeFilter">Loại giao dịch:</label>
+                    <span class="down-arrow-black arrow-small" style="top:25px"></span>
+                    <select id="ServiceCodeFilter" class="form-control">
+                        <option value="">-- @L("TransType") --</option>
+                        <option value="TOPUP">Nạp tiền điện thoại</option>
+                        <option value="PIN_CODE">Mua mã thẻ</option>
+                        <option value="PIN_DATA">Mua thẻ Data</option>
+                        <option value="PIN_GAME">Mua thẻ Game</option>
+                        <option value="PAY_BILL">Thanh toán hóa đơn</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6 col-xs-100">
+                <div class="form-group">
+                    <label for="StatusFilterId">@L("Status"):</label>
+                    <span class="down-arrow-black arrow-small" style="top:25px"></span>
+                    <select class="form-control" name="StatusFilter" id="StatusFilterId">
+                        <option value="99">@L("All")</option>
+                        <option value="0">@L("Enum_TopupStatus_0")</option>
+                        <option value="6">@L("Enum_TopupStatus_6")</option>
+                        <option value="1">@L("Enum_TopupStatus_1")</option>
+                        <option value="2">@L("Enum_TopupStatus_2")</option>
+                        <option value="3">@L("Enum_TopupStatus_3")</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12 col-xs-100">
+                <div class="form-group">
+                    <label for="FromDateFilterId">Thời gian:</label>
+                    <div class="dis-flex" style="display: flex;">
+                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="FromDateFilterId">
+                        <span style="line-height: 40px;padding: 0 15px 0 15px;"> — </span>
+                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="ToDateFilterId">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-md-12">
+                <div class="tb-transaction-history">
+                    <table id="Table" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Mã giao dịch</th>
+                            <th>Loại giao dịch</th>
+                            <th>@L("Status")</th>
+                            <th>TK thụ hưởng</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Tổng tiền</th>
+                            <th>Số tiền chiết khấu</th>
+                            <th>Số tiền thanh toán</th>
+                            <th>Thời gian GD</th>
+                            @* <th>Nhà cung cấp</th> *@
+                            @* <th>Loại sản phẩm</th> *@
+                            @* <th>Mệnh giá</th> *@
+                            <th>Mã tài khoản</th>
+                            <th>NV thực hiện</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

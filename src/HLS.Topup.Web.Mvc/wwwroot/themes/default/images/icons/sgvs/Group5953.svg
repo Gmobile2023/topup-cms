@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="Group_5953" data-name="Group 5953" transform="translate(-1090 -1234)">
+    <rect id="Rectangle_461" data-name="Rectangle 461" width="30" height="30" rx="15" transform="translate(1090 1234)" fill="#f5f5f5" opacity="0"/>
+    <g id="game-controller-outline" transform="translate(1092 1240)">
+      <path id="Path_3866" data-name="Path 3866" d="M57.281,104.868c-1.068-4.827-2.652-7.907-5.19-8.657A5.31,5.31,0,0,0,50.577,96c-1.561,0-2.792.929-5.571.929S40.993,96,39.434,96a5.75,5.75,0,0,0-1.579.212c-2.542.75-4.112,3.833-5.193,8.657-1.1,4.928-.9,8.822,1.252,9.569,1.509.522,2.858-.558,4.136-2.147,1.451-1.811,3.238-2.368,6.954-2.368s5.433.557,6.887,2.368c1.277,1.591,2.676,2.657,4.145,2.157C58.418,113.634,58.384,109.854,57.281,104.868Z" transform="translate(-32.006 -95.999)" fill="none" stroke="#363636" stroke-miterlimit="10" stroke-width="1.5"/>
+      <circle id="Ellipse_139" data-name="Ellipse 139" cx="1.127" cy="1.127" r="1.127" transform="translate(14.128 6.464)" fill="#363636"/>
+      <path id="Path_3867" data-name="Path 3867" d="M317.161,250.322a1.161,1.161,0,1,1,1.161-1.158A1.161,1.161,0,0,1,317.161,250.322Z" transform="translate(-299.518 -239.178)" fill="#363636"/>
+      <circle id="Ellipse_140" data-name="Ellipse 140" cx="1.127" cy="1.127" r="1.127" transform="translate(16.382 3.646)" fill="#363636"/>
+      <circle id="Ellipse_141" data-name="Ellipse 141" cx="1.127" cy="1.127" r="1.127" transform="translate(19.2 6.464)" fill="#363636"/>
+      <line id="Line_1002" data-name="Line 1002" y2="5.635" transform="translate(7.366 4.773)" fill="none" stroke="#363636" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <line id="Line_1003" data-name="Line 1003" x1="5.635" transform="translate(4.549 7.591)" fill="none" stroke="#363636" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>

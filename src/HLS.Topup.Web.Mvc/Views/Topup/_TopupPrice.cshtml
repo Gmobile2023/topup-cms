@@ -1,0 +1,38 @@
+﻿@model HLS.Topup.Web.Models.Account.ProductServiceDto
+<script abp-src="/view-resources/Views/Topup/_TopupPrice.js" asp-append-version="true"></script>
+<div class="row row10">
+    <ul class="form-group-radio grid5" tabindex="2">
+        @foreach (var item in Model.Products)
+        {
+            <li>
+                <div class="radio radio-btn">
+                    <label class="label-height-auto">
+                        <div class="radio-btn-upperlogo"></div>
+                        <input type="radio" name="cardPrice"
+                               data-productcode="@item.ProductCode"
+                               data-amount="@item.ProductValue?.ToString("###")"
+                               value="@item.ProductValue?.ToString("###")"
+                               class="ng-pristine ng-untouched ng-valid">
+                        <div class="card-data-price card-hide-@item.ProductValue?.ToString("###")" style="color: #023f88;">@item.ProductValue.ToFormat()</div>
+                        <div class="card-data-price card-show-@item.ProductValue?.ToString("###")" style="display: none; color: #ED1C24;">@item.ProductValue.ToFormat()</div>
+                        @if (Model.ServiceCode == CommonConst.ServiceCodes.PIN_DATA || Model.ServiceCode == CommonConst.ServiceCodes.TOPUP_DATA)
+                        {
+                            <div class="card-data" style="display: block;color: #2188C9;font-size: 13px;">@item.Description</div>
+                        }
+                        <span class="checkbox-custom"></span>
+                    </label>
+                </div>
+                <p class="card-note" data-state="false">
+                    <a class="eye-view-card" data-product-code="@item.ProductCode" data-value="@item.ProductValue?.ToString("###")" href="javascript:;">
+                        <span class="card-note__name" style="display: none;">Giá: </span>
+                        <span class="card-note__price animate__fadeInTopLeft" style="display: none;">
+                            <strong id="@item.ProductCode" style="color: #ED1C24; padding-left: 5px;"></strong>
+                        </span>
+                        <span class="text-view">Giá bán</span> <i class="las la-eye la-2x" style="padding-left: 5px;"></i>
+                    </a>
+                    @* <span class="card-note__name card-pament-amount" id="card-pament-amount-@item.ProductCode" style="display: none;">Giá: </span><span class="card-note__price animate__fadeInTopLeft" style="display: none;"></span> *@
+                </p>
+            </li>
+        }
+    </ul>
+</div>

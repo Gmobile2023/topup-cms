@@ -1,0 +1,49 @@
+﻿
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.SaleLimitDebts
+@model SaleLimitDebtViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Chi tiết"))
+
+<div class="modal-body">
+    <div id="SaleLimitDebtInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-6">
+                <h6>Nhân viên</h6>
+                @Model.SaleLimitDebt.SaleInfo
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Hạn mức công nợ</h6>
+                @Model.SaleLimitDebt.LimitAmount.ToString("N0")
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Tuổi nợ(ngày)</h6>
+                @Model.SaleLimitDebt.DebtAge.ToString("N0")
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Tình trạng</h6>
+                @L("Enum_DebtLimitAmountStatus_" + (int)Model.SaleLimitDebt.Status)
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Ngày tạo</h6>
+                @Model.SaleLimitDebt.CreatedDate
+            </div>
+            <div class="col-6 mb-6">
+                <h6>Người tạo</h6>
+                @Model.SaleLimitDebt.UserCreated
+            </div>
+
+            <div class="col-12 mb-12">
+                <h6>Mô tả</h6>
+                @Model.SaleLimitDebt.Description
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

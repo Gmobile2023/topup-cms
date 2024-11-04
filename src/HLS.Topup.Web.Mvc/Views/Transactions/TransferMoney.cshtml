@@ -1,0 +1,71 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.TrasferMoney;
+    ViewBag.Title = "Chuyển tiền đại lý";
+    ViewBag.ImageTitle = "/themes/topup/images/ic-47-white.svg";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Transactions/TransferMoney.js" asp-append-version="true"></script>
+}
+
+<div id="TransferMoney_Page" class="section-body-middle">
+    <form class="step step1" id="mainForm1">
+        <div class="section-body-middle-form-p1 no-border-top">
+            @* <div class="form-group"> *@
+            @*     <label for="" class="title"> *@
+            @*         <img src="/themes/topup/images/ic_dark/ic-01.svg" alt="">Số dư hiện tại @await Component.InvokeAsync(typeof(BalanceViewComponent)) đ *@
+            @*     </label> *@
+            @* </div> *@
+
+            <div class="form-group">
+                <label for="" class="title"> Tài khoản nhận tiền <span class="lightred">(*)</span></label>
+                <div class="form-group-wrap">
+                    <input required="required" numbers-only placeholder="Nhập tên tài khoản nhận tiền"
+                           type="text" name="Account" class="form-control">
+                    <div class="account_transfer" style="margin-top:10px">
+                        <label id="account-receive" class="title" style="margin-bottom: 0; color: #4a4a4a; font-weight: 400; font-size: 13px;"></label>
+                    </div>
+                    <input type="hidden" name="DesAccount" id="txtAccountCode"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="" class="title"> Số tiền cần chuyển <span class="lightred">(*)</span></label>
+                        <div class="form-group-wrap">
+                            <input required="required" numbers-only placeholder="Nhập số tiền cần chuyển"
+                                   type="text" name="amount" id="txtAmount" class="form-control amount-mask">
+                            @* <div style="float: right; margin-top: 5px;"> *@
+                            @*     <div id="amount-to-text"> </div> *@
+                            @* </div> *@
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-group-wrap form-padding-custom" style="padding-top: 40px;">
+                            <span class="amount-to-text" id="amount-to-text" style="color: #2188C9"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="title"> Ghi chú <span class="lightred">(*)</span></label>
+                <div class="form-group-wrap">
+                    <textarea required="required" placeholder="Nhập Ghi chú" rows="3" type="text" name="description" class="form-control" maxlength="150"></textarea>
+                </div>
+            </div>
+
+            <div class="tab-content tab-content--card">
+                <div class="text-right">
+                    <button type="button" onClick="ctrl.nextToStep2()" class="button btn-custom btn-blue">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

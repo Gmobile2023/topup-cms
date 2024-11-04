@@ -1,0 +1,73 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Deposits
+@model DepositViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="DepositInformationsTab">
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("TransCode")</h6>
+                <p>@Model.Deposit.TransCode</p>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("TransactionType")</h6>
+                <p>@L("Enum_DepositType_" + (int) Model.Deposit.Type)</p>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Deposit_AgentType")</h6>
+                <p>@L("Enum_AgentType_" + (int) Model.AgentType)</p>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Deposit_Agent")</h6>
+                <p>@Model.UserName</p>
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>@L("Amount")</h6>
+                <p>@Model.Deposit.Amount.ToString("N0")</p>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("AccountingEntry_Type")</h6>
+                <p>@L("AccountingEntry_" + +(int) Model.Deposit.Type)</p>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("CreationTime")</h6>
+                <p>@(Model.Deposit.CreationTime != null ? Model.Deposit.CreationTime.Value.ToString("dd/MM/yyyy HH:mm:ss") : "")</p>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Created")</h6>
+                <p>@Model.CreatorName</p>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("ApprovedDate")</h6>
+                <p>@(Model.Deposit.ApprovedDate != null ? Model.Deposit.ApprovedDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : "")</p>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Deposit_Approved")</h6>
+                <p>@Model.UserName2</p>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Status")</h6>
+                <p>@L("Enum_DepositStatus_" + (int) Model.Deposit.Status)</p>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.Deposit.Attachment))
+            {
+                <div class="col-6 mb-3">
+                    <h6>@L("AccountingEntry_Document")</h6>
+                    <p>
+                        <a href="@Model.Deposit.Attachment" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> Tải xuống</a>
+                    </p>
+                </div>
+            }
+            <div class="col-12 mb-3">
+                <h6>@L("Deposit_Note")</h6>
+                <p>@Model.Deposit.Description</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

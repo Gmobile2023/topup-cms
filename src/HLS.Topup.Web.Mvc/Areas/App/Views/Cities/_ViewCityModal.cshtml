@@ -1,0 +1,36 @@
+﻿
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Cities
+@model CityViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="CityInformationsTab">
+        
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("CityCode") :</h6>
+                @Model.City.CityCode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("CityName") :</h6>
+                @Model.City.CityName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Status") :</h6>
+                @L("Enum_CityStatus_" + (int)Model.City.Status)
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("Country")) @L("CountryName") :</h6>
+                @Model.CountryCountryName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

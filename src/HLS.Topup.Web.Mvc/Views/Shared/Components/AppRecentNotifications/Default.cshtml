@@ -1,0 +1,62 @@
+﻿@model HLS.Topup.Web.Areas.App.Models.Layout.RecentNotificationsViewModel
+@{
+    var theme = await GetTheme();
+}
+<li class="header_notification_bar">
+</li>
+<script id="headerNotificationBarTemplate" type="x-tmpl-mustache">
+    <a href="#" class="dropdown-toggle" style="color: #4884b8;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <i style="font-size: 1.7rem;color: red;" class="flaticon-alert-2 unread-notification"></i>
+       <span class="label-notify label-warning unread-notification-count">
+       {{unreadCount}}
+       </span>
+    </a>
+    <ul class="dropdown-menu notify-drop">
+        <div class="notify-drop-title">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="text-left col-md-8  col-xs-8">
+                        {{#unreadCount}}
+                        <a href="" id="setAllNotificationsAsReadLink">@L("SetAllAsRead")</a>
+                        {{/unreadCount}}
+                    </div>
+                    <div class="text-right col-md-4 col-xs-4">
+                        <a class="text-right openNotificationSettingsModalLink" href="">@L("Settings")</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end notify title -->
+        <!-- notify content -->
+        <div class="drop-content">
+            {{#notifications}}
+                <li class="{{#url}}user-notification-item-clickable{{/url}} {{#isUnread}}user-notification-item-unread{{/isUnread}}" data-url="{{url}}">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <div class="notify-img">
+                            <i class="{{icon}} {{iconFontClass}} fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-10 pd-l0">
+                        <span>{{text}}</span>
+                        {{#isUnread}}
+                            <span data-notification-id="{{userNotificationId}}" class="set-notification-as-read"><i class="far fa-check-circle"></i> @L("SetAsRead")</span>
+                        {{/isUnread}}
+
+                        <hr>
+                        <p class="time">{{timeAgo}}</p>
+                    </div>
+                </li>
+            {{/notifications}}
+            {{^notifications.length}}
+            <span class="notification-empty-text p-3">
+                @L("ThereAreNoNotifications")
+            </span>
+            {{/notifications.length}}
+        </div>
+        <div class="notify-drop-footer text-center">
+            {{#notifications.length}}
+                <a href="/Profile/Notifications">@L("SeeAllNotifications")</a>
+            {{/notifications.length}}
+        </div>
+    </ul>
+</script>

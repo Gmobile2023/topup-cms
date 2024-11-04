@@ -1,0 +1,71 @@
+@using HLS.Topup.Web.Areas.App.Models.AgentsManage
+@using HLS.Topup.Web.Areas.App.Startup
+@using HLS.Topup.Authorization
+@model AgentsViewModel
+@{
+    Layout = $"~/Views/Layout/_LayoutFull.cshtml";
+    ViewBag.CurrentPageName = AppPageNames.Common.AgentsManage;
+    ViewBag.Title = "Quản lý bưu cục";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/PostManagement/Index.js" asp-append-version="true"></script>
+}
+
+<div class="transaction-history">
+    <div class="row" style="padding-bottom:10px">
+        <div class="col-md-12">
+            <div class="page-title text-right">
+                <a href="javascript:;" onclick="Sv.goBackHistory()">
+                    <button class="btn-file-export" style="float: left !important;">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i> @L("Back")
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-body">
+        <div class="row">
+            <div class="col-md-6 box-input-search">
+                <div class="form-group align-items-center">
+                    <label>Tìm kiếm: </label>
+                    <div class="input-group">
+                        <input type="text" id="inputFilter" class="form-control" placeholder="Từ khoá" value="">
+                        <span class="input-group-btn">
+                            <button id="btnSearch" class="btn btn-success btn-blue btn-search-icon" type="submit">
+                                <i class="flaticon-search-1" aria-label="Tìm kiếm"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 box-button-create text-right">
+                @if (IsGranted(AppPermissions.Pages_PostManagement_Create))
+                {
+                    <a href="/PostManagement/Detail" style="margin-top:25px" class="button btn-custom btn-blue">Thêm mới</a>
+                }
+            </div>
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-md-12">
+                <div class="tb-transaction-history">
+                    <table id="AgentsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Hành động</th>
+                            <th>Mã bưu cục</th>
+                            <th>Số điện thoại</th>
+                            <th>Tên bưu cục</th>
+                            <th>Thời gian tạo</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

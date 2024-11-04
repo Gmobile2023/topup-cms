@@ -1,0 +1,42 @@
+@using HLS.Topup.Common
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.BatchAirtimes
+@model BatchAirtimeViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="BatchAirtimeInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("BatchCode") :</h6>
+                @Model.BatchAirtime.BatchCode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Status") :</h6>
+                @L("Enum_BatchAirtimeStatus_" + (byte) Model.BatchAirtime.Status)
+            </div>
+            <div class="col-12 mb-3">
+                <h6>@L("ProviderCode") :</h6>
+                @Model.BatchAirtime.ProviderCode -  @Model.BatchAirtime.ProviderName
+            </div> 
+            <div class="col-4 mb-3">
+                <h6>@L("Amount") :</h6>
+                @Model.BatchAirtime.Amount.ToFormat("đ")
+            </div> 
+            <div class="col-4 mb-3">
+                <h6>@L("Discounted") :</h6>
+                @Model.BatchAirtime.Discount.ToFormat("%")
+            </div> 
+            <div class="col-4 mb-3">
+                <h6>@L("Airtime") :</h6>
+                @Model.BatchAirtime.Airtime.ToFormat("")
+            </div> 
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

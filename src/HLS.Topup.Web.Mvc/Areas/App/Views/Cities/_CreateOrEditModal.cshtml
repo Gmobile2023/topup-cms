@@ -1,0 +1,54 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Cities
+@model CreateOrEditCityModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditCity")) : L("CreateNewCity")))
+
+<div class="modal-body">
+    <div id="CityInformationsTab">
+        <form name="CityInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.City.Id"/>
+            }
+
+
+            <div class="form-group">
+                <label for="countryId">@L("Country")</label>
+                @Html.DropDownList("countryId", new SelectList(Model.CityCountryList, "Id", "DisplayName", (Model.IsEditMode ? Model.City.CountryId.ToString() : "")), @L("SelectACountry"), new {@class = "form-control"})
+            </div>
+
+
+            <div class="form-group">
+                <label for="City_CityCode">@L("CityCode")</label>
+                <input class="form-control" id="City_CityCode" value="@Model.City.CityCode" type="text" name="cityCode" required maxlength="@HLS.Topup.Address.CityConsts.MaxCityCodeLength" minlength="@HLS.Topup.Address.CityConsts.MinCityCodeLength"/>
+            </div>
+
+            <div class="form-group">
+                <label for="City_CityName">@L("CityName")</label>
+                <input class="form-control" id="City_CityName" value="@Model.City.CityName" type="text" name="cityName" required maxlength="@HLS.Topup.Address.CityConsts.MaxCityNameLength" minlength="@HLS.Topup.Address.CityConsts.MinCityNameLength"/>
+            </div>
+
+            @{
+                var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.CityStatus));
+                foreach (var selectOption in selectListStatus)
+                {
+                    selectOption.Text = L("Enum_CityStatus_" + selectOption.Value);
+                }
+            }
+            <div class="form-group m-form__group">
+                <label for="City_Status">@L("Status")</label>
+                <select class="form-control m-input m-input--square" name="status" id="City_Status" asp-for="@Model.City.Status" asp-items="@selectListStatus">
+                </select>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

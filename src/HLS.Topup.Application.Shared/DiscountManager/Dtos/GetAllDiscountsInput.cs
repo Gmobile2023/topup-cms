@@ -1,0 +1,48 @@
+﻿using Abp.Application.Services.Dto;
+using System;
+using System.Collections.Generic;
+
+namespace HLS.Topup.DiscountManager.Dtos
+{
+    public class GetAllDiscountsInput : PagedAndSortedResultRequestDto
+    {
+        public string Filter { get; set; }
+
+        public string CodeFilter { get; set; }
+
+        public string NameFilter { get; set; }
+
+        public int? StatusFilter { get; set; }
+
+        public int? AgentTypeFilter { get; set; }
+        
+        public string UserNameFilter { get; set; }
+        
+        public DateTime? FromCreationTimeFilter { get; set; }
+        
+        public DateTime? ToCreationTimeFilter { get; set; }
+        
+        public DateTime? FromApprovedTimeFilter { get; set; }
+        
+        public DateTime? ToApprovedTimeFilter { get; set; }
+        
+        public DateTime? FromAppliedTimeFilter { get; set; }
+        
+        public DateTime? ToAppliedTimeFilter { get; set; }
+        
+        public int? ProductTypeFilter { get; set; }
+        
+        public int? ProductFilter { get; set; }
+    }
+
+    public class GetDiscountDetailTableInput : PagedAndSortedResultRequestDto
+    {
+        public int? DiscountId { get; set; }
+        public List<int?> CateIds { get; set; }
+    }
+    public class GetProductDiscountAccountTableInput : PagedAndSortedResultRequestDto
+    {
+        public string ServiceCode { get; set; }
+        public string Search { get; set; }
+    }
+}

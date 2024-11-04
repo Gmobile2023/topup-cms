@@ -1,0 +1,194 @@
+﻿@using HLS.Topup.Common;
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Fees
+@model CreateOrEditFeeModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode && !Model.IsViewMode ? (L("EditFee")) : L("ViewFee")))
+
+<div class="modal-body">
+    <div id="FeeInformationsTab">
+        <form name="FeeInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.Fee.Id"/>
+                <input type="hidden" name="product_list" value="@string.Concat(Model.Fee.ProductList.Skip(1).Take(Model.Fee.ProductList.Length - 2))"/>
+            }
+
+            @if (Model.IsViewMode)
+            {
+                <input type="hidden" name="product_list" value="@string.Concat(Model.Fee.ProductList.Skip(1).Take(Model.Fee.ProductList.Length - 2))"/>
+                <input type="hidden" name="mode" value="view"/>
+            }
+            else
+            {
+                <input type="hidden" name="mode" value="edit"/>
+            }
+
+            <div class="row">
+                @{
+                    var selectListAgentType = Html.GetEnumSelectList(typeof(CommonConst.AgentType));
+                    foreach (var selectOption in selectListAgentType)
+                    {
+                        selectOption.Text = L("Enum_AgentType_" + selectOption.Value);
+                    }
+                }
+
+                <div class="col-md-12">
+                    <div class="form-group m-form__group">
+                        <label for="Fee_Name">Tên chính sách</label>
+                        <input class="form-control m-input" id="Fee_Name" type="text" name="name" value="@Model.Fee.Name" disabled="@Model.IsViewMode"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group m-form__group">
+                        <label for="Fee_AgentType">@L("AgentType")</label>
+                        <select class="form-control m-input m-input--square" name="agentType" id="Fee_AgentType" asp-for="@Model.Fee.AgentType" asp-items="@selectListAgentType.Where((x => x.Value != "99"))" disabled="@Model.IsViewMode">
+                            <option selected="selected" value="">Chọn loại đại lý</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Fee_AgentId">@L("Fees_ApplyForAgent")</label>
+                        @if (Model.IsViewMode)
+                        {
+                            @Html.DropDownList("userId", new SelectList(Model.FeeUserList, "Id", "DisplayName", (Model.IsEditMode ? Model.Fee.UserId.ToString() : "")), @L("SelectAUser"), new {@class = "select2 form-control", @id = "Fee_AgentId", @disabled = "disabled"})
+                        }
+                        else
+                        {
+                            @Html.DropDownList("userId", new SelectList(Model.FeeUserList, "Id", "DisplayName", (Model.IsEditMode ? Model.Fee.UserId.ToString() : "")), @L("SelectAUser"), new {@class = "select2 form-control", @id = "Fee_AgentId"})
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Fee_FromDate">@L("FromDate")</label>
+                        <input class="form-control m-input date-picker" id="Fee_FromDate" type="text" name="fromDate" value="@Model.Fee.FromDate" disabled="@Model.IsViewMode"/>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Fee_ToDate">@L("ToDate")</label>
+                        <input class="form-control m-input date-picker" id="Fee_ToDate" type="text" name="toDate" value="@Model.Fee.ToDate" disabled="@Model.IsViewMode"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding: 15px 0;" id="productModeBlock">
+                <div class="col-md-12" style="margin: 10px 0;">
+                    <strong>Chọn hình thức thêm sản phẩm</strong>
+                </div>
+                <div class="col-md-3" style="margin: 5px 0;">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="selectionRadioOptions" id="productMode" value="productMode" checked>
+                        <label class="form-check-label" for="productMode">Chọn theo danh mục sản phẩm</label>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin: 5px 0;">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="selectionRadioOptions" id="importMode" value="importMode">
+                        <label class="form-check-label" for="importMode">Import danh sách</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Fees_ProductType">@L("Fees_ProductType")</label>
+                        <select class="form-control m-input m-input--square select2" id="Fees_ProductType" multiple="multiple" disabled="@Model.IsViewMode">
+                            @if (Model.IsEditMode)
+                            {
+                                foreach (var item in Model.FeeCategoryList)
+                                {
+                                    if (Model.Fee.ProductTypeList.Contains((int) item.Id))
+                                    {
+                                        <option value="@item.Id" selected> @item.DisplayName </option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Id"> @item.DisplayName </option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Fees_Product">@L("Fees_Product")</label>
+                        <select class="form-control m-input m-input--square select2" name="productId[]" id="Fees_Product" multiple="multiple" disabled>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary add-product-button" style="margin-top: 23px;">
+                            <i class="fa fa-plus"></i> <span>Thêm</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="importModeBlock" style="padding: 15px 0; display: none;">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="importCardsFromExcel" style="color:red">
+                            @L("PayBacks_Choose_File") <span class="lightred">(*)</span>
+                        </label>
+                        <label class="form-control" style="width: 100%">
+                            <span >Chọn file</span>
+                            <input id="ImportFromExcel" class="hidden" type="file" name="files" accept=".xlsx, .xls, .csv">
+                        </label>
+                        <div class="form-group">
+                            <a target="_blank" href="/assets/SampleFiles/ImportCSThuPhiHD.xlsx">@L("File Mau Import")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="pull-right">
+                        <a href="javascript:;" id="ExportDetailFees">
+                            <i class="fa fa-download"></i> <span> Xuất Excel</span>
+                        </a>
+                    </span>
+                </div>
+                <div class="col-md-12 table-data">
+                    <table id="ProductFeesTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>@L("Fees_ProductCategory")</th>
+                            <th>@L("Fees_Product")</th>
+                            <th>@L("Fees_Minimum")</th>
+                            <th>@L("Fees_MinimumForApply")</th>
+                            <th>@L("Fees_BlockForApply")</th>
+                            <th>@L("Fees_Additional")</th>
+                            <th>@L("Delete")</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.IsViewMode)
+{
+    @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+}
+else
+{
+    @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+}

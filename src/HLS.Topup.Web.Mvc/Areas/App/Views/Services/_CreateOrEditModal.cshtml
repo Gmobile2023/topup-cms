@@ -1,0 +1,72 @@
+﻿@using HLS.Topup.Services;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Services
+@model CreateOrEditServiceModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditService")) : L("CreateNewService")))
+
+<div class="modal-body">
+    <div id="ServiceInformationsTab">
+        <form name="ServiceInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.Service.Id"/>
+            }
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Service_ServiceCode">@L("ServiceCode") <span class="lightred">(*)</span></label>
+                        <input class="form-control" id="Service_ServiceCode" value="@Model.Service.ServiceCode" type="text" name="serviceCode" required maxlength="@HLS.Topup.Services.ServiceConsts.MaxServiceCodeLength" minlength="@HLS.Topup.Services.ServiceConsts.MinServiceCodeLength"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Service_ServicesName">@L("ServicesName") <span class="lightred">(*)</span></label>
+                        <input class="form-control" id="Service_ServicesName" value="@Model.Service.ServicesName" type="text" name="servicesName" required maxlength="@HLS.Topup.Services.ServiceConsts.MaxServicesNameLength" minlength="@HLS.Topup.Services.ServiceConsts.MinServicesNameLength"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Service_ServiceConfig">@L("ServiceConfig")</label>
+                        <input class="form-control" id="Service_ServiceConfig" value="@Model.Service.ServiceConfig" type="text" name="serviceConfig" maxlength="@HLS.Topup.Services.ServiceConsts.MaxServiceConfigLength" minlength="@HLS.Topup.Services.ServiceConsts.MinServiceConfigLength"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    @{
+                        var selectListStatus = Html.GetEnumSelectList(typeof(ServiceStatus));
+                        foreach (var selectOption in selectListStatus)
+                        {
+                            selectOption.Text = L("Enum_ServiceStatus_" + selectOption.Value);
+                        }
+                    }
+                    <div class="form-group m-form__group">
+                        <label for="Service_Status">@L("Status")</label>
+                        <select class="form-control m-input m-input--square" name="status" id="Service_Status" asp-for="@Model.Service.Status" asp-items="@selectListStatus">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Service_Order">@L("Order") <span class="lightred">(*)</span></label>
+                        <input class="form-control m-input" id="Service_Order" value="@Model.Service.Order.ToString(CultureInfo.InvariantCulture)" type="number" name="order"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Service_Description">@L("Description")</label>
+                <textarea class="form-control" id="Service_Description" type="text" name="description" rows="5">@Model.Service.Description</textarea>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

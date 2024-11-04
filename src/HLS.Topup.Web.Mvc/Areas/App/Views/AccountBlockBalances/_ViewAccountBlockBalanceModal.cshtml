@@ -1,0 +1,53 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.AccountBlockBalances
+@model AccountBlockBalanceViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="AccountBlockBalanceInformationsTab">
+        <input type="hidden" id="txtId" value="@Model.AccountBlockBalance.Id"/>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Loại đại lý</label>
+                    <input disabled="disabled" value="@(L("Enum_AgentType_" + (byte) Model.AgentType))" class="form-control m-input"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Đại lý</label>
+                    <input disabled="disabled" value="@Model.FullAgentName" class="form-control m-input"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Số dư bị phong tỏa</label>
+                    <input disabled="disabled" value="@Model.AccountBlockBalance.BlockedMoney" class="form-control m-input amount-mask"/>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <table id="AccountBlockBalancesDetailTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Loại</th>
+                        <th>Số tiền</th>
+                        <th>@L("CreationTime")</th>
+                        <th>@L("CreatorUser")</th>
+                        <th>Văn bản đính kèm</th>
+                        <th>@L("Description")</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

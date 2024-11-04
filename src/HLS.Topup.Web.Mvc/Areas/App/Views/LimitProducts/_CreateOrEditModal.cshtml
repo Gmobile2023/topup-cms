@@ -1,0 +1,160 @@
+﻿@using HLS.Topup.Common;
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.LimitProducts
+@model CreateOrEditLimitProductModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditLimitProduct")) : L("CreateNewLimitProduct")))
+
+<div class="modal-body">
+    <div id="LimitProductInformationsTab">
+        <form name="LimitProductInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.LimitProduct.Id"/>
+            }
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="LimitProduct_Name">
+                            @L("LimitProducts_Name") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="LimitProduct_Name" value="@Model.LimitProduct.Name" type="text" name="name" required maxlength="@HLS.Topup.LimitationManager.LimitProductConsts.MaxNameLength" minlength="@HLS.Topup.LimitationManager.LimitProductConsts.MinNameLength"/>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    @{
+                        var selectListAgentType = Html.GetEnumSelectList(typeof(CommonConst.AgentType));
+                        foreach (var selectOption in selectListAgentType)
+                        {
+                            selectOption.Text = L("Enum_AgentType_" + selectOption.Value);
+                        }
+                    }
+                    <div class="form-group m-form__group">
+                        <label for="LimitProduct_AgentType">
+                            @L("AgentType") <span class="lightred">(*)</span>
+                        </label>
+                        <select class="form-control m-input m-input--square" name="agentType" required id="LimitProduct_AgentType" asp-for="@Model.LimitProduct.AgentType" asp-items="@selectListAgentType.Where(x => x.Value != "99")">
+                            <option value="">Tất cả</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="AgentFilter">@L("LimitProducts_Agent")</label>
+                        <select class="form-control select2" name="listUserId" id="AgentFilter" multiple disabled>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="FromCreatedTimeFilter">
+                            @L("LimitProducts_AppliedTime") <span class="lightred">(*)</span>
+                        </label>
+                        <div class="input-group">
+                            <input class="form-control m-input date-picker" type="text" placeholder="@L("MinValue")" id="FromCreatedTimeFilter" name="fromDate" value="">
+                            <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                            <input class="form-control m-input date-picker" type="text" placeholder="@L("MaxValue")" id="ToCreatedTimeFilter" name="toDate" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12" style="margin: 10px 0;">
+                    <strong>Chọn hình thức thêm sản phẩm</strong>
+                </div>
+                <div class="col-md-3" style="margin: 5px 0;">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="selectionRadioOptions" id="productMode" value="productMode" checked>
+                        <label class="form-check-label" for="productMode">Chọn theo danh mục sản phẩm</label>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin: 5px 0;">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="selectionRadioOptions" id="importMode" value="importMode">
+                        <label class="form-check-label" for="importMode">Import danh sách</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding: 15px 0;" id="productModeBlock">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ServiceSelect">
+                            @L("LimitProducts_Service") <span class="lightred">(*)</span>
+                        </label>
+                        @Html.DropDownList("service", new SelectList(Model.LimitProductServiceList, "Code", "DisplayName", (Model.IsEditMode ? "" : "")), @L("SelectAService"), new {@id = "ServiceSelect", @class = "form-control select2"})
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ProductType">
+                            @L("LimitProducts_ProductType") <span class="lightred">(*)</span>
+                        </label>
+                        <select class="form-control select2" name="productType" id="ProductType" multiple disabled>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ProductList">@L("LimitProducts_Product")</label>
+                        <select class="form-control select2" name="productList" id="ProductList" multiple disabled>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button id="GetLimitProductsButton" class="btn btn-primary" type="button" style="margin-top: 25px;">
+                        <i class="flaticon-plus"></i> Thêm
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" id="importModeBlock" style="padding: 15px 0; display: none;">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="importCardsFromExcel" style="color:red">
+                            @L("PayBacks_Choose_File") <span class="lightred">(*)</span>
+                        </label>
+                        <label class="form-control" style="width: 100%">
+                            <span >Chọn file</span>
+                            <input id="ImportFromExcel" class="hidden" type="file" name="files" accept=".xlsx, .xls, .csv">
+                        </label>
+                        <div class="form-group">
+                            <a target="_blank" href="/assets/SampleFiles/ImportHanMucBanHang.xlsx">@L("File Mau Import")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <p>@L("LimitProducts_ProductList_Des")</p>
+                </div>
+                <div class="col-md-12 table-data">
+                    <table id="LimitProductsDetailTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>@L("LimitProducts_Service")</th>
+                            <th>@L("LimitProducts_ProductType")</th>
+                            <th>@L("LimitProducts_Product")</th>
+                            <th>@L("LimitProducts_LimitQty")</th>
+                            <th>@L("LimitProducts_LimitPayment")</th>
+                            <th>@L("Delete")</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

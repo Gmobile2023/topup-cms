@@ -1,0 +1,40 @@
+﻿
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Providers
+@model ProviderViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="ProviderInformationsTab">
+        
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("Code") :</h6>
+                @Model.Provider.Code
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Name") :</h6>
+                @Model.Provider.Name
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("PhoneNumber") :</h6>
+                @Model.Provider.PhoneNumber
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("ProviderType") :</h6>
+                @L("Enum_ProviderType_" + (int)Model.Provider.ProviderType)
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("ProviderStatus") :</h6>
+                @L("Enum_ProviderStatus_" + (int)Model.Provider.ProviderStatus)
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

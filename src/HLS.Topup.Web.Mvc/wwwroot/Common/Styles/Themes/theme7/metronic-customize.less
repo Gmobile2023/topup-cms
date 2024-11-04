@@ -1,0 +1,116 @@
+﻿@import "../mobile-header.less";
+@import "../cookie-consent.less";
+
+/* Start Custom theme */
+body {
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 14px !important;
+}
+
+.btn {
+  border-radius: 0 !important;
+  font-size: 14px !important;
+}
+
+.header .header-top {
+  background-color: #0071BC !important;
+}
+
+.bg-primary {
+  background-color: #0071BC !important;
+}
+
+.btn.btn-primary {
+  background-color: #0071BC !important;
+  border-color: #0071BC !important;
+}
+
+.btn.btn-primary:hover {
+  background-color: #195B97 !important;
+  border-color: #195B97 !important;
+}
+
+.btn.btn-outline-success {
+  color: #fff !important;
+  background-color: #ee8434 !important;
+  border-color: #ee8434 !important;
+}
+
+.btn.btn-outline-success i {
+  color: #fff !important;
+}
+
+.form-control {
+  border-radius: 0 !important;
+  border: 1px solid #ddd !important;
+}
+
+.btn.btn-outline-success:hover:not(.btn-text):not(:disabled):not(.disabled) {
+  color: #fff !important;
+  background-color: #FFB04D !important;
+  border-color: #FFB04D !important;
+}
+
+.modal-content {
+  border-radius: 0 !important;
+}
+
+.dataTables_wrapper table thead {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .pagination .page-item.active > .page-link {
+  background-color: #0071BC;
+}
+
+/* End Custom theme */
+
+.unread-chat-message-count {
+  position: absolute;
+  top: 18px;
+}
+
+.unread-notification-count {
+  position: absolute;
+  top: 19px;
+  right: 5px;
+}
+
+@media (max-width: 991px) {
+  .searchMenuTop {
+    display: block !important;
+  }
+
+  .searchMenuBottom {
+    display: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .searchMenuTop {
+    display: none !important;
+  }
+
+  .searchMenuBottom {
+    display: block !important;
+  }
+}
+
+.searchMenuContainerSelect2 {
+    margin: 0px !important;
+}
+
+.searchMenuBottom{
+    margin:5px 0 0 0 !important;
+    
+    .select2-container{
+        max-width:225px !important;
+        float:right;
+    }
+}
+
+.subscription-warning {
+  span{
+    color: white;
+  }
+}

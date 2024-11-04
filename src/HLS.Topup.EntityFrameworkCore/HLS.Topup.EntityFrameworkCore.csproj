@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props"></Import>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp6.0</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <RootNamespace>HLS.Topup</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200305145558_Add_Dynamic_Entity_Parameters.cs" />
+    <Compile Remove="Migrations\20200305145558_Add_Dynamic_Entity_Parameters.Designer.cs" />
+    <Compile Remove="Migrations\20210115034402_add_category_note_for_print.cs" />
+    <Compile Remove="Migrations\20210115034402_add_category_note_for_print.Designer.cs" />
+    <Compile Remove="Migrations\20211203070425_init-db.cs" />
+    <Compile Remove="Migrations\20211203070425_init-db.Designer.cs" />
+    <Compile Remove="Migrations\20220611104500_Update_ServiceConfiguration.cs" />
+    <Compile Remove="Migrations\20220611104500_Update_ServiceConfiguration.Designer.cs" />
+    <Compile Remove="Migrations\20220611104927_Update_ServiceConfiguration.cs" />
+    <Compile Remove="Migrations\20220611104927_Update_ServiceConfiguration.Designer.cs" />
+    <Compile Remove="Migrations\20220611105622_Update_ServiceConfiguration.cs" />
+    <Compile Remove="Migrations\20220611105622_Update_ServiceConfiguration.Designer.cs" />
+    <Compile Remove="Migrations\20220620070224_Update_Table_Product_add_IsShowOnFrontend.cs" />
+    <Compile Remove="Migrations\20220620070224_Update_Table_Product_add_IsShowOnFrontend.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HLS.Topup.Core\HLS.Topup.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Mvc.Razor
+@using HLS.Topup.Authorization
+
+@functions
+{
+    public static string ActiveLinkClass(string page, string pageActive)
+    {
+        if (page == pageActive)
+            return "section-body-left-active";
+        return "";
+    }
+}
+
+<div class="section-body-left hidden-xs hidden-sm">
+    <ul>
+        <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Profile_Edit)">
+            <a href="@Url.Action("Index", "Profile")">
+                <img src="/themes/topup/images/nhattran/Profile-01.svg" alt="">
+                Thông tin tài khoản
+            </a>
+        </li>
+        @if (IsGranted(AppPermissions.Pages_StaffManager))
+        {
+            <li class="@(ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Profile_StaffManager))">
+                <a href="@Url.Action("StaffManager", "Profile")">
+                    <img src="/themes/topup/images/nhattran/Profile-02.svg" alt="">
+                    Quản lý nhân viên
+                </a>
+            </li>
+        }
+
+        @if (IsGranted(AppPermissions.Pages_TransactionHistory))
+        {
+    <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Report_Detail)">
+        @*<a href="@Url.Action("TransactionHistory", "Transactions")">
+            <img src="/themes/topup/images/nhattran/02-History-A.svg" alt="">
+            Lịch sử giao dịch
+        </a>*@
+        <a href="@Url.Action("Detail", "Report")">
+            <img src="/themes/topup/images/nhattran/02-History-A.svg" alt="">
+            Lịch sử giao dịch
+        </a>
+    </li>
+        }
+        @if (IsGranted(AppPermissions.Pages_BalanceHistory))
+        {
+            <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Report_DashRevenue)">
+                <a href="@Url.Action("DashRevenue", "Report")">
+                    <img src="/themes/topup/images/nhattran/02-History-A.svg" alt="">
+                    Báo cáo tổng hợp doanh số
+                </a>
+            </li>
+        }
+
+        <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Profile_ChangePassword)">
+            <a href="@Url.Action("ChangePassword", "Profile")">
+                <img src="/themes/topup/images/nhattran/05-Doi-mk-lv2-A.svg" alt="">
+                Đổi mật khẩu
+            </a>
+        </li>
+        @*<li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Profile_ChangePassword2)">
+            <a href="@Url.Action("Password2Level", "Profile")">
+                <img src="/themes/topup/images/nhattran/05-Doi-mk-lv2-A.svg" alt="">
+                Mật khẩu cấp 2
+            </a>
+        </li>*@
+        <li class="">
+            <a href="@Url.Action("Logout", "Account")">
+                <img src="/themes/topup/images/nhattran/06-Sign-out-C.svg" alt="">
+                Đăng xuất
+            </a>
+        </li>
+    </ul>
+</div>

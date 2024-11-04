@@ -1,0 +1,87 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.LowBalanceAlerts
+@model CreateOrEditLowBalanceAlertModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditLowBalanceAlert")) : L("CreateNewLowBalanceAlert")))
+
+<div class="modal-body">
+    <div id="LowBalanceAlertInformationsTab">
+        <form name="LowBalanceAlertInformationsForm" role="form" novalidate class="form-validation">
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.LowBalanceAlert.Id"/>
+                <input type="hidden" name="accountCode" value="@Model.LowBalanceAlert.AccountCode"/>
+            }
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="AccountCode">
+                            @L("AccountCode") <span class="lightred">(*)</span>
+                        </label>
+                        @if (Model.IsEditMode)
+                        {
+                            <input class="form-control" id="AccountCode" value="@Model.LowBalanceAlert.AccountCode" type="text" disabled />
+                        }
+                        else
+                        {
+                            <input class="form-control" id="AccountCode" name="accountCode" value="" type="text" required />
+                        }
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="AccountName">
+                            @L("AccountName") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="AccountName" name="accountName" value="@Model.LowBalanceAlert.AccountName" type="text" required />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="BalanceGetsLower">
+                            @L("BalanceGetsLower") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control amount-mask" id="BalanceGetsLower" name="minBalance" value="@Model.LowBalanceAlert.MinBalance" type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="AlertChannel">
+                            @L("AlertChannel") <span class="lightred">(*)</span>
+                        </label>
+                        <select class="form-control" name="channel" id="AlertChannel">
+                            <option value="Telegram" selected>Telegram</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="TelegramGroup">
+                            @L("TelegramGroup") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control no-special-characters" id="TelegramGroup" name="teleChatId" value="@Model.LowBalanceAlert.TeleChatId" type="text" required/>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Status">
+                            @L("Status") <span class="lightred">(*)</span>
+                        </label>
+                        <select class="form-control" name="isRun" id="Status">
+                            <option value="1" selected="@(Model.LowBalanceAlert.IsRun == true)">Kích hoạt</option>
+                            <option value="0" selected="@(Model.LowBalanceAlert.IsRun == false)">Không kích hoạt</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

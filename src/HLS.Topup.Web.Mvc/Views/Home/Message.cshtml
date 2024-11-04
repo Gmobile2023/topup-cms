@@ -1,0 +1,50 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@{
+    ViewBag.Title = "Thông báo hệ thống";
+    var message = "Vui lòng quay lại sau";
+    if (ViewBag.Type == CommonConst.MessageType.ServiceDisible)
+    {
+        message = "Dịch vụ tạm thời dừng hoạt động. Vui lòng quay lại sau";
+    }
+    if (ViewBag.Type == CommonConst.MessageType.StaffOutTime)
+    {
+        message = "Tài khoản của bạn nằm ngoài thời gian giao dịch cho phép. Vui lòng quay lại sau";
+    }
+}
+
+
+<div class="section-body-middle">
+    <form class="" id="transactionInfoForm">
+        <div class="section-body-middle-form-p1 no-border-top" style="padding-bottom: 0;">
+            <div class="section-body-right bg-white affix-wrap affix-top">
+                <div class="section-body-right-header">
+                    <div class="cart"></div>
+                    <p>Thông báo hệ thống</p>
+                </div>
+                <div class="form-group form-group-dashed row">
+                    <label class="col-md-12 col-xs-12 control-label text-center">
+                        <span>@message</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="section-body-middle-form-p2">
+            <div class="row">
+                <div tabindex="12" class="col-md-12 text-center">
+                    <button type="button" onclick="goHome()" class="button btn-custom btn-grey">Quay lại</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script>
+    function  goHome() {
+       window.location.href = '@Url.Action("Index", "Home")';
+    }
+    </script>
+}

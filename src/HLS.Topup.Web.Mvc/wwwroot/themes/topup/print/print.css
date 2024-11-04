@@ -1,0 +1,127 @@
+﻿@media print{
+    .noprint{
+        display:none;
+    }
+    body, html, .print-body, .print-body, .print-hls-content {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .section-card-line {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+@page {
+    size: auto;
+    /* Chrome sets own margins, we change these printer settings */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.box-action {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 999;
+}
+
+.btn {
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: #2188C9;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn:active,
+.btn:focus {
+    outline: 0;
+}
+
+.print-hls-content {
+    position: relative;  
+}
+
+.section-card {
+    /*max-width: 64mm;*/
+    /*min-width: 64mm;*/
+    margin: 0px 3px;
+    border-top: 1px dashed #aab2bd;;
+    border-bottom: 1px dashed #aab2bd;;
+    display: block;
+    /*float: left;*/
+}
+.section-card::after{
+    clear: both;
+    display: table;
+    content: ""
+}
+
+.print-body {
+    background: #fff;
+}
+
+.section-card  .section-card-header .logo {
+    width: 100%;
+    text-align: center;
+    margin: 12px 1px;
+}
+
+.section-card .section-card-header .logo img {
+    max-height: 28px;
+}
+
+.section-card .section-card-header h2 {
+    font-size: 18px;
+    text-align: center;
+    margin: 10px auto;
+    padding: 0;
+}
+
+.section-card .section-card-content {
+    padding: 0 0 15px 0;
+}
+
+.foo_print::after {
+    content: "_";
+    display: block;
+    opacity: 1;
+    padding-top: 15px !important;
+    clear: both;
+}
+
+.section-card .section-card-line {
+    font-size: 12px;
+    padding: 1px 0px;
+}
+
+.section-card .section-card-line .telco {
+    font-size: 14px;
+}
+.section-card .section-card-line .value {
+    font-size: 16px;
+    font-weight: normal;
+}
+.section-card .section-card-line .serial {
+    font-size: 17px;
+}
+.section-card .section-card-line .code {
+    font-size: 17px;
+    font-weight: normal;
+}
+.print_a4 .section-card {
+    width: 58mm;
+    border: 1px dashed #aab2bd; 
+    float: left;
+    margin-bottom: 6px;
+    padding: 0 20px;
+}
+.print_a4 .section-card .section-card-header .logo{
+    margin: 10px 1px;
+}

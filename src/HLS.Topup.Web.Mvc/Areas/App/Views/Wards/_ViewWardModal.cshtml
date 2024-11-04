@@ -1,0 +1,36 @@
+﻿
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.Wards
+@model WardViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="WardInformationsTab">
+        
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("WardCode") :</h6>
+                @Model.Ward.WardCode
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("WardName") :</h6>
+                @Model.Ward.WardName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Status") :</h6>
+                @L("Enum_WardStatus_" + (int)Model.Ward.Status)
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>(@L("District")) @L("DistrictName") :</h6>
+                @Model.DistrictDistrictName
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

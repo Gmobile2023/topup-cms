@@ -1,0 +1,135 @@
+﻿@using HLS.Topup.Common;
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.SaleMans
+@model CreateOrEditSaleManModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditSaleMan")) : L("CreateNewSaleMan")))
+
+<div class="modal-body">
+    <div id="SaleManInformationsTab">
+        <form name="SaleManInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.SaleMan.Id" />
+            }
+
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="SaleMan_UserName">
+                            @L("UserName") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="SaleMan_UserName" value="@Model.SaleMan.UserName" disabled="@Model.IsEditMode" type="text" name="userName" required maxlength="@HLS.Topup.Sale.SaleManConsts.MaxSaleNameLength" minlength="@HLS.Topup.Sale.SaleManConsts.MinSaleNameLength" />
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group">
+                        <label for="SaleMan_SaleName">
+                            @L("PhoneNumber") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="SaleMan_Phone" value="@Model.SaleMan.PhoneNumber" type="text" name="phoneNumber" required />
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="SaleMan_Surname">
+                            @L("Surname") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="SaleMan_Surname" value="@Model.SaleMan.SurName" type="text" name="surName" required />
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="SaleMan_Name">Tên <span class="lightred">(*)</span></label>
+                        <input class="form-control" id="SaleMan_Name" value="@Model.SaleMan.Name" type="text" name="name" required />
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="form-group">
+                        <label for="SaleMan_Password">
+                            @L("Password") <span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control" id="SaleMan_Password" type="text" name="password" required />
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    @{
+                        var selectListSaleType = Html.GetEnumSelectList(typeof(CommonConst.SystemAccountType));
+                        foreach (var selectOption in selectListSaleType)
+                        {
+                            selectOption.Text = L("Enum_SaleManType_" + selectOption.Value);
+                        }
+                    }
+                    <div class="form-group m-form__group">
+                        <label for="SaleMan_SaleType">
+                            @L("SaleType") <span class="lightred">(*)</span>
+                        </label>
+                        <select class="form-control m-input m-input--square" name="saleType" id="SaleMan_SaleType" required asp-for="@Model.SaleMan.SaleType" asp-items="@selectListSaleType.Where(x => x.Value == "5" || x.Value == "6")">
+                            <option value="">Chọn @L("SaleType")</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xs-12 sale-man-manager xtransition">
+                    <div class="form-group">
+                        <label for="saleLeadUserId">
+                            @L("SaleManager") <span class="lightred">(*)</span>
+                        </label>
+                        <select id="saleLeadUserId" name="saleLeadUserId" class="form-control select2">
+                            @if (@Model.SaleMan.SaleLeadUserId > 0)
+                            {
+                                <option value="@Model.SaleMan.SaleLeadUserId">@Model.SaleMan.SaleLeadName</option>
+                            }
+                        </select>
+                        @if (Model.IsEditMode)
+                        {
+                            <script>
+                                let data = {
+                                    id: @Model.SaleMan.SaleLeadUserId,
+                                    text: '@Model.SaleMan.SaleLeadName'
+                                };
+
+                                let newOption = new Option(data.text, data.id, false, false);
+                                $('#saleLeadUserId').append(newOption).trigger('change');
+                            </script>
+                        }
+                    </div>
+                </div>
+                @if (Model.IsEditMode)
+                {
+                    <div class="col-md-6 col-xs-12">
+                        @{
+                            var selectListStatus = Html.GetEnumSelectList(typeof(CommonConst.SaleManStatus));
+                            foreach (var selectOption in selectListStatus)
+                            {
+                                selectOption.Text = L("Enum_SaleManStatus_" + selectOption.Value);
+                            }
+                        }
+                        <div class="form-group m-form__group">
+                            <label for="SaleMan_Status">@L("Status")</label>
+                            <select class="form-control m-input m-input--square" name="isActive" id="SaleMan_Status" asp-for="@(Model.SaleMan.IsActive)">
+                                <option value="true">Hoạt động</option>
+                                <option value="false">Khóa</option>
+                            </select>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <input type="hidden" name="isActive" id="SaleMan_Status" value="true" />
+                }
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="SaleMan_Description">@L("Description")</label>
+                        <textarea class="form-control" id="SaleMan_Description" type="text" name="description" rows="5">@Model.SaleMan.Description</textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

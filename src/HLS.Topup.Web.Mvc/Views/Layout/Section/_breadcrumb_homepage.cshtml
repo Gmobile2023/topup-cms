@@ -1,0 +1,22 @@
+@using HLS.Topup.Web.Views.Shared.Components.AccountInfo
+<div class="section-top">
+    <div class="section-top-left">
+        <ul class="breadcrumb">
+            <li>
+                <a href="javascript:void(0)" title="Trang chủ">Trang chủ</a>
+            </li>
+        </ul>
+        <a href="/" class="btn-back cbutton cbutton--effect-boris">
+            <img src="/themes/topup/images/home.svg" alt="Trang chủ">
+            <p>Trang chủ</p>
+        </a>
+    </div>
+    <div class="section-top-middle">
+        <div class="col-md-12">
+            <a href="javascript:void(0)">
+                <img src="@(ViewBag.ImageTitle ?? "/themes/topup/images/ic_banner_top/05.svg")" alt="@ViewBag.Title">
+                @ViewBag.Title</a>
+        </div>
+    </div>
+    @await Component.InvokeAsync(typeof(AccountInfoViewComponent))
+</div>

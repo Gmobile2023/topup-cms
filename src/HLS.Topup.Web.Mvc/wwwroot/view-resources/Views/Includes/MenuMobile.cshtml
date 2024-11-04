@@ -1,0 +1,6 @@
+﻿@using HLS.Topup.Web.Views.Shared.Components.MenuMobile
+@{
+    Layout = "";
+}
+
+@await Component.InvokeAsync(typeof(MenuMobileViewComponent), new { currentPageName = ViewBag.CurrentPageName })

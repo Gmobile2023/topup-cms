@@ -1,0 +1,267 @@
+.main-head-mobile li h3 a {
+    font-weight: bold;
+}
+
+.topup-category {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+    .topup-category::after {
+        content: ' ';
+        display: block;
+        width: 100%;
+        clear: both;
+    }
+
+    .topup-category .topup-category-item {
+        border: 1px solid #eee;
+        float: left;
+        width: 50%;
+    }
+
+        .topup-category .topup-category-item:first-child {
+            width: 100%;
+        }
+
+        .topup-category .topup-category-item h3, .topup-category .topup-category-item h3 a {
+            padding: 0;
+            margin: 0;
+            display: block;
+            color: #555;
+            z-index: 99;
+            width: 100%;
+        }
+
+        .topup-category .topup-category-item::after {
+            content: ' ';
+            display: block;
+            width: 100%;
+            clear: both;
+        }
+
+        .topup-category .topup-category-item .topup-category-icon {
+            display: block;
+            position: relative;
+            height: 50px;
+            margin: 0 auto;
+            margin-top: 5px;
+        }
+
+        .topup-category .topup-category-item .topup-category-text {
+            display: block;
+            padding: 5px;
+            font-size: 15px;
+            text-align: center;
+            height: 35px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .topup-category .topup-category-item .topup-category-icon img {
+            display: block;
+            max-width: 45px;
+            max-height: 40px;
+            height: auto;
+            width: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+.header-sec .header-sec-title {
+    font-size: 25px;
+}
+
+.header-sec .header-sec-desc {
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.header-sec .header-sec-btn {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.blog-category-item-mobile {
+    -webkit-box-shadow: 0 0 8px rgba(92,69,2,.16);
+    -ms-box-shadow: 0 0 8px rgba(92,69,2,.16);
+    box-shadow: 0 0 8px rgba(92,69,2,.16);
+    border: 0;
+    margin-bottom: 20px;
+    padding-right: 0;
+}
+
+    .blog-category-item-mobile .wrap {
+        padding: 0 10px;
+    }
+
+    .blog-category-item-mobile h4.post-title, .blog-category-item-mobile h3.post-title {
+        font-size: 18px;
+    }
+
+.relate-item-mobile {
+    padding: 5px !important;
+}
+
+    .relate-item-mobile h3.post-title, .relate-item-mobile h4.post-title {
+        font-size: 15px;
+        margin-bottom: 0;
+    }
+
+.blog-category-item {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+    .blog-category-item a.feature-img {
+        height: 180px;
+        margin-bottom: 15px;
+    }
+
+.relate-item-mobile a.feature-img {
+    height: auto;
+    width: 100%;
+    overflow: visible;
+    margin-bottom: 0;
+}
+
+    .relate-item-mobile a.feature-img img {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+.readmore-content-inner {
+    padding: 5px;
+}
+
+    .readmore-content-inner .readmore-image {
+        display: block;
+        height: 150px;
+        overflow: hidden;
+        position: relative;
+    }
+
+        .readmore-content-inner .readmore-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: auto;
+            max-height: inherit;
+        }
+
+@media screen and (min-width:1024px) {
+    .blog-category-item-mobile {
+        box-shadow: none;
+        padding-bottom: 0;
+    }
+
+    .blog-category-item a.feature-img {
+        height: 150px;
+    }
+}
+
+@media screen and (max-width:1024px) {
+}
+
+@media screen and (min-width:768px)and (max-width:1023px) {
+    .blog-category-item-mobile {
+        box-shadow: none;
+        padding-bottom: 0;
+    }
+
+    .widget-quick-support-link::after {
+        content: ' ';
+        display: block;
+        clear: both;
+        width: 100%;
+    }
+
+    .quick-support-link-item {
+        width: 50%;
+        float: left;
+        border-bottom: 0;
+    }
+}
+
+@media screen and (max-width:991px) {
+    .nav-parent-item {
+        position: relative;
+    }
+
+        .nav-parent-item::after {
+            content: ' ';
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            border-width: 6px;
+            border-style: solid;
+            border-color: transparent;
+            border-top-color: #ddd;
+            right: 3px;
+            top: 50%;
+        }
+
+        .nav-parent-item.active::after {
+            border-top-color: #23a076;
+        }
+
+        .nav-parent-item .nav-sub {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            display: block;
+            padding: 0;
+            margin: 0;
+            width: 130%;
+            list-style: none;
+            background: #fff;
+            -webkit-box-shadow: 0 2px 8px 0 rgba(92,69,2,.16);
+            -ms-box-shadow: 0 2px 8px 0 rgba(92,69,2,.16);
+            box-shadow: 0 2px 8px 0 rgba(92,69,2,.16);
+            margin-top: 5px;
+            display: none;
+        }
+
+            .nav-parent-item .nav-sub > li {
+                padding: 5px 7px;
+                border-bottom: 2px solid #eee;
+            }
+
+                .nav-parent-item .nav-sub > li, .nav-parent-item .nav-sub > li > a.nav-item {
+                    display: block;
+                    width: 100%;
+                }
+
+                    .nav-parent-item .nav-sub > li > a.nav-item > span.nav-item-text {
+                        text-align: left;
+                        color: #555 !important;
+                    }
+
+                    .nav-parent-item .nav-sub > li.active > a.nav-item > span.nav-item-text {
+                        color: #23a076 !important;
+                    }
+
+                    .nav-parent-item .nav-sub > li.active {
+                        border-bottom-color: #23a076;
+                    }
+}
+
+@media screen and (max-width:767px) {
+}
+
+@media screen and (max-width:460px) {
+}

@@ -1,0 +1,19 @@
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@model HLS.Topup.AgentManagerment.AgentSupperDetailView
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.UserId > 0 ? "Chỉnh sửa đại lý" : "Tạo mới đại lý"))
+
+<div class="modal-body">
+    <div id="AgentInformationsTab">
+        <form name="AgentInformationsForm" role="form" novalidate class="form-validation">
+            <input type="hidden" id="hdnUserId" value="@Model.UserId"/>
+            <div id="accordion">
+                @await Html.PartialAsync("_PartnerInfo", Model)
+                @await Html.PartialAsync("_PartnerConfig", Model)
+                @await Html.PartialAsync("_PartnerContact", Model)
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

@@ -1,0 +1,146 @@
+﻿@using System.Globalization
+@using Abp.AspNetZeroCore.Timing
+@using Abp.Configuration
+@using Abp.MultiTenancy
+@using Abp.Web.Mvc.Alerts
+@using HLS.Topup.Features
+@using HLS.Topup.Web.Resources
+@using Abp.Web.Security.AntiForgery
+@using HLS.Topup.Configuration
+@using HLS.Topup.UiCustomization
+@using HLS.Topup.UiCustomization.Dto
+@using HLS.Topup.Url
+@using HLS.Topup.Web.Session
+@using HLS.Topup.Web.Views.Shared.Components.Footer
+@using HLS.Topup.Web.Views.Shared.Components.Header
+@using CultureHelper = HLS.Topup.Localization.CultureHelper
+@using HeaderViewModel = HLS.Topup.Web.Areas.App.Models.Layout.HeaderViewModel
+@inject ScriptPaths ScriptPaths
+@inject AppTimes AppTimes
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IWebUrlService WebUrlService
+@inject IPerRequestSessionCache SessionCache
+@inject IAlertManager AlertManager
+@{
+    Layout = null;
+    AbpAntiForgeryManager.SetCookie(Context);
+    UiCustomizationSettingsDto theme = await GetTheme();
+    //var isChatEnabled = AbpSession.MultiTenancySide == MultiTenancySides.Host || IsFeatureEnabled(AppFeatures.ChatFeature);
+    var headerViewModel = new HeaderViewModel();
+}
+<!DOCTYPE html>
+<html lang="vi" @(CultureHelper.IsRtl ? "dir=\" rtl\"" : "")>
+<head>
+    <title>@(ViewBag.Title ?? "Nhất Trần")</title>
+    <meta charset="utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+
+    <meta property="og:title" content="Topup"/>
+    <meta property="og:image" content="@headerViewModel.GetLogoUrl(ApplicationPath, theme.BaseSettings.Menu.AsideSkin)"/>
+    <meta property="og:description" content="MobileGo"/>
+    <meta property="og:url" content="@($" {Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/themes/topup/nhattan-favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/themes/topup/nhattan-favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/themes/topup/nhattan-favicon/favicon-16x16.png">
+    @* <link rel="manifest" href="/themes/topup/nhattan-favicon/site.webmanifest"> *@
+
+    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/vendors.bundle.css" asp-append-version="true"/>
+    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/app-layout-libs.css" asp-append-version="true"/>
+    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/common-styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" abp-href="/Common/Scripts/Datatables/datatables@(CultureHelper.IsRtl ? "-rtl" : "").css" asp-append-version="true"/>
+
+    <link rel="stylesheet" href="/themes/topup/css/custom.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="/themes/topup/css/animate.min.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="/themes/topup/css/style1.css" asp-append-version="true"/>
+    @* $1$ <link rel="stylesheet" href="/themes/topup/css/style2.css" asp-append-version="true"/> #1# *@
+    @* <link rel="stylesheet" href="/themes/topup/css/film-menu.css" asp-append-version="true"/> *@
+    @* $1$ <link rel="stylesheet" href="/themes/topup/css/film-menu9a0d.css" asp-append-version="true"/> #1# *@
+    <link rel="stylesheet" href="/themes/topup/css/style.css" asp-append-version="true"/>
+
+    <link rel="stylesheet" href="/themes/topup/libs/line-awesome-1.3.0/1.3.0/css/line-awesome.min.css" asp-append-version="true">
+
+    @await RenderSectionAsync("Styles", false)
+
+    <script type="text/javascript">
+            @* This is used to get the application's root path from javascript.
+            It's useful if you're running application in a virtual directory under IIS. *@
+            var abp = abp || {}; abp.appPath = '@ApplicationPath';
+        </script>
+
+</head>
+<body>
+<div class="se-pre-con"></div>
+
+@await Component.InvokeAsync(typeof(HeaderViewComponent), new {currentPageName = ViewBag.CurrentPageName})
+@RenderBody()
+@await Html.PartialAsync("~/Views/Layout/Section/_footer.cshtml")
+@* Base JS *@
+<script>if(window.KTAppSettings === undefined){
+    window.KTAppSettings = {};
+}</script>
+<script abp-src="/view-resources/Areas/App/Views/_Bundles/app-layout-libs.js" asp-append-version="true"></script>
+<script abp-src="/view-resources/Areas/App/Views/_Bundles/@theme.BaseSettings.Theme.ToLowerInvariant()-scripts.bundle.js" asp-append-version="true"></script>
+<!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+<script src="@(ApplicationPath)AbpServiceProxies/GetAll?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+<script src="@(ApplicationPath)AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+
+<script src="/Common/Scripts/Datatables/datatables.backend.js" asp-append-version="true"></script>
+<script type="text/javascript">
+        abp.localization.currentCulture = $.extend({}, abp.localization.currentCulture, { displayNameEnglish: '@CultureInfo.CurrentUICulture.EnglishName' });
+        moment.locale('@(GetMomentLocale())'); //Localizing moment.js
+    </script>
+@* <script src="@(ApplicationPath)view-resources/Areas/App/Views/_Bundles/signalr.bundle.min.js" asp-append-version="true"></script> *@
+@* <script src="/Common/Scripts/Notification.js" asp-append-version="true"></script> *@
+<script abp-src="/view-resources/Areas/App/Views/_Bundles/common-scripts.js" asp-append-version="true"></script>
+<script abp-src="/view-resources/Areas/App/Views/_Bundles/app-common-scripts.js" asp-append-version="true"></script>
+@* <script abp-src="/view-resources/Areas/App/Views/Layout/_Header.js" asp-append-version="true"></script> *@
+@* <script abp-src="/view-resources/Areas/App/Views/Layout/_Layout.js" asp-append-version="true"></script> *@
+@* @if (isChatEnabled) *@
+@* { *@
+@*     <script src="@(ApplicationPath)Common/Scripts/Chat/chat.signalr.js" asp-append-version="true"></script> *@
+@* } *@
+@if (await SettingManager.GetSettingValueAsync<bool>(AppSettings.UserManagement.SessionTimeOut.IsEnabled) && AbpSession.UserId.HasValue)
+{
+    <script src="@(ApplicationPath)view-resources/Areas/App/Views/_Bundles/InactivityController.min.js" asp-append-version="true"></script>
+}
+<script src="~/Common/Scripts/bootbox/bootbox.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+
+
+@* <script src="/themes/topup/js/topup.js" asp-append-version="true"></script> *@
+@* <script src="/themes/topup/js/frontendjs9af6.js" asp-append-version="true"></script> *@
+<script src="/themes/topup/js/custome.js" asp-append-version="true"></script>
+@* <script src="/themes/topup/js/swiper-bundle.min.js" asp-append-version="true"></script> *@
+@* <script src="/themes/topup/plugins/validate/jquery.validate.min.js" asp-append-version="true"></script> *@
+@* <script src="/themes/topup/js/angularjs71fd.js" asp-append-version="true"></script> *@
+
+@* <script src="/themes/topup/swiper-bundle.min.js" asp-append-version="true"></script> *@
+<script src="/themes/topup/js/swiper.js" asp-append-version="true"></script>
+
+
+<script src="~/Common/Scripts/query-mask/jquery.inputmask.bundle.js"></script>
+<script src="~/Common/Scripts/Service.js" asp-append-version="true"></script>
+<script src="~/view-resources/Views/Header/Index.min.js" asp-append-version="true"></script>
+<script src="~/view-resources/Views/Notification/firebase-app.js"></script>
+<script src="~/view-resources/Views/Notification/firebase-messaging.js"></script>
+<script src="~/view-resources/Views/Notification/init.js"></script>
+<script src="~/view-resources/Views/Notification/NotificationWorker.js"></script>
+
+<script src="~@ScriptPaths.JQuery_Validation_Localization" asp-append-version="true"></script>
+<script src="~@ScriptPaths.Bootstrap_Select_Localization" asp-append-version="true"></script>
+<script src="~@ScriptPaths.JQuery_Timeago_Localization" asp-append-version="true"></script>
+<script src="~@ScriptPaths.Select2_Localization" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", false)
+<script>
+   app.supportsTenancyNameInUrl = @(WebUrlService.SupportsTenancyNameInUrl.ToString().ToLower());
+</script>
+@* <footer> *@
+@*     @await Component.InvokeAsync(typeof(FooterViewComponent)) *@
+@* </footer> *@
+</body>
+</html>

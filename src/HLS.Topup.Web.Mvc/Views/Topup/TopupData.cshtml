@@ -1,0 +1,33 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@model HLS.Topup.Web.Models.TopupRequest.CreateOrEditTopupRequestModalViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.TopupData;
+    ViewBag.Title = "Topup Data";
+    ViewBag.ImageTitle = "/themes/topup/images/ic_banner_top/topup-data.svg";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Topup/Index.js" asp-append-version="true"></script>
+}
+
+<div id="Topup_Page" class="section-body-middle">
+    <div class="section-body-middle-introduce">
+        <ul class="navbar-card row mg0" style="display: none;">
+            <li onclick="ctrl.TabActive('card__slider_menu1')" class="card__slider_menu1 active">
+                <div class="navbar-card__slider"></div>
+                <a data-toggle="tab" href="#card__slider_menu1">Topup Data</a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+
+        <div class="tab-content tab-content--card">
+
+            <div id="card__slider_menu1" class="tab-pane fade active">
+                @await Html.PartialAsync("IndexTopup", Model)
+            </div>
+        </div>
+    </div>
+</div>

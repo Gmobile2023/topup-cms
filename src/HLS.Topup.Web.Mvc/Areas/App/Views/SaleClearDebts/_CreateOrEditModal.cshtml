@@ -1,0 +1,79 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.SaleClearDebts
+@model CreateOrEditSaleClearDebtModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? "Chỉnh sửa" : "Thêm mới"))
+
+<div class="modal-body">
+    <div id="SaleClearDebtInformationsTab">
+        <form name="SaleClearDebtInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.SaleClearDebt.Id" id="id" />
+            }
+            <div class="form-group m-form__group">
+                <label for="UserName">Nhân viên<span class="lightred">(*)</span></label>
+                <div class="input-group">
+                    <select id="saleClearDebt_userId" name="saleClearDebt_userId" class="form-control select2" required style="width:800px">
+                        @if (Model.IsEditMode)
+                        {
+                            <option value="@Model.SaleClearDebt.UserId">@Model.UserName</option>
+                        }
+                    </select>
+                    <input type="hidden" name="type" id="userId" value="@Model.SaleClearDebt.UserId" />
+                </div>
+            </div>
+
+            @if (Model.IsEditMode)
+            {
+                <input class="form-control" id="SaleClearDebt_UserId" value="@Model.SaleClearDebt.UserId" type="text" name="userId" required hidden />
+            }
+            else
+            {
+                <input class="form-control" id="SaleClearDebt_UserId" value="" type="text" name="userId" required hidden />
+            }
+
+
+            @{
+                var selectListType = Html.GetEnumSelectList(typeof(CommonConst.ClearDebtType));
+                foreach (var selectOption in selectListType) { selectOption.Text = L("Enum_ClearDebtType_" + selectOption.Value); }
+            }
+
+            @if (Model.IsEditMode)
+            {
+                <div class="form-group">
+                    <label for="SaleClearDebt_TransCode">Mã giao dịch</label>
+                    <input class="form-control m-input" id="SaleClearDebt_TransCode" value="@Model.SaleClearDebt.TransCode" type="text" name="transCode" disabled />
+                </div>
+            }
+
+            <div class="form-group m-form__group">
+                <label for="SaleClearDebt_Type">Hình thức thanh toán<span class="lightred">(*)</span></label>
+                <select class="form-control m-input m-input--square" name="type" id="SaleClearDebt_Type" asp-for="@Model.SaleClearDebt.Type" asp-items="@selectListType">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bankId">Ngân hàng/Nơi nhận tiền<span class="lightred">(*)</span></label>
+                @Html.DropDownList("bankId", new SelectList(Model.SaleClearDebtBankList, "Id", "DisplayName", (Model.IsEditMode ? Model.SaleClearDebt.BankId.ToString() : "")), @L("SelectABank"), new { @class = "form-control", @required = "required" })
+                <input class="form-control m-input" id="SaleClearDebt_Descriptions" value='@Model.SaleClearDebt.Descriptions' type="text" name="SaleClearDebt_Descriptions" maxlength="200" />
+            </div>
+            <div class="form-group" id="group_TransCodeBank">        
+                <label for="SaleClearDebt_TransCodeBank">Nhập mã giao dịch ngân hàng<span class="lightred">(*)</span></label>
+                <input class="form-control m-input" id="SaleClearDebt_TransCodeBank" value='' type="text" name="SaleClearDebt_TransCodeBank" maxlength="50" />
+            </div>
+            <div class="form-group">
+                <label for="SaleClearDebt_Amount">Số tiền<span class="lightred">(*)</span></label>
+                <input class="form-control m-input amount-mask" id="SaleClearDebt_Amount" value='@(Model.SaleClearDebt.Amount==0? "": Model.SaleClearDebt.Amount.ToString("N0"))' type="text" name="amount" maxlength="12" />
+                <br>
+                <div class="amount-to-text"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

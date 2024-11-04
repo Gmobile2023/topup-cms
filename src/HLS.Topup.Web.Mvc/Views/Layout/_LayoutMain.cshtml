@@ -1,0 +1,133 @@
+﻿@using System.Globalization
+@using Abp.AspNetZeroCore.Timing
+@using Abp.Web.Mvc.Alerts
+@using HLS.Topup.Web.Resources
+@using Abp.Web.Security.AntiForgery
+@using HLS.Topup.UiCustomization.Dto
+@using HLS.Topup.Url
+@using HLS.Topup.Web.Session
+@using HLS.Topup.Web.Views.Shared.Components.Header
+@using HLS.Topup.Web.Views.Shared.Components.LeftMenu
+@using HLS.Topup.Web.Views.Shared.Components.MenuMobile
+@using CultureHelper = HLS.Topup.Localization.CultureHelper
+@using HeaderViewModel = HLS.Topup.Web.Areas.App.Models.Layout.HeaderViewModel
+@inject ScriptPaths ScriptPaths
+@inject AppTimes AppTimes
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IWebUrlService WebUrlService
+@inject IPerRequestSessionCache SessionCache
+@inject IAlertManager AlertManager
+@{
+    Layout = null;
+    AbpAntiForgeryManager.SetCookie(Context);
+    UiCustomizationSettingsDto theme = await GetTheme();
+    var headerViewModel = new HeaderViewModel();
+}
+<!DOCTYPE html>
+<html lang="en" @(CultureHelper.IsRtl ? "dir=\" rtl\"" : "")>
+<head>
+    <title>Topup</title>
+    <meta charset="utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+
+    <meta property="og:title" content="Topup"/>
+    <meta property="og:image" content="@headerViewModel.GetLogoUrl(ApplicationPath, theme.BaseSettings.Menu.AsideSkin)"/>
+    <meta property="og:description" content="MobileGo"/>
+    <meta property="og:url" content="@($" {Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")">
+
+    <link rel="shortcut icon" href="~/favicon.ico"/>
+
+    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/vendors.bundle.css" asp-append-version="true"/>
+    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/app-layout-libs.css" asp-append-version="true"/>
+    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/common-styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" abp-href="/Common/Scripts/Datatables/datatables@(CultureHelper.IsRtl ? "-rtl" : "").css" asp-append-version="true"/>
+
+
+    <link rel="stylesheet" href="/themes/topup/css/style.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="/themes/topup/css/style1.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="/themes/topup/css/style2.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="/themes/topup/css/film-menu.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="/themes/topup/css/film-menu9a0d.css" asp-append-version="true"/>
+
+    @await RenderSectionAsync("Styles", false)
+
+    <script type="text/javascript">
+            @* This is used to get the application's root path from javascript.
+            It's useful if you're running application in a virtual directory under IIS. *@
+            var abp = abp || {}; abp.appPath = '@ApplicationPath';
+        </script>
+
+</head>
+<body ng-app="topupApp">
+@RenderBody()
+<div class="se-pre-con">
+</div>
+
+ @await Component.InvokeAsync(typeof(HeaderViewComponent), new {currentPageName = ViewBag.CurrentPageName})
+
+<div class="wrap-bottom">
+
+    @await Html.PartialAsync("~/Views/Shared/Components/Header/_Slider.cshtml")
+
+    <nav class="navbar navbar-default navbar-fixed-bottom mega-menu" id="">
+
+        @await Html.PartialAsync("Components/MenuBottom/Default")
+        <!-- /.nav-collapse -->
+        <!-- /.nav-collapse -->
+        <div class="bg-white nopadding">
+            @await Html.PartialAsync("Components/Footer/_FooterHome")
+        </div>
+    </nav>
+</div>
+
+
+@* Base JS *@
+<script>if(window.KTAppSettings === undefined){
+    window.KTAppSettings = {};
+}</script>
+<script abp-src="/view-resources/Areas/App/Views/_Bundles/app-layout-libs.js" asp-append-version="true"></script>
+<script abp-src="/view-resources/Areas/App/Views/_Bundles/@theme.BaseSettings.Theme.ToLowerInvariant()-scripts.bundle.js" asp-append-version="true"></script>
+<!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+<script src="@(ApplicationPath)AbpServiceProxies/GetAll?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+<script src="@(ApplicationPath)AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+
+<script type="text/javascript">
+        abp.localization.currentCulture = $.extend({}, abp.localization.currentCulture, { displayNameEnglish: '@CultureInfo.CurrentUICulture.EnglishName' });
+        moment.locale('@(GetMomentLocale())'); //Localizing moment.js
+    </script>
+<script abp-src="/view-resources/Areas/App/Views/_Bundles/common-scripts.js" asp-append-version="true"></script>
+<script abp-src="/view-resources/Areas/App/Views/_Bundles/app-common-scripts.js" asp-append-version="true"></script>
+<!-- Latest compiled and minified JavaScript -->
+
+
+<script src="/themes/topup/js/topup.js" asp-append-version="true"></script>
+<script src="/themes/topup/js/frontendjs9af6.js" asp-append-version="true"></script>
+<script src="/themes/topup/js/custom00dd.js" asp-append-version="true"></script>
+<script src="/themes/topup/js/custom0760.js" asp-append-version="true"></script>
+@* <script src="/themes/topup/js/jquery.datepicker.lunar.js" asp-append-version="true"></script> *@
+@* <script src="/themes/topup/js/jquery.dotdotdot.min.js" asp-append-version="true"></script> *@
+@* <script src="/themes/topup/js/jquery-ui.min.js" asp-append-version="true"></script> *@
+<script src="/themes/topup/plugins/validate/jquery.validate.min.js" asp-append-version="true"></script>
+@* <script src="/themes/topup/js/angularjs71fd.js" asp-append-version="true"></script> *@
+
+
+<script src="~/Common/Scripts/query-mask/jquery.inputmask.bundle.js"></script>
+<script src="~/Common/Scripts/Service.min.js" asp-append-version="true"></script>
+<script src="~/view-resources/Views/Header/Index.min.js" asp-append-version="true"></script>
+
+<script src="~@ScriptPaths.JQuery_Validation_Localization" asp-append-version="true"></script>
+<script src="~@ScriptPaths.Bootstrap_Select_Localization" asp-append-version="true"></script>
+<script src="~@ScriptPaths.JQuery_Timeago_Localization" asp-append-version="true"></script>
+<script src="~@ScriptPaths.Select2_Localization" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", false)
+<script>
+   app.supportsTenancyNameInUrl = @(WebUrlService.SupportsTenancyNameInUrl.ToString().ToLower());
+</script>
+
+</body>
+
+</html>

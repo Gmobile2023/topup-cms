@@ -1,0 +1,28 @@
+﻿@using HLS.Topup.StockManagement;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.StocksAirtimes
+@model CreateOrEditStocksAirtimeModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel("Nạp tiền vào tài khoản Viettel"))
+
+<div class="modal-body">
+    <div id="StocksAirtimeInformationsTab">
+        <form name="StocksAirtimeInformationsForm" role="form" novalidate class="form-validation">
+            <div>
+                <input type="hidden" id="hdnDepositProviderCode" value="@Model.StocksAirtime.ProviderCode" />
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="StocksAirtime_Amount"><span class="lightred">(*)</span> Số tiền cần nạp</label>
+                        <input class="form-control m-input amount-mask" id="StocksAirtime_Amount" value="0" type="text" required="required" name="amount" maxlength="15" />
+                        <br>
+                        <div class="amount-to-text"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

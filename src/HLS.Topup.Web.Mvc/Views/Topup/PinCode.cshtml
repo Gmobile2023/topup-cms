@@ -1,0 +1,51 @@
+﻿@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@model HLS.Topup.Web.Models.TopupRequest.CreateOrEditTopupRequestModalViewModel
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.PinCode;
+    ViewBag.Title = "Mua mã thẻ Điện thoại/Thẻ Data/Thẻ Game";
+    ViewBag.ImageTitle = "/themes/topup/images/nhattran/video-game.svg";
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Views/Topup/PinCode.js" asp-append-version="true"></script>
+}
+
+<div class="row" id="mix-pin-panel">
+    <div class="col-md-12">
+        <div class="tab" role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" data-service="PIN_CODE" data-form="pinCodeForm" data-label="0" class="pin_code active">
+                    <a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">Mã thẻ Điện thoại</a>
+                </li>
+                <li role="presentation" data-service="PIN_DATA" data-form="pinDataForm" data-label="1" class="pin_data">
+                    <a href="#Section2" aria-controls="messages" role="tab" data-toggle="tab">Mã thẻ Data</a>
+                </li>
+                <li role="presentation" data-service="PIN_GAME" data-form="pinGameForm" data-label="2" class="pin_game">
+                    <a href="#Section3" aria-controls="profile" role="tab" data-toggle="tab">Mã thẻ Game</a>
+                </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content tabs">
+                <div role="tabpanel" class="tab-pane fade in active" id="Section1">
+                    <div id="PinCode_Page" class="section-body-middle">
+                        @await Html.PartialAsync("PinCode/_PinCode", Model)
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Section2">
+                    <div id="PinData_Page" class="section-body-middle">
+                        @await Html.PartialAsync("PinCode/_PinData", Model)
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Section3">
+                    <div id="PinGame_Page" class="section-body-middle">
+                        @await Html.PartialAsync("PinCode/_PinGame", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.NotificationSchedules
+@model NotificationScheduleViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="NotificationScheduleInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("Code") :</h6>
+                @Model.NotificationSchedule.Code
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Tên thông báo :</h6>
+                @Model.NotificationSchedule.Name
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Title") :</h6>
+                @Model.NotificationSchedule.Title
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("DateSchedule") :</h6>
+                @Model.NotificationSchedule.DateSchedule
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("DateSend") :</h6>
+                @Model.NotificationSchedule.DateSend
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Status") :</h6>
+                @L("Enum_SendNotificationStatus_" + (int) Model.NotificationSchedule.Status)
+            </div>
+            @* <div class="col-6 mb-3"> *@
+            @*     <h6>@L("AccountType") :</h6> *@
+            @*     @L("Enum_SystemAccountType_" + (int)Model.NotificationSchedule.AccountType) *@
+            @* </div> *@
+            <div class="col-6 mb-3">
+                <h6>@L("AgentType") :</h6>
+                @L("Enum_AgentType_" + (int) Model.NotificationSchedule.AgentType)
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("DateApproved") :</h6>
+                @Model.NotificationSchedule.DateApproved
+            </div>
+
+            <div class="col-6 mb-3">
+                <h6>Đại lý áp dụng :</h6>
+                @Model.UserName
+            </div>
+            <div class="col-6 mb-3">
+                <h6>Nội dung :</h6>
+                @Model.NotificationSchedule.Body
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")

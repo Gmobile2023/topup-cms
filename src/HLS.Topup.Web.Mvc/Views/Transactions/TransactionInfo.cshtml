@@ -1,0 +1,180 @@
+﻿@using HLS.Topup.Web.Models.Transaction
+@using HLS.Topup.Web.TagHelpers
+@model TransactionInfoModel
+@{
+    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+}
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.TransactionInfo;
+    ViewBag.Title = "Kết quả giao dịch";
+}
+
+<div id="Topup_Page" class="section-body-middle">
+    <form class="" id="transactionInfoForm">
+        <div class="section-body-middle-form-p1 no-border-top" style="padding-bottom: 0;">
+            <div class="section-body-right bg-white affix-wrap affix-top">
+                <div class="section-body-right-header">
+                    <div class="cart"></div>
+                    <p>@((Model.Code == "01") ? "Giao dịch thành công" : "Giao dịch không thành công")</p>
+                </div>
+
+                @if (Model.Code == "01")
+                {
+                    if (Model.TransType == CommonConst.TransactionType.Deposit.ToString("G"))
+                    {
+                        <div class="form-group form-group-dashed row">
+                            <label class="col-md-12 col-xs-12 control-label text-center">
+                                @* <span>Bạn vừa tạo thành công thông báo nạp tiền với mã giao dịch là: <strong>@Model.TransCode</strong></span> *@
+                                <span>Bạn vừa tạo thành công thông báo nạp tiền với mã nạp: <strong>@Model.RequestCode</strong></span>
+                            </label>
+                        </div>
+                        <div class="form-group form-group-dashed row">
+                            <label class="col-md-12 col-xs-12 control-label text-center">
+                                <span>Vui lòng ghi "@(Model.RequestCode != null ? Model.RequestCode + " - " : "")Nap tien nhat tran - @ViewBag.AccountCode" vào nội dung chuyển khoản của bạn</span>
+                            </label>
+                        </div>
+                    }
+                    else if (Model.TransType == CommonConst.TransactionType.Transfer.ToString("G"))
+                    {
+                        <div class="form-group form-group-dashed row">
+                            <label class="col-md-12 col-xs-12 control-label text-center">
+                                <span>Bạn vừa chuyển tiền cho tài khoản <strong>@Model.Account</strong> số tiền là: <strong class="color-red"> @Model.Amount.ToFormat()</strong>. Ghi chú: <strong>@Model.Description</strong></span>
+                            </label>
+                        </div>
+                        @*                         <div class="form-group form-group-dashed row"> *@
+                        @*                             <label class="col-md-12 col-xs-12 control-label text-center"> *@
+                        @*                                 <span> Số dư sau giao dịch là: <strong class="color-red">@await Component.InvokeAsync(typeof(BalanceViewComponent))</strong></span> *@
+                        @*                             </label> *@
+                        @*                         </div> *@
+                        @*                         <div class="form-group form-group-dashed row"> *@
+                        @*                             <label class="col-md-12 col-xs-12 control-label text-center"> *@
+                        @*                                 <span>Ghi chú: @Model.Description</span> *@
+                        @*                             </label> *@
+                        @*                         </div> *@
+                    }
+                    else if (Model.TransType == CommonConst.TransactionType.Topup.ToString("G"))
+                    {
+                        <div class="form-group form-group-dashed row">
+                            <label class="col-md-12 col-xs-12 control-label text-center">
+                                @if (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP_DATA)
+                                {
+                                    <span>Chúc mừng bạn đã nạp data thành công cho khách hàng <strong>@Model.Account</strong>.<br /> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="color-red"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                                }
+                                else
+                                {
+                                    <span>Chúc mừng bạn đã nạp tiền thành công cho khách hàng <strong>@Model.Account</strong>.<br /> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="color-red"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                                }
+                            </label>
+                        </div>
+                        @*                         <div class="form-group form-group-dashed row"> *@
+                        @*                             <label class="col-md-12 col-xs-12 control-label text-center"> *@
+                        @*                                 <span> Số dư sau giao dịch là: <strong class="color-red">@await Component.InvokeAsync(typeof(BalanceViewComponent))</strong></span> *@
+                        @*                             </label> *@
+                        @*                         </div> *@
+                    }
+                    else if (Model.TransType == CommonConst.TransactionType.Payment.ToString("G"))
+                    {
+                        <div class="form-group form-group-dashed row">
+                            <label class="col-md-12 col-xs-12 control-label text-center">
+                                <span>Chúc mừng bạn đã thanh toán thành công cho khách hàng <strong>@Model.Account</strong>.<br /> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="color-red"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                            </label>
+                        </div>
+                        @*                         <div class="form-group form-group-dashed row"> *@
+                        @*                             <label class="col-md-12 col-xs-12 control-label text-center"> *@
+                        @*                                 <span> Số dư sau giao dịch là: <strong class="color-red">@await Component.InvokeAsync(typeof(BalanceViewComponent))</strong></span> *@
+                        @*                             </label> *@
+                        @*                         </div> *@
+                    }
+                    else if (Model.TransType == CommonConst.TransactionType.PinCode.ToString("G"))
+                    {
+                        var type = L("ServiceNameByCode_" + Model.TransInfo.ServiceCode);
+                        <div class="form-group form-group-dashed row">
+                            <label class="col-md-12 col-xs-12 control-label text-center">
+                                <span>Chúc mừng bạn đã thanh toán thành công cho giao dịch @type.<br /> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="color-red"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group form-group-dashed row">
+                            <label class="col-md-12 col-xs-12 control-label text-center">
+                                <span>Chúc mừng bạn đã thanh toán thành công cho giao dịch có mã: <strong>@Model.TransCode</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                            </label>
+                        </div>
+                        @if (Model.TransType == CommonConst.TransactionType.PinCode.ToString("G") && !string.IsNullOrEmpty(Model.Message))
+                        {
+                            <div class="form-group form-group-dashed row">
+                                <label class="col-md-12 col-xs-12 control-label text-center">
+                                    <span>@Model.Message</span>
+                                </label>
+                            </div>
+                        }
+                    }
+                }
+                else
+                {
+                    <div class="form-group form-group-dashed row">
+                        <label class="col-md-12 col-xs-12 control-label text-center">
+                            <span>@Model.Message</span>
+                        </label>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="section-body-middle-form-p2">
+            <div class="row">
+
+                @if (Model.Code == "01" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_CODE
+                                         || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_DATA
+                                         || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_GAME))
+                {
+                    <div tabindex="12" class="col-md-12 text-center">
+                        <div class="form-group">
+                            <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="button btn-custom btn-blue btn-printMobile" style="display:none; width: auto; padding: 0 20px;">@L("PrintBluetooth")</button>
+                            <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="button btn-custom btn-blue btn-printDesktop" style="display:none; width: auto; padding: 0 20px;">@L("Print1")</button>
+                            <button type="button" onclick="ngtAction.open('@Model.TransCode', 'copy')" class="button btn-custom btn-blue" style="width: auto;">@L("Copy")</button>
+                            <button type="button" onclick="ngtAction.open('@Model.TransCode', 'export')" class="button btn-custom btn-blue" style="width: auto;"> @L("ExportToExcel")</button>
+                            <button type="button" onclick="ngtAction.open('@Model.TransCode', 'printA4')" class="button btn-custom btn-blue" style="width: auto;">@L("PrintA4")</button>
+                        </div>
+                    </div>
+                }
+                <div tabindex="12" class="col-md-12 text-center">
+                    <button type="button" onclick="back()" class="button btn-custom btn-grey">Quay lại</button>
+                    @if (Model.TransType == CommonConst.TransactionType.Deposit.ToString("G") || Model.TransType == CommonConst.TransactionType.Transfer.ToString("G"))
+                    {
+                        <button type="button" onclick="historyBalance()" class="button btn-custom btn-blue" style="width: auto !important; padding: 0 20px;">Xem lịch sử giao dịch</button>
+                    }
+                    else
+                    {
+                        <button type="button" onclick="historyNext()" class="button btn-custom btn-blue" style="width: auto !important; padding: 0 20px;">Xem lịch sử giao dịch</button>
+                    }
+                    @if (Model.Code == "01" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP_DATA
+                                             || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PAY_BILL
+                                             || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP))
+                    {
+                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="button btn-custom btn-blue btn-printMobile" style="display:none; width: auto; padding: 0 20px;">@L("PrintBluetooth")</button>
+                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="button btn-custom btn-blue btn-printDesktop" style="display:none; width: auto; padding: 0 20px;">@L("Print1")</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
+    <script>
+    function  historyBalance() {
+      window.location.href = '@Url.Action("Detail", "Report")';
+    }
+    function  historyNext() {
+        @*window.location.href = '@Url.Action("TransactionHistory", "Transactions")';*@
+        window.location.href = '@Url.Action("Detail", "Report")';
+    }
+    function  back() {
+      //window.history.back();
+      location.replace(document.referrer);//Load lại trang luôn để check 1 số điều kiện
+    }
+    </script>
+}

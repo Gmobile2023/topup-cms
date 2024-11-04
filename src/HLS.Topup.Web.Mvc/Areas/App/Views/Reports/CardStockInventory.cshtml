@@ -1,0 +1,136 @@
+﻿@using HLS.Topup.Web.Areas.App.Startup
+@model HLS.Topup.Web.Areas.App.Models.CardStocks.CardStocksViewModel
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.ReportCardStockInventory;
+}
+
+@section Scripts
+{
+    <script abp-src="/view-resources/Areas/App/Views/Reports/CardStockInventory.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title="Báo cáo kho thẻ" description="Báo cáo tổng hợp kho thẻ">
+        <button id="ExportToExcelButton" class="btn btn-outline-success">
+            <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+        </button>
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                @* <div class="form"> *@
+                @*     <div class="row align-items-center mb-4"> *@
+                @*         <div class="col-xl-12"> *@
+                @*             <div class="form-group align-items-center"> *@
+                @*                 <div class="input-group"> *@
+                @*                     <input type="text" id="transCodeFilterId" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText"> *@
+                @*                     <span class="input-group-btn"> *@
+                @*                         <button id="GetProvidersButton" class="btn btn-primary" type="submit"> *@
+                @*                             <i class="flaticon-search-1"></i> *@
+                @*                         </button> *@
+                @*                     </span> *@
+                @*                 </div> *@
+                @*             </div> *@
+                @*         </div> *@
+                @*     </div> *@
+                @* </div> *@
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4 filter-block-header">
+                    <div class="col-md-12">
+                        <div class="kt-separator kt-separator--border-dashed"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="FromFilterId">@L("CreatedTime")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MinValue")" value="@DateTime.Now.ToShortDateString()" id="FromDateFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="datetime" placeholder="@L("MaxValue")" value="@DateTime.Now.ToShortDateString()" id="ToDateFilterId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="StockCodeFilterId">@L("StockCode")</label>                          
+                            <select class="form-control" name="stockCodeFilter" id="StockCodeFilterId">
+                                <option value="">Tất cả</option>
+                                <option value="STOCK_TEMP">Kho tạm</option>                               
+                                <option value="STOCK_SALE">Kho bán thẻ</option>
+                               
+                            </select>
+                        </div>
+                    </div>                   
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="categoryCodeFilter">@L("Categories")</label>
+                            @Html.DropDownList("categoryCodeFilter", new SelectList(Model.VendorList, "Id", "DisplayName", ("")), @L("SelectACategory"), new {@class = "select2 form-control", id = "categoryCodeFilter"})
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="productCodeFilter">@L("Product")</label>
+                            <div class="input-group">
+                                <select class="form-control select2" id="productCodeFilter" name="productCodeFilter">
+                                    <option value="">Chọn sản phẩm</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"></div>
+                    <div class="col-md-4">
+                        <div class="euiFlexItem euiFlexItem--flexGrowZero">
+                            <span class="euiToolTipAnchor">
+                                <button id="GetProvidersButton" class="euiButton euiButton--primary euiSuperUpdateButton euiButton--fill" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.271 11.978l3.872 3.873a.502.502 0 00.708 0 .502.502 0 000-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 004.949 2.05.5.5 0 000-1 5.96 5.96 0 01-4.242-1.757 6.01 6.01 0 010-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 010 8.486.5.5 0 00.034.738z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Tìm kiếm</span>
+                                    </span>
+                                </button>
+
+                                <button class="euiButton-reset euiButton--primary" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon-reset euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.228 2.942a.5.5 0 11-.538.842A5 5 0 1013 8a.5.5 0 111 0 6 6 0 11-2.772-5.058zM14 1.5v3A1.5 1.5 0 0112.5 6h-3a.5.5 0 010-1h3a.5.5 0 00.5-.5v-3a.5.5 0 111 0z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Đặt lại</span>
+                                    </span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item">
+                            <i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")
+                        </span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none">
+                            <i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")
+                        </span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="ProvidersTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>@L("StockCode")</th>
+                            <th>Loại kho</th>
+                            <th>@L("Product")</th>
+                            <th>Tồn đầu kỳ</th>
+                            <th>Nhập trong kỳ</th>
+                            <th>Xuất trong kỳ</th>
+                            <th>Tồn cuồi kỳ</th>
+                            <th>Ngày phát sinh</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+﻿@using HLS.Topup.Common;
+
+@using System.Globalization
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.SystemAccountTransfers
+@model CreateOrEditSystemAccountTransferModalViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? (L("EditSystemAccountTransfer")) : L("CreateNewSystemAccountTransfer")))
+
+<div class="modal-body">
+    <div id="SystemAccountTransferInformationsTab">
+        <form name="SystemAccountTransferInformationsForm" role="form" novalidate class="form-validation">
+
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.SystemAccountTransfer.Id"/>
+            }
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="SystemAccountTransfer_SrcAccount">
+                            @L("SrcAccount")<span class="lightred">(*)</span>
+                        </label>
+                        <select id="SystemAccountTransfer_SrcAccount" required name="srcAccount" class="form-control">
+                            <option value="">Chọn tài khoản nguồn</option>
+                            <option value="MASTER" selected="@(Model.SystemAccountTransfer.SrcAccount == "MASTER")">MASTER</option>
+                            <option value="PAYMENT" selected="@(Model.SystemAccountTransfer.SrcAccount == "PAYMENT")">PAYMENT</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Số dư hiện tại</label>
+                        <input disabled="disabled" id="txtSrcBalance" class="form-control m-input amount-mask"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="SystemAccountTransfer_DesAccount">
+                            @L("DesAccount")<span class="lightred">(*)</span>
+                        </label>
+                        <select id="SystemAccountTransfer_DesAccount" name="desAccount" required class="form-control">
+                            <option value="">Chọn tài khoản thụ hưởng</option>
+                            <option value="MASTER" selected="@(Model.SystemAccountTransfer.DesAccount == "MASTER")">MASTER</option>
+                            <option value="COMMISSION" selected="@(Model.SystemAccountTransfer.DesAccount == "COMMISSION")">COMMISSION</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Số dư hiện tại</label>
+                        <input disabled="disabled" id="txtDesBalance" class="form-control m-input amount-mask"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="SystemAccountTransfer_Amount">
+                            @L("Amount")<span class="lightred">(*)</span>
+                        </label>
+                        <input class="form-control m-input amount-mask" id="SystemAccountTransfer_Amount" required value="@Model.SystemAccountTransfer.Amount" type="text" name="amount"/>
+                        <br>
+                        <div class="amount-to-text"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="FileAttachment">
+                            @L("AccountingEntry_Document")
+                            <span class="lightred">(*)</span>
+                        </label>
+                        <label class="form-control" style="width: 100%">
+                            @* <span >Chọn tập tin</span> *@
+                            <input id="FileAttachment" type="file" name="files">
+                            <input type="hidden" id="FileAttachmentSrc" name="attachments" value="@Model.SystemAccountTransfer.Attachments">
+                            @if (Model.IsEditMode)
+                            {
+                                <a href="@Model.SystemAccountTransfer.Attachments" target="_blank"><i style="font-size: 14px !important;" class="fa fa-download" aria-hidden="true"></i> Xem văn bản</a>
+                            }
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="SystemAccountTransfer_Description">
+                    @L("Description")<span class="lightred">(*)</span>
+                </label>
+                <textarea class="form-control" required="required" id="SystemAccountTransfer_Description" type="text" name="description" rows="3">@Model.SystemAccountTransfer.Description</textarea>
+            </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

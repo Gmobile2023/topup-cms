@@ -1,0 +1,63 @@
+﻿@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Common
+@model HLS.Topup.Web.Areas.App.Models.TopupGateResponseMessage.CreateOrEditTopupGateRMModel;
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(Model.IsEditMode ? "Chỉnh sửa Mã Lỗi" : "Thêm mới Mã Lỗi"))
+
+<div class="modal-body">
+    <div id="TopupGateMessageResponseInformationsTab">
+        <form name="TopupGateMessageResponseInformationsForm" role="form" novalidate class="form-validation">
+            @if (Model.IsEditMode)
+            {
+                <input type="hidden" name="id" value="@Model.TopupGateResponseMessage.Id" />
+            }
+        <div class="row row-inline">
+            <div class="col-md-2">
+                <div class="form-group" >
+                    <label for="Provider" class="required">
+                        Nhà cung cấp
+                    </label>
+                    <input type="text" class="form-control" id="Provider" name="provider" value="@Model.TopupGateResponseMessage.Provider" maxlength="255" minlength="0" spellcheck="false" required/>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group" >
+                    <label for="Code" class="required">
+                        Mã lỗi NCC
+                    </label>
+                    <input type="text" class="form-control" id="Code" name="code" value="@Model.TopupGateResponseMessage.Code" maxlength="255" minlength="0" spellcheck="false" required/>
+                </div>
+            </div>
+            <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="Name" class="required">
+                            Thông báo mã lỗi NCC
+                        </label>
+                        <input type="text" class="form-control" id="Name" name="name" value="@Model.TopupGateResponseMessage.Name" maxlength="255" minlength="0" spellcheck="false" required />
+                    </div>
+
+                </div>
+        </div>
+            <div class="row row-inline">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ReponseCode" class="required">
+                            Mã lỗi NT
+                        </label>
+                        <input type="text" class="form-control" id="ReponseCode" name="reponseCode" value="@Model.TopupGateResponseMessage.ReponseCode" maxlength="255" minlength="0" spellcheck="false" required />
+                    </div>
+                </div>
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label for="ReponseName" class="required">
+                        Thông báo mã lỗi NT
+                    </label>
+                    <input type="text" class="form-control" id="ReponseName" name="reponseName" value="@Model.TopupGateResponseMessage.ReponseName" maxlength="255" minlength="0" spellcheck="false" required />
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

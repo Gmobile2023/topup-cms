@@ -1,0 +1,40 @@
+﻿
+@using HLS.Topup.Web.Areas.App.Models.Common.Modals
+@using HLS.Topup.Web.Areas.App.Models.SystemAccountTransfers
+@model SystemAccountTransferViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Details")))
+
+<div class="modal-body">
+    <div id="SystemAccountTransferInformationsTab">
+
+        <div class="row">
+            <div class="col-6 mb-3">
+                <h6>@L("SrcAccount") :</h6>
+                @Model.SystemAccountTransfer.SrcAccount
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("DesAccount") :</h6>
+                @Model.SystemAccountTransfer.DesAccount
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Amount") :</h6>
+                @Model.SystemAccountTransfer.Amount.ToString("N0")
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Attachments") :</h6>
+                <a href="@Model.SystemAccountTransfer.Attachments" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> Xem văn bản</a>
+            </div>
+            <div class="col-6 mb-3">
+                <h6>@L("Status") :</h6>
+                @L("Enum_SystemTransferStatus_" + (int)Model.SystemAccountTransfer.Status)
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")
+

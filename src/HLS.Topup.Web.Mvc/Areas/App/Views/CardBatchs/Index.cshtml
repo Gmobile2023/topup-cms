@@ -1,0 +1,157 @@
+﻿@using HLS.Topup.Authorization
+@using HLS.Topup.Web.Areas.App.Models.CardBatchs
+@using HLS.Topup.Web.Areas.App.Startup
+@model CardBatchsViewModel
+@{
+    ViewBag.CurrentPageName = AppPageNames.Common.CardBatchs;
+}
+
+@section Scripts
+{
+    <script src="/view-resources/Areas/App/Views/CardBatchs/Index.js" asp-append-version="true"></script>
+}
+
+<div class="content d-flex flex-column flex-column-fluid">
+
+    <abp-page-subheader title="@L("CardBatchs")" description="@L("CardBatchsHeaderInfo")">
+        <button id="ExportToExcelButton" class="btn btn-outline-success">
+            <i class="fa fa-file-excel"></i> @L("ExportToExcel")
+        </button>
+        @if (IsGranted(AppPermissions.Pages_Cards_Create))
+        {
+            <button id="ImportCardsButton" class="btn btn-primary blue">
+                <i class="fa fa-plus"></i> @L("ImportCards")
+            </button>
+            <button id="ImportCardsApiButton" class="btn btn-primary blue">
+                <i class="fa fa-plus"></i> @L("ImportCardsApi")
+            </button>
+        }
+    </abp-page-subheader>
+
+    <div class="@(await GetContainerClass())">
+        <div class="card card-custom gutter-b">
+            <div class="card-body">
+                @* <div class="form"> *@
+                @*     <div class="row align-items-center mb-4"> *@
+                @*         <div class="col-xl-12"> *@
+                @*             <div class="form-group align-items-center"> *@
+                @*                 <div class="input-group"> *@
+                @*                     <input type="text" id="CardBatchsTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText"> *@
+                @*                     <span class="input-group-btn"> *@
+                @*                         <button id="GetCardBatchsButton" class="btn btn-primary" type="submit"> *@
+                @*                             <i class="flaticon-search-1"></i> *@
+                @*                         </button> *@
+                @*                     </span> *@
+                @*                 </div> *@
+                @*             </div> *@
+                @*         </div> *@
+                @*     </div> *@
+                @* </div> *@
+                <div id="AdvacedAuditFiltersArea" style="display: none" class="row mb-4 filter-block-header">
+                    <div class="col-md-12">
+                        <div class="kt-separator kt-separator--border-dashed"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="BatchCodeFilterId">@L("BatchCode")</label>
+                            <input type="text" class="form-control" name="batchCodeFilter" id="BatchCodeFilterId">
+                        </div>
+                    </div>
+                    @* <div class="col-md-3"> *@
+                    @*     <div class="form-group"> *@
+                    @*         <label for="BatchNameFilterId">@L("BatchName")</label> *@
+                    @*         <input type="text" class="form-control" name="batchNameFilter" id="BatchNameFilter"> *@
+                    @*     </div> *@
+                    @* </div>  *@
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="providerCodeFilter">@L("Provider")</label>
+                            @Html.DropDownList("providerCodeFilter", new SelectList(Model.ProviderList, "Id", "DisplayName", ""), @L("SelectAProvider"), new {@class = "select2 form-control"})
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="ImportTypeFilterId">@L("ImportType")</label>
+                        <select class="form-control" name="StatusFilter" id="ImportTypeFilterId">
+                            <option value="">@L("All")</option>
+                            <option value="API">@L("ImportType_API")</option>
+                            <option value="FILE">@L("ImportType_FILE")</option>
+                            <option value="EMAIL">@L("ImportType_EMAIL")</option>
+                            @* <option value="3">@L("Enum_CardStockStatus_3")</option> *@
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="StatusFilterId">@L("Status")</label>
+                        <select class="form-control" name="StatusFilter" id="StatusFilterId">
+                            <option value="99">@L("All")</option>
+                            <option value="0">@L("Enum_CardStockStatus_0")</option>
+                            <option value="1">@L("Enum_CardStockStatus_1")</option>
+                            <option value="2">@L("Enum_CardStockStatus_2")</option>
+                            @* <option value="3">@L("Enum_CardStockStatus_3")</option> *@
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="MinCreatedDateFilterId">@L("CreatedDateRange")</label>
+                            <div class="input-group">
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MinValue")" id="MinCreatedDateFilterId">
+                                <span style="line-height: 40px;padding: 0 15px 0 15px;"> &mdash; </span>
+                                <input class="form-control m-input date-picker" type="text" placeholder="@L("MaxValue")" id="MaxCreatedDateFilterId">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12"></div>
+                    <div class="col-md-4">
+                        <div class="euiFlexItem euiFlexItem--flexGrowZero">
+                            <span class="euiToolTipAnchor">
+                                <button id="GetCardBatchsButton" class="euiButton euiButton--primary euiSuperUpdateButton euiButton--fill" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.271 11.978l3.872 3.873a.502.502 0 00.708 0 .502.502 0 000-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 004.949 2.05.5.5 0 000-1 5.96 5.96 0 01-4.242-1.757 6.01 6.01 0 010-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 010 8.486.5.5 0 00.034.738z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Tìm kiếm</span>
+                                    </span>
+                                </button>
+
+                                <button class="euiButton-reset euiButton--primary" type="button">
+                                    <span class="euiButton__content">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" class="euiIcon-reset euiIcon--medium euiIcon-isLoaded euiButton__icon" focusable="false" role="img" aria-hidden="true">
+                                            <path d="M11.228 2.942a.5.5 0 11-.538.842A5 5 0 1013 8a.5.5 0 111 0 6 6 0 11-2.772-5.058zM14 1.5v3A1.5 1.5 0 0112.5 6h-3a.5.5 0 010-1h3a.5.5 0 00.5-.5v-3a.5.5 0 111 0z"></path>
+                                        </svg>
+                                        <span class="euiButton__text euiSuperUpdateButton__text">Đặt lại</span>
+                                    </span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-xl-12">
+                        <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item">
+                            <i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")
+                        </span>
+                        <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none">
+                            <i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")
+                        </span>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="CardBatchsTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                        <tr>
+                            <th>@L("Actions")</th>
+                            <th>@L("CreatedDate")</th>
+                            <th>@L("BatchCode")</th>
+                            <th>@L("Provider")</th>
+                            <th>@L("TotalQuantity")</th>
+                            <th>@L("TotalAmount")</th>
+                            <th>@L("ImportType")</th>
+                            <th>@L("Status")</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿var CurrentPage = function () {
+
+    var handleLogin = function () {
+        var $loginForm = $('form.login-form');
+        var $submitButton = $('#kt_login_signin_submit');
+
+        $submitButton.click(function () {
+            trySubmitForm();
+        });
+
+        $loginForm.validate({
+            rules: {
+                username: {
+                    required: true
+                },
+                password: {
+                    required: true
+                }
+            }
+        });
+
+        $loginForm.find('input').keypress(function (e) {
+            if (e.which === 13) {
+                trySubmitForm();
+            }
+        });
+
+        $('a.social-login-icon').click(function () {
+            var $a = $(this);
+            var $form = $a.closest('form');
+            $form.find('input[name=provider]').val($a.attr('data-provider'));
+            $form.submit();
+        });
+
+        $loginForm.find('input[name=returnUrlHash]').val(location.hash);
+
+        $('input[type=text]').first().focus();
+
+        function trySubmitForm() {
+            if (!$('form.login-form').valid()) {
+                return;
+            }
+            submit();
+            // const username = $("#txtUserName").val();
+            // const isVerify = abp.setting.getBoolean("App.UserManagement.OtpSetting.IsUseVerifyLogin");
+            // if (isVerify && username.match(/^\d+$/)) {
+            //     Dialog.otpNone(Dialog.otpType.Login, username, function () {
+            //         submit();
+            //     });
+            // } else {
+            //     submit();
+            // }
+        }
+
+        function submit() {
+            abp.ui.setBusy(
+                null,
+                abp.ajax({
+                    contentType: app.consts.contentTypes.formUrlencoded,
+                    url: $loginForm.attr('action'),
+                    data: $loginForm.serialize(),
+                    abpHandleError: false
+                }).fail(function (error) {
+                    if (abp.setting.getBoolean('App.UserManagement.UseCaptchaOnLogin') && typeof grecaptcha != "undefined") {
+                        grecaptcha.reExecute();
+                    }
+                    abp.ajax.showError(error);
+                })
+            );
+        }
+    }
+
+    return {
+        init: function () {
+            handleLogin();
+        }
+    };
+
+}();

@@ -1212,7 +1212,7 @@ namespace HLS.Topup.Deposits
                 ResponseCode = "01",
                 ExtraInfo = _commonManger.EncryptQueryParameters(
                     $"/Transactions/TransactionInfo?code=01&transCode={deposit.TransCode}&message={L("Message_RequestDeposit_Success")}&transType={CommonConst.TransactionType.Deposit}"),
-                ResponseMessage = deposit.RequestCode + " - Nap tien Nhat Tran - " + checkDes.AccountCode,
+                ResponseMessage = deposit.RequestCode + " - Nap tien - " + checkDes.AccountCode,
             };
         }
 

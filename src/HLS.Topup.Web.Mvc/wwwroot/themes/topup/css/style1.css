@@ -14270,7 +14270,7 @@ h3 {
 
 li.open > a.dropdown-toggle,
 .active > a {
-    color: #2188C9 !important;
+    color: #ffc425 !important;
     background: none !important;
 }
 
@@ -14343,7 +14343,7 @@ li.open > a.dropdown-toggle,
     background: url('/themes/topup/images/check.svg') center no-repeat;
     -webkit-background-size: 10px 10px;
     background-size: 10px;
-    background-color: #2188C9;
+    background-color: #ffc425;
     position: absolute;
     right: 0.2em;
     top: 0.2em;
@@ -14510,7 +14510,9 @@ a.btn-custom {
 
 button.btn-custom.btn-blue,
 .btn-blue {
-    background: #2188C9;
+    background: #ff7f11;
+    -webkit-box-shadow: 0 2px 0 #c07738;
+    box-shadow: 0 2px 0 #c07738;
 }
 
 button.btn-disabled {
@@ -14528,7 +14530,8 @@ button.btn-disabled {
 }
 
 .btn-custom.btn-blue:hover {
-    background: #2188C9;
+    background: rgb(255, 127, 17);
+    background: linear-gradient(180deg, rgba(255, 127, 17, 1) 0%, rgba(255, 196, 37, 1) 100%);
 }
 
 .btn-bg {
@@ -14575,8 +14578,8 @@ input[type=checkbox] {
 /*}*/
 
 .bg-dark {
-    background-color: #081b3a;
-    color: white
+    background-color: #ffc425;
+    color: #000
 }
 
 .grid7:after,
@@ -14718,11 +14721,11 @@ input[type=checkbox] {
 }
 
 .bg-dark .text-coppyright__sub {
-    color: white
+    color: #000;
 }
 
 .bg-dark .text-coppyright__sub > a {
-    color: white;
+    color: #000;
 }
 
 .form-group.margin-big {
@@ -15830,7 +15833,7 @@ select.form-control {
 }
 
 .navbar-top .navbar-nav > li:not(.sub-menu) > a:hover {
-    color: #2188C9;
+    color: #ffc425;
 }
 
 
@@ -16708,7 +16711,7 @@ li.dropdown.mega-dropdown:hover .mega-icon {
 .text-coppyright__main {
     font-size: 12px;
     font-weight: 500;
-    color: white;
+    color: #000;
     line-height: 1.3em;
     text-transform: uppercase;
 }
@@ -17042,7 +17045,7 @@ a.btn-back p {
     left: 0px;
     background: #e8ebef;
     height: 0;
-    background: #2188C9;
+    background: #ffc425;
     -webkit-transition: height 0.4s ease;
     -o-transition: height 0.4s ease;
     transition: height 0.4s ease;
@@ -17072,7 +17075,7 @@ a.btn-back p {
     transform: scale(1.05);
     -webkit-box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.08);
     box-shadow: 1px 2px 3px 0px rgba(0, 0, 0, 0.08);
-    color: #2188C9
+    color: #ffc425;
 }
 
 .section-body-left ul li a:hover:before,
@@ -17100,7 +17103,7 @@ a.btn-back p {
 }
 
 .section-body-left ul li a:hover {
-    color: #2188C9
+    color: #ffc425
 }
 
 .section-body-left ul li:last-child > a {
@@ -17600,7 +17603,7 @@ input.form-control {
 }
 
 .form-group-radio .radio-btn label:hover {
-    border-color: #2188C9
+    border-color: #ffc425
 }
 
 .form-group-radio input[type="radio"] {
@@ -17893,7 +17896,7 @@ input.form-control {
 .navbar-card {
     -webkit-border-radius: 7px;
     border-radius: 7px;
-    border: 1px solid #2188C9;
+    border: 1px solid #ffc425;
     width: 90%;
     margin: 0 auto;
     margin-bottom: 40px;
@@ -17915,7 +17918,7 @@ input.form-control {
 }
 
 .navbar-card .active a {
-    color: white !important;
+    color: #000 !important;
 }
 
 .active > .navbar-card__slider {
@@ -17934,7 +17937,7 @@ input.form-control {
 .navbar-card__slider {
     position: absolute;
     width: 100%;
-    background: #2188C9;
+    background: #ffc425;
     height: 100%;
     top: 0;
     -webkit-transition: all 0.2s ease;
@@ -20104,7 +20107,7 @@ li:nth-of-type(6) > .group-service__frame {
 
     .navbar-top .sub-menu.open > a:before,
     .navbar-top .navbar-nav > li.active > a:before {
-        background: #2188C9;
+        background: #ffc425;
         width: 100%;
     }
 

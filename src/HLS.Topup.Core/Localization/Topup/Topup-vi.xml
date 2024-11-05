@@ -1852,10 +1852,10 @@
 		<text name="ErrorMessage_111">Số dư đại lý không đủ. Vui lòng liên hệ với đại lý của bạn</text>
 		<text name="ErrorMessage_113">Bạn chưa thiết lập hình thức bảo mật thanh toán. Vui lòng thiết lập hình thức bảo mật trước khi thanh toán</text>
 
-		<text name="Footer_Company">Công ty cổ phần Thương Mại Dịch Vụ Gmobile JSC</text>
-		<text name="Footer_Address">350/2 Nguyễn Trọng Tuyển, P2, Quận Tân Bình, Tp. Hồ Chí Minh, Việt Nam</text>
-		<text name="Footer_PhoneNumber">0921.911.911</text>
-		<text name="Footer_Email">hoto@nhattran.com</text>
+		<text name="Footer_Company">CÔNG TY CỔ PHẦN VIỄN THÔNG DI ĐỘNG TOÀN CẦU GTEL MOBILE JSC</text>
+		<text name="Footer_Address">105 Nguyễn Tuân, P.Thanh Xuân Trung, Q.Thanh Xuân, TP.Hà Nội</text>
+		<text name="Footer_PhoneNumber">0692.326.572</text>
+		<text name="Footer_Email">dvkh@gmobile.vn</text>
 
 		<text name="PayBacks">Quản lý danh sách trả thưởng khuyến mại</text>
 		<text name="PayBacks_Name">Tên chương trình</text>
@@ -2035,8 +2035,8 @@
 		<text name="Bot_Send_MinStockAirtime"><![CDATA[Tồn kho NCC {0}%0ATồn kho hiện tại {1}, lúc {2}.%0AVui lòng nạp tiền vào kho]]></text>
 
 
-		<text name="Email_CreateAccountApi_Body"><![CDATA[Xin chào, {FullName}<br>NHATTRAN xin thông gửi thông tin tài khoản kết nối API<br><br><strong>THÔNG TIN TÀI KHOẢN API</strong><br><strong>Url:</strong>{PaymentUrl}<br><strong>UserName:</strong>{UserName}<br><strong>Password:</strong>{Password}<br><strong>ClientID:</strong>{ClientID}<br><strong>ClientKey:</strong>{ClientKey}<br><strong>PartnerCode:</strong>{PartnerCode}<br><strong>NHATTRAN PublicKey:</strong><a href="{NT_KEY}" target="_blank">NT Key</a><br><strong>Tài liệu kết nối:</strong><a href="{NT_DOC}" target="_blank">Tài liệu</a><br><br><strong>THÔNG TÀI KHOẢN WEB XEM SỐ DƯ VÀ LSGD</strong><br><strong>Url:</strong>{NT_LINK}<br><strong>UserName:</strong>{UserNameStaff}<br><strong>Password:</strong>{PasswordStaff}<br>]]></text>
-		<text name="Email_CreateAccountApi_Title">Thông tin kết nối API NhatTran - {0} - Hệ thống:{1}</text>
+		<text name="Email_CreateAccountApi_Body"><![CDATA[Xin chào, {FullName}<br>Gmobile JSC xin thông gửi thông tin tài khoản kết nối API<br><br><strong>THÔNG TIN TÀI KHOẢN API</strong><br><strong>Url:</strong>{PaymentUrl}<br><strong>UserName:</strong>{UserName}<br><strong>Password:</strong>{Password}<br><strong>ClientID:</strong>{ClientID}<br><strong>ClientKey:</strong>{ClientKey}<br><strong>PartnerCode:</strong>{PartnerCode}<br><strong>Gmobile JSC PublicKey:</strong><a href="{NT_KEY}" target="_blank">NT Key</a><br><strong>Tài liệu kết nối:</strong><a href="{NT_DOC}" target="_blank">Tài liệu</a><br><br><strong>THÔNG TÀI KHOẢN WEB XEM SỐ DƯ VÀ LSGD</strong><br><strong>Url:</strong>{NT_LINK}<br><strong>UserName:</strong>{UserNameStaff}<br><strong>Password:</strong>{PasswordStaff}<br>]]></text>
+		<text name="Email_CreateAccountApi_Title">Thông tin kết nối API Gmobile JSC - {0} - Hệ thống:{1}</text>
 		<text name="Email_CreateAccountApi_SubTitle">NT gửi thông tin kết nối API - Hệ thống: {0}</text>
 		<text name="ReSendMail">Gửi lại mail</text>
 		<text name="ValidationError">Lỗi</text>

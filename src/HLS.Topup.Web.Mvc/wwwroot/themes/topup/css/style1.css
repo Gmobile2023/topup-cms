@@ -13760,9 +13760,9 @@ iframe {
     height: 100%;
     z-index: 9999;
     background-color: white;
-    background: url(/themes/topup/images/nt-loading.gif) center no-repeat rgba(255, 255, 255, 1);
-    -webkit-background-size: 50px 50px;
-    background-size: 50px 50px;
+    background: url(/Common/Images/gmobile.gif) center no-repeat rgba(255, 255, 255, 1);
+    -webkit-background-size: 80px 80px;
+    background-size: 80px 80px;
     overflow: hidden;
 }
 

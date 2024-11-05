@@ -5,7 +5,7 @@
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.Home;
     ViewBag.ImageTitle = "/themes/topup/images/home.svg";
-    ViewBag.Title = $"Chào mừng {ViewBag.Name} đến với NHẤT TRẦN";
+    ViewBag.Title = $"Chào mừng {ViewBag.Name} đến với Gmobile JSC";
 }
 
 @section Scripts
@@ -143,83 +143,4 @@
             }
         </ul>
     </div>
-
-    <div class="section-body-middle-introduce text-center">
-        <div class="app-mobile">
-            <a href="itms-services://?action=download-manifest&url=@ViewBag.Ios">
-                <img src="/themes/topup/images/appstore.png" alt="" class="logo-protect__bg" style="height:30px">
-            </a>
-            <a href="@ViewBag.Android" target="_blank">
-                <img src="/themes/topup/images/googleplay.png" alt="" style="height:30px">
-            </a>
-        </div>
-    </div>
-
-    @*     <div class="group-help__section"> *@
-    @*         <ul class="group-help grid4"> *@
-    @*             <li> *@
-    @*                 <a href="/Topup" class="group-help__frame"> *@
-    @*                     <div class="group-help__ic"> *@
-    @*                         <img src="/themes/topup/images/ic_dark/ic-01.svg" alt=""> *@
-    @*                     </div> *@
-    @*                     <div class="group-help__title"> *@
-    @*                         Nạp tiền điện thoại *@
-    @*                     </div> *@
-    @*                 </a> *@
-    @*             </li> *@
-    @*             <li> *@
-    @*                 <a href="javascript:;" class="group-help__frame"> *@
-    @*                     <div class="group-help__ic"> *@
-    @*                         <img src="/themes/topup/images/ic_dark/ic-05.svg" alt=""> *@
-    @*                     </div> *@
-    @*                     <div class="group-help__title"> *@
-    @*                         Mua mã thẻ trả trước *@
-    @*                     </div> *@
-    @*                 </a> *@
-    @*             </li> *@
-    @*             <li> *@
-    @*                 <a href="javascript:;" class="group-help__frame"> *@
-    @*                     <div class="group-help__ic"> *@
-    @*                         <img src="/themes/topup/images/ic_dark/ic-data-card.svg" alt=""> *@
-    @*                     </div> *@
-    @*                     <div class="group-help__title"> *@
-    @*                         Mua mã thẻ trả trước *@
-    @*                     </div> *@
-    @*                 </a> *@
-    @*             </li> *@
-    @*             <li> *@
-    @*                 <a href="/Topup/PinCode" class="group-help__frame"> *@
-    @*                     <div class="group-help__ic"> *@
-    @*                         <img src="/themes/topup/images/ic_dark/ic-game-card.svg" alt=""> *@
-    @*                     </div> *@
-    @*                     <div class="group-help__title"> *@
-    @*                         Mua mã thẻ Game *@
-    @*                     </div> *@
-    @*                 </a> *@
-    @*             </li> *@
-    @*             <div class="clearfix"></div> *@
-    @*         </ul> *@
-    @*     </div> *@
-    @* *@
-    @*     <div id="thanh-toan-hoa-don" class="section-body-middle-introduce text-center"> *@
-    @*         <h1 class="h1-dark text-left">Thanh toán hoá đơn</h1> *@
-    @*     </div> *@
-    @*     <div class="group-help__section"> *@
-    @*         <ul class="group-help grid4"> *@
-    @*             @foreach (var item in Model.Categorys) *@
-    @*             { *@
-    @*                 <li> *@
-    @*                     <a href="/BillPayment#@item.CategoryCode" class="group-help__frame group-service-item" data-category-name="@item.CategoryName" data-src="@item.Image"> *@
-    @*                         <div class="group-help__ic"> *@
-    @*                             <img src="/themes/topup/images/ic_dark/ic-03.svg" alt="@item.CategoryName"> *@
-    @*                         </div> *@
-    @*                         <div class="group-help__title"> *@
-    @*                             @item.CategoryName *@
-    @*                         </div> *@
-    @*                     </a> *@
-    @*                 </li> *@
-    @*             } *@
-    @*             <div class="clearfix"></div> *@
-    @*         </ul> *@
-    @*     </div> *@
 </div>

@@ -2421,9 +2421,9 @@
         <text name="Fees_Stop">Stop fee</text>
         <text name="ExportFileNotSuccess">Xử lý file không thành công. Xin vui lòng thử lại sau</text>
         <text name="Bot_Send_DepositToAgentApi">
-            <![CDATA[Nhất Trần xin thông báo .Tài khoản {0} vừa được nạp thành công số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}.%0AMã giao dịch: {5}]]></text>
+            <![CDATA[Gmobile JSC xin thông báo .Tài khoản {0} vừa được nạp thành công số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}.%0AMã giao dịch: {5}]]></text>
         <text name="Bot_Send_RefundToAgentApi">
-            <![CDATA[Nhất Trần xin thông báo .Tài khoản {0} vừa được hoàn tiền thành công cho giao dịch lỗi, số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}]]></text>
+            <![CDATA[Gmobile JSC xin thông báo .Tài khoản {0} vừa được hoàn tiền thành công cho giao dịch lỗi, số tiền {1}. Số dư: {2}, lúc {3}.%0ANội dung: {4}]]></text>
 
         <text name="Enum_SaleType_0">Bình thường</text>
         <text name="Enum_SaleType_1">Nạp chậm</text>
@@ -2433,8 +2433,8 @@
             <![CDATA[Tồn kho NCC {0}%0ATồn kho hiện tại {1}, lúc {2}.%0AVui lòng nạp tiền vào kho]]></text>
 
         <text name="Email_CreateAccountApi_Body">
-            <![CDATA[Xin chào, {FullName}<br>NHATTRAN xin thông gửi thông tin tài khoản kết nối API<br><br><strong>THÔNG TIN TÀI KHOẢN API</strong><br><strong>Url:</strong>{PaymentUrl}<br><strong>UserName:</strong>{UserName}<br><strong>Password:</strong>{Password}<br><strong>ClientID:</strong>{ClientID}<br><strong>ClientKey:</strong>{ClientKey}<br><strong>PartnerCode:</strong>{PartnerCode}<br><strong>NHATTRAN PublicKey:</strong><a href="{NT_KEY}" target="_blank">NT Key</a><br><strong>Tài liệu kết nối:</strong><a href="{NT_DOC}" target="_blank">Tài liệu</a><br><br><strong>THÔNG TÀI KHOẢN WEB XEM SỐ DƯ VÀ LSGD</strong><br><strong>Url:</strong>{NT_LINK}<br><strong>UserName:</strong>{UserNameStaff}<br><strong>Password:</strong>{PasswordStaff}<br>]]></text>
-        <text name="Email_CreateAccountApi_Title">Thông tin kết nối API NhatTran - {0} - Hệ thống:{1}</text>
+            <![CDATA[Xin chào, {FullName}<br>Gmobile JSC xin thông gửi thông tin tài khoản kết nối API<br><br><strong>THÔNG TIN TÀI KHOẢN API</strong><br><strong>Url:</strong>{PaymentUrl}<br><strong>UserName:</strong>{UserName}<br><strong>Password:</strong>{Password}<br><strong>ClientID:</strong>{ClientID}<br><strong>ClientKey:</strong>{ClientKey}<br><strong>PartnerCode:</strong>{PartnerCode}<br><strong>NHATTRAN PublicKey:</strong><a href="{NT_KEY}" target="_blank">NT Key</a><br><strong>Tài liệu kết nối:</strong><a href="{NT_DOC}" target="_blank">Tài liệu</a><br><br><strong>THÔNG TÀI KHOẢN WEB XEM SỐ DƯ VÀ LSGD</strong><br><strong>Url:</strong>{NT_LINK}<br><strong>UserName:</strong>{UserNameStaff}<br><strong>Password:</strong>{PasswordStaff}<br>]]></text>
+        <text name="Email_CreateAccountApi_Title">Thông tin kết nối API Gmobile JSC - {0} - Hệ thống:{1}</text>
         <text name="Email_CreateAccountApi_SubTitle">NT gửi thông tin kết nối API - Hệ thống: {0}</text>
         <text name="ReSendMail">Gửi lại mail</text>
         <text name="Message_Sms_NT">{0}+la+%C3%98DP+cua+quy+khach</text>

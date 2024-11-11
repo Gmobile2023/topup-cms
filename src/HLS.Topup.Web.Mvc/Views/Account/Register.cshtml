@@ -10,38 +10,32 @@
         window.passwordComplexitySetting = @Html.Raw(Model.PasswordComplexitySetting.ToJsonString(indented: true));
     </script>
 
-    @*     @if (ViewBag.UseCaptcha) *@
-    @*     { *@
-    @*         <recaptcha-script-v3/> *@
-    @*         <recaptcha-script-v3-js action="register" callback="(function(){$('#@RecaptchaValidator.RecaptchaResponseKey').val(token)})"/> *@
-    @*     } *@
-
     <script abp-src="/view-resources/Areas/App/Views/_Bundles/account-register.min.js" asp-append-version="true"></script>
 }
 
-@section Styles{
-    <link href="/metronic/common/css/login-1@(CultureHelper.IsRtl ? ".rtl" : "").css" rel="stylesheet"/>
-}
-
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link" href="@Url.Action("Login", "Account", new {ss = ViewBag.SingleSignIn, returnUrl = ViewBag.ReturnUrl})" aria-selected="false">
-            <h5 class="font-weight-bolder text-dark font-size-h4 text-center" style="opacity: .6;">@L("LogIn")</h5>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active">
-            <h5 class="font-weight-bolder text-blue-x font-size-h4 text-center">@L("SignUp")</h5>
-        </a>
-    </li>
-</ul>
-
-<div class="login-form">
-    <div class="pb-10 pt-lg-0 pt-5">
-        @* <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">@L("SignUp")</h3> *@
-    </div>
+<!--begin::Signin-->
+<div class="login-form login-signin">
+    <!--begin::Form-->
     <form class="form register-form" asp-action="Register" method="post">
         <input type="hidden" id="txtOtp" name="Otp"/>
+        <input type="hidden" name="IsExternalLogin" value="@Model.IsExternalLogin.ToString()"/>
+        <input type="hidden" name="ExternalLoginAuthSchema" value="@Model.ExternalLoginAuthSchema"/>
+        <input type="hidden" name="SingleSignOn" value="@Model.SingleSignIn"/>
+        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl"/>
+        @if (ViewBag.UseCaptcha)
+        {
+            <input type="hidden" name="@RecaptchaValidator.RecaptchaResponseKey" id="@RecaptchaValidator.RecaptchaResponseKey"/>
+        }
+
+        <!--begin::Title-->
+        <div class="pb-13 pt-lg-0 pt-5">
+            <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">Xin chào</h3>
+            <span class="font-weight-bold font-size-h4">
+                Bạn đã có tài khoản?
+                <a href="@Url.Action("Login", "Account")" id="kt_login_signup" class="text-primary font-weight-bold">Đăng nhập</a>
+            </span>
+        </div>
+        <!--begin::Title-->
         @if (@ViewBag.ErrorMessage != null)
         {
             <div class="alert alert-danger">
@@ -51,43 +45,45 @@
                 <div class="alert-text">@ViewBag.ErrorMessage</div>
             </div>
         }
-
-        <input type="hidden" name="IsExternalLogin" value="@Model.IsExternalLogin.ToString()"/>
-        <input type="hidden" name="ExternalLoginAuthSchema" value="@Model.ExternalLoginAuthSchema"/>
-        <input type="hidden" name="SingleSignOn" value="@Model.SingleSignIn"/>
-        <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl"/>
-        @if (ViewBag.UseCaptcha)
-        {
-            <input type="hidden" name="@RecaptchaValidator.RecaptchaResponseKey" id="@RecaptchaValidator.RecaptchaResponseKey"/>
-        }
-        <div class="form-group ">
-            <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("Surname") *" name="Surname" required value="@Model.Surname" maxlength="@HLS.Topup.Authorization.Users.User.MaxSurnameLength"/>
+        <!--begin::Form group-->
+        <div class="form-group mb-4">
+            <label class="font-size-h6 font-weight-bolder text-dark required">Họ và tên đệm</label>
+            <input class="form-control h-auto py-4 px-6 rounded-lg" type="text" name="Surname" value="@Model.Surname" placeholder="Họ và tên đệm" maxlength="@HLS.Topup.Authorization.Users.User.MaxSurnameLength" required/>
         </div>
-        <div class="form-group">
-            <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="@L("Name") *" name="Name" required value="@Model.Name" maxlength="@HLS.Topup.Authorization.Users.User.MaxNameLength"/>
+        <!--end::Form group-->
+        <!--begin::Form group-->
+        <div class="form-group mb-4">
+            <label class="font-size-h6 font-weight-bolder text-dark required">Tên</label>
+            <input class="form-control h-auto py-4 px-6 rounded-lg" type="text" name="Name" value="@Model.Name" placeholder="Họ và tên đệm" maxlength="@HLS.Topup.Authorization.Users.User.MaxNameLength" required/>
         </div>
-        @* <div class="form-group "> *@
-        @*     <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="@L("EmailAddress")" name="EmailAddress" required value="@Model.EmailAddress" maxlength="@HLS.Topup.Authorization.Users.User.MaxEmailAddressLength"/> *@
-        @* </div> *@
-
+        <!--end::Form group-->
         @if (!Model.IsExternalLogin)
         {
-            <div class="form-group">
-                <input class="form-control input-ltr form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" autocomplete="new-password" id="txtUserName" placeholder="@L("Phonenumber_Register_Hint") *" name="UserName" value="@Model.UserName" required maxlength="@HLS.Topup.Authorization.Users.User.MaxUserNameLength"/>
+            <!--begin::Form group-->
+            <div class="form-group mb-4">
+                <label class="font-size-h6 font-weight-bolder text-dark required">Số điện thoại</label>
+                <input class="form-control h-auto py-4 px-6 rounded-lg" type="text" name="UserName" id="txtUserName" value="@Model.UserName" placeholder="Số điện thoại" maxlength="@HLS.Topup.Authorization.Users.User.MaxUserNameLength" required/>
             </div>
-            <div class="form-group pwstrength-div">
-                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="password" autocomplete="new-password" id="RegisterPassword" placeholder="@L("Password") *" name="Password" required/>
+            <!--end::Form group-->
+            <!--begin::Form group-->
+            <div class="form-group mb-4">
+                <label class="font-size-h6 font-weight-bolder text-dark pt-5 required">Mật khẩu</label>
+                <input class="form-control h-auto py-4 px-6 rounded-lg" type="password" name="Password" id="RegisterPassword" placeholder="Mật khẩu" autocomplete="new-password" required/>
             </div>
-            <div class="form-group ">
-                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="password" autocomplete="new-password" placeholder="@L("PasswordRepeat") *" name="PasswordRepeat" required/>
+            <!--end::Form group-->
+            <!--begin::Form group-->
+            <div class="form-group mb-4">
+                <label class="font-size-h6 font-weight-bolder text-dark pt-5 required">Nhập lại mật khẩu</label>
+                <input class="form-control h-auto py-4 px-6 rounded-lg" type="password" name="PasswordRepeat" id="RegisterPasswordRepeat" placeholder="Mật khẩu" autocomplete="new-password" required/>
             </div>
+            <!--end::Form group-->
         }
-
-        <div class="pb-lg-0 pb-5 text-center">
-            <a asp-action="Login">
-                <button type="button" id="register-back-btn" class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">@L("Back")</button>
-            </a>
-            <button type="button" id="register-submit-btn" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">@L("Submit")</button>
+        <!--begin::Action-->
+        <div class="pb-lg-0 pb-5">
+            <button type="button" id="register-submit-btn" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Đăng ký</button>
         </div>
+        <!--end::Action-->
     </form>
+    <!--end::Form-->
 </div>
+<!--end::Signin-->

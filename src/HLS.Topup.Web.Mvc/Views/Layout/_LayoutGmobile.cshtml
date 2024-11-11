@@ -21,160 +21,141 @@
     UiCustomizationSettingsDto theme = await GetTheme();
     var headerViewModel = new HeaderViewModel();
 }
+
 <!DOCTYPE html>
-<html lang="vi" @(CultureHelper.IsRtl ? "dir=\" rtl\"" : "") class="">
+<html lang="vi" dir=@(CultureHelper.IsRtl ? "rtl" : "")>
 <head>
-    <title>Topup</title>
-    <meta charset="utf-8" />
-
+    <meta charset="utf-8"/>
+    <title>Chào mừng đến với Gmobile JSC</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
-    <meta property="og:title" content="Topup" />
-    <meta property="og:image" content="@headerViewModel.GetLogoUrl(ApplicationPath, theme.BaseSettings.Menu.AsideSkin)" />
-    <meta property="og:description" content="MobileGo" />
+    <meta property="og:title" content="Gmobile JSC"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:description" content="CÔNG TY CỔ PHẦN VIỄN THÔNG DI ĐỘNG TOÀN CẦU GTEL MOBILE JSC"/>
     <meta property="og:url" content="@($" {Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")">
 
-    <link rel="shortcut icon" href="~/favicon.ico" />
-    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/_Bundles/vendors.bundle.css" asp-append-version="true" />
-    <link rel="stylesheet" abp-href="/Common/Scripts/Datatables/datatables@(CultureHelper.IsRtl ? "-rtl":"").css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
-    <link href="~/themes/default/plugins/slick/style.min.css" rel="stylesheet" asp-append-version="true" />
-    <link href="~/themes/default/css/style.min.css" rel="stylesheet" asp-append-version="true" />
-    <link href="~/themes/default/css/custom.min.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="shortcut icon" href="~/favicon.ico"/>
+    <link href="~/themes/gmobile/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="~/themes/gmobile/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="~/themes/gmobile/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="~/themes/gmobile/assets/css/customize.css" rel="stylesheet" type="text/css"/>
+    <link href="~/themes/gmobile/assets/css/pages/login/login-1.css" rel="stylesheet" type="text/css"/>
 
     @await RenderSectionAsync("Styles", false)
+
     <script type="text/javascript">
         @* This is used to get the application's root path from javascript.
         It's useful if you're running application in a virtual directory under IIS. *@
         var abp = abp || {}; abp.appPath = '@ApplicationPath';
     </script>
-
 </head>
-<body>
-    <div class="preloader-wrapp" id="preloader">
-        <img src="~/themes/default/images/logo_transparent.png" alt="" />
-        <div class="preloader"></div>
+<body id="kt_body" class="offcanvas-right header-fixed subheader-enabled page-loading">
+    <!--begin::Main-->
+    <!--begin::Header Mobile-->
+    <div id="kt_header_mobile" class="header-mobile">
+        <!--begin::Logo-->
+        <a href="index.html">
+            <img alt="Logo" src="assets/media/logos/logo-letter-1.png" class="logo-default max-h-30px" />
+        </a>
+        <!--end::Logo-->
+        <!--begin::Toolbar-->
+        <div class="d-flex align-items-center">
+            <button class="btn p-0 burger-icon burger-icon-left ml-4" id="kt_header_mobile_toggle">
+                <span></span>
+            </button>
+            <button class="btn btn-icon btn-hover-transparent-white p-0 ml-3" id="kt_header_mobile_topbar_toggle">
+				<span class="svg-icon svg-icon-xl">
+					<!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+							<polygon points="0 0 24 0 24 24 0 24" />
+							<path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+							<path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+						</g>
+					</svg>
+                    <!--end::Svg Icon-->
+				</span>
+            </button>
+        </div>
+        <!--end::Toolbar-->
     </div>
-    <div class="page home">
-        @*<div class="html_ajax_load" data-url="/Include/Announce"></div>*@
-        <!--section header -->
-        <section class="section-header">
-            <!-- top navigation -->
-            @await Component.InvokeAsync(typeof(HeaderViewComponent), new { currentPageName = ViewBag.CurrentPageName })
-            <!-- end top navigation -->
-            @await Html.PartialAsync("~/Views/Shared/Components/Header/_Slider.cshtml")
-        </section>
-        <!--end section header -->
-        <!-- ./header -->
-        <!-- section main: topup -->
-        <section id="main">
-            @RenderBody()
-        </section>
-        <!--end section main -->
-        @await Html.PartialAsync("~/Views/Shared/Components/Home/_IntroduceInHome.cshtml")
-        @await Html.PartialAsync("~/Views/Shared/Components/Home/_FunctionInHome.cshtml")
-        @await Html.PartialAsync("~/Views/Shared/Components/Home/_NewsInHome.cshtml")
+    <!--end::Header Mobile-->
+    <!--end::Header Mobile-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="d-flex flex-row flex-column-fluid page">
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                @await Component.InvokeAsync("Navigation")
+                
+                <!--begin::Content-->
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                    @RenderBody()
+                </div>
+                <!--end::Content-->
+                <!--begin::Footer-->
+                <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
+                    <!--begin::Container-->
+                    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <!--begin::Copyright-->
+                        <div class="text-dark order-2 order-md-1">
+                            <span class="text-muted font-weight-bold mr-2">2021©</span>
+                            <a href="http://keenthemes.com/metronic" target="_blank" class="text-dark-75 text-hover-primary">Keenthemes</a>
+                        </div>
+                        <!--end::Copyright-->
+                        <!--begin::Nav-->
+                        <div class="nav nav-dark order-1 order-md-2">
+                            <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link pr-3 pl-0">About</a>
+                            <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link px-3">Team</a>
+                            <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link pl-3 pr-0">Contact</a>
+                        </div>
+                        <!--end::Nav-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Footer-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::Main-->
 
-        <!-- section product intro -->
-        @* @await Html.PartialAsync("~/Views/Shared/Components/ProductIntro/Default.cshtml") *@
-        <!-- end section product intro -->
-        <!--section download app -->
-        @* @await Html.PartialAsync("~/Views/Shared/Components/DownloadApp/Default.cshtml") *@
-        <!-- end section download app-->
-        <!-- global footer -->
-        @* @await Html.PartialAsync("~/Views/Shared/Components/Footer/_Footer.cshtml") *@
-        <!-- end global footer -->
-    </div>
-    <nav id="mobile-menu" class="html_ajax_load" data-url="/Includes/MenuMobile"></nav>
-    @* @await Html.PartialAsync("~/Views/Shared/Components/Header/_HeaderMenuMobile.cshtml") *@
-@* Base JS *@
-    <script>KTAppSettings={}</script>
     <script abp-src="/view-resources/Areas/App/Views/_Bundles/app-layout-libs.js" asp-append-version="true"></script>
-    <script abp-src="/view-resources/Areas/App/Views/_Bundles/@theme.BaseSettings.Theme.ToLowerInvariant()-scripts.bundle.js" asp-append-version="true"></script>
     <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
-    <script src="@(ApplicationPath)AbpServiceProxies/GetAll?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
-    <script src="@(ApplicationPath)AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+    <script src="~/AbpServiceProxies/GetAll?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+    <script src="~/AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+
     <script type="text/javascript">
         abp.localization.currentCulture = $.extend({}, abp.localization.currentCulture, { displayNameEnglish: '@CultureInfo.CurrentUICulture.EnglishName' });
         moment.locale('@(GetMomentLocale())'); //Localizing moment.js
     </script>
+
     <script abp-src="/view-resources/Areas/App/Views/_Bundles/common-scripts.js" asp-append-version="true"></script>
     <script abp-src="/view-resources/Areas/App/Views/_Bundles/app-common-scripts.js" asp-append-version="true"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="~/themes/default/js/main.js" asp-append-version="true"></script>
 
-    <!-- Place this tag in your head or just before your close body tag. -->
-    @*
-        <script src="../apis.google.com/js/platform.js" async defer></script>*@
+    <!--begin::Global Config(global config for global JS scripts)-->
+    <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#6993FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+    <!--end::Global Config-->
 
-    <script src="~/themes/default/plugins/slick/scripts.min.js" asp-append-version="true"></script>
+    <!--begin::Global Theme Bundle(used by all pages)-->
+    @* <script src="~/themes/gmobile/assets/plugins/global/plugins.bundle.js"></script> *@
+    <script src="~/themes/gmobile/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script src="~/themes/gmobile/assets/js/scripts.bundle.js"></script>
     <script src="~/Common/Scripts/query-mask/jquery.inputmask.bundle.js"></script>
-    <script src="~/Common/Scripts/Service.min.js" asp-append-version="true"></script>
-    <script src="~/view-resources/Views/Header/Index.min.js" asp-append-version="true"></script>
-    @*<script type="text/javascript">
-            abp.localization.defaultSourceName = '@LocalizationSourceName';
-            abp.security.antiForgery.tokenCookieName = "Public-XSRF-TOKEN";
-            abp.security.antiForgery.tokenHeaderName = "Public-X-XSRF-TOKEN";
-        </script>*@
-    <script>
-        if ($('#home-slider').length) {
-            $('#home-slider').slick({
-                infinite: true,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 5000,
-                lazyLoad: 'ondemand'
-            });
-        }
-
-        $('#top_news_content').slick({
-            dots: true,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 4,
-            slidesToScroll: 4,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-                // You can unslick at a given breakpoint now by adding:
-                // settings: "unslick"
-                // instead of a settings object
-            ]
-        });
-
-
-    </script>
-
+    <script src="/Common/Scripts/Service.js" asp-append-version="true"></script>
     <script src="~@ScriptPaths.JQuery_Validation_Localization" asp-append-version="true"></script>
     <script src="~@ScriptPaths.Bootstrap_Select_Localization" asp-append-version="true"></script>
     <script src="~@ScriptPaths.JQuery_Timeago_Localization" asp-append-version="true"></script>
     <script src="~@ScriptPaths.Select2_Localization" asp-append-version="true"></script>
+    <!--end::Global Theme Bundle-->
+    
     @await RenderSectionAsync("Scripts", false)
-
 </body>
 </html>

@@ -1047,6 +1047,7 @@
     <Folder Include="Areas\App\Views\Shared\Themes\Theme8\Components" />
     <Folder Include="Areas\App\Views\Shared\Themes\Theme9\Components" />
     <Folder Include="wwwroot\assets\Upload" />
+    <Folder Include="wwwroot\themes\gmobile\" />
     <Folder Include="wwwroot\Uploads\" />
   </ItemGroup>
 

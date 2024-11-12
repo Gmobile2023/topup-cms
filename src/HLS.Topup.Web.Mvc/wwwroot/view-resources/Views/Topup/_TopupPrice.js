@@ -18,7 +18,7 @@
 
         $(document).ready(function () {
             let i = 0, timeOut = 0;
-
+            
             $('.eye-view-card').on('mousedown touchstart', function (e) {
                 const productCode = $(this).attr('data-product-code');
                 const check = $("#" + productCode + "").html();

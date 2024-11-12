@@ -7,15 +7,15 @@
     },
     valid: function () {
         var obj = ctrl.getFormValue();
-        if (obj.password.length == 0) {
+        if (obj.password.length === 0) {
             abp.message.info("Vui lòng nhập mật khẩu cấp 2 mới");
             return false;
         }
-        if (obj.password.length == 0) {
+        if (obj.password.length === 0) {
             abp.message.info("Vui lòng nhập lại mật khẩu cấp 2");
             return false;
         }
-        if (obj.password != obj.passwordConfirm) {
+        if (obj.password !== obj.passwordConfirm) {
             abp.message.info("Vui lòng nhập đúng mật khẩu cấp 2 mới");
             return false;
         }

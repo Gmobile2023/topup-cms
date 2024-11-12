@@ -6,24 +6,20 @@
 @using HLS.Topup.UiCustomization.Dto
 @using HLS.Topup.Url
 @using HLS.Topup.Web.Session
-@using HLS.Topup.Web.Views.Shared.Components.Header
-@using CultureHelper = HLS.Topup.Localization.CultureHelper
-@using HeaderViewModel = HLS.Topup.Web.Areas.App.Models.Layout.HeaderViewModel
 @inject ScriptPaths ScriptPaths
 @inject AppTimes AppTimes
 @inject IAbpAntiForgeryManager AbpAntiForgeryManager
 @inject IWebUrlService WebUrlService
 @inject IPerRequestSessionCache SessionCache
 @inject IAlertManager AlertManager
+
 @{
     Layout = null;
     AbpAntiForgeryManager.SetCookie(Context);
-    UiCustomizationSettingsDto theme = await GetTheme();
-    var headerViewModel = new HeaderViewModel();
 }
 
 <!DOCTYPE html>
-<html lang="vi" dir=@(CultureHelper.IsRtl ? "rtl" : "")>
+<html lang="vi">
 <head>
     <meta charset="utf-8"/>
     <title>Chào mừng đến với Gmobile JSC</title>
@@ -55,13 +51,13 @@
         var abp = abp || {}; abp.appPath = '@ApplicationPath';
     </script>
 </head>
-<body id="kt_body" class="offcanvas-right header-fixed subheader-enabled page-loading">
+<body id="kt_body" style="background-image: url(/themes/gmobile/assets/media/bg/bg-10.jpg); background-size: auto;" class="offcanvas-right header-fixed subheader-enabled page-loading">
     <!--begin::Main-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile">
         <!--begin::Logo-->
-        <a href="index.html">
-            <img alt="Logo" src="assets/media/logos/logo-letter-1.png" class="logo-default max-h-30px" />
+        <a href="@Url.Action("Index", "Home")">
+            <img alt="Logo" src="/themes/gmobile/assets/images/app-logo-on-light.svg" class="logo-default max-h-30px" />
         </a>
         <!--end::Logo-->
         <!--begin::Toolbar-->
@@ -105,21 +101,16 @@
                     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
                         <!--begin::Copyright-->
                         <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted font-weight-bold mr-2">2021©</span>
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="text-dark-75 text-hover-primary">Keenthemes</a>
+                            <span class="text-muted font-weight-bold mr-2">2024 ©</span>
+                            <a href="@Url.Action("Index", "Home")" class="text-dark-75 text-hover-primary">Gmobile JSC</a>
                         </div>
                         <!--end::Copyright-->
-                        <!--begin::Nav-->
-                        <div class="nav nav-dark order-1 order-md-2">
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link pr-3 pl-0">About</a>
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link px-3">Team</a>
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="nav-link pl-3 pr-0">Contact</a>
-                        </div>
-                        <!--end::Nav-->
                     </div>
                     <!--end::Container-->
                 </div>
                 <!--end::Footer-->
+
+                @await Component.InvokeAsync("UserInfo")
             </div>
             <!--end::Wrapper-->
         </div>

@@ -1,0 +1,152 @@
+﻿@using System.Globalization
+@using Abp.AspNetZeroCore.Timing
+@using Abp.Web.Mvc.Alerts
+@using HLS.Topup.Web.Resources
+@using Abp.Web.Security.AntiForgery
+@using HLS.Topup.UiCustomization.Dto
+@using HLS.Topup.Url
+@using HLS.Topup.Web.Session
+@inject ScriptPaths ScriptPaths
+@inject AppTimes AppTimes
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IWebUrlService WebUrlService
+@inject IPerRequestSessionCache SessionCache
+@inject IAlertManager AlertManager
+
+@{
+    Layout = null;
+    AbpAntiForgeryManager.SetCookie(Context);
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <title>Chào mừng đến với Gmobile JSC</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <meta property="og:title" content="Gmobile JSC"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:description" content="CÔNG TY CỔ PHẦN VIỄN THÔNG DI ĐỘNG TOÀN CẦU GTEL MOBILE JSC"/>
+    <meta property="og:url" content="@($" {Context.Request.Scheme}://{Context.Request.Host}{Context.Request.Path}{Context.Request.QueryString}")">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <link rel="shortcut icon" href="~/favicon.ico"/>
+    <link href="~/themes/gmobile/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="~/themes/gmobile/assets/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="~/themes/gmobile/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="~/themes/gmobile/assets/css/customize.css" rel="stylesheet" type="text/css"/>
+    <link href="~/themes/gmobile/assets/css/pages/login/login-1.css" rel="stylesheet" type="text/css"/>
+
+    @await RenderSectionAsync("Styles", false)
+
+    <script type="text/javascript">
+        @* This is used to get the application's root path from javascript.
+        It's useful if you're running application in a virtual directory under IIS. *@
+        var abp = abp || {}; abp.appPath = '@ApplicationPath';
+    </script>
+</head>
+<body id="kt_body" style="background-image: url(/themes/gmobile/assets/media/bg/bg-10.jpg); background-size: auto;" class="offcanvas-right header-fixed subheader-enabled page-loading">
+    <!--begin::Main-->
+    <!--begin::Header Mobile-->
+    <div id="kt_header_mobile" class="header-mobile">
+        <!--begin::Logo-->
+        <a href="@Url.Action("Index", "Home")">
+            <img alt="Logo" src="/themes/gmobile/assets/images/app-logo-on-light.svg" class="logo-default max-h-30px" />
+        </a>
+        <!--end::Logo-->
+        <!--begin::Toolbar-->
+        <div class="d-flex align-items-center">
+            <button class="btn p-0 burger-icon burger-icon-left ml-4" id="kt_header_mobile_toggle">
+                <span></span>
+            </button>
+            <button class="btn btn-icon btn-hover-transparent-white p-0 ml-3" id="kt_header_mobile_topbar_toggle">
+				<span class="svg-icon svg-icon-xl">
+					<!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+							<polygon points="0 0 24 0 24 24 0 24" />
+							<path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+							<path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+						</g>
+					</svg>
+                    <!--end::Svg Icon-->
+				</span>
+            </button>
+        </div>
+        <!--end::Toolbar-->
+    </div>
+    <!--end::Header Mobile-->
+    <!--end::Header Mobile-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="d-flex flex-row flex-column-fluid page">
+            <!--begin::Wrapper-->
+            <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                @await Component.InvokeAsync("Navigation")
+                
+                <!--begin::Content-->
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                    @RenderBody()
+                </div>
+                <!--end::Content-->
+                <!--begin::Footer-->
+                <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
+                    <!--begin::Container-->
+                    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+                        <!--begin::Copyright-->
+                        <div class="text-dark order-2 order-md-1">
+                            <span class="text-muted font-weight-bold mr-2">2024 ©</span>
+                            <a href="@Url.Action("Index", "Home")" class="text-dark-75 text-hover-primary">Gmobile JSC</a>
+                        </div>
+                        <!--end::Copyright-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Footer-->
+
+                @await Component.InvokeAsync("UserInfo")
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::Main-->
+
+    <script abp-src="/view-resources/Areas/App/Views/_Bundles/app-layout-libs.js" asp-append-version="true"></script>
+    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+    <script src="~/AbpServiceProxies/GetAll?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+    <script src="~/AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        abp.localization.currentCulture = $.extend({}, abp.localization.currentCulture, { displayNameEnglish: '@CultureInfo.CurrentUICulture.EnglishName' });
+        moment.locale('@(GetMomentLocale())'); //Localizing moment.js
+    </script>
+
+    <script abp-src="/view-resources/Areas/App/Views/_Bundles/common-scripts.js" asp-append-version="true"></script>
+    <script abp-src="/view-resources/Areas/App/Views/_Bundles/app-common-scripts.js" asp-append-version="true"></script>
+
+    <!--begin::Global Config(global config for global JS scripts)-->
+    <script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#6993FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+    <!--end::Global Config-->
+
+    <!--begin::Global Theme Bundle(used by all pages)-->
+    @* <script src="~/themes/gmobile/assets/plugins/global/plugins.bundle.js"></script> *@
+    <script src="~/themes/gmobile/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script src="~/themes/gmobile/assets/js/scripts.bundle.js"></script>
+    <script src="~/Common/Scripts/query-mask/jquery.inputmask.bundle.js"></script>
+    <script src="/Common/Scripts/Service.js" asp-append-version="true"></script>
+    <script src="~@ScriptPaths.JQuery_Validation_Localization" asp-append-version="true"></script>
+    <script src="~@ScriptPaths.Bootstrap_Select_Localization" asp-append-version="true"></script>
+    <script src="~@ScriptPaths.JQuery_Timeago_Localization" asp-append-version="true"></script>
+    <script src="~@ScriptPaths.Select2_Localization" asp-append-version="true"></script>
+    <!--end::Global Theme Bundle-->
+    
+    @await RenderSectionAsync("Scripts", false)
+</body>
+</html>

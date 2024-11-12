@@ -1,12 +1,12 @@
-﻿@{
-    Layout = $"~/Views/Layout/_LayoutProfile.cshtml";
+﻿@model HLS.Topup.Authorization.Accounts.Dto.CreateOrEditAgentModalViewModel
+
+@{
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
 }
-@using Abp.Timing
-@model HLS.Topup.Authorization.Accounts.Dto.CreateOrEditAgentModalViewModel
+
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.Profile_Edit;
     ViewBag.Title = "Chỉnh sửa thông tin tài khoản";
-    //ViewBag.ImageTitle = Url.Action("GetProfilePicture", "Profile", new {area = string.Empty});
     ViewBag.ImageTitle = "/themes/topup/images/ic_banner_top/profile-white.svg";
 }
 
@@ -90,6 +90,5 @@
                 </div>
             </div>
         </div>
-
     </form>
 </div>

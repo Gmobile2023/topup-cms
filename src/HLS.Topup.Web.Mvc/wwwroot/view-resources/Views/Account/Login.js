@@ -40,16 +40,8 @@
             if (!$('form.login-form').valid()) {
                 return;
             }
+            
             submit();
-            // const username = $("#txtUserName").val();
-            // const isVerify = abp.setting.getBoolean("App.UserManagement.OtpSetting.IsUseVerifyLogin");
-            // if (isVerify && username.match(/^\d+$/)) {
-            //     Dialog.otpNone(Dialog.otpType.Login, username, function () {
-            //         submit();
-            //     });
-            // } else {
-            //     submit();
-            // }
         }
 
         function submit() {
@@ -75,5 +67,4 @@
             handleLogin();
         }
     };
-
 }();

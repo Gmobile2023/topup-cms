@@ -21,39 +21,39 @@
                     function () {
                         customizeTreeNodes();
                     }).on("changed.jstree",
-                        function (e, data) {
-                            if (!data.node) {
-                                return;
-                            }
+                function (e, data) {
+                    if (!data.node) {
+                        return;
+                    }
 
-                            var childrenNodes;
+                    var childrenNodes;
 
-                            if (data.node.state.selected) {
-                                selectNodeAndAllParents($tree.jstree('get_parent', data.node));
+                    if (data.node.state.selected) {
+                        selectNodeAndAllParents($tree.jstree('get_parent', data.node));
 
-                                childrenNodes = $.makeArray($tree.jstree('get_node', data.node).children);
-                                $tree.jstree('select_node', childrenNodes);
+                        childrenNodes = $.makeArray($tree.jstree('get_node', data.node).children);
+                        $tree.jstree('select_node', childrenNodes);
 
-                            } else {
-                                childrenNodes = $.makeArray($tree.jstree('get_node', data.node).children);
-                                $tree.jstree('deselect_node', childrenNodes);
-                            }
-                        }).jstree({
-                            "types": {
-                                "default": {
-                                    "icon": "fa fa-folder text-warning"
-                                },
-                                "file": {
-                                    "icon": "fa fa-file text-warning"
-                                }
-                            },
-                            'checkbox': {
-                                keep_selected_style: false,
-                                three_state: false,
-                                cascade: ''
-                            },
-                            plugins: ['checkbox', 'types']
-                        });
+                    } else {
+                        childrenNodes = $.makeArray($tree.jstree('get_node', data.node).children);
+                        $tree.jstree('deselect_node', childrenNodes);
+                    }
+                }).jstree({
+                "types": {
+                    "default": {
+                        "icon": "fa fa-folder text-warning"
+                    },
+                    "file": {
+                        "icon": "fa fa-file text-warning"
+                    }
+                },
+                'checkbox': {
+                    keep_selected_style: false,
+                    three_state: false,
+                    cascade: ''
+                },
+                plugins: ['checkbox', 'types']
+            });
 
             function customizeTreeNodes() {
                 $tree.find('.jstree-node').each(function () {
@@ -138,7 +138,7 @@
                     }
                 });
             }
-        };
+        }
 
         function selectNodeAndAllParents(node) {
             $tree.jstree('select_node', node, true);
@@ -146,7 +146,7 @@
             if (parent) {
                 selectNodeAndAllParents(parent);
             }
-        };
+        }
 
         function isFeatureValueValid(feature, value) {
             if (!feature || !feature.inputType || !feature.inputType.validator) {
@@ -201,7 +201,7 @@
 
         function getFeatureValues() {
             var featureValues = [];
-            
+
             $.each($tree.jstree(true)._model.data, function (key, object) {
                 if (object.li_attr) {
                     var feature = JSON.parse(object.li_attr['data-feature']);

@@ -1,14 +1,14 @@
 ﻿"use strict";
 
-var KTLayoutHeader = function() {
+var KTLayoutHeader = function () {
     // Private properties
     var _element;
     var _elementForMobile;
     var _object;
 
-	// Private functions
+    // Private functions
     // Get Height
-    var _getHeight = function() {
+    var _getHeight = function () {
         var height = 0;
 
         if (_element) {
@@ -19,7 +19,7 @@ var KTLayoutHeader = function() {
     }
 
     // Get Height
-    var _getHeightForMobile = function() {
+    var _getHeightForMobile = function () {
         var height;
 
         height = KTUtil.actualHeight(_elementForMobile);
@@ -28,47 +28,47 @@ var KTLayoutHeader = function() {
     }
 
     // Public Methods
-	return {
-		init: function(id, idForMobile) {
+    return {
+        init: function (id, idForMobile) {
             _element = KTUtil.getById(id);
             _elementForMobile = KTUtil.getById(idForMobile);
 
             if (!_element) {
-                return;
-            }
-		},
 
-        isFixed: function() {
+            }
+        },
+
+        isFixed: function () {
             return KTUtil.hasClass(KTUtil.getBody(), 'header-fixed')
         },
 
-        isFixedForMobile: function() {
+        isFixedForMobile: function () {
             return KTUtil.hasClass(KTUtil.getBody(), 'header-mobile-fixed')
         },
 
-        getElement: function() {
+        getElement: function () {
             return _element;
         },
 
-        getElementForMobile: function() {
+        getElementForMobile: function () {
             return _elementForMobile;
         },
 
-        getHeader: function() {
+        getHeader: function () {
             return _object;
         },
 
-        getHeight: function() {
+        getHeight: function () {
             return _getHeight();
         },
 
-        getHeightForMobile: function() {
+        getHeightForMobile: function () {
             return _getHeightForMobile();
         }
-	};
+    };
 }();
 
 // Webpack support
 if (typeof module !== 'undefined') {
-	module.exports = KTLayoutHeader;
+    module.exports = KTLayoutHeader;
 }

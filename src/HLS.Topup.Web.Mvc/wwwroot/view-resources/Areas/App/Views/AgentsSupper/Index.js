@@ -23,7 +23,6 @@
         });
 
 
-
         var _viewAgentModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/AgentsSupper/ViewAgentSupperModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/AgentsSupper/_ViewAgentModal.js',
@@ -82,7 +81,7 @@
                                     return _permissions.edit;
                                 },
                                 action: function (data) {
-                                    _createOrEditModal.open({ id: data.record.userId});
+                                    _createOrEditModal.open({id: data.record.userId});
                                 }
                             },
                             {
@@ -137,7 +136,7 @@
                         }
                         return "";
                     }
-               }
+                }
             ]
         });
 

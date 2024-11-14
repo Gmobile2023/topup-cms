@@ -794,7 +794,7 @@ function _scrollToMinuteOption2(select, minute){
           var disable_end = hour_data["disable_end_minute"+i];
           if (typeof disable_start === "undefined" &&
               typeof disable_end === "undefined"){
-            continue;
+            
           }
           else if (disable_start <= disable_end){
             for (var j = 0; j< optionLen; j++){

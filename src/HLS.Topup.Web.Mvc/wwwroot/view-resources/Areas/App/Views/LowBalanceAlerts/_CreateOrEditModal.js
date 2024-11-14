@@ -4,27 +4,27 @@
 
         var _modalManager;
         var _lowBalanceAlertInformationForm = null;
-        
+
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
             var modal = _modalManager.getModal();
-            
+
             Sv.SetupAmountMask();
 
-            $('.no-special-characters').keypress(function(e){
+            $('.no-special-characters').keypress(function (e) {
                 let txt = String.fromCharCode(e.which)
                 let pattern = /^[0-9\-]+$/;
-                
-                if (!(pattern.test(txt) || e.keyCode == 8)){
+
+                if (!(pattern.test(txt) || e.keyCode == 8)) {
                     $(this).val($(this).val().slice(0, -1));
                 }
             });
-            
+
             _lowBalanceAlertInformationForm = _modalManager.getModal().find('form[name=LowBalanceAlertInformationsForm]');
             _lowBalanceAlertInformationForm.validate();
         };
-        
+
         this.save = function () {
             if (!_lowBalanceAlertInformationForm.valid()) {
                 return;

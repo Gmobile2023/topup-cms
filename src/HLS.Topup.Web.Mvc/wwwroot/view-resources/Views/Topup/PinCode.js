@@ -116,7 +116,7 @@
         let obj = ctrl.getFormValue();
         console.log(obj);
         Sv.checkUserTransValid(obj.serviceCode, obj.categoryCode, obj.productCode, obj.paymentAmount, obj.cardPrice, obj.quantity)
-            .then(function(rs){
+            .then(function (rs) {
                 Dialog.verifyTransCode(Dialog.otpType.Payment, function () {
                     Sv.Api({
                         url: abp.appPath + 'api/services/app/Transactions/CreatePinCodeRequest',
@@ -188,7 +188,7 @@
             } else if (pinForm === 'pinCodeForm') {
                 $('#Section1').addClass('active show');
             }
-            
+
             ctrl.activeStep(1);
         });
     },
@@ -202,7 +202,7 @@
 
             $('#' + form + ' .section-body-middle-form-p1 .form-logo').attr('src', image);
             localStorage.setItem('telco-logo', image);
-            
+
             ctrl.getTopupPrice(telCo, '#' + location, '#' + form);
         });
     },
@@ -246,7 +246,7 @@ $(document).ready(function () {
     ctrl.checkCardValue();
     ctrl.handlerListenChangeSelect();
     ctrl.handlerShowLogoInForm();
-    
+
     let hash = window.location.hash;
     console.log(hash)
     if (hash) {
@@ -257,5 +257,5 @@ $(document).ready(function () {
         $("#pinCodeForm .section-body-middle-form-p1 .select2-card-telco option:eq(0)").prop('selected', true).trigger('change');
     }
 
-    Sv.keyEnter($(".step1"),  ctrl.nextToStep);
+    Sv.keyEnter($(".step1"), ctrl.nextToStep);
 });

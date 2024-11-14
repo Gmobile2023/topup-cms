@@ -19145,7 +19145,7 @@ li:nth-of-type(6) > .group-service__frame {
     font-weight: 500;
 }
 
-    /*------------------------------------------END HELP---------------------------------------*/
+/*------------------------------------------END HELP---------------------------------------*/
 
 .option-item-destiantion {
     padding-top: 20px;
@@ -20809,7 +20809,6 @@ li:nth-of-type(6) > .group-service__frame {
     /*    bottom: 44px;*/
     /*    left: 0;*/
     /*}*/
-
     .breadcrumb {
         visibility: hidden;
     }
@@ -20828,7 +20827,6 @@ li:nth-of-type(6) > .group-service__frame {
     /*    height: 3em;*/
     /*    overflow: hidden;*/
     /*}*/
-
     .section-top-right {
         line-height: 1.5em;
         right: 0;
@@ -20867,7 +20865,6 @@ li:nth-of-type(6) > .group-service__frame {
     /*.section-top-middle {*/
     /*    top: 60px*/
     /*}*/
-
     .section-body .col-md-7,
     .section-body .col-md-10,
     .section-body .col-md-3.col-md-push-7,
@@ -22387,7 +22384,7 @@ li:nth-of-type(6) > .group-service__frame {
     .swiper-slide img {
         max-height: 250px
     }
-    
+
     .modal {
         padding: 0 10px !important;
     }

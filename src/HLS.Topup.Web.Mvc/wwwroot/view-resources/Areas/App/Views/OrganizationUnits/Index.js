@@ -115,8 +115,8 @@
                             var instance = $.jstree.reference(data.reference);
 
                             _editModal.open({
-                                id: node.id
-                            },
+                                    id: node.id
+                                },
                                 function (updatedOu) {
                                     node.original.displayName = updatedOu.displayName;
                                     instance.rename_node(node, organizationTree.generateTextOnTree(updatedOu));
@@ -170,7 +170,9 @@
                                             instance.delete_node(node);
                                             organizationTree.refreshUnitCount();
                                         }).fail(function (err) {
-                                            setTimeout(function () { abp.message.error(err.message); }, 500);
+                                            setTimeout(function () {
+                                                abp.message.error(err.message);
+                                            }, 500);
                                         });
                                     }
                                 }
@@ -299,7 +301,9 @@
                                             organizationTree.reload();
                                         }).fail(function (err) {
                                             organizationTree.$tree.jstree('refresh'); //rollback
-                                            setTimeout(function () { abp.message.error(err.message); }, 500);
+                                            setTimeout(function () {
+                                                abp.message.error(err.message);
+                                            }, 500);
                                         });
                                     } else {
                                         organizationTree.$tree.jstree('refresh'); //rollback
@@ -448,9 +452,9 @@
                 }
 
                 _addUserModal.open({
-                    title: app.localize('SelectAUser'),
-                    organizationUnitId: ouId
-                },
+                        title: app.localize('SelectAUser'),
+                        organizationUnitId: ouId
+                    },
                     function (selectedItems) {
                         members.add(selectedItems);
                     });
@@ -466,7 +470,7 @@
                     listAction: {
                         ajaxFunction: _organizationUnitService.getOrganizationUnitUsers,
                         inputFilter: function () {
-                            return { id: organizationTree.selectedOu.id }
+                            return {id: organizationTree.selectedOu.id}
                         }
                     },
                     columnDefs: [
@@ -598,9 +602,9 @@
                 }
 
                 _addRoleModal.open({
-                    title: app.localize('SelectARole'),
-                    organizationUnitId: ouId
-                },
+                        title: app.localize('SelectARole'),
+                        organizationUnitId: ouId
+                    },
                     function (selectedItems) {
                         roles.add(selectedItems);
                     });
@@ -616,7 +620,7 @@
                     listAction: {
                         ajaxFunction: _organizationUnitService.getOrganizationUnitRoles,
                         inputFilter: function () {
-                            return { id: organizationTree.selectedOu.id };
+                            return {id: organizationTree.selectedOu.id};
                         }
                     },
                     columnDefs: [
@@ -671,7 +675,7 @@
         roles.init();
         organizationTree.init();
 
-        KTUtil.ready(function() {
+        KTUtil.ready(function () {
             KTLayoutStretchedCard.init('ouCard');
             KTLayoutStretchedCard.init('ouMembersCard');
         });

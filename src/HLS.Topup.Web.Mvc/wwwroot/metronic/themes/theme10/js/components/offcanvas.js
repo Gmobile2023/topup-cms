@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 // Component Definition
-var KTOffcanvas = function(elementId, options) {
+var KTOffcanvas = function (elementId, options) {
     // Main object
     var the = this;
     var init = false;
@@ -24,7 +24,7 @@ var KTOffcanvas = function(elementId, options) {
     ////////////////////////////
 
     var Plugin = {
-        construct: function(options) {
+        construct: function (options) {
             if (KTUtil.data(element).has('offcanvas')) {
                 the = KTUtil.data(element).get('offcanvas');
             } else {
@@ -40,7 +40,7 @@ var KTOffcanvas = function(elementId, options) {
             return the;
         },
 
-        init: function(options) {
+        init: function (options) {
             the.events = [];
 
             // merge default and user defined options
@@ -55,11 +55,11 @@ var KTOffcanvas = function(elementId, options) {
             the.state = KTUtil.hasClass(element, the.classShown) ? 'shown' : 'hidden';
         },
 
-        build: function() {
+        build: function () {
             // offcanvas toggle
             if (the.options.toggleBy) {
                 if (typeof the.options.toggleBy === 'string') {
-                    KTUtil.addEvent(KTUtil.getById(the.options.toggleBy), 'click', function(e) {
+                    KTUtil.addEvent(KTUtil.getById(the.options.toggleBy), 'click', function (e) {
                         e.preventDefault();
                         the.target = this;
                         Plugin.toggle();
@@ -67,7 +67,7 @@ var KTOffcanvas = function(elementId, options) {
                 } else if (the.options.toggleBy && the.options.toggleBy[0]) {
                     if (the.options.toggleBy[0].target) {
                         for (var i in the.options.toggleBy) {
-                            KTUtil.addEvent(KTUtil.getById(the.options.toggleBy[i].target), 'click', function(e) {
+                            KTUtil.addEvent(KTUtil.getById(the.options.toggleBy[i].target), 'click', function (e) {
                                 e.preventDefault();
                                 the.target = this;
                                 Plugin.toggle();
@@ -75,7 +75,7 @@ var KTOffcanvas = function(elementId, options) {
                         }
                     } else {
                         for (var i in the.options.toggleBy) {
-                            KTUtil.addEvent(KTUtil.getById(the.options.toggleBy[i]), 'click', function(e) {
+                            KTUtil.addEvent(KTUtil.getById(the.options.toggleBy[i]), 'click', function (e) {
                                 e.preventDefault();
                                 the.target = this;
                                 Plugin.toggle();
@@ -84,7 +84,7 @@ var KTOffcanvas = function(elementId, options) {
                     }
 
                 } else if (the.options.toggleBy && the.options.toggleBy.target) {
-                    KTUtil.addEvent( KTUtil.getById(the.options.toggleBy.target), 'click', function(e) {
+                    KTUtil.addEvent(KTUtil.getById(the.options.toggleBy.target), 'click', function (e) {
                         e.preventDefault();
                         the.target = this;
                         Plugin.toggle();
@@ -95,7 +95,7 @@ var KTOffcanvas = function(elementId, options) {
             // offcanvas close
             var closeBy = KTUtil.getById(the.options.closeBy);
             if (closeBy) {
-                KTUtil.addEvent(closeBy, 'click', function(e) {
+                KTUtil.addEvent(closeBy, 'click', function (e) {
                     e.preventDefault();
                     the.target = this;
                     Plugin.hide();
@@ -103,11 +103,11 @@ var KTOffcanvas = function(elementId, options) {
             }
         },
 
-        isShown: function() {
+        isShown: function () {
             return (the.state == 'shown' ? true : false);
         },
 
-        toggle: function() {;
+        toggle: function () {
             Plugin.eventTrigger('toggle');
 
             if (the.state == 'shown') {
@@ -117,7 +117,7 @@ var KTOffcanvas = function(elementId, options) {
             }
         },
 
-        show: function() {
+        show: function () {
             if (the.state == 'shown') {
                 return;
             }
@@ -138,10 +138,10 @@ var KTOffcanvas = function(elementId, options) {
             the.state = 'shown';
 
             if (the.options.overlay) {
-                the.overlay = KTUtil.insertAfter(document.createElement('DIV') , element );
+                the.overlay = KTUtil.insertAfter(document.createElement('DIV'), element);
                 KTUtil.addClass(the.overlay, the.classOverlay);
 
-                KTUtil.addEvent(the.overlay, 'click', function(e) {
+                KTUtil.addEvent(the.overlay, 'click', function (e) {
                     //e.stopPropagation();
                     e.preventDefault();
                     Plugin.hide(the.target);
@@ -151,7 +151,7 @@ var KTOffcanvas = function(elementId, options) {
             Plugin.eventTrigger('afterShow');
         },
 
-        hide: function() {
+        hide: function () {
             if (the.state == 'hidden') {
                 return;
             }
@@ -176,7 +176,7 @@ var KTOffcanvas = function(elementId, options) {
             Plugin.eventTrigger('afterHide');
         },
 
-        toggleClass: function(mode) {
+        toggleClass: function (mode) {
             var id = KTUtil.attr(the.target, 'id');
             var toggleBy;
 
@@ -203,7 +203,7 @@ var KTOffcanvas = function(elementId, options) {
             }
         },
 
-        eventTrigger: function(name, args) {
+        eventTrigger: function (name, args) {
             for (var i = 0; i < the.events.length; i++) {
                 var event = the.events[i];
                 if (event.name == name) {
@@ -219,7 +219,7 @@ var KTOffcanvas = function(elementId, options) {
             }
         },
 
-        addEvent: function(name, handler, one) {
+        addEvent: function (name, handler, one) {
             the.events.push({
                 name: name,
                 handler: handler,
@@ -237,7 +237,7 @@ var KTOffcanvas = function(elementId, options) {
      * Set default options
      * @param options
      */
-    the.setDefaults = function(options) {
+    the.setDefaults = function (options) {
         defaultOptions = options;
     };
 
@@ -245,21 +245,21 @@ var KTOffcanvas = function(elementId, options) {
      * Check if canvas is shown
      * @returns {boolean}
      */
-    the.isShown = function() {
+    the.isShown = function () {
         return Plugin.isShown();
     };
 
     /**
      * Set to hide the canvas
      */
-    the.hide = function() {
+    the.hide = function () {
         return Plugin.hide();
     };
 
     /**
      * Set to show the canvas
      */
-    the.show = function() {
+    the.show = function () {
         return Plugin.show();
     };
 
@@ -268,7 +268,7 @@ var KTOffcanvas = function(elementId, options) {
      * @param name
      * @param handler
      */
-    the.on = function(name, handler) {
+    the.on = function (name, handler) {
         return Plugin.addEvent(name, handler);
     };
 
@@ -277,7 +277,7 @@ var KTOffcanvas = function(elementId, options) {
      * @param name
      * @param handler
      */
-    the.one = function(name, handler) {
+    the.one = function (name, handler) {
         return Plugin.addEvent(name, handler, true);
     };
 

@@ -107,7 +107,7 @@
         function entityHistoryIsEnabled() {
             return abp.custom.EntityHistory &&
                 abp.custom.EntityHistory.IsEnabled &&
-                _.filter(abp.custom.EntityHistory.EnabledEntities, function(entityType) {
+                _.filter(abp.custom.EntityHistory.EnabledEntities, function (entityType) {
                     return entityType === _entityTypeFullName;
                 }).length === 1;
         }
@@ -147,11 +147,11 @@
                                 },
                                 action: function (data) {
                                     _userLookupModal.open({
-                                        extraFilters: {
-                                            tenantId: data.record.id
+                                            extraFilters: {
+                                                tenantId: data.record.id
+                                            },
+                                            title: app.localize('SelectAUser')
                                         },
-                                        title: app.localize('SelectAUser')
-                                    },
                                         function (selectedItem) {
                                             abp.ajax({
                                                 url: abp.appPath + 'Account/Impersonate',
@@ -174,7 +174,7 @@
                                     return _permissions.edit;
                                 },
                                 action: function (data) {
-                                    _editModal.open({ id: data.record.id });
+                                    _editModal.open({id: data.record.id});
                                 }
                             },
                             {
@@ -183,7 +183,7 @@
                                     return _permissions.changeFeatures;
                                 },
                                 action: function (data) {
-                                    _featuresModal.open({ id: data.record.id });
+                                    _featuresModal.open({id: data.record.id});
                                 }
                             },
                             {

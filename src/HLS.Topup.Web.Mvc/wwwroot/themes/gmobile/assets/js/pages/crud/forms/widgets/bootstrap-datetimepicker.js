@@ -78,7 +78,7 @@ var KTBootstrapDatetimepicker = function () {
 
     return {
         // Public functions
-        init: function() {
+        init: function () {
             baseDemos();
             modalDemos();
             validationDemos();
@@ -86,6 +86,6 @@ var KTBootstrapDatetimepicker = function () {
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTBootstrapDatetimepicker.init();
 });

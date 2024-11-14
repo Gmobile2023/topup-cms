@@ -1,11 +1,11 @@
 "use strict";
 // Class definition
 
-var KTDatatableRemoteAjaxDemo = function() {
+var KTDatatableRemoteAjaxDemo = function () {
     // Private functions
 
     // basic demo
-    var demo = function() {
+    var demo = function () {
 
         var datatable = $('#kt_datatable').KTDatatable({
             // datasource definition
@@ -16,7 +16,7 @@ var KTDatatableRemoteAjaxDemo = function() {
                         url: HOST_URL + '/api/datatables/demos/default.php',
                         // sample custom headers
                         // headers: {'x-my-custom-header': 'some value', 'x-test-header': 'the value'},
-                        map: function(raw) {
+                        map: function (raw) {
                             // sample data mapping
                             var dataSet = raw;
                             if (typeof raw.data !== 'undefined') {
@@ -63,7 +63,7 @@ var KTDatatableRemoteAjaxDemo = function() {
             }, {
                 field: 'Country',
                 title: 'Country',
-                template: function(row) {
+                template: function (row) {
                     return row.Country + ' ' + row.ShipCountry;
                 },
             }, {
@@ -77,9 +77,9 @@ var KTDatatableRemoteAjaxDemo = function() {
             }, {
                 field: 'Status',
                 title: 'Status',
-	              autoHide: false,
+                autoHide: false,
                 // callback function support for column rendering
-                template: function(row) {
+                template: function (row) {
                     var status = {
                         1: {
                             'title': 'Pending',
@@ -117,7 +117,7 @@ var KTDatatableRemoteAjaxDemo = function() {
                 title: 'Type',
                 autoHide: false,
                 // callback function support for column rendering
-                template: function(row) {
+                template: function (row) {
                     var status = {
                         1: {
                             'title': 'Online',
@@ -142,7 +142,7 @@ var KTDatatableRemoteAjaxDemo = function() {
                 width: 125,
                 overflow: 'visible',
                 autoHide: false,
-                template: function() {
+                template: function () {
                     return '\
                         <div class="dropdown dropdown-inline">\
                             <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">\
@@ -221,11 +221,11 @@ var KTDatatableRemoteAjaxDemo = function() {
 
         });
 
-		$('#kt_datatable_search_status').on('change', function() {
+        $('#kt_datatable_search_status').on('change', function () {
             datatable.search($(this).val().toLowerCase(), 'Status');
         });
 
-        $('#kt_datatable_search_type').on('change', function() {
+        $('#kt_datatable_search_type').on('change', function () {
             datatable.search($(this).val().toLowerCase(), 'Type');
         });
 
@@ -234,12 +234,12 @@ var KTDatatableRemoteAjaxDemo = function() {
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             demo();
         },
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTDatatableRemoteAjaxDemo.init();
 });

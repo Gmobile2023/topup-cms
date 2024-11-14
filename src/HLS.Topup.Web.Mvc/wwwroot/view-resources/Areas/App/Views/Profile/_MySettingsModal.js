@@ -25,8 +25,8 @@
                         $modal.find('.google-authenticator-disable').hide();
                         $modal.find('img').attr('src', result.qrCodeSetupImageUrl);
                     }).always(function () {
-                        _modalManager.setBusy(false);
-                    });
+                    _modalManager.setBusy(false);
+                });
             });
 
             var $btnDisableGoogleAuthenticator = $modal.find('#btnDisableGoogleAuthenticator');
@@ -36,10 +36,10 @@
                     .done(function (result) {
                         $modal.find('.google-authenticator-enable').hide();
                         $modal.find('.google-authenticator-disable').show();
-                        $modal.find('img').attr('src',"");
+                        $modal.find('img').attr('src', "");
                     }).always(function () {
-                        _modalManager.setBusy(false);
-                    });
+                    _modalManager.setBusy(false);
+                });
             });
 
             var $SmsVerification = $modal.find('#btnSmsVerification');
@@ -50,7 +50,7 @@
             });
 
             $SmsVerification.click(function () {
-                _profileService.sendVerificationSms({ phoneNumber: $('#PhoneNumber').val() })
+                _profileService.sendVerificationSms({phoneNumber: $('#PhoneNumber').val()})
                     .done(function () {
                         smsVerificationModal.open({}, function () {
                             $('#SpanSmsVerificationVerified').show();
@@ -95,8 +95,8 @@
                     }
 
                 }).always(function () {
-                    _modalManager.setBusy(false);
-                });
+                _modalManager.setBusy(false);
+            });
         };
     };
 })();

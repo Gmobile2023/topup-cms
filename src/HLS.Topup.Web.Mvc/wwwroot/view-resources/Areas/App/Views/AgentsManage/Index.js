@@ -16,11 +16,11 @@
         });
 
         var _permissions = {
-              edit: abp.auth.hasPermission('Pages.AgentsManage.Edit'),
-              lock: abp.auth.hasPermission('Pages.AgentsManage.Lock'),
+            edit: abp.auth.hasPermission('Pages.AgentsManage.Edit'),
+            lock: abp.auth.hasPermission('Pages.AgentsManage.Lock'),
             unlock: abp.auth.hasPermission('Pages.AgentsManage.Unlock'),
             assign: abp.auth.hasPermission('Pages.AgentsManage.Assign'),
-           convert: abp.auth.hasPermission('Pages.AgentsManage.ConvertPhone')
+            convert: abp.auth.hasPermission('Pages.AgentsManage.ConvertPhone')
         };
 
         var getDateFilter = function (element) {
@@ -71,7 +71,7 @@
             modalClass: 'ConvertPhoneModal',
             modalSize: 'modal-xl'
         });
-        
+
         /* Create or Edit Agent */
         var _createOrEditAgentGeneralModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/AgentsManage/CreateOrEditAgentModal',
@@ -142,7 +142,10 @@
                                     };
                                     console.log(data.record.agentType);
                                     if (data.record.agentType === 4 || data.record.agentType === 5 || data.record.agentType === 6)
-                                        _createOrEditAgentGeneralModal.open({id: data.record.id, type: agentTypeTemplate[data.record.agentType]});
+                                        _createOrEditAgentGeneralModal.open({
+                                            id: data.record.id,
+                                            type: agentTypeTemplate[data.record.agentType]
+                                        });
                                     else
                                         _editModal.open({id: data.record.id});
                                 }
@@ -186,7 +189,7 @@
                                     return _permissions.convert;
                                 },
                                 action: function (data) {
-                                    _convertPhoneModal.open({ id: data.record.id });
+                                    _convertPhoneModal.open({id: data.record.id});
                                 }
                             },
                             {
@@ -221,7 +224,7 @@
                     data: "agentType",
                     name: "agentType",
                     render: function (type) {
-                        
+
                         return app.localize('Enum_AgentType_' + type);
                     }
                 },
@@ -233,7 +236,7 @@
                         if (row.agentType == 5) {
                             return data;
                         }
-                        
+
                         return '';
                     }
                 },

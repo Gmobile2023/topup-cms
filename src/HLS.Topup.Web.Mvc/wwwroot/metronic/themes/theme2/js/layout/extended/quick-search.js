@@ -1,12 +1,12 @@
 ﻿"use strict";
 
-var KTLayoutQuickSearch = function() {
+var KTLayoutQuickSearch = function () {
     // Private properties
     var _element;
     var _offcanvasObject;
 
     // Private functions
-    var _init = function() {
+    var _init = function () {
         var header = KTUtil.find(_element, '.offcanvas-header');
         var content = KTUtil.find(_element, '.offcanvas-content');
         var form = KTUtil.find(_element, '.quick-search-form');
@@ -24,7 +24,7 @@ var KTLayoutQuickSearch = function() {
             disableForMobile: true,
             resetHeightOnDestroy: true,
             handleWindowResize: true,
-            height: function() {
+            height: function () {
                 var height = parseInt(KTUtil.getViewPort().height);
 
                 if (header) {
@@ -59,7 +59,7 @@ var KTLayoutQuickSearch = function() {
 
     // Public methods
     return {
-        init: function(id) {
+        init: function (id) {
             _element = KTUtil.getById(id);
 
             if (!_element) {
@@ -70,7 +70,7 @@ var KTLayoutQuickSearch = function() {
             _init();
         },
 
-        getElement: function() {
+        getElement: function () {
             return _element;
         }
     };
@@ -78,5 +78,5 @@ var KTLayoutQuickSearch = function() {
 
 // Webpack support
 if (typeof module !== 'undefined') {
-	module.exports = KTLayoutQuickSearch;
+    module.exports = KTLayoutQuickSearch;
 }

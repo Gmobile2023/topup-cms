@@ -192,20 +192,20 @@
                 content += "$small$" + print.r("Print_Provider", obj.transactionInfo.productName) + "$intro$";
                 content += "$small$" + print.r("PrintCard_TransCode", obj.transcode) + "$intro$";
                 content += "$small$" + print.r("PrintCard_CreatedDate", obj.transactionInfo.createdTime, "date") + "$intro$";
-                content += "$small$" + print.r("Print_Customer_Code", extraInfo!=null && extraInfo.customerReference != null? extraInfo.customerReference : "") + "$intro$";
-                content += "$small$" + print.r("Print_Customer_Name", extraInfo!=null && extraInfo.fullName != null? extraInfo.fullName:"") + "$intro$";
-                content += "$small$" + print.r("Print_Customer_Address", extraInfo!=null && extraInfo.address != null? extraInfo.address:"") + "$intro$";
-                content += "$small$" + print.r("Print_Customer_Period", extraInfo!=null && extraInfo.period != null ? extraInfo.period:"") + "$intro$";
+                content += "$small$" + print.r("Print_Customer_Code", extraInfo != null && extraInfo.customerReference != null ? extraInfo.customerReference : "") + "$intro$";
+                content += "$small$" + print.r("Print_Customer_Name", extraInfo != null && extraInfo.fullName != null ? extraInfo.fullName : "") + "$intro$";
+                content += "$small$" + print.r("Print_Customer_Address", extraInfo != null && extraInfo.address != null ? extraInfo.address : "") + "$intro$";
+                content += "$small$" + print.r("Print_Customer_Period", extraInfo != null && extraInfo.period != null ? extraInfo.period : "") + "$intro$";
                 //content += "$small$" + print.r("Print_Amount", obj.transactionInfo.amount , "amount") + "$intro$";
                 //content += "$small$" + print.r("Print_Collection_Fee", obj.transactionInfo.fee , "amount") + "$intro$";
                 let total_payment = parseInt(obj.transactionInfo.amount);// + parseInt(obj.transactionInfo.fee);
                 //content += "$small$" + print.r("Print_Total_Payment", total_payment , "amount") + "$intro$";
-                content += "$small$" + print.r("Print_Amount", total_payment , "amount") + "$intro$";
+                content += "$small$" + print.r("Print_Amount", total_payment, "amount") + "$intro$";
 
                 if (!isEmptyValue(obj.transactionInfo.customerSupportNote)) {
                     content += "$small$" + print.r("PrintCard_Customer_Help_Title", obj.transactionInfo.customerSupportNote) + "$intro$";
                 }
-                
+
                 content += "$small$" + print.r("Agent_Label", obj.network.agentName) + "$intro$";
                 content += "$small$" + print.r("Address", obj.address) + "$intro$";
                 content += "$intro$";
@@ -227,7 +227,7 @@
                     content += "$small$" + print.r("PrintCard_Serial", splitCode(item.serial)) + "$intro$";
                     content += "$bigh$" + "  " + print.r("", splitCode(item.cardCode)) + "$intro$";
                     content += "$small$" + print.r("PrintCard_HSD", moment(item.expiredDate).format("DD/MM/YYYY")) + "$intro$";
-                    
+
                     if (!isEmptyValue(obj.transactionInfo.userManualNote)) {
                         content += "$small$" + print.r("PrintCard_Help_Title", obj.transactionInfo.userManualNote) + "$intro$";
                     }
@@ -235,7 +235,7 @@
                     if (!isEmptyValue(obj.transactionInfo.customerSupportNote)) {
                         content += "$small$" + print.r("PrintCard_Customer_Help_Title", obj.transactionInfo.customerSupportNote) + "$intro$";
                     }
-                    
+
                     content += "$small$" + print.r("Agent_Label", obj.network.agentName) + "$intro$";
                     content += "$small$" + print.r("Address", obj.address) + "$intro$";
                     content += "$intro$";

@@ -148,7 +148,7 @@
 
         function getProviders() {
             dataTable.ajax.reload();
-        }        
+        }
 
         $('#ExportToExcelButton').click(function () {
             _rptService.getReportCardStockImExProviderToExcel({
@@ -163,8 +163,8 @@
                 .done(function (result) {
                     if (result.fileName === "Warning")
                         abp.message.info(result.filePath);
-                    else 
-                    app.downloadTempFile(result);
+                    else
+                        app.downloadTempFile(result);
                 });
         });
 
@@ -178,7 +178,7 @@
 
         $("#selectService").change(function (e) {
             const serviceCode = $(e.target).val();
-            Sv.GetCateByService(serviceCode,$("#selectCategory"),false);
+            Sv.GetCateByService(serviceCode, $("#selectCategory"), false);
         });
 
         $("#selectCategory").change(function (e) {
@@ -188,7 +188,7 @@
                 .done(function (result) {
                     let html = "<option value=\"\">Chọn sản phẩm</option>";
                     let _s = $("#AdvacedAuditFiltersArea");
-                    if (result != null &&  result.length > 0) {
+                    if (result != null && result.length > 0) {
                         for (let i = 0; i < result.length; i++) {
                             let item = result[i];
                             html += ("<option value=\"" + item.productCode + "\">" + item.productName + "</option>");

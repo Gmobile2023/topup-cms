@@ -9,7 +9,7 @@
             var path = location.pathname;
             var menuItem = $("a[href='" + path + "']");
             if (menuItem && menuItem.length) {
-                menuItem[0].scrollIntoView({ block: "center" });
+                menuItem[0].scrollIntoView({block: "center"});
             }
         }
 

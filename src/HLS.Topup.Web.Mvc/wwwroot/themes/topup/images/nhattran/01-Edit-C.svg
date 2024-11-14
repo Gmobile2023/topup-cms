@@ -1,8 +1,14 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M26.6316 6.1897L12.1979 20.6557L11 22.9994L13.3432 21.8015L27.8097 7.36781L26.6316 6.1897Z" fill="#363636" stroke="#363636" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M29.5785 3.24388L28.4004 4.422L29.5785 5.60063L30.7566 4.422C30.9128 4.26573 31.0005 4.05386 31.0005 3.83294C31.0005 3.61202 30.9128 3.40015 30.7566 3.24388C30.6004 3.08772 30.3885 3 30.1676 3C29.9466 3 29.7348 3.08772 29.5785 3.24388Z" fill="#363636" stroke="#363636" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="5.75" y1="14.25" x2="12.25" y2="14.25" stroke="#363636" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="5.75" y1="19.25" x2="9.25" y2="19.25" stroke="#363636" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="5.75" y1="24.25" x2="7.25" y2="24.25" stroke="#363636" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17 23V27C17 28.1046 16.1046 29 15 29H3C1.89543 29 1 28.1046 1 27V11C1 9.89543 1.89543 9 3 9H15C16.1046 9 17 9.89543 17 11V11.5" stroke="#363636" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M26.6316 6.1897L12.1979 20.6557L11 22.9994L13.3432 21.8015L27.8097 7.36781L26.6316 6.1897Z" fill="#363636"
+          stroke="#363636" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M29.5785 3.24388L28.4004 4.422L29.5785 5.60063L30.7566 4.422C30.9128 4.26573 31.0005 4.05386 31.0005 3.83294C31.0005 3.61202 30.9128 3.40015 30.7566 3.24388C30.6004 3.08772 30.3885 3 30.1676 3C29.9466 3 29.7348 3.08772 29.5785 3.24388Z"
+          fill="#363636" stroke="#363636" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="5.75" y1="14.25" x2="12.25" y2="14.25" stroke="#363636" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <line x1="5.75" y1="19.25" x2="9.25" y2="19.25" stroke="#363636" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <line x1="5.75" y1="24.25" x2="7.25" y2="24.25" stroke="#363636" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <path d="M17 23V27C17 28.1046 16.1046 29 15 29H3C1.89543 29 1 28.1046 1 27V11C1 9.89543 1.89543 9 3 9H15C16.1046 9 17 9.89543 17 11V11.5"
+          stroke="#363636" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

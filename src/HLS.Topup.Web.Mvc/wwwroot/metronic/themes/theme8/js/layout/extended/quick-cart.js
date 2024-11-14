@@ -1,12 +1,12 @@
 ﻿"use strict";
 
-var KTLayoutQuickCartPanel = function() {
+var KTLayoutQuickCartPanel = function () {
     // Private properties
     var _element;
     var _offcanvasObject;
 
     // Private functions
-    var _init = function() {
+    var _init = function () {
         _offcanvasObject = new KTOffcanvas(_element, {
             overlay: true,
             baseClass: 'offcanvas',
@@ -24,7 +24,7 @@ var KTLayoutQuickCartPanel = function() {
             disableForMobile: true,
             resetHeightOnDestroy: true,
             handleWindowResize: true,
-            height: function() {
+            height: function () {
                 var height = parseInt(KTUtil.getViewPort().height);
 
                 if (header) {
@@ -61,7 +61,7 @@ var KTLayoutQuickCartPanel = function() {
 
     // Public methods
     return {
-        init: function(id) {
+        init: function (id) {
             _element = KTUtil.getById(id);
 
             if (!_element) {
@@ -76,5 +76,5 @@ var KTLayoutQuickCartPanel = function() {
 
 // Webpack support
 if (typeof module !== 'undefined') {
-	module.exports = KTLayoutQuickCartPanel;
+    module.exports = KTLayoutQuickCartPanel;
 }

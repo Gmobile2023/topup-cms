@@ -1,60 +1,60 @@
 "use strict";
 // Class definition
 
-var KTAppsEducationSchoolTeacher = function() {
-	// Private functions
+var KTAppsEducationSchoolTeacher = function () {
+    // Private functions
 
-	// basic demo
-	var _demo = function() {
-		var datatable = $('#kt_datatable').KTDatatable({
-			// datasource definition
-			data: {
-				type: 'remote',
-				source: {
-					read: {
-						url: HOST_URL + '/api/datatables/demos/default.php',
-					},
-				},
-				pageSize: 10, // display 20 records per page
-				serverPaging: true,
-				serverFiltering: true,
-				serverSorting: true,
-			},
+    // basic demo
+    var _demo = function () {
+        var datatable = $('#kt_datatable').KTDatatable({
+            // datasource definition
+            data: {
+                type: 'remote',
+                source: {
+                    read: {
+                        url: HOST_URL + '/api/datatables/demos/default.php',
+                    },
+                },
+                pageSize: 10, // display 20 records per page
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+            },
 
-			// layout definition
-			layout: {
-				scroll: false, // enable/disable datatable scroll both horizontal and vertical when needed.
-				footer: false, // display/hide footer
-			},
+            // layout definition
+            layout: {
+                scroll: false, // enable/disable datatable scroll both horizontal and vertical when needed.
+                footer: false, // display/hide footer
+            },
 
-			// column sorting
-			sortable: true,
+            // column sorting
+            sortable: true,
 
-			// enable pagination
-			pagination: true,
+            // enable pagination
+            pagination: true,
 
-			// columns definition
-			columns: [
-				 {
-					field: 'CompanyName',
-					title: 'Teacher',
-					width: 250,
-					template: function(data) {
-						var number = KTUtil.getRandomInt(1, 20);
-						var img = '300_' + number + '.jpg';
-						var output = '';
+            // columns definition
+            columns: [
+                {
+                    field: 'CompanyName',
+                    title: 'Teacher',
+                    width: 250,
+                    template: function (data) {
+                        var number = KTUtil.getRandomInt(1, 20);
+                        var img = '300_' + number + '.jpg';
+                        var output = '';
 
-						var genreIndex = KTUtil.getRandomInt(1, 5);
+                        var genreIndex = KTUtil.getRandomInt(1, 5);
 
-						var genre = {
-							1: {'title': 'Mathematics, BA'},
-							2: {'title': 'Geography, BSc'},
-							3: {'title': 'History, PhD'},
-							4: {'title': 'Physics, MS'},
+                        var genre = {
+                            1: {'title': 'Mathematics, BA'},
+                            2: {'title': 'Geography, BSc'},
+                            3: {'title': 'History, PhD'},
+                            4: {'title': 'Physics, MS'},
                             5: {'title': 'astronomy, MA'},
-						};
+                        };
 
-						output = '<div class="d-flex align-items-center">\
+                        output = '<div class="d-flex align-items-center">\
 							<div class="symbol symbol-40 symbol-sm flex-shrink-0">\
 								<img class="" src="assets/media/users/' + img + '" alt="photo">\
 							</div>\
@@ -64,57 +64,57 @@ var KTAppsEducationSchoolTeacher = function() {
 							</div>\
 						</div>';
 
-						return output;
-					}
-				}, {
-					field: 'CompanyAgent',
-					title: 'Department',
-					template: function(row) {
-						var output = '';
+                        return output;
+                    }
+                }, {
+                    field: 'CompanyAgent',
+                    title: 'Department',
+                    template: function (row) {
+                        var output = '';
 
-						output += '<a href="#" class="text-dark-50 text-hover-primary font-weight-bold">' + row.CompanyName + '</a>';
+                        output += '<a href="#" class="text-dark-50 text-hover-primary font-weight-bold">' + row.CompanyName + '</a>';
 
-						return output;
-					}
-				}, {
-					field: 'JoinedDate',
-					title: 'Joined',
-					type: 'date',
-					width: 100,
-					format: 'MM/DD/YYYY',
-					template: function(row) {
-						var output = '';
+                        return output;
+                    }
+                }, {
+                    field: 'JoinedDate',
+                    title: 'Joined',
+                    type: 'date',
+                    width: 100,
+                    format: 'MM/DD/YYYY',
+                    template: function (row) {
+                        var output = '';
 
-						output += '<div class="font-weight-bolder text-primary mb-0">' + row.ShipDate + '</div>';
+                        output += '<div class="font-weight-bolder text-primary mb-0">' + row.ShipDate + '</div>';
 
-						return output;
-					},
-				}, {
-					field: 'Status',
-					title: 'Status',
-					autoHide: false,
-					width: 100,
-					// callback function support for column rendering
-					template: function(row) {
-						var index = KTUtil.getRandomInt(1, 3);
+                        return output;
+                    },
+                }, {
+                    field: 'Status',
+                    title: 'Status',
+                    autoHide: false,
+                    width: 100,
+                    // callback function support for column rendering
+                    template: function (row) {
+                        var index = KTUtil.getRandomInt(1, 3);
 
-						var status = {
-							1: {'title': 'New', 'class': ' label-light-primary'},
-							2: {'title': 'Active', 'class': ' label-light-danger'},
-							3: {'title': 'In-active', 'class': ' label-light-info'},
-						};
+                        var status = {
+                            1: {'title': 'New', 'class': ' label-light-primary'},
+                            2: {'title': 'Active', 'class': ' label-light-danger'},
+                            3: {'title': 'In-active', 'class': ' label-light-info'},
+                        };
 
-						return '<span class="label label-lg font-weight-bold ' + status[index].class + ' label-inline">' + status[index].title + '</span>';
-					},
-				}, {
-					field: 'Actions',
-					title: 'Actions',
-					sortable: false,
-					width: 130,
-					overflow: 'visible',
-					autoHide: false,
-					template: function() {
-						return '\
+                        return '<span class="label label-lg font-weight-bold ' + status[index].class + ' label-inline">' + status[index].title + '</span>';
+                    },
+                }, {
+                    field: 'Actions',
+                    title: 'Actions',
+                    sortable: false,
+                    width: 130,
+                    overflow: 'visible',
+                    autoHide: false,
+                    template: function () {
+                        return '\
 	                        <div class="dropdown dropdown-inline">\
 	                            <a href="javascript:;" class="btn btn-sm btn-default btn-text-primary btn-hover-primary btn-icon mr-2" data-toggle="dropdown">\
 									<span class="svg-icon svg-icon-md">\
@@ -188,29 +188,29 @@ var KTAppsEducationSchoolTeacher = function() {
 								</span>\
 	                        </a>\
 	                    ';
-					},
-				}],
-		});
+                    },
+                }],
+        });
 
-		$('#kt_datatable_search_status').on('change', function() {
-			datatable.search($(this).val().toLowerCase(), 'Status');
-		});
+        $('#kt_datatable_search_status').on('change', function () {
+            datatable.search($(this).val().toLowerCase(), 'Status');
+        });
 
-		$('#kt_datatable_search_type').on('change', function() {
-			datatable.search($(this).val().toLowerCase(), 'Type');
-		});
+        $('#kt_datatable_search_type').on('change', function () {
+            datatable.search($(this).val().toLowerCase(), 'Type');
+        });
 
-		//$('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
-	};
+        //$('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
+    };
 
-	return {
-		// public functions
-		init: function() {
-			_demo();
-		},
-	};
+    return {
+        // public functions
+        init: function () {
+            _demo();
+        },
+    };
 }();
 
-jQuery(document).ready(function() {
-	KTAppsEducationSchoolTeacher.init();
+jQuery(document).ready(function () {
+    KTAppsEducationSchoolTeacher.init();
 });

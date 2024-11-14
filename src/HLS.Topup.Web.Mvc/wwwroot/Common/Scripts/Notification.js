@@ -41,6 +41,7 @@
                 document.location.href = url;
             });
         }
+
         function showRingBell() {
             var el = document.querySelector('.ring-bell-notifi');
             if (el != undefined) {

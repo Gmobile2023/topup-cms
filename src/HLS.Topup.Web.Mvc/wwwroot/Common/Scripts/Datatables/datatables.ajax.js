@@ -1,6 +1,6 @@
 ﻿/************************************************************************
-* Ajax extension for datatables                                         *
-*************************************************************************/
+ * Ajax extension for datatables                                         *
+ *************************************************************************/
 (function ($) {
 
     if (!$.fn.dataTableExt) {
@@ -13,7 +13,7 @@
         //set table defined filters
         if (listAction.inputFilter) {
             inputFilter = $.extend(inputFilter, listAction.inputFilter());
-        }  
+        }
         //set paging filters
         if (settings.oInit.paging) {
             inputFilter = $.extend(inputFilter, {
@@ -27,7 +27,7 @@
             if (!inputFilter.sorting) {
                 inputFilter.sorting = '';
             }
-            
+
             for (var i = 0; i < requestData.order.length; i++) {
                 var orderingField = requestData.order[i];
                 if (i > 0) {
@@ -35,8 +35,7 @@
                 }
                 if (requestData.columns[orderingField.column].name) {
                     inputFilter.sorting += requestData.columns[orderingField.column].name + " " + orderingField.dir;
-                }
-                else if (requestData.columns[orderingField.column].data) {
+                } else if (requestData.columns[orderingField.column].data) {
                     inputFilter.sorting += requestData.columns[orderingField.column].data + " " + orderingField.dir;
                 }
             }
@@ -56,16 +55,16 @@
                     } else {
                         //HTML encodes the response items for XSS protection.
                         dataItems = app.htmlUtils.htmlEncodeJson(result.items);
-                    } 
+                    }
                     //invoke callback
                     callbackFunction({
                         recordsTotal: result.totalCount,
                         recordsFiltered: result.totalCount,
-                        data: dataItems, 
+                        data: dataItems,
                     });
-                }).always(function() {
-                    abp.ui.clearBusy(settings.nTable);
-                });
+                }).always(function () {
+                abp.ui.clearBusy(settings.nTable);
+            });
         }
     }
 

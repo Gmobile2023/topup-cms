@@ -1,7 +1,7 @@
 // Class definition
 
 var KTIONRangeSlider = function () {
-    
+
     // Private functions
     var demos = function () {
         // basic demo
@@ -72,12 +72,12 @@ var KTIONRangeSlider = function () {
 
     return {
         // public functions
-        init: function() {
-            demos(); 
+        init: function () {
+            demos();
         }
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTIONRangeSlider.init();
 });

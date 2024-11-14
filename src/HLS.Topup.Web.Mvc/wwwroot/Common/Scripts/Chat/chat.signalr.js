@@ -24,7 +24,7 @@
 
         function tryReconnect() {
             if (tries > maxTries) {
-                return;
+                
             } else {
                 connection.start()
                     .then(function () {

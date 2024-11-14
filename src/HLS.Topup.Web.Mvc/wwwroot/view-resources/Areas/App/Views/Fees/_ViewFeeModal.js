@@ -113,7 +113,7 @@
                         targets: 6,
                         data: null,
                         render: function (data, type, row) {
-                            return '<button class="btn btn-danger btn-remove" data-id="' + row.productId + '" onclick="javascript:$(\'#ProductFeesTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)" ' + disabledStatus + '> Xoá </button>';
+                            return '<button class="btn btn-danger btn-remove" data-id="' + row.productId + '" onclick="$(\'#ProductFeesTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)" ' + disabledStatus + '> Xoá </button>';
                         }
                     }
                 ],
@@ -408,7 +408,7 @@
         $(document).on('keyup', '.fees', function () {
             let reg = /^\d+$/;
 
-            if(!reg.test($(this).val())) {
+            if (!reg.test($(this).val())) {
                 return $(this).val($(this).val().slice(0, -1));
             }
         });
@@ -436,13 +436,13 @@
             });
         });
 
-        $('#productMode').click(function() {
+        $('#productMode').click(function () {
             $('#productModeBlock').css({'display': 'flex'});
             $('#importModeBlock').css({'display': 'none'});
             _$productFeesTable.DataTable().clear().draw();
         });
 
-        $('#importMode').click(function() {
+        $('#importMode').click(function () {
             $('#importModeBlock').css({'display': 'block'});
             $('#productModeBlock').css({'display': 'none'});
             _$productFeesTable.DataTable().clear().draw();
@@ -453,7 +453,7 @@
             return uniqueValues.size < arr.length;
         }
 
-        function resetValueFile(){
+        function resetValueFile() {
             document.getElementById('ImportFromExcel').value = "";
         }
 
@@ -488,7 +488,7 @@
                 Sv.AjaxPostFile2({
                     url: abp.appPath + "App/Fees/ReadFileImport",
                     data: formData
-                }).then(function(rs){
+                }).then(function (rs) {
                     let response = rs.result;
 
                     let _dataTable = _$productFeesTable.DataTable();
@@ -496,13 +496,13 @@
 
                     let data = [];
                     let path = "";
-                    if (response.responseCode == "01"){
+                    if (response.responseCode == "01") {
                         data = response.payload;
                     }
 
                     let format_error = false;
 
-                    $.each(data, function(i, e) {
+                    $.each(data, function (i, e) {
                         if (parseFloat(e.minFee) < 0) {
                             format_error = true;
                             abp.message.warn("File Import có phí tối thiểu không đúng định dạng!");
@@ -542,7 +542,7 @@
                     _dataTable.rows.add(data).draw();
                     Sv.SetupAmountMask();
 
-                    if(response.responseCode != "01"){
+                    if (response.responseCode != "01") {
                         resetValueFile();
                         abp.message.warn(response.responseMessage);
                     }

@@ -27,8 +27,8 @@
                     _modalManager.setResult(result);
                     _modalManager.close();
                 }).always(function () {
-                    _modalManager.setBusy(false);
-                });
+                _modalManager.setBusy(false);
+            });
         };
     };
 })();

@@ -10,15 +10,15 @@
 
     abp.utils = abp.utils || {};
 
-    /**	
-        * Sets a cookie value for given key.	
-        * This is a simple implementation created to be used by ABP.	
-        * Please use a complete cookie library if you need.	
-        * @param {string} key	
-        * @param {string} value	
-        * @param {Date} expireDate (optional). If not specified the cookie will expire at the end of session.	
-        * @param {string} path (optional)	
-        */
+    /**
+     * Sets a cookie value for given key.
+     * This is a simple implementation created to be used by ABP.
+     * Please use a complete cookie library if you need.
+     * @param {string} key
+     * @param {string} value
+     * @param {Date} expireDate (optional). If not specified the cookie will expire at the end of session.
+     * @param {string} path (optional)
+     */
     abp.utils.setCookieValue = function (key, value, expireDate, path) {
         var cookieValue = encodeURIComponent(key) + '=';
 
@@ -37,13 +37,13 @@
         document.cookie = cookieValue;
     };
 
-    /**	
-    * Gets a cookie with given key.	
-    * This is a simple implementation created to be used by ABP.	
-    * Please use a complete cookie library if you need.	
-    * @param {string} key	
-    * @returns {string} Cookie value or null	
-    */
+    /**
+     * Gets a cookie with given key.
+     * This is a simple implementation created to be used by ABP.
+     * Please use a complete cookie library if you need.
+     * @param {string} key
+     * @returns {string} Cookie value or null
+     */
     abp.utils.getCookieValue = function (key) {
         var equalities = document.cookie.split('; ');
         for (var i = 0; i < equalities.length; i++) {
@@ -64,13 +64,13 @@
         return null;
     };
 
-    /**	
-    * Deletes cookie for given key.	
-    * This is a simple implementation created to be used by ABP.	
-    * Please use a complete cookie library if you need.	
-    * @param {string} key	
-    * @param {string} path (optional)	
-    */
+    /**
+     * Deletes cookie for given key.
+     * This is a simple implementation created to be used by ABP.
+     * Please use a complete cookie library if you need.
+     * @param {string} key
+     * @param {string} path (optional)
+     */
     abp.utils.deleteCookie = function (key, path) {
         var cookieValue = encodeURIComponent(key) + '=';
 

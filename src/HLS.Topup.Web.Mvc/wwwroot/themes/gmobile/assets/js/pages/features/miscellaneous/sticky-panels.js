@@ -11,8 +11,8 @@ var KTStickyPanelsDemo = function () {
         if (KTLayoutAsideToggle && KTLayoutAsideToggle.onToggle) {
             var sticky = new Sticky('.sticky');
 
-            KTLayoutAsideToggle.onToggle(function() {
-                setTimeout(function() {
+            KTLayoutAsideToggle.onToggle(function () {
+                setTimeout(function () {
                     sticky.update(); // update sticky positions on aside toggle
                 }, 500);
             });
@@ -21,12 +21,12 @@ var KTStickyPanelsDemo = function () {
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             demo1();
         }
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTStickyPanelsDemo.init();
 });

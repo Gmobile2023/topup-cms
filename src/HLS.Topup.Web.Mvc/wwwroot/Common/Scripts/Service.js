@@ -18,7 +18,7 @@ $.fn.serializeFormToObject = function () {
 
     //add also disabled items
     $(':disabled[name]', this).each(function () {
-        data.push({ name: this.name, value: $(this).val() });
+        data.push({name: this.name, value: $(this).val()});
     });
 
     //map to object
@@ -221,7 +221,7 @@ var Service = function () {
     }
 
     this.convertLatinSymbols = function (s) {
-        return base.Url_slug(s, { delimiter: " ", lowercase: false });
+        return base.Url_slug(s, {delimiter: " ", lowercase: false});
     }
 
     this.isMobile = function () {
@@ -2036,7 +2036,7 @@ var Service = function () {
             $.ajax({
                 url: link,
                 type: 'Post',
-                data: { search: option.Data, page: page },
+                data: {search: option.Data, page: page},
                 beforeSend: function () {
                     base.RequestStart();
                 },
@@ -2075,7 +2075,7 @@ var Service = function () {
             $.ajax({
                 url: option.Url,
                 type: 'Post',
-                data: { search: option.Data, page: option.Page },
+                data: {search: option.Data, page: option.Page},
                 beforeSend: function () {
                     base.RequestStart();
                 },
@@ -2179,7 +2179,7 @@ var Service = function () {
             });
     }
 
-    this.GetProductByCateMuti = function (catecode, controlSelect, isActive) {       
+    this.GetProductByCateMuti = function (catecode, controlSelect, isActive) {
         abp.ui.setBusy();
         abp.services.app.commonLookup.getProductByCategoryMuti(catecode, isActive)
             .done(function (result) {
@@ -2215,7 +2215,7 @@ var Service = function () {
     }
     this.GetCateByService = function (serviceCode, controlSelect, isActive) {
         abp.ui.setBusy();
-        abp.services.app.commonLookup.getCategories({ serviceCode: serviceCode, isActive: isActive })
+        abp.services.app.commonLookup.getCategories({serviceCode: serviceCode, isActive: isActive})
             .done(function (result) {
                 let html = "<option value=\"\">Chọn loại sản phẩm</option>";
                 if (result != null && result.length > 0) {
@@ -2233,7 +2233,7 @@ var Service = function () {
 
     this.GetCateByServiceMuti = function (serviceCode, controlSelect, isActive) {
         abp.ui.setBusy();
-        abp.services.app.commonLookup.getCategoriesMuti({ serviceCodes: serviceCode, isActive: isActive })
+        abp.services.app.commonLookup.getCategoriesMuti({serviceCodes: serviceCode, isActive: isActive})
             .done(function (result) {
                 let html = "<option value=\"\">Chọn loại sản phẩm</option>";
                 if (result != null && result.length > 0) {
@@ -2251,7 +2251,7 @@ var Service = function () {
 
     this.GetCateTwoByService = function (serviceId, controlSelect, isActive) {
         abp.ui.setBusy();
-        abp.services.app.commonLookup.getCategoriesTwoBy({ serviceIds: serviceId, isActive: isActive })
+        abp.services.app.commonLookup.getCategoriesTwoBy({serviceIds: serviceId, isActive: isActive})
             .done(function (result) {
                 let html = "<option value=\"\">Chọn loại sản phẩm</option>";
                 if (result != null && result.length > 0) {
@@ -2279,7 +2279,7 @@ var Service = function () {
             url: abp.appPath + 'Account/ShowOtpModal',
             type: 'GET',
             contentType: 'application/html',
-            data: { requestType: requestType },
+            data: {requestType: requestType},
             success: function (content) {
                 $('#ConfirmOtpModal div.modal-content').html(content);
                 $("#ConfirmOtpModal").modal('show');
@@ -2300,7 +2300,7 @@ var Service = function () {
             url: abp.appPath + 'Account/ShowOtpModalNotAuthen',
             type: 'GET',
             contentType: 'application/html',
-            data: { requestType: requestType },
+            data: {requestType: requestType},
             success: function (content) {
                 $('#ConfirmOtpModal div.modal-content').html(content);
                 $("#ConfirmOtpModal").modal('show');
@@ -2418,7 +2418,7 @@ var Service = function () {
     //Lấy thông tin tài khoản
     this.GetAccountByUserName = function (username, $showFullname, $setValue) {
         abp.ui.setBusy();
-        _commonLockupServer.getUserInfoQuery({ userName: username }).done(function (rs) {
+        _commonLockupServer.getUserInfoQuery({userName: username}).done(function (rs) {
             if (rs !== null && rs !== undefined) {
                 $showFullname.html(rs.fullName);
                 $setValue.val(rs.accountCode);
@@ -2433,7 +2433,7 @@ var Service = function () {
     //Lấy thông tin tài khoản any field
     this.GetAccountAnyField = function (search, $showFullname, $setValue) {
         abp.ui.setBusy();
-        _commonLockupServer.getUserInfoQuery({ search: search }).done(function (rs) {
+        _commonLockupServer.getUserInfoQuery({search: search}).done(function (rs) {
             if (rs !== null && rs !== undefined) {
                 $showFullname.html('Họ tên: <span style="color: #2188C9; font-weight: 500">' + rs.fullName + '</span> - Số ĐT: <span style="color: #2188C9; font-weight: 500">' + rs.phoneNumber + '</span> - Mã tài khoản: <span style="color: #2188C9; font-weight: 500">' + rs.accountCode + '</span>');
                 $setValue.val(rs.accountCode);
@@ -2502,7 +2502,7 @@ var Service = function () {
         }
         Sv.Post({
             Url: abp.appPath + 'Common/GetTransInfo',
-            Data: { amount: amount }
+            Data: {amount: amount}
         }, function (rs) {
             var ckBalance = Sv.checkBalance(rs.result);
             if (ckBalance) {
@@ -2588,7 +2588,9 @@ var Service = function () {
         return abp.services.app.common.checkAccountActivities(data).always(function (e) {
             //console.log(e);
             if (e.code === 113) {
-                setTimeout(function () { window.location.href = '/Profile/SecurityMethod'; }, 3000);
+                setTimeout(function () {
+                    window.location.href = '/Profile/SecurityMethod';
+                }, 3000);
             }
             base.RequestEnd();
         });
@@ -2629,7 +2631,7 @@ $(document).ready(function () {
     SetupDatetime();
     Sv.SetupAmountMask();
 
-    $('.select2').select2({ "width": "100%" });
+    $('.select2').select2({"width": "100%"});
 
     $("#formDetail select,#formDetail input").keypress(function (e) {
         if (e.which == 13) {
@@ -2769,7 +2771,7 @@ var Dialog = {
             message: message,
             closeButton: false
         });
-        dialog.find('.modal-content').css({ 'text-align': 'center' });
+        dialog.find('.modal-content').css({'text-align': 'center'});
         setTimeout(
             function () {
                 dialog.modal('hide');
@@ -2969,7 +2971,7 @@ var Dialog = {
                     abp.message.error('Vui lòng nhập mật khẩu cấp 2');
                     reject('value null');
                 } else {
-                    abp.services.app.profile.verifyLevel2Password({ password: inputVal })
+                    abp.services.app.profile.verifyLevel2Password({password: inputVal})
                         .then(function (e) {
                             resolve('ok');
                         })
@@ -2986,7 +2988,7 @@ var Dialog = {
         console.log(type);
         if (type === Dialog.verifyTransType.None) {
             console.log("None check verify");
-            callback('done', { type: "GD", value: 0 });
+            callback('done', {type: "GD", value: 0});
         } else if (type === Dialog.verifyTransType.LelvelPass) {
             //Nếu dùng mật khẩu cấp 2
             // check
@@ -3003,7 +3005,7 @@ var Dialog = {
                         .then(function () {
                             bootbox.hideAll();
                             if (typeof callback === "function") {
-                                callback('done', { type: "GD", value: inputVal });
+                                callback('done', {type: "GD", value: inputVal});
                             }
                         })
                         .catch(function (e) {
@@ -3012,7 +3014,7 @@ var Dialog = {
                 });
             });
         } else {
-            const obj = { "authen": true, "type": t };
+            const obj = {"authen": true, "type": t};
             // open modal
             Dialog._otp.send(obj)
                 .then(function (e) {
@@ -3039,7 +3041,7 @@ var Dialog = {
                     .then(function () {
                         bootbox.hideAll();
                         if (typeof callback === "function") {
-                            callback('done', { type: "GD", value: inputVal });
+                            callback('done', {type: "GD", value: inputVal});
                         }
                     })
                     .catch(function (e) {
@@ -3153,7 +3155,7 @@ var Dialog = {
         None: 0
     },
     otpNone: function (t, phone, callback) {
-        var obj = { "authen": false, "type": t, "phoneNumber": phone };
+        var obj = {"authen": false, "type": t, "phoneNumber": phone};
         // open modal
         Dialog._otp.send(obj)
             .then(function (e) {
@@ -3164,7 +3166,7 @@ var Dialog = {
             });
     },
     otp: function (t, callback) {
-        var obj = { "authen": true, "type": t };
+        var obj = {"authen": true, "type": t};
         // open modal
         Dialog._otp.send(obj)
             .then(function (e) {
@@ -3196,9 +3198,9 @@ var Dialog = {
                         window.open('/Transactions/Deposit', '_blank');
                     }
                 }, {
-                title: "",
-                buttons: ["Đóng", "Nạp tiền"],
-            });
+                    title: "",
+                    buttons: ["Đóng", "Nạp tiền"],
+                });
         }
     },
     verify: function (msg, isBtn) {
@@ -3212,9 +3214,9 @@ var Dialog = {
                         window.open('/Profile/Edit', '_blank');
                     }
                 }, {
-                title: "",
-                buttons: ["Đóng", "Xác thực ngay"],
-            });
+                    title: "",
+                    buttons: ["Đóng", "Xác thực ngay"],
+                });
         }
     },
     sendCode: function (obj) {
@@ -3296,9 +3298,9 @@ var bindVerify = {
             $block.show();
             clearLocalStorage(['modalVerify']);
         }
-        $block.find('select[select-auto="CityId"]').select2({ width: '100%' });
-        $block.find('select[select-auto="DistrictId"]').select2({ width: '100%' });
-        $block.find('select[select-auto="WardId"]').select2({ width: '100%' });
+        $block.find('select[select-auto="CityId"]').select2({width: '100%'});
+        $block.find('select[select-auto="DistrictId"]').select2({width: '100%'});
+        $block.find('select[select-auto="WardId"]').select2({width: '100%'});
 
         bindVerify.loadProvince();
         $block.find('select[select-auto="CityId"]').on('change', bindVerify.changeProvince);
@@ -3319,7 +3321,7 @@ var bindVerify = {
                             html += ("<option value='" + (item.id) + "' " + (item.id == id ? "selected" : "") + " >" + (item.cityName) + "</option>");
                         }
                         $p.removeAttr('data-value');
-                        $p.html(html).select2({ width: '100%' }).trigger('change');
+                        $p.html(html).select2({width: '100%'}).trigger('change');
                     }
                 });
         }
@@ -3340,7 +3342,7 @@ var bindVerify = {
                             html += ("<option value='" + (item.id) + "' " + (item.id == id ? "selected" : "") + " >" + (item.districtName) + "</option>");
                         }
                         $d.removeAttr('data-value');
-                        $d.html(html).select2({ width: '100%' }).trigger('change');
+                        $d.html(html).select2({width: '100%'}).trigger('change');
                         if ($w.length > 0) {
                             $w.html("<option value=''>Chọn Phường/ Xã</option>").trigger('change');
                         }
@@ -3363,7 +3365,7 @@ var bindVerify = {
                             html += ("<option value='" + (item.id) + "' " + (item.id == id ? "selected" : "") + " >" + (item.wardName) + "</option>");
                         }
                         $w.removeAttr('data-value');
-                        $w.html(html).select2({ width: '100%' }).trigger('change');
+                        $w.html(html).select2({width: '100%'}).trigger('change');
                     }
                 });
         }
@@ -3371,7 +3373,7 @@ var bindVerify = {
     loadImageInfo: function (imgStr) {
         return Sv.Post2({
             Url: abp.appPath + 'Common/DetectImage',
-            Data: { "image": imgStr },
+            Data: {"image": imgStr},
         }).then(response => response.result)
             .catch(error => console.log('error', error));
     },
@@ -3410,7 +3412,7 @@ var bindVerify = {
         var requestOptions = {
             method: 'POST',
             headers: header,
-            body: JSON.stringify({ "image": imgStr }),
+            body: JSON.stringify({"image": imgStr}),
             redirect: 'follow'
         };
         return fetch("https://aisol.vn/ekyc/recognition", requestOptions)

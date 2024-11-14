@@ -66,7 +66,7 @@
         }).always(function () {
         });
     },
-    
+
     changeBank: function (_this) {
         ctrl.page.find('[name=bankAccountCode]').val(_this.attr('data-bankaccountcode'));
         ctrl.page.find('[name=bankAccountName]').val(_this.attr('data-bankaccountname'));
@@ -186,13 +186,13 @@
             var $p = $(e.target).parents('.form-group');
             var inputTemp = $p.find('input[type="text"]');
             if (inputTemp.val() !== undefined && inputTemp.val().length > 0) {
-                Clipboard.copy(inputTemp.val()+"");
-                abp.message.info("Đã copy " + $p.find('label.title').text().toLowerCase()); 
+                Clipboard.copy(inputTemp.val() + "");
+                abp.message.info("Đã copy " + $p.find('label.title').text().toLowerCase());
             }
         });
     },
     copy2: function (str) {
-        Clipboard.copy(str+"");
+        Clipboard.copy(str + "");
         abp.message.info("Đã copy số tài khoản");
         //ctrl.page.find(".xcopy").on('click', function () {
         //     var dummy = document.createElement("textarea");
@@ -213,7 +213,7 @@
             if ($(this).val() != '' || $(this).val() == null) {
                 $('.bank-account-info i').hide();
                 ctrl.page.find('p.bankAccountName').html('<span class="bank-info">Ngân hàng: </span> <span class="xinfo bankName">' + $this.attr('data-bankname') + '</span>');
-                ctrl.page.find('p.bankAccountCode').html('<span class="bank-info">Số tài khoản: </span> <span class="xinfo bankAccountCode">' + $this.attr('data-bankaccountcode') + '</span><i class="far fa-copy icon-copy xcopy" onclick="ctrl.copy2(\''+ $this.attr('data-bankaccountcode') +'\')"></i>');
+                ctrl.page.find('p.bankAccountCode').html('<span class="bank-info">Số tài khoản: </span> <span class="xinfo bankAccountCode">' + $this.attr('data-bankaccountcode') + '</span><i class="far fa-copy icon-copy xcopy" onclick="ctrl.copy2(\'' + $this.attr('data-bankaccountcode') + '\')"></i>');
                 ctrl.page.find('p.bankAccountName').html('<span class="bank-info">Chủ tài khoản: </span> <span class="xinfo bankAccountName">' + $this.attr('data-bankaccountname') + '</span>');
                 ctrl.page.find('p.branchName').html('<span class="bank-info">Chi nhánh: </span> <span class="xinfo branchName">' + $this.attr('data-branchname') + '</span>');
 

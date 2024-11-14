@@ -1,11 +1,13 @@
 ﻿var ComboBoxInputType = (function () {
     return function () {
         var _options;
+
         function init(inputTypeInfo, options) {
             _options = options;
         }
 
         var $combobox;
+
         function getView(selectedValues, allItems) {
             $combobox = $('<select class="form-control" />');
             $('<option></option>').appendTo($combobox);

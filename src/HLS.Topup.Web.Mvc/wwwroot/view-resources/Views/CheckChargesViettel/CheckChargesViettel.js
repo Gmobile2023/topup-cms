@@ -38,7 +38,7 @@
                     }
                 ]
             });
-        };
+        }
 
         function deleteTopupItem(index) {
             _$dataTableTopupList.splice(index, 1);

@@ -24,7 +24,7 @@
 
         function refreshTable() {
             _dataTable.ajax.reload();
-        };
+        }
 
         function selectItem(item) {
             var boolOrPromise = _options.canSelect(item);
@@ -74,7 +74,7 @@
                         data: null,
                         orderable: false,
                         defaultContent: '',
-                        className:'text-center',
+                        className: 'text-center',
                         rowAction: {
                             element: $("<button/>")
                                 .addClass("btn btn-outline-primary btn-sm btn-icon")

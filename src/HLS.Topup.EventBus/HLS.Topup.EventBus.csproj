@@ -5,18 +5,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\HLS.Topup.Core\HLS.Topup.Core.csproj" />
+        <ProjectReference Include="..\HLS.Topup.Core\HLS.Topup.Core.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
-      <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.0" />
+        <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1"/>
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Paygate.Contracts">
-        <HintPath>..\..\dependencies\Paygate.Contracts.dll</HintPath>
-      </Reference>
+        <Reference Include="Paygate.Contracts">
+            <HintPath>..\..\dependencies\Paygate.Contracts.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

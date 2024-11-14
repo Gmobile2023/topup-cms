@@ -1,8 +1,8 @@
 ﻿"use strict";
 
-var KTLayoutExamples = function() {
+var KTLayoutExamples = function () {
 
-    var initDefaultMode = function(element) {
+    var initDefaultMode = function (element) {
         var elements = element;
         if (typeof elements === 'undefined') {
             elements = document.querySelectorAll('.example:not(.example-compact):not(.example-hover):not(.example-basic)');
@@ -13,7 +13,7 @@ var KTLayoutExamples = function() {
             var copy = KTUtil.find(example, '.example-copy');
 
             var clipboard = new ClipboardJS(copy, {
-                target: function(trigger) {
+                target: function (trigger) {
                     var example = trigger.closest('.example');
                     var el = KTUtil.find(example, '.example-code .tab-pane.active');
 
@@ -25,19 +25,19 @@ var KTLayoutExamples = function() {
                 }
             });
 
-            clipboard.on('success', function(e) {
+            clipboard.on('success', function (e) {
                 KTUtil.addClass(e.trigger, 'example-copied');
                 e.clearSelection();
 
-                setTimeout(function() {
+                setTimeout(function () {
                     KTUtil.removeClass(e.trigger, 'example-copied');
                 }, 2000);
             });
         }
     }
 
-    var initCompactMode = function(element) {
-        var example,code,toggle,copy, clipboard;
+    var initCompactMode = function (element) {
+        var example, code, toggle, copy, clipboard;
         var elements = element;
         if (typeof elements === 'undefined') {
             var elements = document.querySelectorAll('.example.example-compact');
@@ -49,13 +49,13 @@ var KTLayoutExamples = function() {
             var copy = KTUtil.find(example, '.example-copy');
 
             // Handle toggle
-            KTUtil.addEvent(toggle, 'click', function() {
+            KTUtil.addEvent(toggle, 'click', function () {
                 var example = this.closest('.example');
-                var code =  KTUtil.find(example, '.example-code');
+                var code = KTUtil.find(example, '.example-code');
                 var the = this;
 
                 if (KTUtil.hasClass(this, 'example-toggled')) {
-                    KTUtil.slideUp(code, 300, function() {
+                    KTUtil.slideUp(code, 300, function () {
                         KTUtil.removeClass(the, 'example-toggled');
                         KTUtil.removeClass(code, 'example-code-on');
                         KTUtil.hide(code);
@@ -63,7 +63,7 @@ var KTLayoutExamples = function() {
                 } else {
                     KTUtil.addClass(code, 'example-code-on');
                     KTUtil.addClass(this, 'example-toggled');
-                    KTUtil.slideDown(code, 300, function() {
+                    KTUtil.slideDown(code, 300, function () {
                         KTUtil.show(code);
                     });
                 }
@@ -71,7 +71,7 @@ var KTLayoutExamples = function() {
 
             // Handle copy
             var clipboard = new ClipboardJS(copy, {
-                target: function(trigger) {
+                target: function (trigger) {
                     var example = trigger.closest('.example');
                     var el = KTUtil.find(example, '.example-code .tab-pane.active');
 
@@ -83,11 +83,11 @@ var KTLayoutExamples = function() {
                 }
             });
 
-            clipboard.on('success', function(e) {
+            clipboard.on('success', function (e) {
                 KTUtil.addClass(e.trigger, 'example-copied');
                 e.clearSelection();
 
-                setTimeout(function() {
+                setTimeout(function () {
                     KTUtil.removeClass(e.trigger, 'example-copied');
                 }, 2000);
             });
@@ -95,7 +95,7 @@ var KTLayoutExamples = function() {
     }
 
     return {
-        init: function(element, options) {
+        init: function (element, options) {
             initDefaultMode(element);
             initCompactMode(element);
         }

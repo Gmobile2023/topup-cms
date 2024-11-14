@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22.3101 18.342V23.6514H26.2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"/>
-  <path d="M13 22.1522L15.0053 24.8259L17.0106 22.1522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"/>
-  <path d="M14.9575 23.0212C14.9575 18.5912 18.5487 15 22.9787 15C27.4087 15 30.9999 18.5912 30.9999 23.0212C30.9999 27.4511 27.4087 31.0424 22.9787 31.0424C20.9444 31.0424 19.087 30.2851 17.673 29.0371" stroke-width="1.5" stroke-linecap="round" style="stroke: rgb(255, 255, 255);"/>
-  <path d="M23 11V6.82843C23 6.29799 22.7893 5.78929 22.4142 5.41421L18.5858 1.58579C18.2107 1.21071 17.702 1 17.1716 1H3C1.89543 1 1 1.89543 1 3V27C1 28.1046 1.89543 29 3 29H12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"/>
-  <path d="M17 2V7L22 7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"/>
-  <line x1="5.75" y1="6.25" x2="12.25" y2="6.25" stroke-width="1.5" stroke-linecap="round" style="stroke: rgb(255, 255, 255);"/>
-  <line x1="5.75" y1="11.75" x2="14.25" y2="11.75" stroke-width="1.5" stroke-linecap="round" style="stroke: rgb(255, 255, 255);"/>
-  <line x1="5.75" y1="17.25" x2="10.25" y2="17.25" stroke-width="1.5" stroke-linecap="round" style="stroke: rgb(255, 255, 255);"/>
+    <path d="M22.3101 18.342V23.6514H26.2825" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+          style="stroke: rgb(255, 255, 255);"/>
+    <path d="M13 22.1522L15.0053 24.8259L17.0106 22.1522" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"/>
+    <path d="M14.9575 23.0212C14.9575 18.5912 18.5487 15 22.9787 15C27.4087 15 30.9999 18.5912 30.9999 23.0212C30.9999 27.4511 27.4087 31.0424 22.9787 31.0424C20.9444 31.0424 19.087 30.2851 17.673 29.0371"
+          stroke-width="1.5" stroke-linecap="round" style="stroke: rgb(255, 255, 255);"/>
+    <path d="M23 11V6.82843C23 6.29799 22.7893 5.78929 22.4142 5.41421L18.5858 1.58579C18.2107 1.21071 17.702 1 17.1716 1H3C1.89543 1 1 1.89543 1 3V27C1 28.1046 1.89543 29 3 29H12"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: rgb(255, 255, 255);"/>
+    <path d="M17 2V7L22 7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+          style="stroke: rgb(255, 255, 255);"/>
+    <line x1="5.75" y1="6.25" x2="12.25" y2="6.25" stroke-width="1.5" stroke-linecap="round"
+          style="stroke: rgb(255, 255, 255);"/>
+    <line x1="5.75" y1="11.75" x2="14.25" y2="11.75" stroke-width="1.5" stroke-linecap="round"
+          style="stroke: rgb(255, 255, 255);"/>
+    <line x1="5.75" y1="17.25" x2="10.25" y2="17.25" stroke-width="1.5" stroke-linecap="round"
+          style="stroke: rgb(255, 255, 255);"/>
 </svg>

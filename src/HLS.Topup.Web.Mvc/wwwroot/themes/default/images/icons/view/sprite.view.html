@@ -1,1439 +1,1826 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta charset="utf-8"/>
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-		<title>SVG &lt;view&gt; sprite preview | svg-sprite</title>
-		<style>@charset "UTF-8";body{padding:0;margin:0;color:#666;background:#fafafa;font-family:Arial,Helvetica,sans-serif;font-size:1em;line-height:1.4}header{display:block;padding:3em 3em 2em 3em;background-color:#fff}header p{margin:2em 0 0 0}section{border-top:1px solid #eee;padding:2em 3em 0 3em}section ul{margin:0;padding:0}section li{display:inline;display:inline-block;background-color:#fff;position:relative;margin:0 2em 2em 0;vertical-align:top;border:1px solid #ccc;padding:1em 1em 3em 1em;cursor:default}.icon-box{margin:0;width:144px;height:144px;position:relative;background:#ccc url("data:image/gif;base64,R0lGODlhDAAMAIAAAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQjk4OTI0MUY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQjk4OTI0MkY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNCOTg5MjNGRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCOTg5MjQwRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAwADAAAAhaEH6mHmmzcgzJAUG/NVGrfOZ8YLlABADs=") top left repeat;border:1px solid #ccc;display:table-cell;vertical-align:middle;text-align:center}.icon{display:inline;display:inline-block}h1{margin-top:0}h2{margin:0;padding:0;font-size:1em;font-weight:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:absolute;left:1em;right:1em;bottom:1em}footer{display:block;margin:0;padding:0 3em 3em 3em}footer p{margin:0;font-size:.7em}footer a{color:#0f7595;margin-left:0}</style>
-		<style>i{text-indent:200%;white-space:nowrap;overflow:hidden;display:inline-block}</style>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <title>SVG &lt;view&gt; sprite preview | svg-sprite</title>
+    <style>@charset "UTF-8";
+    body {
+        padding: 0;
+        margin: 0;
+        color: #666;
+        background: #fafafa;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1em;
+        line-height: 1.4
+    }
 
-<!--
-	
-Sprite CSS
-====================================================================================================
-This is an all-in-one inline version of the CSS necessary to use the SVG sprite. 
+    header {
+        display: block;
+        padding: 3em 3em 2em 3em;
+        background-color: #fff
+    }
 
--->
+    header p {
+        margin: 2em 0 0 0
+    }
 
-<style type="text/css">
-.hm-icon-account {
-	background: url("svg/sprite.view-9b36927a.svg") 0 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-arrow-down {
-	background: url("svg/sprite.view-9b36927a.svg") 1.8181818181818181% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-arrow-left {
-	background: url("svg/sprite.view-9b36927a.svg") 3.6363636363636362% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-auth {
-	background: url("svg/sprite.view-9b36927a.svg") 5.454545454545454% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-avatar {
-	background: url("svg/sprite.view-9b36927a.svg") 7.2727272727272725% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-balance {
-	background: url("svg/sprite.view-9b36927a.svg") 9.090909090909092% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-bone {
-	background: url("svg/sprite.view-9b36927a.svg") 10.909090909090908% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-calendar {
-	background: url("svg/sprite.view-9b36927a.svg") 12.727272727272727% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-cancer {
-	background: url("svg/sprite.view-9b36927a.svg") 14.545454545454545% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-cart {
-	background: url("svg/sprite.view-9b36927a.svg") 16.363636363636363% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-category {
-	background: url("svg/sprite.view-9b36927a.svg") 18.181818181818183% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-classroom {
-	background: url("svg/sprite.view-9b36927a.svg") 20% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-clock {
-	background: url("svg/sprite.view-9b36927a.svg") 21.818181818181817% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-contract {
-	background: url("svg/sprite.view-9b36927a.svg") 23.636363636363637% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-doctor {
-	background: url("svg/sprite.view-9b36927a.svg") 25.454545454545453% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-domain {
-	background: url("svg/sprite.view-9b36927a.svg") 27.272727272727273% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-edit {
-	background: url("svg/sprite.view-9b36927a.svg") 29.09090909090909% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-group {
-	background: url("svg/sprite.view-9b36927a.svg") 30.90909090909091% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-health {
-	background: url("svg/sprite.view-9b36927a.svg") 32.72727272727273% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-heart {
-	background: url("svg/sprite.view-9b36927a.svg") 34.54545454545455% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-heart-rate {
-	background: url("svg/sprite.view-9b36927a.svg") 36.36363636363637% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-history {
-	background: url("svg/sprite.view-9b36927a.svg") 38.18181818181818% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-home {
-	background: url("svg/sprite.view-9b36927a.svg") 40% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-insulin {
-	background: url("svg/sprite.view-9b36927a.svg") 41.81818181818182% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-key {
-	background: url("svg/sprite.view-9b36927a.svg") 43.63636363636363% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-list {
-	background: url("svg/sprite.view-9b36927a.svg") 45.45454545454545% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-lock {
-	background: url("svg/sprite.view-9b36927a.svg") 47.27272727272727% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-logout {
-	background: url("svg/sprite.view-9b36927a.svg") 49.09090909090909% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-love-book {
-	background: url("svg/sprite.view-9b36927a.svg") 50.90909090909091% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-mail {
-	background: url("svg/sprite.view-9b36927a.svg") 52.72727272727273% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-money-transfer {
-	background: url("svg/sprite.view-9b36927a.svg") 54.54545454545455% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-payment {
-	background: url("svg/sprite.view-9b36927a.svg") 56.36363636363637% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-play-button {
-	background: url("svg/sprite.view-9b36927a.svg") 58.18181818181818% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-plus {
-	background: url("svg/sprite.view-9b36927a.svg") 60% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-price-tag {
-	background: url("svg/sprite.view-9b36927a.svg") 61.81818181818182% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-profile {
-	background: url("svg/sprite.view-9b36927a.svg") 63.63636363636363% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-question {
-	background: url("svg/sprite.view-9b36927a.svg") 65.45454545454545% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-rating {
-	background: url("svg/sprite.view-9b36927a.svg") 67.27272727272727% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-refresh {
-	background: url("svg/sprite.view-9b36927a.svg") 69.0909090909091% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-rocket-launch {
-	background: url("svg/sprite.view-9b36927a.svg") 70.9090909090909% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-save {
-	background: url("svg/sprite.view-9b36927a.svg") 72.72727272727273% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-scale {
-	background: url("svg/sprite.view-9b36927a.svg") 74.54545454545455% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-screen {
-	background: url("svg/sprite.view-9b36927a.svg") 76.36363636363636% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-smartphone-call {
-	background: url("svg/sprite.view-9b36927a.svg") 78.18181818181819% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-smartphone-plus {
-	background: url("svg/sprite.view-9b36927a.svg") 80% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-smartphone-ring {
-	background: url("svg/sprite.view-9b36927a.svg") 81.81818181818181% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-star {
-	background: url("svg/sprite.view-9b36927a.svg") 83.63636363636364% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-stomach {
-	background: url("svg/sprite.view-9b36927a.svg") 85.45454545454545% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-success {
-	background: url("svg/sprite.view-9b36927a.svg") 87.27272727272727% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-team {
-	background: url("svg/sprite.view-9b36927a.svg") 89.0909090909091% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-three-dot {
-	background: url("svg/sprite.view-9b36927a.svg") 90.9090909090909% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-user {
-	background: url("svg/sprite.view-9b36927a.svg") 92.72727272727273% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-warning {
-	background: url("svg/sprite.view-9b36927a.svg") 94.54545454545455% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-webinar {
-	background: url("svg/sprite.view-9b36927a.svg") 96.36363636363636% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-work {
-	background: url("svg/sprite.view-9b36927a.svg") 98.18181818181819% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-.hm-icon-world {
-	background: url("svg/sprite.view-9b36927a.svg") 100% 0 no-repeat;
-	width: 16px;
-	height: 16px;
-}
-</style>
-		
-<!--
-	
-Sprite shape dimensions
-====================================================================================================
-If you use the sprite in conjunction with the pre-defined views (respectively fragment identifiers),
-you will need to set the shape dimensions via CSS unless you want them to become a huge 100% in
-size. You may use the following CSS classes for doing so. They might well be outsourced to an
-external stylesheet of course.
+    section {
+        border-top: 1px solid #eee;
+        padding: 2em 3em 0 3em
+    }
 
--->
+    section ul {
+        margin: 0;
+        padding: 0
+    }
 
-<style type="text/css">
-	.hm-icon-account-dims { width: 16px; height: 16px; }
-	.hm-icon-arrow-down-dims { width: 16px; height: 16px; }
-	.hm-icon-arrow-left-dims { width: 16px; height: 16px; }
-	.hm-icon-auth-dims { width: 16px; height: 16px; }
-	.hm-icon-avatar-dims { width: 16px; height: 16px; }
-	.hm-icon-balance-dims { width: 16px; height: 16px; }
-	.hm-icon-bone-dims { width: 16px; height: 16px; }
-	.hm-icon-calendar-dims { width: 16px; height: 16px; }
-	.hm-icon-cancer-dims { width: 16px; height: 16px; }
-	.hm-icon-cart-dims { width: 16px; height: 16px; }
-	.hm-icon-category-dims { width: 16px; height: 16px; }
-	.hm-icon-classroom-dims { width: 16px; height: 16px; }
-	.hm-icon-clock-dims { width: 16px; height: 16px; }
-	.hm-icon-contract-dims { width: 16px; height: 16px; }
-	.hm-icon-doctor-dims { width: 16px; height: 16px; }
-	.hm-icon-domain-dims { width: 16px; height: 16px; }
-	.hm-icon-edit-dims { width: 16px; height: 16px; }
-	.hm-icon-group-dims { width: 16px; height: 16px; }
-	.hm-icon-health-dims { width: 16px; height: 16px; }
-	.hm-icon-heart-dims { width: 16px; height: 16px; }
-	.hm-icon-heart-rate-dims { width: 16px; height: 16px; }
-	.hm-icon-history-dims { width: 16px; height: 16px; }
-	.hm-icon-home-dims { width: 16px; height: 16px; }
-	.hm-icon-insulin-dims { width: 16px; height: 16px; }
-	.hm-icon-key-dims { width: 16px; height: 16px; }
-	.hm-icon-list-dims { width: 16px; height: 16px; }
-	.hm-icon-lock-dims { width: 16px; height: 16px; }
-	.hm-icon-logout-dims { width: 16px; height: 16px; }
-	.hm-icon-love-book-dims { width: 16px; height: 16px; }
-	.hm-icon-mail-dims { width: 16px; height: 16px; }
-	.hm-icon-money-transfer-dims { width: 16px; height: 16px; }
-	.hm-icon-payment-dims { width: 16px; height: 16px; }
-	.hm-icon-play-button-dims { width: 16px; height: 16px; }
-	.hm-icon-plus-dims { width: 16px; height: 16px; }
-	.hm-icon-price-tag-dims { width: 16px; height: 16px; }
-	.hm-icon-profile-dims { width: 16px; height: 16px; }
-	.hm-icon-question-dims { width: 16px; height: 16px; }
-	.hm-icon-rating-dims { width: 16px; height: 16px; }
-	.hm-icon-refresh-dims { width: 16px; height: 16px; }
-	.hm-icon-rocket-launch-dims { width: 16px; height: 16px; }
-	.hm-icon-save-dims { width: 16px; height: 16px; }
-	.hm-icon-scale-dims { width: 16px; height: 16px; }
-	.hm-icon-screen-dims { width: 16px; height: 16px; }
-	.hm-icon-smartphone-call-dims { width: 16px; height: 16px; }
-	.hm-icon-smartphone-plus-dims { width: 16px; height: 16px; }
-	.hm-icon-smartphone-ring-dims { width: 16px; height: 16px; }
-	.hm-icon-star-dims { width: 16px; height: 16px; }
-	.hm-icon-stomach-dims { width: 16px; height: 16px; }
-	.hm-icon-success-dims { width: 16px; height: 16px; }
-	.hm-icon-team-dims { width: 16px; height: 16px; }
-	.hm-icon-three-dot-dims { width: 16px; height: 16px; }
-	.hm-icon-user-dims { width: 16px; height: 16px; }
-	.hm-icon-warning-dims { width: 16px; height: 16px; }
-	.hm-icon-webinar-dims { width: 16px; height: 16px; }
-	.hm-icon-work-dims { width: 16px; height: 16px; }
-	.hm-icon-world-dims { width: 16px; height: 16px; }
-</style>
+    section li {
+        display: inline;
+        display: inline-block;
+        background-color: #fff;
+        position: relative;
+        margin: 0 2em 2em 0;
+        vertical-align: top;
+        border: 1px solid #ccc;
+        padding: 1em 1em 3em 1em;
+        cursor: default
+    }
 
-<!--
-====================================================================================================
--->
+    .icon-box {
+        margin: 0;
+        width: 144px;
+        height: 144px;
+        position: relative;
+        background: #ccc url("data:image/gif;base64,R0lGODlhDAAMAIAAAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQjk4OTI0MUY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQjk4OTI0MkY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNCOTg5MjNGRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCOTg5MjQwRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAwADAAAAhaEH6mHmmzcgzJAUG/NVGrfOZ8YLlABADs=") top left repeat;
+        border: 1px solid #ccc;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center
+    }
 
-	</head>
-	<body>
-		<header>
-			<h1>SVG <code>&lt;view&gt;</code> sprite preview</h1>
-			<p>This preview features two methods of using the generated sprite. Please have a look at the HTML source for further details and be aware of the following constraints regarding the prepared <code>&lt;view&gt;</code> elements (technique B):</p>
-			<ul>
-				<li>Your browser has to <a href="http://caniuse.com/#feat=svg-fragment" target="_blank">support SVG fragment identifiers</a> for SVG stacks to work.</li>
-				<li>Support for SVG fragment identifiers hasn't always been that decent. For older browsers you might have to use a prolyfill (if available?).</li>
-			</ul>
-		</header>
-		<section>
+    .icon {
+        display: inline;
+        display: inline-block
+    }
 
-<!--
-	
-A) Conventional CSS sprite
-====================================================================================================
-This technique uses CSS classes to display portions of the sprite as background image of
-appropriately sized elements.
+    h1 {
+        margin-top: 0
+    }
 
--->
+    h2 {
+        margin: 0;
+        padding: 0;
+        font-size: 1em;
+        font-weight: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        position: absolute;
+        left: 1em;
+        right: 1em;
+        bottom: 1em
+    }
 
-			<h3>A) Conventional CSS sprite</h3>
-			<ul>
-				
-				<li title="account">
-					<div class="icon-box">
-						
-						<!-- account -->
-						<i class="hm-icon-account">account</i>
-						
-					</div>
-					<h2>account</h2>
-				</li>
-				<li title="arrow-down">
-					<div class="icon-box">
-						
-						<!-- arrow-down -->
-						<i class="hm-icon-arrow-down">arrow-down</i>
-						
-					</div>
-					<h2>arrow-down</h2>
-				</li>
-				<li title="arrow-left">
-					<div class="icon-box">
-						
-						<!-- arrow-left -->
-						<i class="hm-icon-arrow-left">arrow-left</i>
-						
-					</div>
-					<h2>arrow-left</h2>
-				</li>
-				<li title="auth">
-					<div class="icon-box">
-						
-						<!-- auth -->
-						<i class="hm-icon-auth">auth</i>
-						
-					</div>
-					<h2>auth</h2>
-				</li>
-				<li title="avatar">
-					<div class="icon-box">
-						
-						<!-- avatar -->
-						<i class="hm-icon-avatar">avatar</i>
-						
-					</div>
-					<h2>avatar</h2>
-				</li>
-				<li title="balance">
-					<div class="icon-box">
-						
-						<!-- balance -->
-						<i class="hm-icon-balance">balance</i>
-						
-					</div>
-					<h2>balance</h2>
-				</li>
-				<li title="bone">
-					<div class="icon-box">
-						
-						<!-- bone -->
-						<i class="hm-icon-bone">bone</i>
-						
-					</div>
-					<h2>bone</h2>
-				</li>
-				<li title="calendar">
-					<div class="icon-box">
-						
-						<!-- calendar -->
-						<i class="hm-icon-calendar">calendar</i>
-						
-					</div>
-					<h2>calendar</h2>
-				</li>
-				<li title="cancer">
-					<div class="icon-box">
-						
-						<!-- cancer -->
-						<i class="hm-icon-cancer">cancer</i>
-						
-					</div>
-					<h2>cancer</h2>
-				</li>
-				<li title="cart">
-					<div class="icon-box">
-						
-						<!-- cart -->
-						<i class="hm-icon-cart">cart</i>
-						
-					</div>
-					<h2>cart</h2>
-				</li>
-				<li title="category">
-					<div class="icon-box">
-						
-						<!-- category -->
-						<i class="hm-icon-category">category</i>
-						
-					</div>
-					<h2>category</h2>
-				</li>
-				<li title="classroom">
-					<div class="icon-box">
-						
-						<!-- classroom -->
-						<i class="hm-icon-classroom">classroom</i>
-						
-					</div>
-					<h2>classroom</h2>
-				</li>
-				<li title="clock">
-					<div class="icon-box">
-						
-						<!-- clock -->
-						<i class="hm-icon-clock">clock</i>
-						
-					</div>
-					<h2>clock</h2>
-				</li>
-				<li title="contract">
-					<div class="icon-box">
-						
-						<!-- contract -->
-						<i class="hm-icon-contract">contract</i>
-						
-					</div>
-					<h2>contract</h2>
-				</li>
-				<li title="doctor">
-					<div class="icon-box">
-						
-						<!-- doctor -->
-						<i class="hm-icon-doctor">doctor</i>
-						
-					</div>
-					<h2>doctor</h2>
-				</li>
-				<li title="domain">
-					<div class="icon-box">
-						
-						<!-- domain -->
-						<i class="hm-icon-domain">domain</i>
-						
-					</div>
-					<h2>domain</h2>
-				</li>
-				<li title="edit">
-					<div class="icon-box">
-						
-						<!-- edit -->
-						<i class="hm-icon-edit">edit</i>
-						
-					</div>
-					<h2>edit</h2>
-				</li>
-				<li title="group">
-					<div class="icon-box">
-						
-						<!-- group -->
-						<i class="hm-icon-group">group</i>
-						
-					</div>
-					<h2>group</h2>
-				</li>
-				<li title="health">
-					<div class="icon-box">
-						
-						<!-- health -->
-						<i class="hm-icon-health">health</i>
-						
-					</div>
-					<h2>health</h2>
-				</li>
-				<li title="heart">
-					<div class="icon-box">
-						
-						<!-- heart -->
-						<i class="hm-icon-heart">heart</i>
-						
-					</div>
-					<h2>heart</h2>
-				</li>
-				<li title="heart-rate">
-					<div class="icon-box">
-						
-						<!-- heart-rate -->
-						<i class="hm-icon-heart-rate">heart-rate</i>
-						
-					</div>
-					<h2>heart-rate</h2>
-				</li>
-				<li title="history">
-					<div class="icon-box">
-						
-						<!-- history -->
-						<i class="hm-icon-history">history</i>
-						
-					</div>
-					<h2>history</h2>
-				</li>
-				<li title="home">
-					<div class="icon-box">
-						
-						<!-- home -->
-						<i class="hm-icon-home">home</i>
-						
-					</div>
-					<h2>home</h2>
-				</li>
-				<li title="insulin">
-					<div class="icon-box">
-						
-						<!-- insulin -->
-						<i class="hm-icon-insulin">insulin</i>
-						
-					</div>
-					<h2>insulin</h2>
-				</li>
-				<li title="key">
-					<div class="icon-box">
-						
-						<!-- key -->
-						<i class="hm-icon-key">key</i>
-						
-					</div>
-					<h2>key</h2>
-				</li>
-				<li title="list">
-					<div class="icon-box">
-						
-						<!-- list -->
-						<i class="hm-icon-list">list</i>
-						
-					</div>
-					<h2>list</h2>
-				</li>
-				<li title="lock">
-					<div class="icon-box">
-						
-						<!-- lock -->
-						<i class="hm-icon-lock">lock</i>
-						
-					</div>
-					<h2>lock</h2>
-				</li>
-				<li title="logout">
-					<div class="icon-box">
-						
-						<!-- logout -->
-						<i class="hm-icon-logout">logout</i>
-						
-					</div>
-					<h2>logout</h2>
-				</li>
-				<li title="love-book">
-					<div class="icon-box">
-						
-						<!-- love-book -->
-						<i class="hm-icon-love-book">love-book</i>
-						
-					</div>
-					<h2>love-book</h2>
-				</li>
-				<li title="mail">
-					<div class="icon-box">
-						
-						<!-- mail -->
-						<i class="hm-icon-mail">mail</i>
-						
-					</div>
-					<h2>mail</h2>
-				</li>
-				<li title="money-transfer">
-					<div class="icon-box">
-						
-						<!-- money-transfer -->
-						<i class="hm-icon-money-transfer">money-transfer</i>
-						
-					</div>
-					<h2>money-transfer</h2>
-				</li>
-				<li title="payment">
-					<div class="icon-box">
-						
-						<!-- payment -->
-						<i class="hm-icon-payment">payment</i>
-						
-					</div>
-					<h2>payment</h2>
-				</li>
-				<li title="play-button">
-					<div class="icon-box">
-						
-						<!-- play-button -->
-						<i class="hm-icon-play-button">play-button</i>
-						
-					</div>
-					<h2>play-button</h2>
-				</li>
-				<li title="plus">
-					<div class="icon-box">
-						
-						<!-- plus -->
-						<i class="hm-icon-plus">plus</i>
-						
-					</div>
-					<h2>plus</h2>
-				</li>
-				<li title="price-tag">
-					<div class="icon-box">
-						
-						<!-- price-tag -->
-						<i class="hm-icon-price-tag">price-tag</i>
-						
-					</div>
-					<h2>price-tag</h2>
-				</li>
-				<li title="profile">
-					<div class="icon-box">
-						
-						<!-- profile -->
-						<i class="hm-icon-profile">profile</i>
-						
-					</div>
-					<h2>profile</h2>
-				</li>
-				<li title="question">
-					<div class="icon-box">
-						
-						<!-- question -->
-						<i class="hm-icon-question">question</i>
-						
-					</div>
-					<h2>question</h2>
-				</li>
-				<li title="rating">
-					<div class="icon-box">
-						
-						<!-- rating -->
-						<i class="hm-icon-rating">rating</i>
-						
-					</div>
-					<h2>rating</h2>
-				</li>
-				<li title="refresh">
-					<div class="icon-box">
-						
-						<!-- refresh -->
-						<i class="hm-icon-refresh">refresh</i>
-						
-					</div>
-					<h2>refresh</h2>
-				</li>
-				<li title="rocket-launch">
-					<div class="icon-box">
-						
-						<!-- rocket-launch -->
-						<i class="hm-icon-rocket-launch">rocket-launch</i>
-						
-					</div>
-					<h2>rocket-launch</h2>
-				</li>
-				<li title="save">
-					<div class="icon-box">
-						
-						<!-- save -->
-						<i class="hm-icon-save">save</i>
-						
-					</div>
-					<h2>save</h2>
-				</li>
-				<li title="scale">
-					<div class="icon-box">
-						
-						<!-- scale -->
-						<i class="hm-icon-scale">scale</i>
-						
-					</div>
-					<h2>scale</h2>
-				</li>
-				<li title="screen">
-					<div class="icon-box">
-						
-						<!-- screen -->
-						<i class="hm-icon-screen">screen</i>
-						
-					</div>
-					<h2>screen</h2>
-				</li>
-				<li title="smartphone-call">
-					<div class="icon-box">
-						
-						<!-- smartphone-call -->
-						<i class="hm-icon-smartphone-call">smartphone-call</i>
-						
-					</div>
-					<h2>smartphone-call</h2>
-				</li>
-				<li title="smartphone-plus">
-					<div class="icon-box">
-						
-						<!-- smartphone-plus -->
-						<i class="hm-icon-smartphone-plus">smartphone-plus</i>
-						
-					</div>
-					<h2>smartphone-plus</h2>
-				</li>
-				<li title="smartphone-ring">
-					<div class="icon-box">
-						
-						<!-- smartphone-ring -->
-						<i class="hm-icon-smartphone-ring">smartphone-ring</i>
-						
-					</div>
-					<h2>smartphone-ring</h2>
-				</li>
-				<li title="star">
-					<div class="icon-box">
-						
-						<!-- star -->
-						<i class="hm-icon-star">star</i>
-						
-					</div>
-					<h2>star</h2>
-				</li>
-				<li title="stomach">
-					<div class="icon-box">
-						
-						<!-- stomach -->
-						<i class="hm-icon-stomach">stomach</i>
-						
-					</div>
-					<h2>stomach</h2>
-				</li>
-				<li title="success">
-					<div class="icon-box">
-						
-						<!-- success -->
-						<i class="hm-icon-success">success</i>
-						
-					</div>
-					<h2>success</h2>
-				</li>
-				<li title="team">
-					<div class="icon-box">
-						
-						<!-- team -->
-						<i class="hm-icon-team">team</i>
-						
-					</div>
-					<h2>team</h2>
-				</li>
-				<li title="three-dot">
-					<div class="icon-box">
-						
-						<!-- three-dot -->
-						<i class="hm-icon-three-dot">three-dot</i>
-						
-					</div>
-					<h2>three-dot</h2>
-				</li>
-				<li title="user">
-					<div class="icon-box">
-						
-						<!-- user -->
-						<i class="hm-icon-user">user</i>
-						
-					</div>
-					<h2>user</h2>
-				</li>
-				<li title="warning">
-					<div class="icon-box">
-						
-						<!-- warning -->
-						<i class="hm-icon-warning">warning</i>
-						
-					</div>
-					<h2>warning</h2>
-				</li>
-				<li title="webinar">
-					<div class="icon-box">
-						
-						<!-- webinar -->
-						<i class="hm-icon-webinar">webinar</i>
-						
-					</div>
-					<h2>webinar</h2>
-				</li>
-				<li title="work">
-					<div class="icon-box">
-						
-						<!-- work -->
-						<i class="hm-icon-work">work</i>
-						
-					</div>
-					<h2>work</h2>
-				</li>
-				<li title="world">
-					<div class="icon-box">
-						
-						<!-- world -->
-						<i class="hm-icon-world">world</i>
-						
-					</div>
-					<h2>world</h2>
-				</li>
-			</ul>
+    footer {
+        display: block;
+        margin: 0;
+        padding: 0 3em 3em 3em
+    }
 
-<!--
-====================================================================================================
--->
+    footer p {
+        margin: 0;
+        font-size: .7em
+    }
 
-		</section>
-		<section>
+    footer a {
+        color: #0f7595;
+        margin-left: 0
+    }</style>
+    <style>i {
+        text-indent: 200%;
+        white-space: nowrap;
+        overflow: hidden;
+        display: inline-block
+    }</style>
 
-<!--
-	
-B) External sprite with pre-defined views referenced by fragment identifiers
-====================================================================================================
-These SVG images make use of fragment identifiers (IDs) and are referencing the <view> elements
-pre-defined in the external sprite.
+    <!--
+        
+    Sprite CSS
+    ====================================================================================================
+    This is an all-in-one inline version of the CSS necessary to use the SVG sprite. 
+    
+    -->
 
--->
+    <style type="text/css">
+        .hm-icon-account {
+            background: url("svg/sprite.view-9b36927a.svg") 0 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
 
-			<h3>B) External sprite with pre-defined views referenced by fragment identifiers</h3>
-			<ul>
-				
-				<li title="account">
-					<div class="icon-box">
-						
-						<!-- account -->
-						<img src="svg/sprite.view-9b36927a.svg#account" class="hm-icon-account-dims" alt="account"/>
-						
-					</div>
-					<h2>account</h2>
-				</li>
-				<li title="arrow-down">
-					<div class="icon-box">
-						
-						<!-- arrow-down -->
-						<img src="svg/sprite.view-9b36927a.svg#arrow-down" class="hm-icon-arrow-down-dims" alt="arrow-down"/>
-						
-					</div>
-					<h2>arrow-down</h2>
-				</li>
-				<li title="arrow-left">
-					<div class="icon-box">
-						
-						<!-- arrow-left -->
-						<img src="svg/sprite.view-9b36927a.svg#arrow-left" class="hm-icon-arrow-left-dims" alt="arrow-left"/>
-						
-					</div>
-					<h2>arrow-left</h2>
-				</li>
-				<li title="auth">
-					<div class="icon-box">
-						
-						<!-- auth -->
-						<img src="svg/sprite.view-9b36927a.svg#auth" class="hm-icon-auth-dims" alt="auth"/>
-						
-					</div>
-					<h2>auth</h2>
-				</li>
-				<li title="avatar">
-					<div class="icon-box">
-						
-						<!-- avatar -->
-						<img src="svg/sprite.view-9b36927a.svg#avatar" class="hm-icon-avatar-dims" alt="avatar"/>
-						
-					</div>
-					<h2>avatar</h2>
-				</li>
-				<li title="balance">
-					<div class="icon-box">
-						
-						<!-- balance -->
-						<img src="svg/sprite.view-9b36927a.svg#balance" class="hm-icon-balance-dims" alt="balance"/>
-						
-					</div>
-					<h2>balance</h2>
-				</li>
-				<li title="bone">
-					<div class="icon-box">
-						
-						<!-- bone -->
-						<img src="svg/sprite.view-9b36927a.svg#bone" class="hm-icon-bone-dims" alt="bone"/>
-						
-					</div>
-					<h2>bone</h2>
-				</li>
-				<li title="calendar">
-					<div class="icon-box">
-						
-						<!-- calendar -->
-						<img src="svg/sprite.view-9b36927a.svg#calendar" class="hm-icon-calendar-dims" alt="calendar"/>
-						
-					</div>
-					<h2>calendar</h2>
-				</li>
-				<li title="cancer">
-					<div class="icon-box">
-						
-						<!-- cancer -->
-						<img src="svg/sprite.view-9b36927a.svg#cancer" class="hm-icon-cancer-dims" alt="cancer"/>
-						
-					</div>
-					<h2>cancer</h2>
-				</li>
-				<li title="cart">
-					<div class="icon-box">
-						
-						<!-- cart -->
-						<img src="svg/sprite.view-9b36927a.svg#cart" class="hm-icon-cart-dims" alt="cart"/>
-						
-					</div>
-					<h2>cart</h2>
-				</li>
-				<li title="category">
-					<div class="icon-box">
-						
-						<!-- category -->
-						<img src="svg/sprite.view-9b36927a.svg#category" class="hm-icon-category-dims" alt="category"/>
-						
-					</div>
-					<h2>category</h2>
-				</li>
-				<li title="classroom">
-					<div class="icon-box">
-						
-						<!-- classroom -->
-						<img src="svg/sprite.view-9b36927a.svg#classroom" class="hm-icon-classroom-dims" alt="classroom"/>
-						
-					</div>
-					<h2>classroom</h2>
-				</li>
-				<li title="clock">
-					<div class="icon-box">
-						
-						<!-- clock -->
-						<img src="svg/sprite.view-9b36927a.svg#clock" class="hm-icon-clock-dims" alt="clock"/>
-						
-					</div>
-					<h2>clock</h2>
-				</li>
-				<li title="contract">
-					<div class="icon-box">
-						
-						<!-- contract -->
-						<img src="svg/sprite.view-9b36927a.svg#contract" class="hm-icon-contract-dims" alt="contract"/>
-						
-					</div>
-					<h2>contract</h2>
-				</li>
-				<li title="doctor">
-					<div class="icon-box">
-						
-						<!-- doctor -->
-						<img src="svg/sprite.view-9b36927a.svg#doctor" class="hm-icon-doctor-dims" alt="doctor"/>
-						
-					</div>
-					<h2>doctor</h2>
-				</li>
-				<li title="domain">
-					<div class="icon-box">
-						
-						<!-- domain -->
-						<img src="svg/sprite.view-9b36927a.svg#domain" class="hm-icon-domain-dims" alt="domain"/>
-						
-					</div>
-					<h2>domain</h2>
-				</li>
-				<li title="edit">
-					<div class="icon-box">
-						
-						<!-- edit -->
-						<img src="svg/sprite.view-9b36927a.svg#edit" class="hm-icon-edit-dims" alt="edit"/>
-						
-					</div>
-					<h2>edit</h2>
-				</li>
-				<li title="group">
-					<div class="icon-box">
-						
-						<!-- group -->
-						<img src="svg/sprite.view-9b36927a.svg#group" class="hm-icon-group-dims" alt="group"/>
-						
-					</div>
-					<h2>group</h2>
-				</li>
-				<li title="health">
-					<div class="icon-box">
-						
-						<!-- health -->
-						<img src="svg/sprite.view-9b36927a.svg#health" class="hm-icon-health-dims" alt="health"/>
-						
-					</div>
-					<h2>health</h2>
-				</li>
-				<li title="heart">
-					<div class="icon-box">
-						
-						<!-- heart -->
-						<img src="svg/sprite.view-9b36927a.svg#heart" class="hm-icon-heart-dims" alt="heart"/>
-						
-					</div>
-					<h2>heart</h2>
-				</li>
-				<li title="heart-rate">
-					<div class="icon-box">
-						
-						<!-- heart-rate -->
-						<img src="svg/sprite.view-9b36927a.svg#heart-rate" class="hm-icon-heart-rate-dims" alt="heart-rate"/>
-						
-					</div>
-					<h2>heart-rate</h2>
-				</li>
-				<li title="history">
-					<div class="icon-box">
-						
-						<!-- history -->
-						<img src="svg/sprite.view-9b36927a.svg#history" class="hm-icon-history-dims" alt="history"/>
-						
-					</div>
-					<h2>history</h2>
-				</li>
-				<li title="home">
-					<div class="icon-box">
-						
-						<!-- home -->
-						<img src="svg/sprite.view-9b36927a.svg#home" class="hm-icon-home-dims" alt="home"/>
-						
-					</div>
-					<h2>home</h2>
-				</li>
-				<li title="insulin">
-					<div class="icon-box">
-						
-						<!-- insulin -->
-						<img src="svg/sprite.view-9b36927a.svg#insulin" class="hm-icon-insulin-dims" alt="insulin"/>
-						
-					</div>
-					<h2>insulin</h2>
-				</li>
-				<li title="key">
-					<div class="icon-box">
-						
-						<!-- key -->
-						<img src="svg/sprite.view-9b36927a.svg#key" class="hm-icon-key-dims" alt="key"/>
-						
-					</div>
-					<h2>key</h2>
-				</li>
-				<li title="list">
-					<div class="icon-box">
-						
-						<!-- list -->
-						<img src="svg/sprite.view-9b36927a.svg#list" class="hm-icon-list-dims" alt="list"/>
-						
-					</div>
-					<h2>list</h2>
-				</li>
-				<li title="lock">
-					<div class="icon-box">
-						
-						<!-- lock -->
-						<img src="svg/sprite.view-9b36927a.svg#lock" class="hm-icon-lock-dims" alt="lock"/>
-						
-					</div>
-					<h2>lock</h2>
-				</li>
-				<li title="logout">
-					<div class="icon-box">
-						
-						<!-- logout -->
-						<img src="svg/sprite.view-9b36927a.svg#logout" class="hm-icon-logout-dims" alt="logout"/>
-						
-					</div>
-					<h2>logout</h2>
-				</li>
-				<li title="love-book">
-					<div class="icon-box">
-						
-						<!-- love-book -->
-						<img src="svg/sprite.view-9b36927a.svg#love-book" class="hm-icon-love-book-dims" alt="love-book"/>
-						
-					</div>
-					<h2>love-book</h2>
-				</li>
-				<li title="mail">
-					<div class="icon-box">
-						
-						<!-- mail -->
-						<img src="svg/sprite.view-9b36927a.svg#mail" class="hm-icon-mail-dims" alt="mail"/>
-						
-					</div>
-					<h2>mail</h2>
-				</li>
-				<li title="money-transfer">
-					<div class="icon-box">
-						
-						<!-- money-transfer -->
-						<img src="svg/sprite.view-9b36927a.svg#money-transfer" class="hm-icon-money-transfer-dims" alt="money-transfer"/>
-						
-					</div>
-					<h2>money-transfer</h2>
-				</li>
-				<li title="payment">
-					<div class="icon-box">
-						
-						<!-- payment -->
-						<img src="svg/sprite.view-9b36927a.svg#payment" class="hm-icon-payment-dims" alt="payment"/>
-						
-					</div>
-					<h2>payment</h2>
-				</li>
-				<li title="play-button">
-					<div class="icon-box">
-						
-						<!-- play-button -->
-						<img src="svg/sprite.view-9b36927a.svg#play-button" class="hm-icon-play-button-dims" alt="play-button"/>
-						
-					</div>
-					<h2>play-button</h2>
-				</li>
-				<li title="plus">
-					<div class="icon-box">
-						
-						<!-- plus -->
-						<img src="svg/sprite.view-9b36927a.svg#plus" class="hm-icon-plus-dims" alt="plus"/>
-						
-					</div>
-					<h2>plus</h2>
-				</li>
-				<li title="price-tag">
-					<div class="icon-box">
-						
-						<!-- price-tag -->
-						<img src="svg/sprite.view-9b36927a.svg#price-tag" class="hm-icon-price-tag-dims" alt="price-tag"/>
-						
-					</div>
-					<h2>price-tag</h2>
-				</li>
-				<li title="profile">
-					<div class="icon-box">
-						
-						<!-- profile -->
-						<img src="svg/sprite.view-9b36927a.svg#profile" class="hm-icon-profile-dims" alt="profile"/>
-						
-					</div>
-					<h2>profile</h2>
-				</li>
-				<li title="question">
-					<div class="icon-box">
-						
-						<!-- question -->
-						<img src="svg/sprite.view-9b36927a.svg#question" class="hm-icon-question-dims" alt="question"/>
-						
-					</div>
-					<h2>question</h2>
-				</li>
-				<li title="rating">
-					<div class="icon-box">
-						
-						<!-- rating -->
-						<img src="svg/sprite.view-9b36927a.svg#rating" class="hm-icon-rating-dims" alt="rating"/>
-						
-					</div>
-					<h2>rating</h2>
-				</li>
-				<li title="refresh">
-					<div class="icon-box">
-						
-						<!-- refresh -->
-						<img src="svg/sprite.view-9b36927a.svg#refresh" class="hm-icon-refresh-dims" alt="refresh"/>
-						
-					</div>
-					<h2>refresh</h2>
-				</li>
-				<li title="rocket-launch">
-					<div class="icon-box">
-						
-						<!-- rocket-launch -->
-						<img src="svg/sprite.view-9b36927a.svg#rocket-launch" class="hm-icon-rocket-launch-dims" alt="rocket-launch"/>
-						
-					</div>
-					<h2>rocket-launch</h2>
-				</li>
-				<li title="save">
-					<div class="icon-box">
-						
-						<!-- save -->
-						<img src="svg/sprite.view-9b36927a.svg#save" class="hm-icon-save-dims" alt="save"/>
-						
-					</div>
-					<h2>save</h2>
-				</li>
-				<li title="scale">
-					<div class="icon-box">
-						
-						<!-- scale -->
-						<img src="svg/sprite.view-9b36927a.svg#scale" class="hm-icon-scale-dims" alt="scale"/>
-						
-					</div>
-					<h2>scale</h2>
-				</li>
-				<li title="screen">
-					<div class="icon-box">
-						
-						<!-- screen -->
-						<img src="svg/sprite.view-9b36927a.svg#screen" class="hm-icon-screen-dims" alt="screen"/>
-						
-					</div>
-					<h2>screen</h2>
-				</li>
-				<li title="smartphone-call">
-					<div class="icon-box">
-						
-						<!-- smartphone-call -->
-						<img src="svg/sprite.view-9b36927a.svg#smartphone-call" class="hm-icon-smartphone-call-dims" alt="smartphone-call"/>
-						
-					</div>
-					<h2>smartphone-call</h2>
-				</li>
-				<li title="smartphone-plus">
-					<div class="icon-box">
-						
-						<!-- smartphone-plus -->
-						<img src="svg/sprite.view-9b36927a.svg#smartphone-plus" class="hm-icon-smartphone-plus-dims" alt="smartphone-plus"/>
-						
-					</div>
-					<h2>smartphone-plus</h2>
-				</li>
-				<li title="smartphone-ring">
-					<div class="icon-box">
-						
-						<!-- smartphone-ring -->
-						<img src="svg/sprite.view-9b36927a.svg#smartphone-ring" class="hm-icon-smartphone-ring-dims" alt="smartphone-ring"/>
-						
-					</div>
-					<h2>smartphone-ring</h2>
-				</li>
-				<li title="star">
-					<div class="icon-box">
-						
-						<!-- star -->
-						<img src="svg/sprite.view-9b36927a.svg#star" class="hm-icon-star-dims" alt="star"/>
-						
-					</div>
-					<h2>star</h2>
-				</li>
-				<li title="stomach">
-					<div class="icon-box">
-						
-						<!-- stomach -->
-						<img src="svg/sprite.view-9b36927a.svg#stomach" class="hm-icon-stomach-dims" alt="stomach"/>
-						
-					</div>
-					<h2>stomach</h2>
-				</li>
-				<li title="success">
-					<div class="icon-box">
-						
-						<!-- success -->
-						<img src="svg/sprite.view-9b36927a.svg#success" class="hm-icon-success-dims" alt="success"/>
-						
-					</div>
-					<h2>success</h2>
-				</li>
-				<li title="team">
-					<div class="icon-box">
-						
-						<!-- team -->
-						<img src="svg/sprite.view-9b36927a.svg#team" class="hm-icon-team-dims" alt="team"/>
-						
-					</div>
-					<h2>team</h2>
-				</li>
-				<li title="three-dot">
-					<div class="icon-box">
-						
-						<!-- three-dot -->
-						<img src="svg/sprite.view-9b36927a.svg#three-dot" class="hm-icon-three-dot-dims" alt="three-dot"/>
-						
-					</div>
-					<h2>three-dot</h2>
-				</li>
-				<li title="user">
-					<div class="icon-box">
-						
-						<!-- user -->
-						<img src="svg/sprite.view-9b36927a.svg#user" class="hm-icon-user-dims" alt="user"/>
-						
-					</div>
-					<h2>user</h2>
-				</li>
-				<li title="warning">
-					<div class="icon-box">
-						
-						<!-- warning -->
-						<img src="svg/sprite.view-9b36927a.svg#warning" class="hm-icon-warning-dims" alt="warning"/>
-						
-					</div>
-					<h2>warning</h2>
-				</li>
-				<li title="webinar">
-					<div class="icon-box">
-						
-						<!-- webinar -->
-						<img src="svg/sprite.view-9b36927a.svg#webinar" class="hm-icon-webinar-dims" alt="webinar"/>
-						
-					</div>
-					<h2>webinar</h2>
-				</li>
-				<li title="work">
-					<div class="icon-box">
-						
-						<!-- work -->
-						<img src="svg/sprite.view-9b36927a.svg#work" class="hm-icon-work-dims" alt="work"/>
-						
-					</div>
-					<h2>work</h2>
-				</li>
-				<li title="world">
-					<div class="icon-box">
-						
-						<!-- world -->
-						<img src="svg/sprite.view-9b36927a.svg#world" class="hm-icon-world-dims" alt="world"/>
-						
-					</div>
-					<h2>world</h2>
-				</li>
-			</ul>
+        .hm-icon-arrow-down {
+            background: url("svg/sprite.view-9b36927a.svg") 1.8181818181818181% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
 
-<!--
-====================================================================================================
--->
+        .hm-icon-arrow-left {
+            background: url("svg/sprite.view-9b36927a.svg") 3.6363636363636362% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
 
-		</section>
-		<footer>
-			<p>Generated at Fri, 21 Jun 2019 11:55:47 GMT by <a href="https://github.com/jkphl/svg-sprite" target="_blank">svg-sprite</a>.</p>
-		</footer>
-	</body>
+        .hm-icon-auth {
+            background: url("svg/sprite.view-9b36927a.svg") 5.454545454545454% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-avatar {
+            background: url("svg/sprite.view-9b36927a.svg") 7.2727272727272725% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-balance {
+            background: url("svg/sprite.view-9b36927a.svg") 9.090909090909092% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-bone {
+            background: url("svg/sprite.view-9b36927a.svg") 10.909090909090908% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-calendar {
+            background: url("svg/sprite.view-9b36927a.svg") 12.727272727272727% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-cancer {
+            background: url("svg/sprite.view-9b36927a.svg") 14.545454545454545% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-cart {
+            background: url("svg/sprite.view-9b36927a.svg") 16.363636363636363% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-category {
+            background: url("svg/sprite.view-9b36927a.svg") 18.181818181818183% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-classroom {
+            background: url("svg/sprite.view-9b36927a.svg") 20% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-clock {
+            background: url("svg/sprite.view-9b36927a.svg") 21.818181818181817% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-contract {
+            background: url("svg/sprite.view-9b36927a.svg") 23.636363636363637% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-doctor {
+            background: url("svg/sprite.view-9b36927a.svg") 25.454545454545453% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-domain {
+            background: url("svg/sprite.view-9b36927a.svg") 27.272727272727273% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-edit {
+            background: url("svg/sprite.view-9b36927a.svg") 29.09090909090909% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-group {
+            background: url("svg/sprite.view-9b36927a.svg") 30.90909090909091% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-health {
+            background: url("svg/sprite.view-9b36927a.svg") 32.72727272727273% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-heart {
+            background: url("svg/sprite.view-9b36927a.svg") 34.54545454545455% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-heart-rate {
+            background: url("svg/sprite.view-9b36927a.svg") 36.36363636363637% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-history {
+            background: url("svg/sprite.view-9b36927a.svg") 38.18181818181818% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-home {
+            background: url("svg/sprite.view-9b36927a.svg") 40% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-insulin {
+            background: url("svg/sprite.view-9b36927a.svg") 41.81818181818182% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-key {
+            background: url("svg/sprite.view-9b36927a.svg") 43.63636363636363% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-list {
+            background: url("svg/sprite.view-9b36927a.svg") 45.45454545454545% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-lock {
+            background: url("svg/sprite.view-9b36927a.svg") 47.27272727272727% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-logout {
+            background: url("svg/sprite.view-9b36927a.svg") 49.09090909090909% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-love-book {
+            background: url("svg/sprite.view-9b36927a.svg") 50.90909090909091% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-mail {
+            background: url("svg/sprite.view-9b36927a.svg") 52.72727272727273% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-money-transfer {
+            background: url("svg/sprite.view-9b36927a.svg") 54.54545454545455% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-payment {
+            background: url("svg/sprite.view-9b36927a.svg") 56.36363636363637% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-play-button {
+            background: url("svg/sprite.view-9b36927a.svg") 58.18181818181818% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-plus {
+            background: url("svg/sprite.view-9b36927a.svg") 60% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-price-tag {
+            background: url("svg/sprite.view-9b36927a.svg") 61.81818181818182% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-profile {
+            background: url("svg/sprite.view-9b36927a.svg") 63.63636363636363% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-question {
+            background: url("svg/sprite.view-9b36927a.svg") 65.45454545454545% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-rating {
+            background: url("svg/sprite.view-9b36927a.svg") 67.27272727272727% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-refresh {
+            background: url("svg/sprite.view-9b36927a.svg") 69.0909090909091% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-rocket-launch {
+            background: url("svg/sprite.view-9b36927a.svg") 70.9090909090909% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-save {
+            background: url("svg/sprite.view-9b36927a.svg") 72.72727272727273% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-scale {
+            background: url("svg/sprite.view-9b36927a.svg") 74.54545454545455% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-screen {
+            background: url("svg/sprite.view-9b36927a.svg") 76.36363636363636% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-smartphone-call {
+            background: url("svg/sprite.view-9b36927a.svg") 78.18181818181819% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-smartphone-plus {
+            background: url("svg/sprite.view-9b36927a.svg") 80% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-smartphone-ring {
+            background: url("svg/sprite.view-9b36927a.svg") 81.81818181818181% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-star {
+            background: url("svg/sprite.view-9b36927a.svg") 83.63636363636364% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-stomach {
+            background: url("svg/sprite.view-9b36927a.svg") 85.45454545454545% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-success {
+            background: url("svg/sprite.view-9b36927a.svg") 87.27272727272727% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-team {
+            background: url("svg/sprite.view-9b36927a.svg") 89.0909090909091% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-three-dot {
+            background: url("svg/sprite.view-9b36927a.svg") 90.9090909090909% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-user {
+            background: url("svg/sprite.view-9b36927a.svg") 92.72727272727273% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-warning {
+            background: url("svg/sprite.view-9b36927a.svg") 94.54545454545455% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-webinar {
+            background: url("svg/sprite.view-9b36927a.svg") 96.36363636363636% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-work {
+            background: url("svg/sprite.view-9b36927a.svg") 98.18181818181819% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-world {
+            background: url("svg/sprite.view-9b36927a.svg") 100% 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+
+    <!--
+        
+    Sprite shape dimensions
+    ====================================================================================================
+    If you use the sprite in conjunction with the pre-defined views (respectively fragment identifiers),
+    you will need to set the shape dimensions via CSS unless you want them to become a huge 100% in
+    size. You may use the following CSS classes for doing so. They might well be outsourced to an
+    external stylesheet of course.
+    
+    -->
+
+    <style type="text/css">
+        .hm-icon-account-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-arrow-down-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-arrow-left-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-auth-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-avatar-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-balance-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-bone-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-calendar-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-cancer-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-cart-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-category-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-classroom-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-clock-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-contract-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-doctor-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-domain-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-edit-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-group-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-health-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-heart-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-heart-rate-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-history-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-home-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-insulin-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-key-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-list-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-lock-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-logout-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-love-book-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-mail-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-money-transfer-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-payment-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-play-button-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-plus-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-price-tag-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-profile-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-question-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-rating-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-refresh-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-rocket-launch-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-save-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-scale-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-screen-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-smartphone-call-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-smartphone-plus-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-smartphone-ring-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-star-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-stomach-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-success-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-team-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-three-dot-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-user-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-warning-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-webinar-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-work-dims {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hm-icon-world-dims {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+
+    <!--
+    ====================================================================================================
+    -->
+
+</head>
+<body>
+<header>
+    <h1>SVG <code>&lt;view&gt;</code> sprite preview</h1>
+    <p>This preview features two methods of using the generated sprite. Please have a look at the HTML source for
+        further details and be aware of the following constraints regarding the prepared <code>&lt;view&gt;</code>
+        elements (technique B):</p>
+    <ul>
+        <li>Your browser has to <a href="http://caniuse.com/#feat=svg-fragment" target="_blank">support SVG fragment
+            identifiers</a> for SVG stacks to work.
+        </li>
+        <li>Support for SVG fragment identifiers hasn't always been that decent. For older browsers you might have to
+            use a prolyfill (if available?).
+        </li>
+    </ul>
+</header>
+<section>
+
+    <!--
+        
+    A) Conventional CSS sprite
+    ====================================================================================================
+    This technique uses CSS classes to display portions of the sprite as background image of
+    appropriately sized elements.
+    
+    -->
+
+    <h3>A) Conventional CSS sprite</h3>
+    <ul>
+
+        <li title="account">
+            <div class="icon-box">
+
+                <!-- account -->
+                <i class="hm-icon-account">account</i>
+
+            </div>
+            <h2>account</h2>
+        </li>
+        <li title="arrow-down">
+            <div class="icon-box">
+
+                <!-- arrow-down -->
+                <i class="hm-icon-arrow-down">arrow-down</i>
+
+            </div>
+            <h2>arrow-down</h2>
+        </li>
+        <li title="arrow-left">
+            <div class="icon-box">
+
+                <!-- arrow-left -->
+                <i class="hm-icon-arrow-left">arrow-left</i>
+
+            </div>
+            <h2>arrow-left</h2>
+        </li>
+        <li title="auth">
+            <div class="icon-box">
+
+                <!-- auth -->
+                <i class="hm-icon-auth">auth</i>
+
+            </div>
+            <h2>auth</h2>
+        </li>
+        <li title="avatar">
+            <div class="icon-box">
+
+                <!-- avatar -->
+                <i class="hm-icon-avatar">avatar</i>
+
+            </div>
+            <h2>avatar</h2>
+        </li>
+        <li title="balance">
+            <div class="icon-box">
+
+                <!-- balance -->
+                <i class="hm-icon-balance">balance</i>
+
+            </div>
+            <h2>balance</h2>
+        </li>
+        <li title="bone">
+            <div class="icon-box">
+
+                <!-- bone -->
+                <i class="hm-icon-bone">bone</i>
+
+            </div>
+            <h2>bone</h2>
+        </li>
+        <li title="calendar">
+            <div class="icon-box">
+
+                <!-- calendar -->
+                <i class="hm-icon-calendar">calendar</i>
+
+            </div>
+            <h2>calendar</h2>
+        </li>
+        <li title="cancer">
+            <div class="icon-box">
+
+                <!-- cancer -->
+                <i class="hm-icon-cancer">cancer</i>
+
+            </div>
+            <h2>cancer</h2>
+        </li>
+        <li title="cart">
+            <div class="icon-box">
+
+                <!-- cart -->
+                <i class="hm-icon-cart">cart</i>
+
+            </div>
+            <h2>cart</h2>
+        </li>
+        <li title="category">
+            <div class="icon-box">
+
+                <!-- category -->
+                <i class="hm-icon-category">category</i>
+
+            </div>
+            <h2>category</h2>
+        </li>
+        <li title="classroom">
+            <div class="icon-box">
+
+                <!-- classroom -->
+                <i class="hm-icon-classroom">classroom</i>
+
+            </div>
+            <h2>classroom</h2>
+        </li>
+        <li title="clock">
+            <div class="icon-box">
+
+                <!-- clock -->
+                <i class="hm-icon-clock">clock</i>
+
+            </div>
+            <h2>clock</h2>
+        </li>
+        <li title="contract">
+            <div class="icon-box">
+
+                <!-- contract -->
+                <i class="hm-icon-contract">contract</i>
+
+            </div>
+            <h2>contract</h2>
+        </li>
+        <li title="doctor">
+            <div class="icon-box">
+
+                <!-- doctor -->
+                <i class="hm-icon-doctor">doctor</i>
+
+            </div>
+            <h2>doctor</h2>
+        </li>
+        <li title="domain">
+            <div class="icon-box">
+
+                <!-- domain -->
+                <i class="hm-icon-domain">domain</i>
+
+            </div>
+            <h2>domain</h2>
+        </li>
+        <li title="edit">
+            <div class="icon-box">
+
+                <!-- edit -->
+                <i class="hm-icon-edit">edit</i>
+
+            </div>
+            <h2>edit</h2>
+        </li>
+        <li title="group">
+            <div class="icon-box">
+
+                <!-- group -->
+                <i class="hm-icon-group">group</i>
+
+            </div>
+            <h2>group</h2>
+        </li>
+        <li title="health">
+            <div class="icon-box">
+
+                <!-- health -->
+                <i class="hm-icon-health">health</i>
+
+            </div>
+            <h2>health</h2>
+        </li>
+        <li title="heart">
+            <div class="icon-box">
+
+                <!-- heart -->
+                <i class="hm-icon-heart">heart</i>
+
+            </div>
+            <h2>heart</h2>
+        </li>
+        <li title="heart-rate">
+            <div class="icon-box">
+
+                <!-- heart-rate -->
+                <i class="hm-icon-heart-rate">heart-rate</i>
+
+            </div>
+            <h2>heart-rate</h2>
+        </li>
+        <li title="history">
+            <div class="icon-box">
+
+                <!-- history -->
+                <i class="hm-icon-history">history</i>
+
+            </div>
+            <h2>history</h2>
+        </li>
+        <li title="home">
+            <div class="icon-box">
+
+                <!-- home -->
+                <i class="hm-icon-home">home</i>
+
+            </div>
+            <h2>home</h2>
+        </li>
+        <li title="insulin">
+            <div class="icon-box">
+
+                <!-- insulin -->
+                <i class="hm-icon-insulin">insulin</i>
+
+            </div>
+            <h2>insulin</h2>
+        </li>
+        <li title="key">
+            <div class="icon-box">
+
+                <!-- key -->
+                <i class="hm-icon-key">key</i>
+
+            </div>
+            <h2>key</h2>
+        </li>
+        <li title="list">
+            <div class="icon-box">
+
+                <!-- list -->
+                <i class="hm-icon-list">list</i>
+
+            </div>
+            <h2>list</h2>
+        </li>
+        <li title="lock">
+            <div class="icon-box">
+
+                <!-- lock -->
+                <i class="hm-icon-lock">lock</i>
+
+            </div>
+            <h2>lock</h2>
+        </li>
+        <li title="logout">
+            <div class="icon-box">
+
+                <!-- logout -->
+                <i class="hm-icon-logout">logout</i>
+
+            </div>
+            <h2>logout</h2>
+        </li>
+        <li title="love-book">
+            <div class="icon-box">
+
+                <!-- love-book -->
+                <i class="hm-icon-love-book">love-book</i>
+
+            </div>
+            <h2>love-book</h2>
+        </li>
+        <li title="mail">
+            <div class="icon-box">
+
+                <!-- mail -->
+                <i class="hm-icon-mail">mail</i>
+
+            </div>
+            <h2>mail</h2>
+        </li>
+        <li title="money-transfer">
+            <div class="icon-box">
+
+                <!-- money-transfer -->
+                <i class="hm-icon-money-transfer">money-transfer</i>
+
+            </div>
+            <h2>money-transfer</h2>
+        </li>
+        <li title="payment">
+            <div class="icon-box">
+
+                <!-- payment -->
+                <i class="hm-icon-payment">payment</i>
+
+            </div>
+            <h2>payment</h2>
+        </li>
+        <li title="play-button">
+            <div class="icon-box">
+
+                <!-- play-button -->
+                <i class="hm-icon-play-button">play-button</i>
+
+            </div>
+            <h2>play-button</h2>
+        </li>
+        <li title="plus">
+            <div class="icon-box">
+
+                <!-- plus -->
+                <i class="hm-icon-plus">plus</i>
+
+            </div>
+            <h2>plus</h2>
+        </li>
+        <li title="price-tag">
+            <div class="icon-box">
+
+                <!-- price-tag -->
+                <i class="hm-icon-price-tag">price-tag</i>
+
+            </div>
+            <h2>price-tag</h2>
+        </li>
+        <li title="profile">
+            <div class="icon-box">
+
+                <!-- profile -->
+                <i class="hm-icon-profile">profile</i>
+
+            </div>
+            <h2>profile</h2>
+        </li>
+        <li title="question">
+            <div class="icon-box">
+
+                <!-- question -->
+                <i class="hm-icon-question">question</i>
+
+            </div>
+            <h2>question</h2>
+        </li>
+        <li title="rating">
+            <div class="icon-box">
+
+                <!-- rating -->
+                <i class="hm-icon-rating">rating</i>
+
+            </div>
+            <h2>rating</h2>
+        </li>
+        <li title="refresh">
+            <div class="icon-box">
+
+                <!-- refresh -->
+                <i class="hm-icon-refresh">refresh</i>
+
+            </div>
+            <h2>refresh</h2>
+        </li>
+        <li title="rocket-launch">
+            <div class="icon-box">
+
+                <!-- rocket-launch -->
+                <i class="hm-icon-rocket-launch">rocket-launch</i>
+
+            </div>
+            <h2>rocket-launch</h2>
+        </li>
+        <li title="save">
+            <div class="icon-box">
+
+                <!-- save -->
+                <i class="hm-icon-save">save</i>
+
+            </div>
+            <h2>save</h2>
+        </li>
+        <li title="scale">
+            <div class="icon-box">
+
+                <!-- scale -->
+                <i class="hm-icon-scale">scale</i>
+
+            </div>
+            <h2>scale</h2>
+        </li>
+        <li title="screen">
+            <div class="icon-box">
+
+                <!-- screen -->
+                <i class="hm-icon-screen">screen</i>
+
+            </div>
+            <h2>screen</h2>
+        </li>
+        <li title="smartphone-call">
+            <div class="icon-box">
+
+                <!-- smartphone-call -->
+                <i class="hm-icon-smartphone-call">smartphone-call</i>
+
+            </div>
+            <h2>smartphone-call</h2>
+        </li>
+        <li title="smartphone-plus">
+            <div class="icon-box">
+
+                <!-- smartphone-plus -->
+                <i class="hm-icon-smartphone-plus">smartphone-plus</i>
+
+            </div>
+            <h2>smartphone-plus</h2>
+        </li>
+        <li title="smartphone-ring">
+            <div class="icon-box">
+
+                <!-- smartphone-ring -->
+                <i class="hm-icon-smartphone-ring">smartphone-ring</i>
+
+            </div>
+            <h2>smartphone-ring</h2>
+        </li>
+        <li title="star">
+            <div class="icon-box">
+
+                <!-- star -->
+                <i class="hm-icon-star">star</i>
+
+            </div>
+            <h2>star</h2>
+        </li>
+        <li title="stomach">
+            <div class="icon-box">
+
+                <!-- stomach -->
+                <i class="hm-icon-stomach">stomach</i>
+
+            </div>
+            <h2>stomach</h2>
+        </li>
+        <li title="success">
+            <div class="icon-box">
+
+                <!-- success -->
+                <i class="hm-icon-success">success</i>
+
+            </div>
+            <h2>success</h2>
+        </li>
+        <li title="team">
+            <div class="icon-box">
+
+                <!-- team -->
+                <i class="hm-icon-team">team</i>
+
+            </div>
+            <h2>team</h2>
+        </li>
+        <li title="three-dot">
+            <div class="icon-box">
+
+                <!-- three-dot -->
+                <i class="hm-icon-three-dot">three-dot</i>
+
+            </div>
+            <h2>three-dot</h2>
+        </li>
+        <li title="user">
+            <div class="icon-box">
+
+                <!-- user -->
+                <i class="hm-icon-user">user</i>
+
+            </div>
+            <h2>user</h2>
+        </li>
+        <li title="warning">
+            <div class="icon-box">
+
+                <!-- warning -->
+                <i class="hm-icon-warning">warning</i>
+
+            </div>
+            <h2>warning</h2>
+        </li>
+        <li title="webinar">
+            <div class="icon-box">
+
+                <!-- webinar -->
+                <i class="hm-icon-webinar">webinar</i>
+
+            </div>
+            <h2>webinar</h2>
+        </li>
+        <li title="work">
+            <div class="icon-box">
+
+                <!-- work -->
+                <i class="hm-icon-work">work</i>
+
+            </div>
+            <h2>work</h2>
+        </li>
+        <li title="world">
+            <div class="icon-box">
+
+                <!-- world -->
+                <i class="hm-icon-world">world</i>
+
+            </div>
+            <h2>world</h2>
+        </li>
+    </ul>
+
+    <!--
+    ====================================================================================================
+    -->
+
+</section>
+<section>
+
+    <!--
+        
+    B) External sprite with pre-defined views referenced by fragment identifiers
+    ====================================================================================================
+    These SVG images make use of fragment identifiers (IDs) and are referencing the <view> elements
+    pre-defined in the external sprite.
+    
+    -->
+
+    <h3>B) External sprite with pre-defined views referenced by fragment identifiers</h3>
+    <ul>
+
+        <li title="account">
+            <div class="icon-box">
+
+                <!-- account -->
+                <img src="svg/sprite.view-9b36927a.svg#account" class="hm-icon-account-dims" alt="account"/>
+
+            </div>
+            <h2>account</h2>
+        </li>
+        <li title="arrow-down">
+            <div class="icon-box">
+
+                <!-- arrow-down -->
+                <img src="svg/sprite.view-9b36927a.svg#arrow-down" class="hm-icon-arrow-down-dims" alt="arrow-down"/>
+
+            </div>
+            <h2>arrow-down</h2>
+        </li>
+        <li title="arrow-left">
+            <div class="icon-box">
+
+                <!-- arrow-left -->
+                <img src="svg/sprite.view-9b36927a.svg#arrow-left" class="hm-icon-arrow-left-dims" alt="arrow-left"/>
+
+            </div>
+            <h2>arrow-left</h2>
+        </li>
+        <li title="auth">
+            <div class="icon-box">
+
+                <!-- auth -->
+                <img src="svg/sprite.view-9b36927a.svg#auth" class="hm-icon-auth-dims" alt="auth"/>
+
+            </div>
+            <h2>auth</h2>
+        </li>
+        <li title="avatar">
+            <div class="icon-box">
+
+                <!-- avatar -->
+                <img src="svg/sprite.view-9b36927a.svg#avatar" class="hm-icon-avatar-dims" alt="avatar"/>
+
+            </div>
+            <h2>avatar</h2>
+        </li>
+        <li title="balance">
+            <div class="icon-box">
+
+                <!-- balance -->
+                <img src="svg/sprite.view-9b36927a.svg#balance" class="hm-icon-balance-dims" alt="balance"/>
+
+            </div>
+            <h2>balance</h2>
+        </li>
+        <li title="bone">
+            <div class="icon-box">
+
+                <!-- bone -->
+                <img src="svg/sprite.view-9b36927a.svg#bone" class="hm-icon-bone-dims" alt="bone"/>
+
+            </div>
+            <h2>bone</h2>
+        </li>
+        <li title="calendar">
+            <div class="icon-box">
+
+                <!-- calendar -->
+                <img src="svg/sprite.view-9b36927a.svg#calendar" class="hm-icon-calendar-dims" alt="calendar"/>
+
+            </div>
+            <h2>calendar</h2>
+        </li>
+        <li title="cancer">
+            <div class="icon-box">
+
+                <!-- cancer -->
+                <img src="svg/sprite.view-9b36927a.svg#cancer" class="hm-icon-cancer-dims" alt="cancer"/>
+
+            </div>
+            <h2>cancer</h2>
+        </li>
+        <li title="cart">
+            <div class="icon-box">
+
+                <!-- cart -->
+                <img src="svg/sprite.view-9b36927a.svg#cart" class="hm-icon-cart-dims" alt="cart"/>
+
+            </div>
+            <h2>cart</h2>
+        </li>
+        <li title="category">
+            <div class="icon-box">
+
+                <!-- category -->
+                <img src="svg/sprite.view-9b36927a.svg#category" class="hm-icon-category-dims" alt="category"/>
+
+            </div>
+            <h2>category</h2>
+        </li>
+        <li title="classroom">
+            <div class="icon-box">
+
+                <!-- classroom -->
+                <img src="svg/sprite.view-9b36927a.svg#classroom" class="hm-icon-classroom-dims" alt="classroom"/>
+
+            </div>
+            <h2>classroom</h2>
+        </li>
+        <li title="clock">
+            <div class="icon-box">
+
+                <!-- clock -->
+                <img src="svg/sprite.view-9b36927a.svg#clock" class="hm-icon-clock-dims" alt="clock"/>
+
+            </div>
+            <h2>clock</h2>
+        </li>
+        <li title="contract">
+            <div class="icon-box">
+
+                <!-- contract -->
+                <img src="svg/sprite.view-9b36927a.svg#contract" class="hm-icon-contract-dims" alt="contract"/>
+
+            </div>
+            <h2>contract</h2>
+        </li>
+        <li title="doctor">
+            <div class="icon-box">
+
+                <!-- doctor -->
+                <img src="svg/sprite.view-9b36927a.svg#doctor" class="hm-icon-doctor-dims" alt="doctor"/>
+
+            </div>
+            <h2>doctor</h2>
+        </li>
+        <li title="domain">
+            <div class="icon-box">
+
+                <!-- domain -->
+                <img src="svg/sprite.view-9b36927a.svg#domain" class="hm-icon-domain-dims" alt="domain"/>
+
+            </div>
+            <h2>domain</h2>
+        </li>
+        <li title="edit">
+            <div class="icon-box">
+
+                <!-- edit -->
+                <img src="svg/sprite.view-9b36927a.svg#edit" class="hm-icon-edit-dims" alt="edit"/>
+
+            </div>
+            <h2>edit</h2>
+        </li>
+        <li title="group">
+            <div class="icon-box">
+
+                <!-- group -->
+                <img src="svg/sprite.view-9b36927a.svg#group" class="hm-icon-group-dims" alt="group"/>
+
+            </div>
+            <h2>group</h2>
+        </li>
+        <li title="health">
+            <div class="icon-box">
+
+                <!-- health -->
+                <img src="svg/sprite.view-9b36927a.svg#health" class="hm-icon-health-dims" alt="health"/>
+
+            </div>
+            <h2>health</h2>
+        </li>
+        <li title="heart">
+            <div class="icon-box">
+
+                <!-- heart -->
+                <img src="svg/sprite.view-9b36927a.svg#heart" class="hm-icon-heart-dims" alt="heart"/>
+
+            </div>
+            <h2>heart</h2>
+        </li>
+        <li title="heart-rate">
+            <div class="icon-box">
+
+                <!-- heart-rate -->
+                <img src="svg/sprite.view-9b36927a.svg#heart-rate" class="hm-icon-heart-rate-dims" alt="heart-rate"/>
+
+            </div>
+            <h2>heart-rate</h2>
+        </li>
+        <li title="history">
+            <div class="icon-box">
+
+                <!-- history -->
+                <img src="svg/sprite.view-9b36927a.svg#history" class="hm-icon-history-dims" alt="history"/>
+
+            </div>
+            <h2>history</h2>
+        </li>
+        <li title="home">
+            <div class="icon-box">
+
+                <!-- home -->
+                <img src="svg/sprite.view-9b36927a.svg#home" class="hm-icon-home-dims" alt="home"/>
+
+            </div>
+            <h2>home</h2>
+        </li>
+        <li title="insulin">
+            <div class="icon-box">
+
+                <!-- insulin -->
+                <img src="svg/sprite.view-9b36927a.svg#insulin" class="hm-icon-insulin-dims" alt="insulin"/>
+
+            </div>
+            <h2>insulin</h2>
+        </li>
+        <li title="key">
+            <div class="icon-box">
+
+                <!-- key -->
+                <img src="svg/sprite.view-9b36927a.svg#key" class="hm-icon-key-dims" alt="key"/>
+
+            </div>
+            <h2>key</h2>
+        </li>
+        <li title="list">
+            <div class="icon-box">
+
+                <!-- list -->
+                <img src="svg/sprite.view-9b36927a.svg#list" class="hm-icon-list-dims" alt="list"/>
+
+            </div>
+            <h2>list</h2>
+        </li>
+        <li title="lock">
+            <div class="icon-box">
+
+                <!-- lock -->
+                <img src="svg/sprite.view-9b36927a.svg#lock" class="hm-icon-lock-dims" alt="lock"/>
+
+            </div>
+            <h2>lock</h2>
+        </li>
+        <li title="logout">
+            <div class="icon-box">
+
+                <!-- logout -->
+                <img src="svg/sprite.view-9b36927a.svg#logout" class="hm-icon-logout-dims" alt="logout"/>
+
+            </div>
+            <h2>logout</h2>
+        </li>
+        <li title="love-book">
+            <div class="icon-box">
+
+                <!-- love-book -->
+                <img src="svg/sprite.view-9b36927a.svg#love-book" class="hm-icon-love-book-dims" alt="love-book"/>
+
+            </div>
+            <h2>love-book</h2>
+        </li>
+        <li title="mail">
+            <div class="icon-box">
+
+                <!-- mail -->
+                <img src="svg/sprite.view-9b36927a.svg#mail" class="hm-icon-mail-dims" alt="mail"/>
+
+            </div>
+            <h2>mail</h2>
+        </li>
+        <li title="money-transfer">
+            <div class="icon-box">
+
+                <!-- money-transfer -->
+                <img src="svg/sprite.view-9b36927a.svg#money-transfer" class="hm-icon-money-transfer-dims"
+                     alt="money-transfer"/>
+
+            </div>
+            <h2>money-transfer</h2>
+        </li>
+        <li title="payment">
+            <div class="icon-box">
+
+                <!-- payment -->
+                <img src="svg/sprite.view-9b36927a.svg#payment" class="hm-icon-payment-dims" alt="payment"/>
+
+            </div>
+            <h2>payment</h2>
+        </li>
+        <li title="play-button">
+            <div class="icon-box">
+
+                <!-- play-button -->
+                <img src="svg/sprite.view-9b36927a.svg#play-button" class="hm-icon-play-button-dims" alt="play-button"/>
+
+            </div>
+            <h2>play-button</h2>
+        </li>
+        <li title="plus">
+            <div class="icon-box">
+
+                <!-- plus -->
+                <img src="svg/sprite.view-9b36927a.svg#plus" class="hm-icon-plus-dims" alt="plus"/>
+
+            </div>
+            <h2>plus</h2>
+        </li>
+        <li title="price-tag">
+            <div class="icon-box">
+
+                <!-- price-tag -->
+                <img src="svg/sprite.view-9b36927a.svg#price-tag" class="hm-icon-price-tag-dims" alt="price-tag"/>
+
+            </div>
+            <h2>price-tag</h2>
+        </li>
+        <li title="profile">
+            <div class="icon-box">
+
+                <!-- profile -->
+                <img src="svg/sprite.view-9b36927a.svg#profile" class="hm-icon-profile-dims" alt="profile"/>
+
+            </div>
+            <h2>profile</h2>
+        </li>
+        <li title="question">
+            <div class="icon-box">
+
+                <!-- question -->
+                <img src="svg/sprite.view-9b36927a.svg#question" class="hm-icon-question-dims" alt="question"/>
+
+            </div>
+            <h2>question</h2>
+        </li>
+        <li title="rating">
+            <div class="icon-box">
+
+                <!-- rating -->
+                <img src="svg/sprite.view-9b36927a.svg#rating" class="hm-icon-rating-dims" alt="rating"/>
+
+            </div>
+            <h2>rating</h2>
+        </li>
+        <li title="refresh">
+            <div class="icon-box">
+
+                <!-- refresh -->
+                <img src="svg/sprite.view-9b36927a.svg#refresh" class="hm-icon-refresh-dims" alt="refresh"/>
+
+            </div>
+            <h2>refresh</h2>
+        </li>
+        <li title="rocket-launch">
+            <div class="icon-box">
+
+                <!-- rocket-launch -->
+                <img src="svg/sprite.view-9b36927a.svg#rocket-launch" class="hm-icon-rocket-launch-dims"
+                     alt="rocket-launch"/>
+
+            </div>
+            <h2>rocket-launch</h2>
+        </li>
+        <li title="save">
+            <div class="icon-box">
+
+                <!-- save -->
+                <img src="svg/sprite.view-9b36927a.svg#save" class="hm-icon-save-dims" alt="save"/>
+
+            </div>
+            <h2>save</h2>
+        </li>
+        <li title="scale">
+            <div class="icon-box">
+
+                <!-- scale -->
+                <img src="svg/sprite.view-9b36927a.svg#scale" class="hm-icon-scale-dims" alt="scale"/>
+
+            </div>
+            <h2>scale</h2>
+        </li>
+        <li title="screen">
+            <div class="icon-box">
+
+                <!-- screen -->
+                <img src="svg/sprite.view-9b36927a.svg#screen" class="hm-icon-screen-dims" alt="screen"/>
+
+            </div>
+            <h2>screen</h2>
+        </li>
+        <li title="smartphone-call">
+            <div class="icon-box">
+
+                <!-- smartphone-call -->
+                <img src="svg/sprite.view-9b36927a.svg#smartphone-call" class="hm-icon-smartphone-call-dims"
+                     alt="smartphone-call"/>
+
+            </div>
+            <h2>smartphone-call</h2>
+        </li>
+        <li title="smartphone-plus">
+            <div class="icon-box">
+
+                <!-- smartphone-plus -->
+                <img src="svg/sprite.view-9b36927a.svg#smartphone-plus" class="hm-icon-smartphone-plus-dims"
+                     alt="smartphone-plus"/>
+
+            </div>
+            <h2>smartphone-plus</h2>
+        </li>
+        <li title="smartphone-ring">
+            <div class="icon-box">
+
+                <!-- smartphone-ring -->
+                <img src="svg/sprite.view-9b36927a.svg#smartphone-ring" class="hm-icon-smartphone-ring-dims"
+                     alt="smartphone-ring"/>
+
+            </div>
+            <h2>smartphone-ring</h2>
+        </li>
+        <li title="star">
+            <div class="icon-box">
+
+                <!-- star -->
+                <img src="svg/sprite.view-9b36927a.svg#star" class="hm-icon-star-dims" alt="star"/>
+
+            </div>
+            <h2>star</h2>
+        </li>
+        <li title="stomach">
+            <div class="icon-box">
+
+                <!-- stomach -->
+                <img src="svg/sprite.view-9b36927a.svg#stomach" class="hm-icon-stomach-dims" alt="stomach"/>
+
+            </div>
+            <h2>stomach</h2>
+        </li>
+        <li title="success">
+            <div class="icon-box">
+
+                <!-- success -->
+                <img src="svg/sprite.view-9b36927a.svg#success" class="hm-icon-success-dims" alt="success"/>
+
+            </div>
+            <h2>success</h2>
+        </li>
+        <li title="team">
+            <div class="icon-box">
+
+                <!-- team -->
+                <img src="svg/sprite.view-9b36927a.svg#team" class="hm-icon-team-dims" alt="team"/>
+
+            </div>
+            <h2>team</h2>
+        </li>
+        <li title="three-dot">
+            <div class="icon-box">
+
+                <!-- three-dot -->
+                <img src="svg/sprite.view-9b36927a.svg#three-dot" class="hm-icon-three-dot-dims" alt="three-dot"/>
+
+            </div>
+            <h2>three-dot</h2>
+        </li>
+        <li title="user">
+            <div class="icon-box">
+
+                <!-- user -->
+                <img src="svg/sprite.view-9b36927a.svg#user" class="hm-icon-user-dims" alt="user"/>
+
+            </div>
+            <h2>user</h2>
+        </li>
+        <li title="warning">
+            <div class="icon-box">
+
+                <!-- warning -->
+                <img src="svg/sprite.view-9b36927a.svg#warning" class="hm-icon-warning-dims" alt="warning"/>
+
+            </div>
+            <h2>warning</h2>
+        </li>
+        <li title="webinar">
+            <div class="icon-box">
+
+                <!-- webinar -->
+                <img src="svg/sprite.view-9b36927a.svg#webinar" class="hm-icon-webinar-dims" alt="webinar"/>
+
+            </div>
+            <h2>webinar</h2>
+        </li>
+        <li title="work">
+            <div class="icon-box">
+
+                <!-- work -->
+                <img src="svg/sprite.view-9b36927a.svg#work" class="hm-icon-work-dims" alt="work"/>
+
+            </div>
+            <h2>work</h2>
+        </li>
+        <li title="world">
+            <div class="icon-box">
+
+                <!-- world -->
+                <img src="svg/sprite.view-9b36927a.svg#world" class="hm-icon-world-dims" alt="world"/>
+
+            </div>
+            <h2>world</h2>
+        </li>
+    </ul>
+
+    <!--
+    ====================================================================================================
+    -->
+
+</section>
+<footer>
+    <p>Generated at Fri, 21 Jun 2019 11:55:47 GMT by <a href="https://github.com/jkphl/svg-sprite" target="_blank">svg-sprite</a>.
+    </p>
+</footer>
+</body>
 </html>

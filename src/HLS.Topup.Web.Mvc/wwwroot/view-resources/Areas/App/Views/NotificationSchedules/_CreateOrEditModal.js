@@ -84,9 +84,11 @@
         var names = ["{firt_name}", "{last_name}", "{full_name}", "{email}", "{phone}"];
 
         var namesMap = $.map(names, function (value, i) {
-            return { 'id': i, 'name': value, 'description': value + " (thuộc tính)" };
+            return {'id': i, 'name': value, 'description': value + " (thuộc tính)"};
         });
-        var emojisMap = $.map(emojis, function (value, i) { return { key: value, name: value } });
+        var emojisMap = $.map(emojis, function (value, i) {
+            return {key: value, name: value}
+        });
 
         var at_config = {
             at: "@",

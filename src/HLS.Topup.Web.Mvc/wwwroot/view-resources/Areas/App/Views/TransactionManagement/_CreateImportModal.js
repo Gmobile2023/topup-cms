@@ -57,10 +57,11 @@
                 _dataTable.rows().remove();
                 if (response.result.responseCode == "01") {
                     data = response.result.payload;
-                    data.forEach(function (v) { delete v.discount; });
+                    data.forEach(function (v) {
+                        delete v.discount;
+                    });
                     _dataTable.rows.add(data).draw();
-                }
-                else {
+                } else {
                     abp.message.warn(response.result.responseMessage);
                 }
             }).always(function () {
@@ -81,7 +82,7 @@
                 _modalManager.setBusy(false);
                 if (response.result.responseCode === "01") {
                     abp.message.info("Chuyển đổi trạng thái giao dịch bằng file đang được xử lý....");
-                    _modalManager.close();                   
+                    _modalManager.close();
                 } else {
                     abp.message.warn(response.result.responseMessage);
                 }

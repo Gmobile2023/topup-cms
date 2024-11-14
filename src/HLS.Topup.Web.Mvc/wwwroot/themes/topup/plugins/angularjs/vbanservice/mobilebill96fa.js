@@ -74,10 +74,10 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
             $("#ico_viettel").css("display", "");
         } else {
             $("#ico_viettel").css("display", "none");
-        };
+        }
 
         var vinaRegx =
-           /^(0129|0127|0125|0124|0123|094|091|088|081|082|083|084|085|087)\d{7}$/;
+            /^(0129|0127|0125|0124|0123|094|091|088|081|082|083|084|085|087)\d{7}$/;
         var isCheckVina = vinaRegx.test(initCheck);
         if (isCheckVina) {
             $("#ico_vinaphone").css("display", "");
@@ -85,34 +85,34 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
         } else {
             $scope.isvinaphone = "0";
             $("#ico_vinaphone").css("display", "none");
-        };
+        }
 
         var mobiRegx =
-           /^(090|093|0120|0121|0122|0126|0128|089|070|076|077|078|079)\d{7}$/;
+            /^(090|093|0120|0121|0122|0126|0128|089|070|076|077|078|079)\d{7}$/;
         var isCheckMobi = mobiRegx.test(initCheck);
         if (isCheckMobi) {
             $("#ico_mobi").css("display", "");
         } else {
             $("#ico_mobi").css("display", "none");
-        };
+        }
 
         var vietnammobiRegx =
-        /^(092|0188|0186|056|058)\d{7}$/;
+            /^(092|0188|0186|056|058)\d{7}$/;
         var isCheckVietnamMobi = vietnammobiRegx.test(initCheck);
         if (isCheckVietnamMobi) {
             $("#ico_vnmobi").css("display", "");
         } else {
             $("#ico_vnmobi").css("display", "none");
-        };
+        }
 
         var beelineRegx =
-      /^(099|0199|059)\d{7}$/;
+            /^(099|0199|059)\d{7}$/;
         var isCheckBeeLine = beelineRegx.test(initCheck);
         if (isCheckBeeLine) {
             $("#ico_beeline").css("display", "");
         } else {
             $("#ico_beeline").css("display", "none");
-        };
+        }
     }
 
     $scope.getCity = function () {
@@ -188,35 +188,35 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
             //        $scope.$apply();
             //    $('#error-modal').modal();
             //} else {
-                $.ajax({
-                    url: "../../service/valid-gift-code",
-                    data: {
-                        addData: "MOBILEBILLING-" + $scope.cusmobile,
-                        giftcode: $scope.giftcode,
-                        price: $scope.amount
-                    },
-                    type: "POST",
-                    beforeSend: function() {
-                    },
-                    complete: function() {
-                    },
-                    success: function(data) {
-                        if (data.Code === '00') {
-                            $scope.giftcodevalue = data.GiftCodeValue;
-                            $scope.amountpay = data.AmountPay;
-                            $scope.isGiftCodeValid = '1';
-                            $scope.isGiftCodeNotValid = '0';
-                            $scope.gifterrormsg = '';
-                        } else {
-                            $scope.isGiftCodeValid = '0';
-                            $scope.isGiftCodeNotValid = '1';
-                            $scope.gifterrormsg = 'Mã Gift Code bị khóa hoặc hết hạn. Vui lòng liên hệ ĐT hỗ trợ 1900 5555 77';
-                        }
-                        if (!$scope.$$phase)
-                            $scope.$apply();
-                    },
-                    error: ""
-                });
+            $.ajax({
+                url: "../../service/valid-gift-code",
+                data: {
+                    addData: "MOBILEBILLING-" + $scope.cusmobile,
+                    giftcode: $scope.giftcode,
+                    price: $scope.amount
+                },
+                type: "POST",
+                beforeSend: function () {
+                },
+                complete: function () {
+                },
+                success: function (data) {
+                    if (data.Code === '00') {
+                        $scope.giftcodevalue = data.GiftCodeValue;
+                        $scope.amountpay = data.AmountPay;
+                        $scope.isGiftCodeValid = '1';
+                        $scope.isGiftCodeNotValid = '0';
+                        $scope.gifterrormsg = '';
+                    } else {
+                        $scope.isGiftCodeValid = '0';
+                        $scope.isGiftCodeNotValid = '1';
+                        $scope.gifterrormsg = 'Mã Gift Code bị khóa hoặc hết hạn. Vui lòng liên hệ ĐT hỗ trợ 1900 5555 77';
+                    }
+                    if (!$scope.$$phase)
+                        $scope.$apply();
+                },
+                error: ""
+            });
             //}
         }
         return false;
@@ -365,8 +365,8 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
                                                     if (!$scope.$$phase)
                                                         $scope.$apply();
                                                     $('html, body').animate({
-                                                        scrollTop: 0
-                                                    },
+                                                            scrollTop: 0
+                                                        },
                                                         200);
 
                                                 },
@@ -383,8 +383,8 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
                                             if (!$scope.$$phase)
                                                 $scope.$apply();
                                             $('html, body').animate({
-                                                scrollTop: 0
-                                            },
+                                                    scrollTop: 0
+                                                },
                                                 200);
 
                                         }
@@ -681,7 +681,7 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
                                         if (data.GiftCode === "1") {
                                             window.location.replace(data.Data);
                                         } else {
-                                            vnpay.open({ width: 768, height: 600, url: data.Data });
+                                            vnpay.open({width: 768, height: 600, url: data.Data});
                                         }
 
                                     } else {
@@ -742,7 +742,7 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
                             if (data.GiftCode === "1") {
                                 window.location.replace(data.Data);
                             } else {
-                                vnpay.open({ width: 768, height: 600, url: data.Data });
+                                vnpay.open({width: 768, height: 600, url: data.Data});
                             }
 
                         } else {

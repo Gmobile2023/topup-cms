@@ -136,7 +136,7 @@
             }
 
             _profileService.updateProfilePicture(input).done(function () {
-                if($jcropApi){
+                if ($jcropApi) {
                     $jcropApi.destroy();
                     $jcropApi = null;
                 }

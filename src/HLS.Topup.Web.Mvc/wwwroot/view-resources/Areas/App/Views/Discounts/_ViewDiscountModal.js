@@ -12,9 +12,9 @@
         let productsType = [];
         let productStore = [];
         let limitProductList = null;
-        
+
         let viewMode = $('input[name="mode"]').val();
-        
+
         let productCategoryDiscountList = null;
         this.init = function (modalManager) {
             _modalManager = modalManager;
@@ -93,7 +93,7 @@
                             } else {
                                 return '<input class="discount form-control txtDiscount text-right" id="txtDiscount_' + row.productId + '" data-id=' + row.productId + ' type="text" data-amount=' + fixAmount + '"" value = ' + (data === null ? "" : data) + '   >';
                             }
-                            
+
                         }
                     },
                     {
@@ -116,15 +116,15 @@
                             if (viewMode === 'view') {
                                 return '';
                             } else {
-                                return '<button class="btn btn-danger btn-remove" type="button" data-id="' + row.productId + '" onclick="javascript:$(\'#productDiscoutTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
+                                return '<button class="btn btn-danger btn-remove" type="button" data-id="' + row.productId + '" onclick="$(\'#productDiscoutTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
                             }
                         }
                     }
                 ],
-                "drawCallback": function( settings ) {
+                "drawCallback": function (settings) {
                     Sv.SetupAmountMask();
                 },
-                "rowCallback": function( row, data ) {
+                "rowCallback": function (row, data) {
                     Sv.SetupAmountMask();
                 },
             });
@@ -195,7 +195,7 @@
                 if (checkItemInArray(servicesCode, serviceCode) === -1) {
                     servicesCode.push(serviceCode);
                 }
-                let serviceName = $('#ServiceSelect option[value="'+ serviceCode +'"]').text();
+                let serviceName = $('#ServiceSelect option[value="' + serviceCode + '"]').text();
                 getProductType(serviceCode, serviceName);
             } else {
                 $('#ProductType').prop('disabled', true);
@@ -211,7 +211,7 @@
                     if (checkItemInArray(productsType, e) === -1) {
                         productsType.push(e);
                     }
-                    let serviceName = $('#ProductType option[value="'+ e +'"]').attr('data-service');
+                    let serviceName = $('#ProductType option[value="' + e + '"]').attr('data-service');
                     getProductList(e, serviceName);
                 })
             } else {
@@ -243,12 +243,12 @@
                 });
         });
 
-        $('#productMode').click(function() {
+        $('#productMode').click(function () {
             $('#productModeBlock').css({'display': 'flex'});
             $('#importModeBlock').css({'display': 'none'});
         });
 
-        $('#importMode').click(function() {
+        $('#importMode').click(function () {
             $('#importModeBlock').css({'display': 'block'});
             $('#productModeBlock').css({'display': 'none'});
         });
@@ -433,7 +433,7 @@
             return uniqueValues.size < arr.length;
         }
 
-        function resetValueFile(){
+        function resetValueFile() {
             document.getElementById('ImportFromExcel').value = "";
         }
 
@@ -468,7 +468,7 @@
                 Sv.AjaxPostFile2({
                     url: abp.appPath + "App/Discounts/ReadFileImport",
                     data: formData
-                }).then(function(rs){
+                }).then(function (rs) {
                     let response = rs.result;
 
                     let _dataTable = _$discountsTable.DataTable();
@@ -476,13 +476,13 @@
 
                     let data = [];
                     let path = "";
-                    if (response.responseCode == "01"){
+                    if (response.responseCode == "01") {
                         data = response.payload;
                     }
 
                     let format_error = false;
 
-                    $.each(data, function(i, e) {
+                    $.each(data, function (i, e) {
                         if (parseFloat(e.discountValue) < 0 || parseFloat(e.discountValue) >= 100) {
                             format_error = true;
                             abp.message.warn("File Import có số tiền không đúng định dạng!");
@@ -504,7 +504,7 @@
                     _dataTable.rows.add(data).draw();
                     Sv.SetupAmountMask();
 
-                    if(response.responseCode != "01"){
+                    if (response.responseCode != "01") {
                         resetValueFile();
                         abp.message.warn(response.responseMessage);
                     }

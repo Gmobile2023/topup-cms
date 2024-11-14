@@ -64,6 +64,7 @@
             var $subscriptionEndDateDiv = modal.find('input[name=SubscriptionEndDateUtc]').parent('div');
             var $isUnlimitedInput = modal.find('#CreateTenant_IsUnlimited');
             var subscriptionEndDateUtcInput = modal.find('input[name=SubscriptionEndDateUtc]');
+
             function toggleSubscriptionEndDateDiv() {
                 if ($isUnlimitedInput.is(':checked')) {
                     $subscriptionEndDateDiv.slideUp('fast');
@@ -76,6 +77,7 @@
 
             var $isInTrialPeriodInputDiv = modal.find('#CreateTenant_IsInTrialPeriod').closest('div');
             var $isInTrialPeriodInput = modal.find('#CreateTenant_IsInTrialPeriod');
+
             function toggleIsInTrialPeriod() {
                 if ($isUnlimitedInput.is(':checked')) {
                     $isInTrialPeriodInputDiv.slideUp('fast');

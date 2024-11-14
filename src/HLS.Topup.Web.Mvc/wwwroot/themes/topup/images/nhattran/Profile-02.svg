@@ -1,12 +1,22 @@
 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M30 29V27.6669C30 26.4293 29.4944 25.2424 28.5943 24.3672C27.6943 23.492 26.4735 23.0002 25.2006 23H16.8003C15.5272 23 14.3062 23.4917 13.406 24.3669C12.5057 25.2421 12 26.4292 12 27.6669V29" stroke="#2188C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21 19C23.7614 19 26 16.7614 26 14C26 11.2386 23.7614 9 21 9C18.2386 9 16 11.2386 16 14C16 16.7614 18.2386 19 21 19Z" stroke="#2188C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="24" y1="38" x2="44" y2="38" stroke="#0C2C63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="12" y1="45" x2="32" y2="45" stroke="#0C2C63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="12" y1="38" x2="20" y2="38" stroke="#0C2C63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="36" y1="45" x2="44" y2="45" stroke="#0C2C63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="1" y1="-1" x2="8" y2="-1" transform="matrix(-1 -7.84563e-08 -9.74139e-08 1 45 13)" stroke="#2188C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="1" y1="-1" x2="11" y2="-1" transform="matrix(-1 0 0 1 45 20)" stroke="#2188C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<line x1="1" y1="-1" x2="8" y2="-1" transform="matrix(-1 0 0 1 45 27)" stroke="#2188C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="5" y="2" width="46" height="52" rx="2" stroke="#0C2C63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M30 29V27.6669C30 26.4293 29.4944 25.2424 28.5943 24.3672C27.6943 23.492 26.4735 23.0002 25.2006 23H16.8003C15.5272 23 14.3062 23.4917 13.406 24.3669C12.5057 25.2421 12 26.4292 12 27.6669V29"
+          stroke="#2188C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M21 19C23.7614 19 26 16.7614 26 14C26 11.2386 23.7614 9 21 9C18.2386 9 16 11.2386 16 14C16 16.7614 18.2386 19 21 19Z"
+          stroke="#2188C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="24" y1="38" x2="44" y2="38" stroke="#0C2C63" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <line x1="12" y1="45" x2="32" y2="45" stroke="#0C2C63" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <line x1="12" y1="38" x2="20" y2="38" stroke="#0C2C63" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <line x1="36" y1="45" x2="44" y2="45" stroke="#0C2C63" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <line x1="1" y1="-1" x2="8" y2="-1" transform="matrix(-1 -7.84563e-08 -9.74139e-08 1 45 13)" stroke="#2188C9"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="1" y1="-1" x2="11" y2="-1" transform="matrix(-1 0 0 1 45 20)" stroke="#2188C9" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="1" y1="-1" x2="8" y2="-1" transform="matrix(-1 0 0 1 45 27)" stroke="#2188C9" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="5" y="2" width="46" height="52" rx="2" stroke="#0C2C63" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round"/>
 </svg>

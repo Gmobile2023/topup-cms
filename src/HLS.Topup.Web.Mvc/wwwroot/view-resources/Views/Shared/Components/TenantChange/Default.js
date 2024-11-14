@@ -19,10 +19,10 @@
 
                 var validate = function (pristine) {
                     if ($switchToTenant.is(":checked") && !$tenancyNameInput.val()) {
-                       $saveButton.prop('disabled', true);
-                       if (!pristine) {
-                           $tenancyNameRequired.removeClass("d-none");
-                       }
+                        $saveButton.prop('disabled', true);
+                        if (!pristine) {
+                            $tenancyNameRequired.removeClass("d-none");
+                        }
                     } else {
                         $saveButton.prop('disabled', false);
                         if (!pristine) {
@@ -47,7 +47,7 @@
                     validate(true);
                 });
 
-                $tenancyNameInput.keyup(function() {
+                $tenancyNameInput.keyup(function () {
                     validate(false);
                 });
 

@@ -101,13 +101,13 @@
                 .done(function (result) {
                     for (var i = 0; i < _$Container.length; i++) {
                         var container = $(_$Container[i]);
-                
+
                         var $tableBody = container.find('#region_statistics_content table tbody');
                         for (var rowIndex = 0; rowIndex < result.stats.length; rowIndex++) {
                             var stat = result.stats[rowIndex];
                             var $tr = $('<tr></tr>').append(
                                 $(
-                                    '<td class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">' +                                   
+                                    '<td class="m-datatable__cell--center m-datatable__cell m-datatable__cell--check">' +
                                     '<label class="checkbox checkbox-outline checkbox-outline-2x checkbox-success">' +
                                     '<input type = "checkbox" > <span></span>' +
                                     '</label>' +

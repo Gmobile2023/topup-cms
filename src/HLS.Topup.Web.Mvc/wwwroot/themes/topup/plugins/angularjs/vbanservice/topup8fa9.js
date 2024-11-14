@@ -38,7 +38,7 @@ topupApp.controller('TopupControlller', ["$scope", "$locale", function ($scope, 
             $("#ico_viettel").css("display", "");
         } else {
             $("#ico_viettel").css("display", "none");
-        };
+        }
 
         var vinaRegx =
            /^(094|091|088|081|082|083|084|085|087)\d{7}$/;
@@ -47,7 +47,7 @@ topupApp.controller('TopupControlller', ["$scope", "$locale", function ($scope, 
             $("#ico_vinaphone").css("display", "");
         } else {
             $("#ico_vinaphone").css("display", "none");
-        };
+        }
 
         var mobiRegx =
            /^(090|093|089|070|076|077|078|079)\d{7}$/;
@@ -56,7 +56,7 @@ topupApp.controller('TopupControlller', ["$scope", "$locale", function ($scope, 
             $("#ico_mobi").css("display", "");
         } else {
             $("#ico_mobi").css("display", "none");
-        };
+        }
 
         var vietnammobiRegx =
         /^(092|0188|0186|056|058|052)\d{7}$/;
@@ -65,7 +65,7 @@ topupApp.controller('TopupControlller', ["$scope", "$locale", function ($scope, 
             $("#ico_vnmobi").css("display", "");
         } else {
             $("#ico_vnmobi").css("display", "none");
-        };
+        }
 
         var beelineRegx =
       /^(099|0199|059)\d{7}$/;
@@ -74,7 +74,7 @@ topupApp.controller('TopupControlller', ["$scope", "$locale", function ($scope, 
             $("#ico_beeline").css("display", "");
         } else {
             $("#ico_beeline").css("display", "none");
-        };
+        }
     }
 
     $scope.getCity = function () {

@@ -38,7 +38,7 @@
                         payTransRef: $("#payTransRef").val(),
                         venderCode: $('#selectVender').val(),
                         parentProvider: $('#selectParentProvider').val(),
-                        serviceCode: $('#selectService').val(),                        
+                        serviceCode: $('#selectService').val(),
                         providerTransCode: $('#txtproviderResponseCode').val(),
                         receiverType: $('#selectReceiverType').val(),
                         providerReceiverType: $('#selectReceiverTypeResponse').val(),
@@ -215,10 +215,10 @@
             ],
             "headerCallback": function (thead, data, start, end, display) {
                 try {
-                    var rawServerResponse = this.api().settings()[0].rawServerResponse;                 
+                    var rawServerResponse = this.api().settings()[0].rawServerResponse;
                     if (rawServerResponse.warning.length > 0)
                         abp.message.info(rawServerResponse.warning);
-                    
+
                     if (rawServerResponse !== undefined && rawServerResponse.totalData !== undefined) {
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.value));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.quantity));
@@ -251,7 +251,7 @@
             //}).always(function () {
             //    abp.ui.clearBusy();
             //});
-            
+
         }
 
         $('#ExportToExcelButton').click(function () {
@@ -292,8 +292,8 @@
                     else
                         app.downloadTempFile(result);
                 }).always(function () {
-                    abp.ui.clearBusy();
-                });
+                abp.ui.clearBusy();
+            });
         });
 
         $('#GetProvidersButton').click(function (e) {

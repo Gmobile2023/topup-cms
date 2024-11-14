@@ -20,7 +20,7 @@
             if (id != null && type != null) {
                 if (type == 'lock') {
                     _modalManager.setBusy(true);
-                    _agentService.blockUser({userId:id,note:$('#LockAccountNote').val()}).done(function () {
+                    _agentService.blockUser({userId: id, note: $('#LockAccountNote').val()}).done(function () {
                         abp.message.success('Khoá thành công!');
                         getAgentsTable();
                         _modalManager.close();
@@ -29,7 +29,7 @@
                     });
                 } else if (type == 'unlock') {
                     _modalManager.setBusy(true);
-                    _agentService.unlockUser({userId:id,note:$('#LockAccountNote').val()}).done(function () {
+                    _agentService.unlockUser({userId: id, note: $('#LockAccountNote').val()}).done(function () {
                         abp.message.success('Mở khoá thành công!');
                         getAgentsTable();
                         _modalManager.close();

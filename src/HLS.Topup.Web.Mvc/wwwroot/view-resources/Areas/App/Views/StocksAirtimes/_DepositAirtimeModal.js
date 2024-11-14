@@ -18,7 +18,7 @@
             Sv.BindMoneyToString($str, val);
         });
 
-        this.save = function () {           
+        this.save = function () {
             var amount = $("#StocksAirtime_Amount").val();
             var providerCode = $("#hdnDepositProviderCode").val();
             if (amount == null || amount == "") {

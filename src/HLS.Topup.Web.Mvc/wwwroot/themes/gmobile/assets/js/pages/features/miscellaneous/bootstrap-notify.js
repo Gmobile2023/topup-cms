@@ -12,7 +12,7 @@ var KTBootstrapNotifyDemo = function () {
         $('[data-switch=true]').bootstrapSwitch();
 
         // handle the demo
-        $('#kt_notify_btn').click(function() {
+        $('#kt_notify_btn').click(function () {
             var content = {};
 
             content.message = 'New order has been placed';
@@ -31,8 +31,8 @@ var KTBootstrapNotifyDemo = function () {
                 type: $('#kt_notify_state').val(),
                 allow_dismiss: $('#kt_notify_dismiss').prop('checked'),
                 newest_on_top: $('#kt_notify_top').prop('checked'),
-                mouse_over:  $('#kt_notify_pause').prop('checked'),
-                showProgressbar:  $('#kt_notify_progress').prop('checked'),
+                mouse_over: $('#kt_notify_pause').prop('checked'),
+                showProgressbar: $('#kt_notify_progress').prop('checked'),
                 spacing: $('#kt_notify_spacing').val(),
                 timer: $('#kt_notify_timer').val(),
                 placement: {
@@ -52,25 +52,25 @@ var KTBootstrapNotifyDemo = function () {
             });
 
             if ($('#kt_notify_progress').prop('checked')) {
-                setTimeout(function() {
+                setTimeout(function () {
                     notify.update('message', '<strong>Saving</strong> Page Data.');
                     notify.update('type', 'primary');
                     notify.update('progress', 20);
                 }, 1000);
 
-                setTimeout(function() {
+                setTimeout(function () {
                     notify.update('message', '<strong>Saving</strong> User Data.');
                     notify.update('type', 'warning');
                     notify.update('progress', 40);
                 }, 2000);
 
-                setTimeout(function() {
+                setTimeout(function () {
                     notify.update('message', '<strong>Saving</strong> Profile Data.');
                     notify.update('type', 'danger');
                     notify.update('progress', 65);
                 }, 3000);
 
-                setTimeout(function() {
+                setTimeout(function () {
                     notify.update('message', '<strong>Checking</strong> for errors.');
                     notify.update('type', 'success');
                     notify.update('progress', 100);
@@ -81,12 +81,12 @@ var KTBootstrapNotifyDemo = function () {
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             demo();
         }
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTBootstrapNotifyDemo.init();
 });

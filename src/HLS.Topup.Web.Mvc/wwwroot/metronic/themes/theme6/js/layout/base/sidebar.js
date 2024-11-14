@@ -1,12 +1,12 @@
 ﻿"use strict";
 
-var KTLayoutSidebar = function() {
+var KTLayoutSidebar = function () {
     // Private properties
     var _element;
     var _offcanvasObject;
 
     // Private functions
-    var _init = function() {
+    var _init = function () {
         var header = KTUtil.find(_element, '.sidebar-header');
         var content = KTUtil.find(_element, '.sidebar-content');
 
@@ -22,7 +22,7 @@ var KTLayoutSidebar = function() {
             disableForMobile: true,
             resetHeightOnDestroy: true,
             handleWindowResize: true,
-            height: function() {
+            height: function () {
                 // Destroy for tablet and mobile modes
                 if (KTUtil.isBreakpointUp('lg')) {
                     return false;
@@ -53,7 +53,7 @@ var KTLayoutSidebar = function() {
 
     // Public methods
     return {
-        init: function(id) {
+        init: function (id) {
             _element = KTUtil.getById(id);
 
             if (!_element) {
@@ -64,7 +64,7 @@ var KTLayoutSidebar = function() {
             _init();
         },
 
-        getElement: function() {
+        getElement: function () {
             return _element;
         }
     };
@@ -72,5 +72,5 @@ var KTLayoutSidebar = function() {
 
 // Webpack support
 if (typeof module !== 'undefined') {
-	module.exports = KTLayoutSidebar;
+    module.exports = KTLayoutSidebar;
 }

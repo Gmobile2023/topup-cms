@@ -31,8 +31,6 @@
         });
 
 
-
-
         var getDateFilter = function (element) {
             if (element.data("DateTimePicker").date() == null) {
                 return null;
@@ -85,7 +83,7 @@
                             {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewPayBatchBillModal.open({ id: data.record.payBatchBill.id });
+                                    _viewPayBatchBillModal.open({id: data.record.payBatchBill.id});
                                 }
                             },
                             //{
@@ -100,7 +98,7 @@
                             {
                                 text: app.localize('Cancel'),
                                 visible: function (data) {
-                                    return  _permissions.cancel && data.record.payBatchBill.status === 0 ;
+                                    return _permissions.cancel && data.record.payBatchBill.status === 0;
                                 },
                                 action: function (data) {
                                     cancelBatchBill(data.record.payBatchBill);
@@ -244,7 +242,6 @@
         });
 
 
-
         function getPayBatchBills() {
             dataTable.ajax.reload();
         }
@@ -341,7 +338,7 @@
         $("#selectCategory").change(function (e) {
             const cateCode = $(e.target).val();
             let _s = $("#AdvacedAuditFiltersArea");
-            Sv.GetProductByCate(cateCode,_s.find("#selectProduct"),false);
+            Sv.GetProductByCate(cateCode, _s.find("#selectProduct"), false);
         });
 
         $(document).keypress(function (e) {

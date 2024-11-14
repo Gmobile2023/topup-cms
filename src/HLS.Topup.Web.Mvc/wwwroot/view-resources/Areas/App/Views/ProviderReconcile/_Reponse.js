@@ -2,7 +2,7 @@
     app.modals.ReponseModal = function () {
         var _$providersTable = $('#tblDetail');
         const _svcCompareService = abp.services.app.compare;
-        var _modalManager;        
+        var _modalManager;
 
         function getProviders() {
             dataTable.ajax.reload();
@@ -12,22 +12,22 @@
             _modalManager = modalManager;
             var modal = _modalManager.getModal();
             //_dataTable = initTable();            
-            modal.find(".select2").select2(); 
+            modal.find(".select2").select2();
             modal.find('select#droTypeCompare').on('change', getProviders);
 
         };
 
 
         $('#ExportDetailToExcelButton').click(function (e) {
-            e.preventDefault();                    
+            e.preventDefault();
             _svcCompareService.getCompareReponseDetailListToExcel({
                 transDate: $('#hdnTrandate').val(),
                 providerCode: $('#hdnProvider').val(),
                 compareType: $('#droTypeCompare').val(),
                 keyCode: $('#hdnKeyCode').val()
-            }).done(function (result) {                   
-                 app.downloadTempFile(result);
-            });            
+            }).done(function (result) {
+                app.downloadTempFile(result);
+            });
         });
 
         const dataTable = _$providersTable.DataTable({
@@ -41,7 +41,7 @@
                         transDate: $('#hdnTrandate').val(),
                         providerCode: $('#hdnProvider').val(),
                         compareType: $('#droTypeCompare').val(),
-                        keyCode: $('#hdnKeyCode').val()  
+                        keyCode: $('#hdnKeyCode').val()
                     };
                 }
             },
@@ -53,7 +53,7 @@
                         return '';
                     },
                     targets: 0
-                },                
+                },
                 {
                     targets: 1,
                     data: "transDate",
@@ -90,9 +90,9 @@
                 {
                     targets: 7,
                     data: "productCode"
-                }               
-            ]            
-        });      
+                }
+            ]
+        });
     };
 })(jQuery);
 

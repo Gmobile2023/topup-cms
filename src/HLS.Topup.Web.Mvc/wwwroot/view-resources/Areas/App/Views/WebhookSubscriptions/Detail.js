@@ -58,12 +58,12 @@
                                 resendWebhook(data.record.id);
                             }
                         },
-                        {
-                            text: app.localize('ViewWebhookEvent'),
-                            action: function (data) {
-                                window.location = "/App/WebhookSubscription/WebhookEventDetail/" + data.record.webhookEventId;
-                            }
-                        }]
+                            {
+                                text: app.localize('ViewWebhookEvent'),
+                                action: function (data) {
+                                    window.location = "/App/WebhookSubscription/WebhookEventDetail/" + data.record.webhookEventId;
+                                }
+                            }]
                     }
                 },
                 {
@@ -133,7 +133,7 @@
                     }
                 }
             );
-        };
+        }
 
         function resendWebhook(id) {
             abp.message.confirm(
@@ -147,8 +147,8 @@
                             .done(function () {
                                 abp.notify.success(app.localize('WebhookSendAttemptInQueue'));
                             }).always(function () {
-                                abp.ui.clearBusy();
-                            });
+                            abp.ui.clearBusy();
+                        });
                     }
                 }
             );
@@ -167,7 +167,7 @@
         });
 
         $('#subscription-edit-btn').click(function () {
-            _createOrEditModal.open({ subscriptionId: subscriptionData.Id });
+            _createOrEditModal.open({subscriptionId: subscriptionData.Id});
         });
 
         $('#ToggleActivity').click(function (e) {

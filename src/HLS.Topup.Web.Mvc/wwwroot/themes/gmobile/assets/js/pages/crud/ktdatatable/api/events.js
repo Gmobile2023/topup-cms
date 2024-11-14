@@ -1,124 +1,124 @@
 'use strict';
 // Class definition
 
-var KTDefaultDatatableDemo = function() {
-	// Private functions
+var KTDefaultDatatableDemo = function () {
+    // Private functions
 
-	// basic demo
-	var demo = function() {
+    // basic demo
+    var demo = function () {
 
-		var datatable = $('#kt_datatable').KTDatatable({
-			// datasource definition
-			data: {
-				type: 'remote',
-				source: {
-					read: {
-						url: HOST_URL + '/api/datatables/demos/default.php',
-					},
-				},
-				pageSize: 5, // display 20 records per page
-				serverPaging: true,
-				serverFiltering: true,
-				serverSorting: true,
-			},
+        var datatable = $('#kt_datatable').KTDatatable({
+            // datasource definition
+            data: {
+                type: 'remote',
+                source: {
+                    read: {
+                        url: HOST_URL + '/api/datatables/demos/default.php',
+                    },
+                },
+                pageSize: 5, // display 20 records per page
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+            },
 
-			// layout definition
-			layout: {
-				scroll: true, // enable/disable datatable scroll both horizontal and vertical when needed.
-				minHeight: null, // datatable's body's fixed height
-				footer: false, // display/hide footer
-			},
+            // layout definition
+            layout: {
+                scroll: true, // enable/disable datatable scroll both horizontal and vertical when needed.
+                minHeight: null, // datatable's body's fixed height
+                footer: false, // display/hide footer
+            },
 
-			// column sorting
-			sortable: true,
+            // column sorting
+            sortable: true,
 
-			// toolbar
-			toolbar: {
-				// toolbar placement can be at top or bottom or both top and bottom repeated
-				placement: ['bottom'],
+            // toolbar
+            toolbar: {
+                // toolbar placement can be at top or bottom or both top and bottom repeated
+                placement: ['bottom'],
 
-				// toolbar items
-				items: {
-					// pagination
-					pagination: {
-						// page size select
-						pageSizeSelect: [5, 10, 20, 30, 50], // display dropdown to select pagination size. -1 is used for "ALl" option
-					},
-				},
-			},
+                // toolbar items
+                items: {
+                    // pagination
+                    pagination: {
+                        // page size select
+                        pageSizeSelect: [5, 10, 20, 30, 50], // display dropdown to select pagination size. -1 is used for "ALl" option
+                    },
+                },
+            },
 
-			search: {
-				input: $('#kt_datatable_search_query'),
-				key: 'generalSearch'
-			},
+            search: {
+                input: $('#kt_datatable_search_query'),
+                key: 'generalSearch'
+            },
 
-			// columns definition
-			columns: [
-				{
-					field: 'RecordID',
-					title: '#',
-					sortable: false,
-					width: 30,
-					type: 'number',
-					selector: {class: 'checkbox'},
-					textAlign: 'center',
-				}, {
-					field: 'OrderID',
-					title: 'Order ID',
-				}, {
-					field: 'Country',
-					title: 'Country',
-					template: function(row) {
-						return row.Country + ' ' + row.ShipCountry;
-					},
-				}, {
-					field: 'ShipDate',
-					title: 'Ship Date',
-					type: 'date',
-					format: 'MM/DD/YYYY',
-				}, {
-					field: 'CompanyName',
-					title: 'Company Name',
-				}, {
-					field: 'Status',
-					title: 'Status',
-					// callback function support for column rendering
-					template: function(row) {
-						var status = {
-							1: {'title': 'Pending', 'class': 'label-light-primary'},
-							2: {'title': 'Delivered', 'class': ' label-light-light-danger'},
-							3: {'title': 'Canceled', 'class': ' label-light-primary'},
-							4: {'title': 'Success', 'class': ' label-light-success'},
-							5: {'title': 'Info', 'class': ' label-light-info'},
-							6: {'title': 'Danger', 'class': ' label-light-danger'},
-							7: {'title': 'Warning', 'class': ' label-light-warning'},
-						};
-						return '<span class="label ' + status[row.Status].class + ' label-inline font-weight-bold label-lg">' + status[row.Status].title + '</span>';
-					},
-				}, {
-					field: 'Type',
-					title: 'Type',
-					autoHide: false,
-					// callback function support for column rendering
-					template: function(row) {
-						var status = {
-							1: {'title': 'Online', 'state': 'danger'},
-							2: {'title': 'Retail', 'state': 'primary'},
-							3: {'title': 'Direct', 'state': 'success'},
-						};
-						return '<span class="label label-' + status[row.Type].state + ' label-dot mr-2"></span><span class="font-weight-bold text-' + status[row.Type].state +
-							'">' +
-							status[row.Type].title + '</span>';
-					},
-				}, {
-					field: 'Actions',
-					title: 'Actions',
-					sortable: false,
-					width: 125,
-					overflow: 'visible',
-					autoHide: false,
-					template: function() {
-						return '\
+            // columns definition
+            columns: [
+                {
+                    field: 'RecordID',
+                    title: '#',
+                    sortable: false,
+                    width: 30,
+                    type: 'number',
+                    selector: {class: 'checkbox'},
+                    textAlign: 'center',
+                }, {
+                    field: 'OrderID',
+                    title: 'Order ID',
+                }, {
+                    field: 'Country',
+                    title: 'Country',
+                    template: function (row) {
+                        return row.Country + ' ' + row.ShipCountry;
+                    },
+                }, {
+                    field: 'ShipDate',
+                    title: 'Ship Date',
+                    type: 'date',
+                    format: 'MM/DD/YYYY',
+                }, {
+                    field: 'CompanyName',
+                    title: 'Company Name',
+                }, {
+                    field: 'Status',
+                    title: 'Status',
+                    // callback function support for column rendering
+                    template: function (row) {
+                        var status = {
+                            1: {'title': 'Pending', 'class': 'label-light-primary'},
+                            2: {'title': 'Delivered', 'class': ' label-light-light-danger'},
+                            3: {'title': 'Canceled', 'class': ' label-light-primary'},
+                            4: {'title': 'Success', 'class': ' label-light-success'},
+                            5: {'title': 'Info', 'class': ' label-light-info'},
+                            6: {'title': 'Danger', 'class': ' label-light-danger'},
+                            7: {'title': 'Warning', 'class': ' label-light-warning'},
+                        };
+                        return '<span class="label ' + status[row.Status].class + ' label-inline font-weight-bold label-lg">' + status[row.Status].title + '</span>';
+                    },
+                }, {
+                    field: 'Type',
+                    title: 'Type',
+                    autoHide: false,
+                    // callback function support for column rendering
+                    template: function (row) {
+                        var status = {
+                            1: {'title': 'Online', 'state': 'danger'},
+                            2: {'title': 'Retail', 'state': 'primary'},
+                            3: {'title': 'Direct', 'state': 'success'},
+                        };
+                        return '<span class="label label-' + status[row.Type].state + ' label-dot mr-2"></span><span class="font-weight-bold text-' + status[row.Type].state +
+                            '">' +
+                            status[row.Type].title + '</span>';
+                    },
+                }, {
+                    field: 'Actions',
+                    title: 'Actions',
+                    sortable: false,
+                    width: 125,
+                    overflow: 'visible',
+                    autoHide: false,
+                    template: function () {
+                        return '\
 	                        <div class="dropdown dropdown-inline">\
 	                            <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">\
 	                                <span class="svg-icon svg-icon-md">\
@@ -191,72 +191,72 @@ var KTDefaultDatatableDemo = function() {
 	                            </span>\
 	                        </a>\
 	                    ';
-					},
-				}],
+                    },
+                }],
 
-		});
+        });
 
-		$('#kt_datatable_search_status').on('change', function() {
-			datatable.search($(this).val().toLowerCase(), 'Status');
-		});
+        $('#kt_datatable_search_status').on('change', function () {
+            datatable.search($(this).val().toLowerCase(), 'Status');
+        });
 
-		$('#kt_datatable_search_type').on('change', function() {
-			datatable.search($(this).val().toLowerCase(), 'Type');
-		});
+        $('#kt_datatable_search_type').on('change', function () {
+            datatable.search($(this).val().toLowerCase(), 'Type');
+        });
 
-		$('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
+        $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
 
-	};
+    };
 
-	$('#kt_datatable_reload').on('click', function() {
-		$('#kt_datatable').KTDatatable('reload');
-	});
+    $('#kt_datatable_reload').on('click', function () {
+        $('#kt_datatable').KTDatatable('reload');
+    });
 
-	$('#kt_datatable_clear').on('click', function() {
-		$('#kt_datatable_console').val('');
-	});
+    $('#kt_datatable_clear').on('click', function () {
+        $('#kt_datatable_console').val('');
+    });
 
-	var eventsCapture = function() {
-		$('#kt_datatable').on('datatable-on-init', function() {
-			eventsWriter('Datatable init');
-		}).on('datatable-on-layout-updated', function() {
-			eventsWriter('Layout render updated');
-		}).on('datatable-on-ajax-done', function() {
-			eventsWriter('Ajax data successfully updated');
-		}).on('datatable-on-ajax-fail', function(e, jqXHR) {
-			eventsWriter('Ajax error');
-		}).on('datatable-on-goto-page', function(e, args) {
-			eventsWriter('Goto to pagination: ' + args.page);
-		}).on('datatable-on-update-perpage', function(e, args) {
-			eventsWriter('Update page size: ' + args.perpage);
-		}).on('datatable-on-reloaded', function(e) {
-			eventsWriter('Datatable reloaded');
-		}).on('datatable-on-check', function(e, args) {
-			eventsWriter('Checkbox active: ' + args.toString());
-		}).on('datatable-on-uncheck', function(e, args) {
-			eventsWriter('Checkbox inactive: ' + args.toString());
-		}).on('datatable-on-sort', function(e, args) {
-			eventsWriter('Datatable sorted by ' + args.field + ' ' + args.sort);
-		});
-	};
+    var eventsCapture = function () {
+        $('#kt_datatable').on('datatable-on-init', function () {
+            eventsWriter('Datatable init');
+        }).on('datatable-on-layout-updated', function () {
+            eventsWriter('Layout render updated');
+        }).on('datatable-on-ajax-done', function () {
+            eventsWriter('Ajax data successfully updated');
+        }).on('datatable-on-ajax-fail', function (e, jqXHR) {
+            eventsWriter('Ajax error');
+        }).on('datatable-on-goto-page', function (e, args) {
+            eventsWriter('Goto to pagination: ' + args.page);
+        }).on('datatable-on-update-perpage', function (e, args) {
+            eventsWriter('Update page size: ' + args.perpage);
+        }).on('datatable-on-reloaded', function (e) {
+            eventsWriter('Datatable reloaded');
+        }).on('datatable-on-check', function (e, args) {
+            eventsWriter('Checkbox active: ' + args.toString());
+        }).on('datatable-on-uncheck', function (e, args) {
+            eventsWriter('Checkbox inactive: ' + args.toString());
+        }).on('datatable-on-sort', function (e, args) {
+            eventsWriter('Datatable sorted by ' + args.field + ' ' + args.sort);
+        });
+    };
 
-	var eventsWriter = function(string) {
-		var console = $('#kt_datatable_console');
-		var value = console.val();
-		value = value + '\t\n' + string;
-		$(console).val(value);
-		$(console).scrollTop(console[0].scrollHeight - $(console).height());
-	};
+    var eventsWriter = function (string) {
+        var console = $('#kt_datatable_console');
+        var value = console.val();
+        value = value + '\t\n' + string;
+        $(console).val(value);
+        $(console).scrollTop(console[0].scrollHeight - $(console).height());
+    };
 
-	return {
-		// public functions
-		init: function() {
-			demo();
-			eventsCapture();
-		},
-	};
+    return {
+        // public functions
+        init: function () {
+            demo();
+            eventsCapture();
+        },
+    };
 }();
 
-jQuery(document).ready(function() {
-	KTDefaultDatatableDemo.init();
+jQuery(document).ready(function () {
+    KTDefaultDatatableDemo.init();
 });

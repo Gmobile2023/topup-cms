@@ -94,7 +94,7 @@
                 $("#block_TransferType_Prod").show();
             }
             clearData();
-        };
+        }
 
         // batch
         function batchCodeChangeModal(e) {
@@ -105,11 +105,11 @@
             var modal = _modalManager.getModal();
             modal.find('[name="providerCode"]').val(_pCode != null ? _pCode : "");
             modal.find('[name="providerName"]').val(_pName != null ? _pName : "");
-        };
+        }
 
         function transferTypeBatchAdd() {
             _base.getProductByType("batch");
-        };
+        }
 
 
         // prod
@@ -132,7 +132,7 @@
                 .always(function () {
                     abp.ui.clearBusy();
                 });
-        };
+        }
 
         function categoryChangeModal(e) {
             var $e = $(e.target);
@@ -152,11 +152,11 @@
                 .always(function () {
                     abp.ui.clearBusy();
                 });
-        };
+        }
 
         function transferTypeProdAdd() {
             _base.getProductByType("prod");
-        };
+        }
 
         // table
         this.initTable = function () {

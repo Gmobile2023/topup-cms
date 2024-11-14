@@ -25,8 +25,8 @@
                     abp.message.info(app.localize('MoveTenantsToAnotherEditionStartedNotification'));
                     _modalManager.close();
                 }).always(function () {
-                    _modalManager.setBusy(false);
-                });
+                _modalManager.setBusy(false);
+            });
         };
     };
 })();

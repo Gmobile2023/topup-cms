@@ -1,27 +1,27 @@
 ﻿"use strict";
 
-var KTLayoutAside = function() {
+var KTLayoutAside = function () {
     // Private properties
     var _body;
     var _element;
     var _offcanvasObject;
 
     // Private functions
-	// Initialize
-	var _init = function() {
+    // Initialize
+    var _init = function () {
         // Initialize mobile aside offcanvas
-		_offcanvasObject = new KTOffcanvas(_element, {
-			baseClass: 'aside',
-			overlay: true,
-			closeBy: 'kt_aside_close_btn',
-			toggleBy: {
-				target: 'kt_aside_mobile_toggle',
-				state: 'mobile-toggle-active'
-			}
-		});
-	}
+        _offcanvasObject = new KTOffcanvas(_element, {
+            baseClass: 'aside',
+            overlay: true,
+            closeBy: 'kt_aside_close_btn',
+            toggleBy: {
+                target: 'kt_aside_mobile_toggle',
+                state: 'mobile-toggle-active'
+            }
+        });
+    }
 
-    var _initNav = function() {
+    var _initNav = function () {
         var asideNav = KTUtil.find(_element, '.aside-nav');
 
         if (!asideNav) {
@@ -32,7 +32,7 @@ var KTLayoutAside = function() {
             disableForMobile: true,
             resetHeightOnDestroy: true,
             handleWindowResize: true,
-            height: function() {
+            height: function () {
                 var height = parseInt(KTUtil.getViewPort().height);
                 var asideBrand = KTUtil.find(_element, '.aside-brand');
                 var asideFooter = KTUtil.find(_element, '.aside-footer');
@@ -49,8 +49,8 @@ var KTLayoutAside = function() {
     }
 
     // Public methods
-	return {
-		init: function(id) {
+    return {
+        init: function (id) {
             _element = KTUtil.getById(id);
             _body = KTUtil.getBody();
 
@@ -63,17 +63,17 @@ var KTLayoutAside = function() {
             _initNav();
         },
 
-        getElement: function() {
+        getElement: function () {
             return _element;
         },
 
-        getOffcanvas: function() {
+        getOffcanvas: function () {
             return _offcanvasObject;
         }
-	};
+    };
 }();
 
 // Webpack support
 if (typeof module !== 'undefined') {
-	module.exports = KTLayoutAside;
+    module.exports = KTLayoutAside;
 }

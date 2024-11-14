@@ -1,6 +1,6 @@
 ﻿/************************************************************************
-* Overrides default settings for datatables                             *
-*************************************************************************/
+ * Overrides default settings for datatables                             *
+ *************************************************************************/
 (function ($) {
     if (!$.fn.dataTable) {
         return;
@@ -104,9 +104,9 @@
                                 settings.sTableId + '_' + button : null
                         })
                             .append($('<a>', {
-                                'href': '#'
-                            })
-                                .html(btnDisplay)
+                                    'href': '#'
+                                })
+                                    .html(btnDisplay)
                             )
                             .appendTo(container);
 
@@ -127,8 +127,8 @@
     }
 
     /***
-    Custom Pagination
-    ***/
+     Custom Pagination
+     ***/
 
     /* API method to get paging information */
     $.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
@@ -468,27 +468,27 @@
         mapCultureToDatatablesTranslation(abp.localization.currentCulture) +
         '.json';
 
-    $.ajax(translationsUrl, { async: false })
+    $.ajax(translationsUrl, {async: false})
         .fail(function () {
             translationsUrl = abp.appPath + 'Common/Scripts/Datatables/Translations/English.json';
             console.log('Language is set to English for datatables, because ' + abp.localization.currentCulture.displayNameEnglish + ' is not found!');
         }).always(function () {
-            $.extend(true, $.fn.dataTable.defaults, {
-                language: {
-                    url: translationsUrl
-                },
-                lengthMenu: [5, 10, 25, 50, 100, 250, 500],
-                pageLength: 10,
-                responsive: {
-                    details: {
-                        type: 'column'
-                    }
-                },
-                searching: false,
-                pagingType: "bootstrap_full_number",
-                dom: 'rt<"bottom"ilp><"clear">',
-                order: []
-            });
+        $.extend(true, $.fn.dataTable.defaults, {
+            language: {
+                url: translationsUrl
+            },
+            lengthMenu: [5, 10, 25, 50, 100, 250, 500],
+            pageLength: 10,
+            responsive: {
+                details: {
+                    type: 'column'
+                }
+            },
+            searching: false,
+            pagingType: "bootstrap_full_number",
+            dom: 'rt<"bottom"ilp><"clear">',
+            order: []
         });
+    });
 
 })(jQuery);

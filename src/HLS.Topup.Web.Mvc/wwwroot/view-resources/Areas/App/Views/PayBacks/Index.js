@@ -22,21 +22,21 @@
             viewUrl: abp.appPath + 'App/PayBacks/CreateOrEditModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/PayBacks/_CreateOrEditModal.js',
             modalClass: 'CreateOrEditPayBacksModal',
-            modalSize:'modal-xl'
+            modalSize: 'modal-xl'
         });
 
         var _editPayBacksModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/PayBacks/ViewPayBacksModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/PayBacks/_ViewPayBacksModel.js',
             modalClass: 'ViewPayBacksModal',
-            modalSize:'modal-xl'
+            modalSize: 'modal-xl'
         });
 
         var _viewPayBacksModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/PayBacks/ViewPayBacksModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/PayBacks/_ViewPayBacksModel.js',
             modalClass: 'ViewPayBacksModal',
-            modalSize:'modal-xl'
+            modalSize: 'modal-xl'
         });
 
         var getDateFilter = function (element) {
@@ -85,7 +85,7 @@
                             {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewPayBacksModal.open({ id: data.record.payBack.id, isView : true });
+                                    _viewPayBacksModal.open({id: data.record.payBack.id, isView: true});
                                 }
                             },
                             // {
@@ -137,7 +137,7 @@
                     data: "payBack.name",
                     name: "branchName",
                     render: function (branchName) {
-                        return '<div style="width: 400px; word-break: break-all; white-space: pre-line;">'+ branchName +'</div>';
+                        return '<div style="width: 400px; word-break: break-all; white-space: pre-line;">' + branchName + '</div>';
                     }
                 },
                 {
@@ -157,7 +157,7 @@
                     targets: 6,
                     data: "payBack.totalAmount",
                     name: "totalAmount",
-                    render: function(totalAmount) {
+                    render: function (totalAmount) {
                         return Sv.NumberToString(totalAmount);
                     }
                 },
@@ -245,8 +245,8 @@
             getPayBacks();
         });
 
-        $(document).keypress(function(e) {
-            if(e.which === 13) {
+        $(document).keypress(function (e) {
+            if (e.which === 13) {
                 getPayBacks();
             }
         });

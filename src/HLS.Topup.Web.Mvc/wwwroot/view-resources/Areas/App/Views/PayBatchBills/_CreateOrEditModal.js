@@ -280,7 +280,7 @@
                             }).always(function () {
                                 // _modalManager.setBusy(false);
                             });
-                        };
+                        }
                     });
             }
             else {

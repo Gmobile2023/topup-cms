@@ -23,13 +23,16 @@
 
             _$cardStockInformationForm = _modalManager.getModal().find('form[name=CardStockInformationsForm]');
             _$cardStockInformationForm.validate();
-            modal.find('.select2').select2({ "width": "100%" });
+            modal.find('.select2').select2({"width": "100%"});
         };
 
         $('#OpenCategoryLookupTableButton').click(function () {
 
             var cardStock = _$cardStockInformationForm.serializeFormToObject();
-            _CardStockcategoryLookupTableModal.open({ id: cardStock.categoryId, displayName: cardStock.categoryCategoryName }, function (data) {
+            _CardStockcategoryLookupTableModal.open({
+                id: cardStock.categoryId,
+                displayName: cardStock.categoryCategoryName
+            }, function (data) {
                 _$cardStockInformationForm.find('input[name=categoryCategoryName]').val(data.displayName);
                 _$cardStockInformationForm.find('input[name=categoryId]').val(data.id);
             });

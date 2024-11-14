@@ -48,7 +48,7 @@
                                 return _permissions.edit && data.record.tenantId === abp.session.tenantId;
                             },
                             action: function (data) {
-                                _createOrEditModal.open({ id: data.record.id });
+                                _createOrEditModal.open({id: data.record.id});
                             }
                         }, {
                             text: app.localize('ChangeTexts'),
@@ -145,7 +145,7 @@
                 getLanguages();
                 abp.message.success(app.localize('SuccessfullySaved'));
             });
-        };
+        }
 
         function deleteLanguage(language) {
             abp.message.confirm(
@@ -162,7 +162,7 @@
                     }
                 }
             );
-        };
+        }
 
         $('#CreateNewLanguageButton').click(function () {
             _createOrEditModal.open();

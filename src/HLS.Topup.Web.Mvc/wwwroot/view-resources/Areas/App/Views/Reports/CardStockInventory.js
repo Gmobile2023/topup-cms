@@ -100,7 +100,7 @@
                     var rawServerResponse = this.api().settings()[0].rawServerResponse;
                     if (rawServerResponse.warning.length > 0)
                         abp.message.info(rawServerResponse.warning);
-                    
+
                 } catch (e) {
                     console.log("không có total")
                 }
@@ -108,7 +108,7 @@
         });
 
         function getProviders() {
-            dataTable.ajax.reload();        
+            dataTable.ajax.reload();
         }
 
         $('#ShowAdvancedFiltersSpan').click(function () {

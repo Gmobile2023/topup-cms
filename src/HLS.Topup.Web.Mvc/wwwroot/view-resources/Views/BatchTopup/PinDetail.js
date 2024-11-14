@@ -99,7 +99,7 @@
                     if (rawServerResponse !== undefined && rawServerResponse.totalData !== undefined) {                      
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.quantity));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.discountAmount));
-                        $(thead).find('th').eq(3).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.paymentAmount));   ;
+                        $(thead).find('th').eq(3).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.paymentAmount));   
                     }
                 } catch (e) {
                     console.log("không có total")

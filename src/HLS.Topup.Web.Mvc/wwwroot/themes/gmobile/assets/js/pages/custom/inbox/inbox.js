@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTAppInbox = function() {
+var KTAppInbox = function () {
     // Private properties
     var _asideEl;
     var _listEl;
@@ -11,7 +11,7 @@ var KTAppInbox = function() {
     var _asideOffcanvas;
 
     // Private methods
-    var _initEditor = function(form, editor) {
+    var _initEditor = function (form, editor) {
         // init editor
         var options = {
             modules: {
@@ -37,7 +37,7 @@ var KTAppInbox = function() {
         }
     }
 
-    var _initForm = function(formEl) {
+    var _initForm = function (formEl) {
         var formEl = KTUtil.getById(formEl);
 
         // Init autocompletes
@@ -98,27 +98,28 @@ var KTAppInbox = function() {
                 pic: './assets/media/users/100_15.jpg'
             }],
             templates: {
-                dropdownItem: function(tagData) {
+                dropdownItem: function (tagData) {
                     try {
                         var html = '';
 
                         html += '<div class="tagify__dropdown__item">';
                         html += '   <div class="d-flex align-items-center">';
                         html += '       <span class="symbol sumbol-' + (tagData.initialsState ? tagData.initialsState : '') + ' mr-2">';
-                        html += '           <span class="symbol-label" style="background-image: url(\''+ (tagData.pic ? tagData.pic : '') + '\')">' + (tagData.initials ? tagData.initials : '') + '</span>';
+                        html += '           <span class="symbol-label" style="background-image: url(\'' + (tagData.pic ? tagData.pic : '') + '\')">' + (tagData.initials ? tagData.initials : '') + '</span>';
                         html += '       </span>';
                         html += '       <div class="d-flex flex-column">';
-                        html += '           <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">'+ (tagData.value ? tagData.value : '') + '</a>';
+                        html += '           <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">' + (tagData.value ? tagData.value : '') + '</a>';
                         html += '           <span class="text-muted font-weight-bold">' + (tagData.email ? tagData.email : '') + '</span>';
                         html += '       </div>';
                         html += '   </div>';
                         html += '</div>';
 
                         return html;
-                    } catch (err) {}
+                    } catch (err) {
+                    }
                 }
             },
-            transformTag: function(tagData) {
+            transformTag: function (tagData) {
                 tagData.class = 'tagify__tag tagify__tag--primary';
             },
             dropdown: {
@@ -185,27 +186,28 @@ var KTAppInbox = function() {
                 pic: './assets/media/users/100_15.jpg'
             }],
             templates: {
-                dropdownItem: function(tagData) {
+                dropdownItem: function (tagData) {
                     try {
                         var html = '';
 
                         html += '<div class="tagify__dropdown__item">';
                         html += '   <div class="d-flex align-items-center">';
-                        html += '       <span class="symbol sumbol-' + (tagData.initialsState ? tagData.initialsState : '') + ' mr-2" style="background-image: url(\''+ (tagData.pic ? tagData.pic : '') + '\')">';
+                        html += '       <span class="symbol sumbol-' + (tagData.initialsState ? tagData.initialsState : '') + ' mr-2" style="background-image: url(\'' + (tagData.pic ? tagData.pic : '') + '\')">';
                         html += '           <span class="symbol-label">' + (tagData.initials ? tagData.initials : '') + '</span>';
                         html += '       </span>';
                         html += '       <div class="d-flex flex-column">';
-                        html += '           <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">'+ (tagData.value ? tagData.value : '') + '</a>';
+                        html += '           <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">' + (tagData.value ? tagData.value : '') + '</a>';
                         html += '           <span class="text-muted font-weight-bold">' + (tagData.email ? tagData.email : '') + '</span>';
                         html += '       </div>';
                         html += '   </div>';
                         html += '</div>';
 
                         return html;
-                    } catch (err) {}
+                    } catch (err) {
+                    }
                 }
             },
-            transformTag: function(tagData) {
+            transformTag: function (tagData) {
                 tagData.class = 'tagify__tag tagify__tag--primary';
             },
             dropdown: {
@@ -272,27 +274,28 @@ var KTAppInbox = function() {
                 pic: './assets/media/users/100_15.jpg'
             }],
             templates: {
-                dropdownItem: function(tagData) {
+                dropdownItem: function (tagData) {
                     try {
                         var html = '';
 
                         html += '<div class="tagify__dropdown__item">';
                         html += '   <div class="d-flex align-items-center">';
-                        html += '       <span class="symbol sumbol-' + (tagData.initialsState ? tagData.initialsState : '') + ' mr-2" style="background-image: url(\''+ (tagData.pic ? tagData.pic : '') + '\')">';
+                        html += '       <span class="symbol sumbol-' + (tagData.initialsState ? tagData.initialsState : '') + ' mr-2" style="background-image: url(\'' + (tagData.pic ? tagData.pic : '') + '\')">';
                         html += '           <span class="symbol-label">' + (tagData.initials ? tagData.initials : '') + '</span>';
                         html += '       </span>';
                         html += '       <div class="d-flex flex-column">';
-                        html += '           <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">'+ (tagData.value ? tagData.value : '') + '</a>';
+                        html += '           <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">' + (tagData.value ? tagData.value : '') + '</a>';
                         html += '           <span class="text-muted font-weight-bold">' + (tagData.email ? tagData.email : '') + '</span>';
                         html += '       </div>';
                         html += '   </div>';
                         html += '</div>';
 
                         return html;
-                    } catch (err) {}
+                    } catch (err) {
+                    }
                 }
             },
-            transformTag: function(tagData) {
+            transformTag: function (tagData) {
                 tagData.class = 'tagify__tag tagify__tag--primary';
             },
             dropdown: {
@@ -303,7 +306,7 @@ var KTAppInbox = function() {
         });
 
         // CC input show
-        KTUtil.on(formEl, '[data-inbox="cc-show"]', 'click', function(e) {
+        KTUtil.on(formEl, '[data-inbox="cc-show"]', 'click', function (e) {
             var inputEl = KTUtil.find(formEl, '.inbox-to-cc');
             KTUtil.removeClass(inputEl, 'd-none');
             KTUtil.addClass(inputEl, 'd-flex');
@@ -311,14 +314,14 @@ var KTAppInbox = function() {
         });
 
         // CC input hide
-        KTUtil.on(formEl, '[data-inbox="cc-hide"]', 'click', function(e) {
+        KTUtil.on(formEl, '[data-inbox="cc-hide"]', 'click', function (e) {
             var inputEl = KTUtil.find(formEl, '.inbox-to-cc');
             KTUtil.removeClass(inputEl, 'd-flex');
             KTUtil.addClass(inputEl, 'd-none');
         });
 
         // BCC input show
-        KTUtil.on(formEl, '[data-inbox="bcc-show"]', 'click', function(e) {
+        KTUtil.on(formEl, '[data-inbox="bcc-show"]', 'click', function (e) {
             var inputEl = KTUtil.find(formEl, '.inbox-to-bcc');
             KTUtil.removeClass(inputEl, 'd-none');
             KTUtil.addClass(inputEl, 'd-flex');
@@ -326,14 +329,14 @@ var KTAppInbox = function() {
         });
 
         // BCC input hide
-        KTUtil.on(formEl, '[data-inbox="bcc-hide"]', 'click', function(e) {
+        KTUtil.on(formEl, '[data-inbox="bcc-hide"]', 'click', function (e) {
             var inputEl = KTUtil.find(formEl, '.inbox-to-bcc');
             KTUtil.removeClass(inputEl, 'd-flex');
             KTUtil.addClass(inputEl, 'd-none');
         });
     }
 
-    var _initAttachments = function(elemId) {
+    var _initAttachments = function (elemId) {
         var id = "#" + elemId;
         var previewNode = $(id + " .dropzone-item");
         previewNode.id = "";
@@ -349,25 +352,25 @@ var KTAppInbox = function() {
             clickable: id + "_select" // Define the element that should be used as click trigger to select files.
         });
 
-        myDropzone.on("addedfile", function(file) {
+        myDropzone.on("addedfile", function (file) {
             // Hookup the start button
             $(document).find(id + ' .dropzone-item').css('display', '');
         });
 
         // Update the total progress bar
-        myDropzone.on("totaluploadprogress", function(progress) {
+        myDropzone.on("totaluploadprogress", function (progress) {
             document.querySelector(id + " .progress-bar").style.width = progress + "%";
         });
 
-        myDropzone.on("sending", function(file) {
+        myDropzone.on("sending", function (file) {
             // Show the total progress bar when upload starts
             document.querySelector(id + " .progress-bar").style.opacity = "1";
         });
 
         // Hide the total progress bar when nothing's uploading anymore
-        myDropzone.on("complete", function(progress) {
+        myDropzone.on("complete", function (progress) {
             var thisProgressBar = id + " .dz-complete";
-            setTimeout(function() {
+            setTimeout(function () {
                 $(thisProgressBar + " .progress-bar, " + thisProgressBar + " .progress").css('opacity', '0');
             }, 300)
         });
@@ -376,7 +379,7 @@ var KTAppInbox = function() {
     // Public methods
     return {
         // Public functions
-        init: function() {
+        init: function () {
             // Init variables
             _asideEl = KTUtil.getById('kt_inbox_aside');
             _listEl = KTUtil.getById('kt_inbox_list');
@@ -392,7 +395,7 @@ var KTAppInbox = function() {
             KTAppInbox.initCompose();
         },
 
-        initAside: function() {
+        initAside: function () {
             // Mobile offcanvas for mobile mode
             _asideOffcanvas = new KTOffcanvas(_asideEl, {
                 overlay: true,
@@ -402,7 +405,7 @@ var KTAppInbox = function() {
             });
 
             // View list
-            KTUtil.on(_asideEl, '.list-item[data-action="list"]', 'click', function(e) {
+            KTUtil.on(_asideEl, '.list-item[data-action="list"]', 'click', function (e) {
                 var type = KTUtil.attr(this, 'data-type');
                 var listItemsEl = KTUtil.find(_listEl, '.kt-inbox__items');
                 var navItemEl = this.closest('.kt-nav__item');
@@ -416,7 +419,7 @@ var KTAppInbox = function() {
                 });
                 loading.show();
 
-                setTimeout(function() {
+                setTimeout(function () {
                     loading.hide();
 
                     KTUtil.css(_listEl, 'display', 'flex'); // show list
@@ -430,9 +433,9 @@ var KTAppInbox = function() {
             });
         },
 
-        initList: function() {
+        initList: function () {
             // View message
-            KTUtil.on(_listEl, '[data-inbox="message"]', 'click', function(e) {
+            KTUtil.on(_listEl, '[data-inbox="message"]', 'click', function (e) {
                 var actionsEl = KTUtil.find(this, '[data-inbox="actions"]');
 
                 // skip actions click
@@ -448,7 +451,7 @@ var KTAppInbox = function() {
                 });
                 loading.show();
 
-                setTimeout(function() {
+                setTimeout(function () {
                     loading.hide();
 
                     KTUtil.addClass(_listEl, 'd-none');
@@ -460,7 +463,7 @@ var KTAppInbox = function() {
             });
 
             // Group selection
-            KTUtil.on(_listEl, '[data-inbox="group-select"] input', 'click', function() {
+            KTUtil.on(_listEl, '[data-inbox="group-select"] input', 'click', function () {
                 var messages = KTUtil.findAll(_listEl, '[data-inbox="message"]');
 
                 for (var i = 0, j = messages.length; i < j; i++) {
@@ -477,7 +480,7 @@ var KTAppInbox = function() {
             });
 
             // Individual selection
-            KTUtil.on(_listEl, '[data-inbox="message"] [data-inbox="actions"] .checkbox input', 'click', function() {
+            KTUtil.on(_listEl, '[data-inbox="message"] [data-inbox="actions"] .checkbox input', 'click', function () {
                 var item = this.closest('[data-inbox="message"]');
 
                 if (item && this.checked) {
@@ -488,9 +491,9 @@ var KTAppInbox = function() {
             });
         },
 
-        initView: function() {
+        initView: function () {
             // Back to listing
-            KTUtil.on(_viewEl, '[data-inbox="back"]', 'click', function() {
+            KTUtil.on(_viewEl, '[data-inbox="back"]', 'click', function () {
                 // demo loading
                 var loading = new KTDialog({
                     'type': 'loader',
@@ -500,7 +503,7 @@ var KTAppInbox = function() {
 
                 loading.show();
 
-                setTimeout(function() {
+                setTimeout(function () {
                     loading.hide();
 
                     KTUtil.addClass(_listEl, 'd-block');
@@ -512,7 +515,7 @@ var KTAppInbox = function() {
             });
 
             // Expand/Collapse reply
-            KTUtil.on(_viewEl, '[data-inbox="message"]', 'click', function(e) {
+            KTUtil.on(_viewEl, '[data-inbox="message"]', 'click', function (e) {
                 var message = this.closest('[data-inbox="message"]');
 
                 var dropdownToggleEl = KTUtil.find(this, '[data-toggle="dropdown"]');
@@ -538,19 +541,19 @@ var KTAppInbox = function() {
             });
         },
 
-        initReply: function() {
+        initReply: function () {
             _initEditor(_replyEl, 'kt_inbox_reply_editor');
             _initAttachments('kt_inbox_reply_attachments');
             _initForm('kt_inbox_reply_form');
         },
 
-        initCompose: function() {
+        initCompose: function () {
             _initEditor(_composeEl, 'kt_inbox_compose_editor');
             _initAttachments('kt_inbox_compose_attachments');
             _initForm('kt_inbox_compose_form');
 
             // Remove reply form
-            KTUtil.on(_composeEl, '[data-inbox="dismiss"]', 'click', function(e) {
+            KTUtil.on(_composeEl, '[data-inbox="dismiss"]', 'click', function (e) {
                 swal.fire({
                     text: "Are you sure to discard this message ?",
                     type: "danger",
@@ -560,7 +563,7 @@ var KTAppInbox = function() {
                     showCancelButton: true,
                     cancelButtonText: "Cancel",
                     cancelButtonClass: "btn btn-light-primary"
-                }).then(function(result) {
+                }).then(function (result) {
                     $(_composeEl).modal('hide');
                 });
             });
@@ -569,6 +572,6 @@ var KTAppInbox = function() {
 }();
 
 // Class Initialization
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTAppInbox.init();
 });

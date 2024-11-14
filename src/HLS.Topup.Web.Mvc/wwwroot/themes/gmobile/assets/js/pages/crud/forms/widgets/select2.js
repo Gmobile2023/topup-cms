@@ -1,7 +1,7 @@
 // Class definition
-var KTSelect2 = function() {
+var KTSelect2 = function () {
     // Private functions
-    var demos = function() {
+    var demos = function () {
         // basic
         $('#kt_select2_1, #kt_select2_1_validate').select2({
             placeholder: 'Select a state'
@@ -76,13 +76,13 @@ var KTSelect2 = function() {
                 url: "https://api.github.com/search/repositories",
                 dataType: 'json',
                 delay: 250,
-                data: function(params) {
+                data: function (params) {
                     return {
                         q: params.term, // search term
                         page: params.page
                     };
                 },
-                processResults: function(data, params) {
+                processResults: function (data, params) {
                     // parse the results into the format expected by Select2
                     // since we are using custom formatting functions we do not need to
                     // alter the remote JSON data, except to indicate that infinite
@@ -98,7 +98,7 @@ var KTSelect2 = function() {
                 },
                 cache: true
             },
-            escapeMarkup: function(markup) {
+            escapeMarkup: function (markup) {
                 return markup;
             }, // let our custom formatter work
             minimumInputLength: 1,
@@ -147,7 +147,7 @@ var KTSelect2 = function() {
         });
     }
 
-    var modalDemos = function() {
+    var modalDemos = function () {
         $('#kt_select2_modal').on('shown.bs.modal', function () {
             // basic
             $('#kt_select2_1_modal').select2({
@@ -174,7 +174,7 @@ var KTSelect2 = function() {
 
     // Public functions
     return {
-        init: function() {
+        init: function () {
             demos();
             modalDemos();
         }
@@ -182,6 +182,6 @@ var KTSelect2 = function() {
 }();
 
 // Initialization
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTSelect2.init();
 });

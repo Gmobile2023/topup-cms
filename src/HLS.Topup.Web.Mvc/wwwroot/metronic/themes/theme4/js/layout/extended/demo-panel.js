@@ -1,12 +1,12 @@
 ﻿"use strict";
 
-var KTLayoutDemoPanel = function() {
+var KTLayoutDemoPanel = function () {
     // Private properties
     var _element;
     var _offcanvasObject;
 
     // Private functions
-    var _init = function() {
+    var _init = function () {
         _offcanvasObject = new KTOffcanvas(_element, {
             overlay: true,
             baseClass: 'offcanvas',
@@ -24,7 +24,7 @@ var KTLayoutDemoPanel = function() {
             disableForMobile: true,
             resetHeightOnDestroy: true,
             handleWindowResize: true,
-            height: function() {
+            height: function () {
                 var height = parseInt(KTUtil.getViewPort().height);
 
                 if (header) {
@@ -59,22 +59,22 @@ var KTLayoutDemoPanel = function() {
         });
 
         if (typeof offcanvas !== 'undefined' && offcanvas.length === 0) {
-            offcanvas.on('hide', function() {
+            offcanvas.on('hide', function () {
                 var expires = new Date(new Date().getTime() + 60 * 60 * 1000); // expire in 60 minutes from now
                 KTCookie.setCookie('kt_demo_panel_shown', 1, {expires: expires});
             });
         }
     }
 
-    var _remind = function() {
+    var _remind = function () {
         if (!(encodeURI(window.location.hostname) == 'keenthemes.com' || encodeURI(window.location.hostname) == 'www.keenthemes.com')) {
             return;
         }
 
-        setTimeout(function() {
+        setTimeout(function () {
             if (!KTCookie.getCookie('kt_demo_panel_shown')) {
                 var expires = new Date(new Date().getTime() + 15 * 60 * 1000); // expire in 15 minutes from now
-                KTCookie.setCookie('kt_demo_panel_shown', 1, { expires: expires });
+                KTCookie.setCookie('kt_demo_panel_shown', 1, {expires: expires});
                 if (typeof _offcanvasObject !== 'undefined') {
                     _offcanvasObject.show();
                 }
@@ -84,7 +84,7 @@ var KTLayoutDemoPanel = function() {
 
     // Public methods
     return {
-        init: function(id) {
+        init: function (id) {
             _element = KTUtil.getById(id);
 
             if (!_element) {
@@ -102,5 +102,5 @@ var KTLayoutDemoPanel = function() {
 
 // Webpack support
 if (typeof module !== 'undefined') {
-	module.exports = KTLayoutDemoPanel;
+    module.exports = KTLayoutDemoPanel;
 }

@@ -43,7 +43,7 @@
             _webLogService.downloadWebLogs({}).done(function (result) {
                 app.downloadTempFile(result);
             });
-        };
+        }
 
         function getFormattedLogs(logLines) {
             var resultHtml = '';

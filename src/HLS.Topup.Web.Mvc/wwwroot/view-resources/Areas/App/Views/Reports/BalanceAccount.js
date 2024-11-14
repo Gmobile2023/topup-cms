@@ -6,8 +6,8 @@
         $('.date-picker').datetimepicker({
             locale: abp.localization.currentLanguage.name,
             format: 'L'
-        });       
-     
+        });
+
         var getDateFilter = function (element) {
             if (element.data("DateTimePicker").date() == null) {
                 return null;
@@ -128,7 +128,7 @@
         });
 
         function getProviders() {
-            dataTable.ajax.reload();    
+            dataTable.ajax.reload();
         }
 
         $('#ExportToExcelButton').click(function () {
@@ -152,8 +152,8 @@
                     else
                         app.downloadTempFile(result);
                 }).always(function () {
-                    abp.ui.clearBusy();
-                });
+                abp.ui.clearBusy();
+            });
         });
 
         $('#GetProvidersButton').click(function (e) {
@@ -177,7 +177,7 @@
                 data: function (params) {
                     return {
                         search: params.term,
-                        accountType:99
+                        accountType: 99
                         //page: params.page
                     };
                 },

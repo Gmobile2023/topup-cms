@@ -12,8 +12,7 @@
 
             if (options.modalSize === null) {
                 options.modalSize = "";
-            }
-            else if (options.modalSize) {
+            } else if (options.modalSize) {
                 options.modalSize = options.modalSize;
             } else {
                 options.modalSize = 'modal-lg';
@@ -157,7 +156,7 @@
                         if (status == "error") {
                             abp.message.warn(abp.localization.abpWeb('InternalServerError'));
                             return;
-                        };
+                        }
 
                         if (options.scriptUrl) {
                             app.ResourceLoader.loadScript(options.scriptUrl, function () {

@@ -727,7 +727,7 @@ topupApp.controller('VTVcabController', ["$scope", "$locale", function ($scope, 
             if (!$scope.$$phase)
                 $scope.$apply();
             $('#error-modal').modal();
-            return;
+            
         } else {
             $.ajax({
                 url: "../../service/vtvcab/getproviderfee",
@@ -770,7 +770,7 @@ topupApp.controller('VTVcabController', ["$scope", "$locale", function ($scope, 
             if (!$scope.$$phase)
                 $scope.$apply();
             $('#error-modal').modal();
-            return;
+            
         } else {
             $.ajax({
                 url: "../../service/vtvcab/getkplusfee",

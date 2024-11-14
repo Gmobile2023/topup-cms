@@ -1,115 +1,115 @@
 "use strict";
 // Class definition
 
-var KTDatatableAutoColumnHideDemo = function() {
-	// Private functions
+var KTDatatableAutoColumnHideDemo = function () {
+    // Private functions
 
-	// basic demo
-	var demo = function() {
+    // basic demo
+    var demo = function () {
 
-		var datatable = $('#kt_datatable').KTDatatable({
-			// datasource definition
-			data: {
-				type: 'remote',
-				source: {
-					read: {
-						url: HOST_URL + '/api/datatables/demos/default.php',
-					},
-				},
-				pageSize: 10,
-				saveState: false,
-				serverPaging: true,
-				serverFiltering: true,
-				serverSorting: true,
-			},
+        var datatable = $('#kt_datatable').KTDatatable({
+            // datasource definition
+            data: {
+                type: 'remote',
+                source: {
+                    read: {
+                        url: HOST_URL + '/api/datatables/demos/default.php',
+                    },
+                },
+                pageSize: 10,
+                saveState: false,
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+            },
 
-			layout: {
-				scroll: false
-			},
+            layout: {
+                scroll: false
+            },
 
-			// column sorting
-			sortable: true,
+            // column sorting
+            sortable: true,
 
-			pagination: true,
+            pagination: true,
 
-			search: {
-				input: $('#kt_datatable_search_query'),
-				key: 'generalSearch'
-			},
+            search: {
+                input: $('#kt_datatable_search_query'),
+                key: 'generalSearch'
+            },
 
-			// columns definition
-			columns: [
-				{
-					field: 'OrderID',
-					title: 'Order ID',
-				}, {
-					field: 'Country',
-					title: 'Country',
-					template: function(row) {
-						return row.Country + ' ' + row.ShipCountry;
-					},
-				}, {
-					field: 'CompanyEmail',
-					title: 'Email',
-				}, {
-					field: 'ShipDate',
-					title: 'Ship Date',
-					type: 'date',
-					format: 'MM/DD/YYYY',
-				}, {
-					field: 'CompanyName',
-					title: 'Company Name',
-				}, {
-					field: 'ShipAddress',
-					title: 'Ship Address',
-				}, {
-					field: 'Website',
-					title: 'Website',
-				}, {
-					field: 'TotalPayment',
-					title: 'Payment',
-				}, {
-					field: 'Notes',
-					title: 'Notes',
-					width: 300,
-				}, {
-					field: 'Status',
-					title: 'Status',
-					// callback function support for column rendering
-					template: function(row) {
-						var status = {
-							1: {'title': 'Pending', 'class': 'label-light-primary'},
-							2: {'title': 'Delivered', 'class': ' label-light-danger'},
-							3: {'title': 'Canceled', 'class': ' label-light-primary'},
-							4: {'title': 'Success', 'class': ' label-light-success'},
-							5: {'title': 'Info', 'class': ' label-light-info'},
-							6: {'title': 'Danger', 'class': ' label-light-danger'},
-							7: {'title': 'Warning', 'class': ' label-light-warning'},
-						};
-						return '<span class="label label-lg font-weight-bold' + status[row.Status].class + ' label-inline">' + status[row.Status].title + '</span>';
-					},
-				}, {
-					field: 'Type',
-					title: 'Type',
-					// callback function support for column rendering
-					template: function(row) {
-						var status = {
-							1: {'title': 'Online', 'state': 'danger'},
-							2: {'title': 'Retail', 'state': 'primary'},
-							3: {'title': 'Direct', 'state': 'success'},
-						};
-						return '<span class="label label-' + status[row.Type].state + ' label-dot mr-2"></span><span class="font-weight-bold text-' + status[row.Type].state + '">' +
-								status[row.Type].title + '</span>';
-					},
-				}, {
-					field: 'Actions',
-					title: 'Actions',
-					sortable: false,
-					width: 125,
-					overflow: 'visible',
-					autoHide: false,
-					template: function() {
-						return '\
+            // columns definition
+            columns: [
+                {
+                    field: 'OrderID',
+                    title: 'Order ID',
+                }, {
+                    field: 'Country',
+                    title: 'Country',
+                    template: function (row) {
+                        return row.Country + ' ' + row.ShipCountry;
+                    },
+                }, {
+                    field: 'CompanyEmail',
+                    title: 'Email',
+                }, {
+                    field: 'ShipDate',
+                    title: 'Ship Date',
+                    type: 'date',
+                    format: 'MM/DD/YYYY',
+                }, {
+                    field: 'CompanyName',
+                    title: 'Company Name',
+                }, {
+                    field: 'ShipAddress',
+                    title: 'Ship Address',
+                }, {
+                    field: 'Website',
+                    title: 'Website',
+                }, {
+                    field: 'TotalPayment',
+                    title: 'Payment',
+                }, {
+                    field: 'Notes',
+                    title: 'Notes',
+                    width: 300,
+                }, {
+                    field: 'Status',
+                    title: 'Status',
+                    // callback function support for column rendering
+                    template: function (row) {
+                        var status = {
+                            1: {'title': 'Pending', 'class': 'label-light-primary'},
+                            2: {'title': 'Delivered', 'class': ' label-light-danger'},
+                            3: {'title': 'Canceled', 'class': ' label-light-primary'},
+                            4: {'title': 'Success', 'class': ' label-light-success'},
+                            5: {'title': 'Info', 'class': ' label-light-info'},
+                            6: {'title': 'Danger', 'class': ' label-light-danger'},
+                            7: {'title': 'Warning', 'class': ' label-light-warning'},
+                        };
+                        return '<span class="label label-lg font-weight-bold' + status[row.Status].class + ' label-inline">' + status[row.Status].title + '</span>';
+                    },
+                }, {
+                    field: 'Type',
+                    title: 'Type',
+                    // callback function support for column rendering
+                    template: function (row) {
+                        var status = {
+                            1: {'title': 'Online', 'state': 'danger'},
+                            2: {'title': 'Retail', 'state': 'primary'},
+                            3: {'title': 'Direct', 'state': 'success'},
+                        };
+                        return '<span class="label label-' + status[row.Type].state + ' label-dot mr-2"></span><span class="font-weight-bold text-' + status[row.Type].state + '">' +
+                            status[row.Type].title + '</span>';
+                    },
+                }, {
+                    field: 'Actions',
+                    title: 'Actions',
+                    sortable: false,
+                    width: 125,
+                    overflow: 'visible',
+                    autoHide: false,
+                    template: function () {
+                        return '\
 	                        <div class="dropdown dropdown-inline">\
 	                            <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">\
 	                                <span class="svg-icon svg-icon-md">\
@@ -182,30 +182,30 @@ var KTDatatableAutoColumnHideDemo = function() {
 	                            </span>\
 	                        </a>\
 	                    ';
-					},
-				}],
+                    },
+                }],
 
-		});
+        });
 
-		$('#kt_datatable_search_status').on('change', function() {
-			datatable.search($(this).val().toLowerCase(), 'Status');
-		});
+        $('#kt_datatable_search_status').on('change', function () {
+            datatable.search($(this).val().toLowerCase(), 'Status');
+        });
 
-		$('#kt_datatable_search_type').on('change', function() {
-			datatable.search($(this).val().toLowerCase(), 'Type');
-		});
+        $('#kt_datatable_search_type').on('change', function () {
+            datatable.search($(this).val().toLowerCase(), 'Type');
+        });
 
-		$('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
-	};
+        $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
+    };
 
-	return {
-		// public functions
-		init: function() {
-			demo();
-		},
-	};
+    return {
+        // public functions
+        init: function () {
+            demo();
+        },
+    };
 }();
 
-jQuery(document).ready(function() {
-	KTDatatableAutoColumnHideDemo.init();
+jQuery(document).ready(function () {
+    KTDatatableAutoColumnHideDemo.init();
 });

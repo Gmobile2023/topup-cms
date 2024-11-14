@@ -1,5 +1,5 @@
 ﻿(function () {
-    $(function () {                     
+    $(function () {
         var _$table = $('#tableDetail');
         var _transService = abp.services.app.transactions;
         var dataTable = _$table.DataTable({
@@ -28,17 +28,17 @@
                 {
                     targets: 1,
                     className: 'all',
-                    data: "batchName"                                      
+                    data: "batchName"
                 },
                 {
                     targets: 2,
                     className: 'all',
-                    data: "productName"                   
+                    data: "productName"
                 },
                 {
                     targets: 3,
                     className: 'all',
-                    data: "provider",                   
+                    data: "provider",
                 },
                 {
                     targets: 4,
@@ -53,13 +53,13 @@
                     render: function (data, dispaly, row) {
                         return (data ? Sv.format_number(data) : "0");
                     }
-                },               
+                },
                 {
                     targets: 6,
                     className: "all text-right",
                     data: "discountAmount",
-                    render: function (data, dispaly, row) {                       
-                            return (data ? Sv.format_number(data) : "0");
+                    render: function (data, dispaly, row) {
+                        return (data ? Sv.format_number(data) : "0");
                     }
                 },
                 {
@@ -74,15 +74,15 @@
                     targets: 8,
                     className: "all text-right",
                     data: "paymentAmount",
-                    render: function (data, dispaly, row) {                        
-                            return (data ? Sv.format_number(data) : "0");
+                    render: function (data, dispaly, row) {
+                        return (data ? Sv.format_number(data) : "0");
                     }
                 },
                 {
                     targets: 9,
                     className: 'all',
                     data: "statusName"
-                },               
+                },
                 {
                     targets: 10,
                     data: "updateTime",
@@ -104,7 +104,7 @@
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.amount));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.discountAmount));
                         $(thead).find('th').eq(3).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.fee));
-                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.paymentAmount));   ;
+                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.paymentAmount));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -116,7 +116,6 @@
         function getTables() {
             dataTable.ajax.reload();
         }
-
 
 
         $('#btnSeachDetail').click(function (e) {
@@ -147,11 +146,11 @@
                 batchStatus: $('#selectBatchStatus').val(),
                 status: $('#selectStatusTrans').val(),
             })
-                .done(function (result) {                  
+                .done(function (result) {
                     app.downloadTempFile(result);
                 });
         });
-     
+
 
         $(document).on('click', '.print-invoice-item', function () {
             let _type = $(this).attr('data-type');

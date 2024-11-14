@@ -1,10 +1,10 @@
 "use strict";
 
 // Class Definition
-var KTLoginGeneral = function() {
+var KTLoginGeneral = function () {
     var _login;
 
-    var _showForm = function(form) {
+    var _showForm = function (form) {
         var cls = 'login-' + form + '-on';
         var form = 'kt_login_' + form + '_form';
 
@@ -17,62 +17,62 @@ var KTLoginGeneral = function() {
         KTUtil.animateClass(KTUtil.getById(form), 'animate__animated animate__backInUp');
     }
 
-    var _handleSignInForm = function() {
+    var _handleSignInForm = function () {
         var validation;
 
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
         validation = FormValidation.formValidation(
-			KTUtil.getById('kt_login_signin_form'),
-			{
-				fields: {
-					username: {
-						validators: {
-							notEmpty: {
-								message: 'Username is required'
-							}
-						}
-					},
-					password: {
-						validators: {
-							notEmpty: {
-								message: 'Password is required'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					bootstrap: new FormValidation.plugins.Bootstrap()
-				}
-			}
-		);
+            KTUtil.getById('kt_login_signin_form'),
+            {
+                fields: {
+                    username: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Username is required'
+                            }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Password is required'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap()
+                }
+            }
+        );
 
         $('#kt_login_signin_submit').on('click', function (e) {
             e.preventDefault();
 
-            validation.validate().then(function(status) {
-		        if (status == 'Valid') {
+            validation.validate().then(function (status) {
+                if (status == 'Valid') {
                     swal.fire({
-		                text: "All is cool! Now you submit this form",
-		                icon: "success",
-		                buttonsStyling: false,
-		                confirmButtonText: "Ok, got it!",
-		                confirmButtonClass: "btn font-weight-bold btn-light-primary"
-		            }).then(function() {
-						KTUtil.scrollTop();
-					});
-				} else {
-					swal.fire({
-		                text: "Sorry, looks like there are some errors detected, please try again.",
-		                icon: "error",
-		                buttonsStyling: false,
-		                confirmButtonText: "Ok, got it!",
-		                confirmButtonClass: "btn font-weight-bold btn-light"
-		            }).then(function() {
-						KTUtil.scrollTop();
-					});
-				}
-		    });
+                        text: "All is cool! Now you submit this form",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        confirmButtonClass: "btn font-weight-bold btn-light-primary"
+                    }).then(function () {
+                        KTUtil.scrollTop();
+                    });
+                } else {
+                    swal.fire({
+                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        confirmButtonClass: "btn font-weight-bold btn-light"
+                    }).then(function () {
+                        KTUtil.scrollTop();
+                    });
+                }
+            });
         });
 
         // Handle forgot button
@@ -88,32 +88,32 @@ var KTLoginGeneral = function() {
         });
     }
 
-    var _handleSignUpForm = function(e) {
+    var _handleSignUpForm = function (e) {
         var validation;
         var form = KTUtil.getById('kt_login_signup_form');
 
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
         validation = FormValidation.formValidation(
-			form,
-			{
-				fields: {
-					fullname: {
-						validators: {
-							notEmpty: {
-								message: 'Username is required'
-							}
-						}
-					},
-					email: {
+            form,
+            {
+                fields: {
+                    fullname: {
                         validators: {
-							notEmpty: {
-								message: 'Email address is required'
-							},
+                            notEmpty: {
+                                message: 'Username is required'
+                            }
+                        }
+                    },
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Email address is required'
+                            },
                             emailAddress: {
-								message: 'The value is not a valid email address'
-							}
-						}
-					},
+                                message: 'The value is not a valid email address'
+                            }
+                        }
+                    },
                     password: {
                         validators: {
                             notEmpty: {
@@ -127,7 +127,7 @@ var KTLoginGeneral = function() {
                                 message: 'The password confirmation is required'
                             },
                             identical: {
-                                compare: function() {
+                                compare: function () {
                                     return form.querySelector('[name="password"]').value;
                                 },
                                 message: 'The password and its confirm are not the same'
@@ -141,40 +141,40 @@ var KTLoginGeneral = function() {
                             }
                         }
                     },
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					bootstrap: new FormValidation.plugins.Bootstrap()
-				}
-			}
-		);
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap()
+                }
+            }
+        );
 
         $('#kt_login_signup_submit').on('click', function (e) {
             e.preventDefault();
 
-            validation.validate().then(function(status) {
-		        if (status == 'Valid') {
+            validation.validate().then(function (status) {
+                if (status == 'Valid') {
                     swal.fire({
-		                text: "All is cool! Now you submit this form",
-		                icon: "success",
-		                buttonsStyling: false,
-		                confirmButtonText: "Ok, got it!",
-		                confirmButtonClass: "btn font-weight-bold btn-light-primary"
-		            }).then(function() {
-						KTUtil.scrollTop();
-					});
-				} else {
-					swal.fire({
-		                text: "Sorry, looks like there are some errors detected, please try again.",
-		                icon: "error",
-		                buttonsStyling: false,
-		                confirmButtonText: "Ok, got it!",
-		                confirmButtonClass: "btn font-weight-bold btn-light"
-		            }).then(function() {
-						KTUtil.scrollTop();
-					});
-				}
-		    });
+                        text: "All is cool! Now you submit this form",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        confirmButtonClass: "btn font-weight-bold btn-light-primary"
+                    }).then(function () {
+                        KTUtil.scrollTop();
+                    });
+                } else {
+                    swal.fire({
+                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        confirmButtonClass: "btn font-weight-bold btn-light"
+                    }).then(function () {
+                        KTUtil.scrollTop();
+                    });
+                }
+            });
         });
 
         // Handle cancel button
@@ -185,52 +185,52 @@ var KTLoginGeneral = function() {
         });
     }
 
-    var _handleForgotForm = function(e) {
+    var _handleForgotForm = function (e) {
         var validation;
 
         // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
         validation = FormValidation.formValidation(
-			KTUtil.getById('kt_login_forgot_form'),
-			{
-				fields: {
-					email: {
-						validators: {
-							notEmpty: {
-								message: 'Email address is required'
-							},
+            KTUtil.getById('kt_login_forgot_form'),
+            {
+                fields: {
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Email address is required'
+                            },
                             emailAddress: {
-								message: 'The value is not a valid email address'
-							}
-						}
-					}
-				},
-				plugins: {
-					trigger: new FormValidation.plugins.Trigger(),
-					bootstrap: new FormValidation.plugins.Bootstrap()
-				}
-			}
-		);
+                                message: 'The value is not a valid email address'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    trigger: new FormValidation.plugins.Trigger(),
+                    bootstrap: new FormValidation.plugins.Bootstrap()
+                }
+            }
+        );
 
         // Handle submit button
         $('#kt_login_forgot_submit').on('click', function (e) {
             e.preventDefault();
 
-            validation.validate().then(function(status) {
-		        if (status == 'Valid') {
+            validation.validate().then(function (status) {
+                if (status == 'Valid') {
                     // Submit form
                     KTUtil.scrollTop();
-				} else {
-					swal.fire({
-		                text: "Sorry, looks like there are some errors detected, please try again.",
-		                icon: "error",
-		                buttonsStyling: false,
-		                confirmButtonText: "Ok, got it!",
-		                confirmButtonClass: "btn font-weight-bold btn-light"
-		            }).then(function() {
-						KTUtil.scrollTop();
-					});
-				}
-		    });
+                } else {
+                    swal.fire({
+                        text: "Sorry, looks like there are some errors detected, please try again.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        confirmButtonClass: "btn font-weight-bold btn-light"
+                    }).then(function () {
+                        KTUtil.scrollTop();
+                    });
+                }
+            });
         });
 
         // Handle cancel button
@@ -244,7 +244,7 @@ var KTLoginGeneral = function() {
     // Public Functions
     return {
         // public functions
-        init: function() {
+        init: function () {
             _login = $('#kt_login');
 
             _handleSignInForm();
@@ -255,6 +255,6 @@ var KTLoginGeneral = function() {
 }();
 
 // Class Initialization
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTLoginGeneral.init();
 });

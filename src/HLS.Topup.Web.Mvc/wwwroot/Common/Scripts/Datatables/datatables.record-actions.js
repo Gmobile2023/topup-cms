@@ -1,6 +1,6 @@
 ﻿/************************************************************************
-* RECORD-ACTIONS extension for datatables                               *
-*************************************************************************/
+ * RECORD-ACTIONS extension for datatables                               *
+ *************************************************************************/
 (function ($) {
 
     if (!$.fn.dataTableExt) {
@@ -53,13 +53,13 @@
         for (var i = 0; i < field.items.length; i++) {
             var fieldItem = field.items[i];
 
-            if (fieldItem.visible && !fieldItem.visible({ record: record })) {
+            if (fieldItem.visible && !fieldItem.visible({record: record})) {
                 continue;
             }
 
             var $dropdownItem = _createDropdownItem(record, fieldItem);
 
-            if (fieldItem.enabled && !fieldItem.enabled({ record: record })) {
+            if (fieldItem.enabled && !fieldItem.enabled({record: record})) {
                 $dropdownItem.addClass('disabled');
             }
 
@@ -87,7 +87,7 @@
 
         var isVisibilityFunction = typeof field.visible === "function";
         if (isVisibilityFunction) {
-            if (field.visible({ record: record })) {
+            if (field.visible({record: record})) {
                 return field.element;
             }
         } else {
@@ -116,7 +116,7 @@
         tableInstance.fnSetColumnVis(colIndex, false, false);
     }
 
-    var hideEmptyColumn = function(cellContent, tableInstance, colIndex) {
+    var hideEmptyColumn = function (cellContent, tableInstance, colIndex) {
         if (cellContent == "") {
             hideColumnWithoutRedraw(tableInstance, colIndex);
         }

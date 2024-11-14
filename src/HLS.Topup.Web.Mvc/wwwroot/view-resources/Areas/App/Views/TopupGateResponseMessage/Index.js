@@ -8,8 +8,8 @@
             locale: abp.localization.currentLanguage.name,
             format: 'L LTS'
         });
-        $('#ExportToExcelButton').click(function() {
-           
+        $('#ExportToExcelButton').click(function () {
+
             var fileUrl = '/assets/SampleFiles/ImportMaLoiNhaCungCapSample.xlsx';
             var a = document.createElement('a');
             a.href = fileUrl
@@ -49,13 +49,13 @@
 
             return element.data("DateTimePicker").date().format("YYYY-MM-DDT00:00:00Z");
         }
-        $('#excel-file').on('change', function(e) {
+        $('#excel-file').on('change', function (e) {
             var file = e.target.files[0];
             if (!file) return;
             var reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 var data = e.target.result;
-                var workbook = XLSX.read(data, { type: 'binary' });
+                var workbook = XLSX.read(data, {type: 'binary'});
 
                 // Đọc dữ liệu từ sheet đầu tiên (index 0)
                 var sheetName = workbook.SheetNames[0];
@@ -64,7 +64,7 @@
 
                 // Chuyển đổi dữ liệu JSON thành danh sách ProviderResponseDto
                 var listTopupGateResponseMessage = [];
-                jsonData.forEach(function(row) {
+                jsonData.forEach(function (row) {
                     var bankMessageConfig = {
                         Provider: row["Nhà cung cấp"],
                         Code: row["Mã lỗi nhà cung cấp"],
@@ -75,7 +75,7 @@
                     };
                     listTopupGateResponseMessage.push(bankMessageConfig);
                     var requestData = {
-                        ListProviderResponse  : listTopupGateResponseMessage
+                        ListProviderResponse: listTopupGateResponseMessage
                     };
                     abp.message.confirm(
                         'Bạn chắc chắn muốn import ProviderResponse này không?',
@@ -83,12 +83,13 @@
                         function (isConfirmed) {
                             if (isConfirmed) {
                                 if (isConfirmed) {
-                                    _TopupGateResponseMessageAppService.createListTopupGateRM(requestData).done(function (){
+                                    _TopupGateResponseMessageAppService.createListTopupGateRM(requestData).done(function () {
                                         abp.notify.success(app.localize('Successfully'));
                                         window.location.reload();
                                     });
                                 }
-                            }}
+                            }
+                        }
                     );
                 });
 
@@ -107,7 +108,7 @@
                         provider: $('#ProviderFilter').val(),
                         responseCode: $('#ResponseCodeFilter').val(),
                         responseName: $('#ResponseNameFilter').val(),
-                        name:  $('#NameFilter').val(),
+                        name: $('#NameFilter').val(),
                         code: $('#CodeFilter').val(),
                     };
                 }
@@ -127,7 +128,10 @@
                             {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewTopupGateResponseMessageModal.open({provider: data.record.provider,code: data.record.code});
+                                    _viewTopupGateResponseMessageModal.open({
+                                        provider: data.record.provider,
+                                        code: data.record.code
+                                    });
                                 }
                             },
                             {
@@ -136,14 +140,17 @@
                                     return _permissions.edit;
                                 },
                                 action: function (data) {
-                                    _createOrEditTopupGateResponseMessageModal.open({provider: data.record.provider,code: data.record.code});
+                                    _createOrEditTopupGateResponseMessageModal.open({
+                                        provider: data.record.provider,
+                                        code: data.record.code
+                                    });
                                 }
-                            },{
+                            }, {
                                 text: app.localize('Delete'),
                                 visible: function () {
                                     return _permissions.delete;
                                 },
-                                action: function (data){
+                                action: function (data) {
                                     deleteAppPage(data.record);
                                 }
                             }
@@ -222,15 +229,17 @@
                 function (isConfirmed) {
                     if (isConfirmed) {
                         if (isConfirmed) {
-                           _TopupGateResponseMessageAppService.deleteTopupGateRM(providerResponse.provider,providerResponse.code).done(function (){
+                            _TopupGateResponseMessageAppService.deleteTopupGateRM(providerResponse.provider, providerResponse.code).done(function () {
 
-                               getTopupGateResponseMessage();
-                               abp.notify.success(app.localize('SuccessfullyDeleted'));
-                           })
+                                getTopupGateResponseMessage();
+                                abp.notify.success(app.localize('SuccessfullyDeleted'));
+                            })
                         }
-                    }}
+                    }
+                }
             );
         }
+
         $('#GetTopupGateResponseMessageButton').click(function (e) {
             e.preventDefault();
             getTopupGateResponseMessage();

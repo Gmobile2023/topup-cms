@@ -5,7 +5,7 @@
 
         function getCreationTime(creationTime) {
             return moment(creationTime).fromNow() + ' (' + moment(creationTime).format('YYYY-MM-DD hh:mm:ss') + ')';
-        };
+        }
 
         this.init = function (modalManager) {
             _modalManager = modalManager;

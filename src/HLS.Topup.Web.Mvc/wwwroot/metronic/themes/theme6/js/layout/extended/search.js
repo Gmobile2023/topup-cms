@@ -3,7 +3,7 @@
 // Handle User Quick Search For Dropdown, Inline and Offcanvas Search Panels
 //
 
-var KTLayoutSearch = function() {
+var KTLayoutSearch = function () {
     // Private properties
     var _target;
     var _form;
@@ -25,7 +25,7 @@ var KTLayoutSearch = function() {
     var _minLength = 2;
 
     // Private functions
-    var _showProgress = function() {
+    var _showProgress = function () {
         _isProcessing = true;
         KTUtil.addClass(_closeIconContainer, _spinnerClass);
 
@@ -34,7 +34,7 @@ var KTLayoutSearch = function() {
         }
     }
 
-    var _hideProgress = function() {
+    var _hideProgress = function () {
         _isProcessing = false;
         KTUtil.removeClass(_closeIconContainer, _spinnerClass);
 
@@ -47,20 +47,20 @@ var KTLayoutSearch = function() {
         }
     }
 
-    var _showDropdown = function() {
+    var _showDropdown = function () {
         if (_resultDropdownToggle && !KTUtil.hasClass(_resultDropdown, 'show')) {
             $(_resultDropdownToggle).dropdown('toggle');
             $(_resultDropdownToggle).dropdown('update');
         }
     }
 
-    var _hideDropdown = function() {
+    var _hideDropdown = function () {
         if (_resultDropdownToggle && KTUtil.hasClass(_resultDropdown, 'show')) {
             $(_resultDropdownToggle).dropdown('toggle');
         }
     }
 
-    var _processSearch = function() {
+    var _processSearch = function () {
         if (_hasResult && _query === _input.value) {
             _hideProgress();
             KTUtil.addClass(_target, _resultClass);
@@ -76,14 +76,14 @@ var KTLayoutSearch = function() {
         _showProgress();
         _hideDropdown();
 
-        setTimeout(function() {
+        setTimeout(function () {
             $.ajax({
                 url: HOST_URL + '/api/quick_search.php',
                 data: {
                     query: _query
                 },
                 dataType: 'html',
-                success: function(res) {
+                success: function (res) {
                     _hasResult = true;
                     _hideProgress();
                     KTUtil.addClass(_target, _resultClass);
@@ -91,7 +91,7 @@ var KTLayoutSearch = function() {
                     _showDropdown();
                     KTUtil.scrollUpdate(_resultWrapper);
                 },
-                error: function(res) {
+                error: function (res) {
                     _hasResult = false;
                     _hideProgress();
                     KTUtil.addClass(_target, _resultClass);
@@ -103,7 +103,7 @@ var KTLayoutSearch = function() {
         }, 1000);
     }
 
-    var _handleCancel = function(e) {
+    var _handleCancel = function (e) {
         _input.value = '';
         _query = '';
         _hasResult = false;
@@ -112,7 +112,7 @@ var KTLayoutSearch = function() {
         _hideDropdown();
     }
 
-    var _handleSearch = function() {
+    var _handleSearch = function () {
         if (_input.value.length < _minLength) {
             _hideProgress();
             _hideDropdown();
@@ -128,14 +128,14 @@ var KTLayoutSearch = function() {
             clearTimeout(_timeout);
         }
 
-        _timeout = setTimeout(function() {
+        _timeout = setTimeout(function () {
             _processSearch();
         }, _requestTimeout);
     }
 
     // Public methods
     return {
-        init: function(id) {
+        init: function (id) {
             _target = KTUtil.getById(id);
 
             if (!_target) {
@@ -156,7 +156,7 @@ var KTLayoutSearch = function() {
             KTUtil.addEvent(_input, 'focus', _handleSearch);
 
             // Prevent enter click
-            _form.onkeypress = function(e) {
+            _form.onkeypress = function (e) {
                 var key = e.charCode || e.keyCode || 0;
                 if (key == 13) {
                     e.preventDefault();

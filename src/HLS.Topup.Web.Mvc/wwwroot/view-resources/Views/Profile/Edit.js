@@ -50,7 +50,7 @@
                 abp.message.warn("Vui lòng upload ảnh thông tin giấy tờ 1");
                 return false
             }
-            let tp =  ctrl.form.find("[name='idType']:checked").attr('doc');
+            let tp = ctrl.form.find("[name='idType']:checked").attr('doc');
             if (tp !== "PASSPORT" && (obj.img_after.length == 0 && obj.img_after_old.length == 0)) {
                 abp.message.warn("Vui lòng upload ảnh thông tin giấy tờ 2");
                 return false
@@ -261,9 +261,9 @@
                     $preview.append('<img  alt=""/>');
                     $img = $preview.find('img');
                 }
-                $img.attr('src', e.target.result); 
+                $img.attr('src', e.target.result);
                 bindVerify.detectImage($input.files[0])
-                    .then(function (re) { 
+                    .then(function (re) {
                         bindVerify.suggestUserInfo(re, preview);
                         let data = JSON.parse(re);
                         console.log(data);
@@ -278,7 +278,7 @@
                             if ($elm.length > 0) {
                                 $elm.prop('checked', true);
                             }
-                            ctrl.form.find("[name='idType']").trigger('change'); 
+                            ctrl.form.find("[name='idType']").trigger('change');
                         }
                     });
             };
@@ -298,14 +298,14 @@
         }
     },
     changeIdType: function () {
-       ctrl.form.find("[name='idType']").on('change', function(e){
-          let val = ctrl.form.find("[name='idType']:checked").attr('doc');
-          if(val === "PASSPORT"){
-              ctrl.form.find("#img_after").closest('.form-group ').hide(); 
-          }else{ 
-              ctrl.form.find("#img_after").closest('.form-group ').show(); 
-          }
-       });
+        ctrl.form.find("[name='idType']").on('change', function (e) {
+            let val = ctrl.form.find("[name='idType']:checked").attr('doc');
+            if (val === "PASSPORT") {
+                ctrl.form.find("#img_after").closest('.form-group ').hide();
+            } else {
+                ctrl.form.find("#img_after").closest('.form-group ').show();
+            }
+        });
     }
 }
 
@@ -316,5 +316,5 @@ $(document).ready(function () {
     ctrl.eventChangeAvatar();
     bindVerify.init();
     ctrl.textVerifyAccount();
-    ctrl.changeIdType(); 
+    ctrl.changeIdType();
 });

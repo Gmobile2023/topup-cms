@@ -1,11 +1,11 @@
 ﻿"use strict";
 
-var KTLayoutSubheader = function() {
+var KTLayoutSubheader = function () {
     // Private properties
     var _element;
 
     // Private functions
-    var _getHeight = function() {
+    var _getHeight = function () {
         var height = 0;
 
         if (_element) {
@@ -16,30 +16,30 @@ var KTLayoutSubheader = function() {
     }
 
     // Public methods
-	return {
-		init: function(id) {
+    return {
+        init: function (id) {
             _element = KTUtil.getById(id);
 
             if (!_element) {
-                return;
-            }
-		},
 
-        isFixed: function() {
+            }
+        },
+
+        isFixed: function () {
             return KTUtil.hasClass(KTUtil.getBody(), 'subheader-fixed');
         },
 
-        getElement: function() {
+        getElement: function () {
             return _element;
         },
 
-        getHeight: function() {
+        getHeight: function () {
             return _getHeight();
         }
-	};
+    };
 }();
 
 // Webpack support
 if (typeof module !== 'undefined') {
-	module.exports = KTLayoutSubheader;
+    module.exports = KTLayoutSubheader;
 }

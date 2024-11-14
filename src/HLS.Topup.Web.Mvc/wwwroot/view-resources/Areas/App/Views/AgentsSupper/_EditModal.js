@@ -183,7 +183,7 @@
 
 
             return obj;
-        };
+        }
 
         function getCategories(serviceCode, controlSelect, isActive) {
             abp.ui.setBusy();

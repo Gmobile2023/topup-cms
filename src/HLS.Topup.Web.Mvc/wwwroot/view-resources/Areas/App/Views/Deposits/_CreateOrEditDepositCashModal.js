@@ -3,10 +3,10 @@
 
         var _depositsService = abp.services.app.deposits;
         var _commonLockup = abp.services.app.commonLookup;
-        
+
         var _modalManager;
         var _$depositInformationForm = null;
-        
+
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
@@ -20,7 +20,7 @@
             _$depositInformationForm.validate();
             Sv.SetupAmountMask();
         };
-        
+
         $("#select_UserId").select2({
             placeholder: 'Chọn người dùng',
             allowClear: true,
@@ -55,8 +55,8 @@
             minimumInputLength: 3,
             language: abp.localization.currentCulture.name
         });
-        
-        $(document).ready(function() {
+
+        $(document).ready(function () {
             let userId = $('#select_UserId').val();
             bindSaleAssign(userId);
         });
@@ -72,7 +72,7 @@
             const $str = $(".amount-to-text");
             Sv.BindMoneyToString($str, val);
         });
-        
+
         function bindSaleAssign(userId) {
             if (userId === null || userId === "") return false;
 

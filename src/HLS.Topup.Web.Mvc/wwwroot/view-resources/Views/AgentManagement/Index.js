@@ -149,7 +149,7 @@
             e.preventDefault();
             getAgents();
         });
-        $('#StatusFilterId').on("change",function (e) {
+        $('#StatusFilterId').on("change", function (e) {
             getAgents();
         });
 

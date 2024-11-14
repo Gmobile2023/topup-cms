@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 // Component Definition
-var KTHeader = function(elementId, options) {
+var KTHeader = function (elementId, options) {
     // Main object
     var the = this;
     var init = false;
@@ -35,7 +35,7 @@ var KTHeader = function(elementId, options) {
          * Run plugin
          * @returns {KTHeader}
          */
-        construct: function(options) {
+        construct: function (options) {
             if (KTUtil.data(element).has('header')) {
                 the = KTUtil.data(element).get('header');
             } else {
@@ -55,7 +55,7 @@ var KTHeader = function(elementId, options) {
          * Handles subheader click toggle
          * @returns {KTHeader}
          */
-        init: function(options) {
+        init: function (options) {
             the.events = [];
 
             // merge default and user defined options
@@ -66,11 +66,11 @@ var KTHeader = function(elementId, options) {
          * Reset header
          * @returns {KTHeader}
          */
-        build: function() {
+        build: function () {
             var eventTriggerState = true;
             var lastScrollTop = 0;
 
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 var offset = 0, st, attrName;
 
                 if (KTUtil.isBreakpointDown('lg') && the.options.offset.tabletAndMobile === false) {
@@ -141,7 +141,7 @@ var KTHeader = function(elementId, options) {
         /**
          * Trigger events
          */
-        eventTrigger: function(name, args) {
+        eventTrigger: function (name, args) {
             for (var i = 0; i < the.events.length; i++) {
                 var event = the.events[i];
                 if (event.name == name) {
@@ -157,7 +157,7 @@ var KTHeader = function(elementId, options) {
             }
         },
 
-        addEvent: function(name, handler, one) {
+        addEvent: function (name, handler, one) {
             the.events.push({
                 name: name,
                 handler: handler,
@@ -175,14 +175,14 @@ var KTHeader = function(elementId, options) {
      * Set default options
      */
 
-    the.setDefaults = function(options) {
+    the.setDefaults = function (options) {
         defaultOptions = options;
     };
 
     /**
      * Register event
      */
-    the.on = function(name, handler) {
+    the.on = function (name, handler) {
         return Plugin.addEvent(name, handler);
     };
 

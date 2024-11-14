@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 // Component Definition 
-var KTImageInput = function(elementId, options) {
+var KTImageInput = function (elementId, options) {
     // Main object
     var the = this;
     var init = false;
@@ -28,7 +28,7 @@ var KTImageInput = function(elementId, options) {
          * Construct
          */
 
-        construct: function(options) {
+        construct: function (options) {
             if (KTUtil.data(element).has('imageinput')) {
                 the = KTUtil.data(element).get('imageinput');
             } else {
@@ -47,7 +47,7 @@ var KTImageInput = function(elementId, options) {
         /**
          * Init avatar
          */
-        init: function(options) {
+        init: function (options) {
             the.element = element;
             the.events = [];
 
@@ -65,37 +65,37 @@ var KTImageInput = function(elementId, options) {
         /**
          * Build
          */
-        build: function() {
+        build: function () {
             // Handle change
-            KTUtil.addEvent(the.input, 'change', function(e) {
+            KTUtil.addEvent(the.input, 'change', function (e) {
                 e.preventDefault();
 
-	            if (the.input && the.input.files && the.input.files[0]) {
-	                var reader = new FileReader();
-	                reader.onload = function(e) {
-	                    KTUtil.css(the.wrapper, 'background-image', 'url('+e.target.result +')');
-	                }
-	                reader.readAsDataURL(the.input.files[0]);
+                if (the.input && the.input.files && the.input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        KTUtil.css(the.wrapper, 'background-image', 'url(' + e.target.result + ')');
+                    }
+                    reader.readAsDataURL(the.input.files[0]);
 
-	                KTUtil.addClass(the.element, 'image-input-changed');
+                    KTUtil.addClass(the.element, 'image-input-changed');
                     KTUtil.removeClass(the.element, 'image-input-empty');
 
                     // Fire change event
                     Plugin.eventTrigger('change');
-	            }
+                }
             });
 
             // Handle cancel
-            KTUtil.addEvent(the.cancel, 'click', function(e) {
+            KTUtil.addEvent(the.cancel, 'click', function (e) {
                 e.preventDefault();
 
                 // Fire cancel event
                 Plugin.eventTrigger('cancel');
 
-	            KTUtil.removeClass(the.element, 'image-input-changed');
+                KTUtil.removeClass(the.element, 'image-input-changed');
                 KTUtil.removeClass(the.element, 'image-input-empty');
-	            KTUtil.css(the.wrapper, 'background-image', the.src);
-	            the.input.value = "";
+                KTUtil.css(the.wrapper, 'background-image', the.src);
+                the.input.value = "";
 
                 if (the.hidden) {
                     the.hidden.value = "0";
@@ -103,16 +103,16 @@ var KTImageInput = function(elementId, options) {
             });
 
             // Handle remove
-            KTUtil.addEvent(the.remove, 'click', function(e) {
+            KTUtil.addEvent(the.remove, 'click', function (e) {
                 e.preventDefault();
 
                 // Fire cancel event
                 Plugin.eventTrigger('remove');
 
-	            KTUtil.removeClass(the.element, 'image-input-changed');
+                KTUtil.removeClass(the.element, 'image-input-changed');
                 KTUtil.addClass(the.element, 'image-input-empty');
-	            KTUtil.css(the.wrapper, 'background-image', "none");
-	            the.input.value = "";
+                KTUtil.css(the.wrapper, 'background-image', "none");
+                the.input.value = "";
 
                 if (the.hidden) {
                     the.hidden.value = "1";
@@ -123,7 +123,7 @@ var KTImageInput = function(elementId, options) {
         /**
          * Trigger events
          */
-        eventTrigger: function(name) {
+        eventTrigger: function (name) {
             //KTUtil.triggerCustomEvent(name);
             for (var i = 0; i < the.events.length; i++) {
                 var event = the.events[i];
@@ -140,7 +140,7 @@ var KTImageInput = function(elementId, options) {
             }
         },
 
-        addEvent: function(name, handler, one) {
+        addEvent: function (name, handler, one) {
             the.events.push({
                 name: name,
                 handler: handler,
@@ -160,21 +160,21 @@ var KTImageInput = function(elementId, options) {
      * Set default options
      */
 
-    the.setDefaults = function(options) {
+    the.setDefaults = function (options) {
         defaultOptions = options;
     };
 
     /**
      * Attach event
      */
-    the.on = function(name, handler) {
+    the.on = function (name, handler) {
         return Plugin.addEvent(name, handler);
     };
 
     /**
      * Attach event that will be fired once
      */
-    the.one = function(name, handler) {
+    the.one = function (name, handler) {
         return Plugin.addEvent(name, handler, true);
     };
 

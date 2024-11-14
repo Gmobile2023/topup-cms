@@ -1,44 +1,53 @@
 .login.login-4 .login-signin,
 .login.login-4 .login-signup,
 .login.login-4 .login-forgot {
-  display: none;
+    display: none;
 }
+
 .login.login-4.login-signin-on .login-signup {
-  display: none;
+    display: none;
 }
+
 .login.login-4.login-signin-on .login-signin {
-  display: block;
+    display: block;
 }
+
 .login.login-4.login-signin-on .login-forgot {
-  display: none;
+    display: none;
 }
+
 .login.login-4.login-signup-on .login-signup {
-  display: block;
+    display: block;
 }
+
 .login.login-4.login-signup-on .login-signin {
-  display: none;
+    display: none;
 }
+
 .login.login-4.login-signup-on .login-forgot {
-  display: none;
+    display: none;
 }
+
 .login.login-4.login-forgot-on .login-signup {
-  display: none;
+    display: none;
 }
+
 .login.login-4.login-forgot-on .login-signin {
-  display: none;
+    display: none;
 }
+
 .login.login-4.login-forgot-on .login-forgot {
-  display: block;
+    display: block;
 }
 
 .login.login-4 .login-form {
-  width: 100%;
-  max-width: 450px;
+    width: 100%;
+    max-width: 450px;
 }
 
 @media (max-width: 575.98px) {
-  .login.login-4 .login-form {
-    width: 100%;
-    max-width: 100%;
-  }
+    .login.login-4 .login-form {
+        width: 100%;
+        max-width: 100%;
+    }
 }

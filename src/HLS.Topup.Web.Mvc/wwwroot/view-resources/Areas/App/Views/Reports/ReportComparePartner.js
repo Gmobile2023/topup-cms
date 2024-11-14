@@ -6,7 +6,7 @@
         var _$totalTablePrepaid = $('#totalTablePrepaid');
         var _$totalTablePostpaid = $('#totalTablePostpaid');
         var _$totalTableData = $('#totalTableData');
-        var _$totalTableTopup = $('#totalTableTopup');        
+        var _$totalTableTopup = $('#totalTableTopup');
         var _$totalTablePayBill = $('#totalTablePayBill');
         var _$totalTableBalance = $('#totalTableBalance');
 
@@ -123,7 +123,7 @@
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.quantity));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.value));
                         // $(thead).find('th').eq(3).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.discount));
-                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));                      
+                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -230,7 +230,7 @@
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.quantity));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.value));
                         // $(thead).find('th').eq(3).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.discount));
-                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));                      
+                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -325,7 +325,7 @@
                         }
                         return "0";
                     }
-                }               
+                }
             ],
             "headerCallback": function (thead, data, start, end, display) {
                 try {
@@ -333,7 +333,7 @@
                     if (rawServerResponse !== undefined && rawServerResponse.totalData !== undefined) {
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.quantity));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.value));
-                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));                      
+                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -354,7 +354,7 @@
                         agentType: $("#agentType").val(),
                         agentCode: $("#selectAgent").val(),
                         type: "TOPUP",
-                        serviceCode:"TOPUP",
+                        serviceCode: "TOPUP",
                         changerType: "PREPAID"
                     };
                 }
@@ -437,7 +437,7 @@
                     if (rawServerResponse !== undefined && rawServerResponse.totalData !== undefined) {
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.quantity));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.value));
-                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));                        
+                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -541,7 +541,7 @@
                     if (rawServerResponse !== undefined && rawServerResponse.totalData !== undefined) {
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.quantity));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.value));
-                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));                       
+                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -645,7 +645,7 @@
                     if (rawServerResponse !== undefined && rawServerResponse.totalData !== undefined) {
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.quantity));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.value));
-                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));                      
+                        $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.price));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -691,7 +691,7 @@
                     className: "all text-right",
                     render: function (data, type, row) {
                         if (row.quantity) {
-                            return + Sv.format_number(row.quantity);
+                            return +Sv.format_number(row.quantity);
                         }
                         return "0";
                     }
@@ -749,7 +749,7 @@
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.quantity));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.value));
                         $(thead).find('th').eq(4).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.fee));
-                        $(thead).find('th').eq(5).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.discount));                      
+                        $(thead).find('th').eq(5).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.discount));
                     }
                 } catch (e) {
                     console.log("không có total")

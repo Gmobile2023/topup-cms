@@ -76,7 +76,7 @@
                             {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewServiceConfigurationModal.open({ id: data.record.serviceConfiguration.id });
+                                    _viewServiceConfigurationModal.open({id: data.record.serviceConfiguration.id});
                                 }
                             },
                             {
@@ -85,7 +85,7 @@
                                     return _permissions.edit;
                                 },
                                 action: function (data) {
-                                    _createOrEditModal.open({ id: data.record.serviceConfiguration.id });
+                                    _createOrEditModal.open({id: data.record.serviceConfiguration.id});
                                 }
                             },
                             {

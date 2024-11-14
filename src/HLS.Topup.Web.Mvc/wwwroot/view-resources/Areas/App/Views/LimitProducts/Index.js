@@ -38,7 +38,7 @@
             modalClass: 'ViewLimitProductModal',
             modalSize: 'modal-xl'
         });
-        
+
         var getDateFilter = function (element) {
             if (element.data("DateTimePicker").date() == null) {
                 return null;
@@ -202,7 +202,7 @@
                         return "";
                     }
                 },
-                
+
                 {
                     targets: 11,
                     data: "limitProduct.fromDate",
@@ -323,7 +323,7 @@
             minimumInputLength: 3,
             language: abp.localization.currentCulture.name
         });
-        
+
         abp.event.on('app.createOrEditLimitProductModalSaved', function () {
             getLimitProducts();
         });

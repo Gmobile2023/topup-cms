@@ -1,11 +1,11 @@
 "use strict";
 // Class definition
 
-var KTDatatableTranslationDemo = function() {
+var KTDatatableTranslationDemo = function () {
     // Private functions
 
     // basic demo
-    var demo = function() {
+    var demo = function () {
 
         var datatable = $('#kt_datatable').KTDatatable({
             // datasource definition
@@ -54,7 +54,7 @@ var KTDatatableTranslationDemo = function() {
             }, {
                 field: 'Country',
                 title: 'Country',
-                template: function(row) {
+                template: function (row) {
                     return row.Country + ' ' + row.ShipCountry;
                 },
             }, {
@@ -69,7 +69,7 @@ var KTDatatableTranslationDemo = function() {
                 field: 'Status',
                 title: 'Status',
                 // callback function support for column rendering
-                template: function(row) {
+                template: function (row) {
                     var status = {
                         1: {
                             'title': 'Pending',
@@ -107,7 +107,7 @@ var KTDatatableTranslationDemo = function() {
                 title: 'Type',
                 autoHide: false,
                 // callback function support for column rendering
-                template: function(row) {
+                template: function (row) {
                     var status = {
                         1: {
                             'title': 'Online',
@@ -132,7 +132,7 @@ var KTDatatableTranslationDemo = function() {
                 width: 125,
                 overflow: 'visible',
                 autoHide: false,
-                template: function() {
+                template: function () {
                     return '\
 						<div class="dropdown dropdown-inline">\
 							<a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">\
@@ -233,11 +233,11 @@ var KTDatatableTranslationDemo = function() {
             },
         });
 
-        $('#kt_datatable_search_status').on('change', function() {
+        $('#kt_datatable_search_status').on('change', function () {
             datatable.search($(this).val().toLowerCase(), 'Status');
         });
 
-        $('#kt_datatable_search_type').on('change', function() {
+        $('#kt_datatable_search_type').on('change', function () {
             datatable.search($(this).val().toLowerCase(), 'Type');
         });
 
@@ -247,12 +247,12 @@ var KTDatatableTranslationDemo = function() {
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             demo();
         },
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTDatatableTranslationDemo.init();
 });

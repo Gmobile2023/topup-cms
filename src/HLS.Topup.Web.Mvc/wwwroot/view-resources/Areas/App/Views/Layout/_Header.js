@@ -138,7 +138,7 @@
                     }
                 }
             });
-        };
+        }
 
         manageLinkedAccountsModal.onClose(function () {
             getRecentlyLinkedUsers();

@@ -6,7 +6,7 @@
                 this[key.charAt(0).toLowerCase() + key.slice(1)] = val;
             else
                 return val;
-        };
+        }
 
         var _buildPasswordComplexityErrorMessage = function (setting) {
             var message = "<ul style='display: inline-block;'>";

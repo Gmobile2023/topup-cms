@@ -1,7 +1,7 @@
 // Class definition
-var KTTagifyDemos = function() {
+var KTTagifyDemos = function () {
     // Private functions
-    var demo1 = function() {
+    var demo1 = function () {
         var input = document.getElementById('kt_tagify_1'),
             // init Tagify script on the above inputs
             tagify = new Tagify(input, {
@@ -66,15 +66,15 @@ var KTTagifyDemos = function() {
         }
     }
 
-    var demo1Readonly = function() {
+    var demo1Readonly = function () {
         // Readonly Mode
         var input = document.getElementById('kt_tagify_1_1'),
-        tagify = new Tagify(input);
+            tagify = new Tagify(input);
 
-        tagify.addTags([{value:"laravel", color:"yellow", readonly: true}]);
+        tagify.addTags([{value: "laravel", color: "yellow", readonly: true}]);
     }
 
-    var demo2 = function() {
+    var demo2 = function () {
         var input = document.getElementById('kt_tagify_2');
         var tagify = new Tagify(input, {
             enforceWhitelist: true,
@@ -86,7 +86,7 @@ var KTTagifyDemos = function() {
         });
     }
 
-    var demo3 = function() {
+    var demo3 = function () {
         var input = document.getElementById('kt_tagify_3');
 
         // init Tagify script on the above inputs
@@ -101,7 +101,7 @@ var KTTagifyDemos = function() {
         tagify.DOM.scope.parentNode.insertBefore(tagify.DOM.input, tagify.DOM.scope);
     }
 
-    var demo4 = function() {
+    var demo4 = function () {
         var input = document.getElementById('kt_tagify_4');
         var tagify = new Tagify(input, {
             pattern: /^.{0,20}$/, // Validate typed tag(s) by Regex. Here maximum chars length is defined as "20"
@@ -134,16 +134,16 @@ var KTTagifyDemos = function() {
             }
         }
 
-        tagify.on('add', function(e) {
+        tagify.on('add', function (e) {
             console.log(e.detail)
         });
 
-        tagify.on('invalid', function(e) {
+        tagify.on('invalid', function (e) {
             console.log(e, e.detail);
         });
     }
 
-    var demo5 = function() {
+    var demo5 = function () {
         // Init autocompletes
         var toEl = document.getElementById('kt_tagify_5');
         var tagifyTo = new Tagify(toEl, {
@@ -153,88 +153,89 @@ var KTTagifyDemos = function() {
             keepInvalidTags: true, // do not remove invalid tags (but keep them marked as invalid)
             whitelist: [
                 {
-                value : 'Chris Muller',
-                email : 'chris.muller@wix.com',
-                initials: '',
-                initialsState: '',
-                pic: './assets/media/users/100_11.jpg',
-                class : 'tagify__tag--primary'
-            }, {
-                value : 'Nick Bold',
-                email : 'nick.seo@gmail.com',
-                initials: 'SS',
-                initialsState: 'warning',
-                pic: ''
-            }, {
-                value : 'Alon Silko',
-                email : 'alon@keenthemes.com',
-                initials: '',
-                initialsState: '',
-                pic: './assets/media/users/100_6.jpg'
-            }, {
-                value : 'Sam Seanic',
-                email : 'sam.senic@loop.com',
-                initials: '',
-                initialsState: '',
-                pic: './assets/media/users/100_8.jpg'
-            }, {
-                value : 'Sara Loran',
-                email : 'sara.loran@tilda.com',
-                initials: '',
-                initialsState: '',
-                pic: './assets/media/users/100_9.jpg'
-            }, {
-                value : 'Eric Davok',
-                email : 'davok@mix.com',
-                initials: '',
-                initialsState: '',
-                pic: './assets/media/users/100_13.jpg'
-            }, {
-                value : 'Sam Seanic',
-                email : 'sam.senic@loop.com',
-                initials: '',
-                initialsState: '',
-                pic: './assets/media/users/100_13.jpg'
-            }, {
-                value : 'Lina Nilson',
-                email : 'lina.nilson@loop.com',
-                initials: 'LN',
-                initialsState: 'danger',
-                pic: './assets/media/users/100_15.jpg'
-            }],
+                    value: 'Chris Muller',
+                    email: 'chris.muller@wix.com',
+                    initials: '',
+                    initialsState: '',
+                    pic: './assets/media/users/100_11.jpg',
+                    class: 'tagify__tag--primary'
+                }, {
+                    value: 'Nick Bold',
+                    email: 'nick.seo@gmail.com',
+                    initials: 'SS',
+                    initialsState: 'warning',
+                    pic: ''
+                }, {
+                    value: 'Alon Silko',
+                    email: 'alon@keenthemes.com',
+                    initials: '',
+                    initialsState: '',
+                    pic: './assets/media/users/100_6.jpg'
+                }, {
+                    value: 'Sam Seanic',
+                    email: 'sam.senic@loop.com',
+                    initials: '',
+                    initialsState: '',
+                    pic: './assets/media/users/100_8.jpg'
+                }, {
+                    value: 'Sara Loran',
+                    email: 'sara.loran@tilda.com',
+                    initials: '',
+                    initialsState: '',
+                    pic: './assets/media/users/100_9.jpg'
+                }, {
+                    value: 'Eric Davok',
+                    email: 'davok@mix.com',
+                    initials: '',
+                    initialsState: '',
+                    pic: './assets/media/users/100_13.jpg'
+                }, {
+                    value: 'Sam Seanic',
+                    email: 'sam.senic@loop.com',
+                    initials: '',
+                    initialsState: '',
+                    pic: './assets/media/users/100_13.jpg'
+                }, {
+                    value: 'Lina Nilson',
+                    email: 'lina.nilson@loop.com',
+                    initials: 'LN',
+                    initialsState: 'danger',
+                    pic: './assets/media/users/100_15.jpg'
+                }],
             templates: {
-                dropdownItem : function(tagData){
+                dropdownItem: function (tagData) {
                     try {
                         var html = '';
 
                         html += '<div class="tagify__dropdown__item">';
                         html += '   <div class="d-flex align-items-center">';
                         html += '       <span class="symbol sumbol-' + (tagData.initialsState ? tagData.initialsState : '') + ' mr-2">';
-                        html += '           <span class="symbol-label" style="background-image: url(\''+ (tagData.pic ? tagData.pic : '') + '\')">' + (tagData.initials ? tagData.initials : '') + '</span>';
+                        html += '           <span class="symbol-label" style="background-image: url(\'' + (tagData.pic ? tagData.pic : '') + '\')">' + (tagData.initials ? tagData.initials : '') + '</span>';
                         html += '       </span>';
                         html += '       <div class="d-flex flex-column">';
-                        html += '           <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">'+ (tagData.value ? tagData.value : '') + '</a>';
+                        html += '           <a href="#" class="text-dark-75 text-hover-primary font-weight-bold">' + (tagData.value ? tagData.value : '') + '</a>';
                         html += '           <span class="text-muted font-weight-bold">' + (tagData.email ? tagData.email : '') + '</span>';
                         html += '       </div>';
                         html += '   </div>';
                         html += '</div>';
 
                         return html;
-                    } catch (err) {}
+                    } catch (err) {
+                    }
                 }
             },
-            transformTag: function(tagData) {
+            transformTag: function (tagData) {
                 tagData.class = 'tagify__tag tagify__tag--primary';
             },
-            dropdown : {
-                classname : "color-blue",
-                enabled   : 1,
-                maxItems  : 5
+            dropdown: {
+                classname: "color-blue",
+                enabled: 1,
+                maxItems: 5
             }
         });
     }
 
-    var demo6 = function() {
+    var demo6 = function () {
         var input = document.getElementById('kt_tagify_6');
         var tagify = new Tagify(input, {
             pattern: /^.{0,20}$/, // Validate typed tag(s) by Regex. Here maximum chars length is defined as "20"
@@ -267,11 +268,11 @@ var KTTagifyDemos = function() {
             }
         }
 
-        tagify.on('add', function(e) {
+        tagify.on('add', function (e) {
             console.log(e.detail)
         });
 
-        tagify.on('invalid', function(e) {
+        tagify.on('invalid', function (e) {
             console.log(e, e.detail);
         });
     }
@@ -279,7 +280,7 @@ var KTTagifyDemos = function() {
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             demo1();
             demo1Readonly();
 
@@ -292,6 +293,6 @@ var KTTagifyDemos = function() {
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTTagifyDemos.init();
 });

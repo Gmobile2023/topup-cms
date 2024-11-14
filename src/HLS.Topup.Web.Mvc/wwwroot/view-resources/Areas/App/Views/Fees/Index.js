@@ -254,12 +254,12 @@
                 data: null,
                 success: function (data) {
                     $.each(data, function (index, item) {
-                        options += '<option value="'+ item.id +'">'+ item.displayName +'</option>';
+                        options += '<option value="' + item.id + '">' + item.displayName + '</option>';
                     });
 
                     $('#' + position).append(options).select2();
                 }
-            }).done(function() {
+            }).done(function () {
 
             });
         }
@@ -293,6 +293,7 @@
                 }
             );
         }
+
         function stop(fee) {
             abp.message.confirm(
                 'Bạn chắc chắn muốn dừng chính sách này không?',

@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 // Component Definition 
-var KTDialog = function(options) {
+var KTDialog = function (options) {
     // Main object
     var the = this;
 
@@ -11,11 +11,11 @@ var KTDialog = function(options) {
 
     // Default options
     var defaultOptions = {
-        'placement' : 'top center',
-        'type'  : 'loader',
-        'width' : 100,
-        'state' : 'default',
-        'message' : 'Loading...'
+        'placement': 'top center',
+        'type': 'loader',
+        'width': 100,
+        'state': 'default',
+        'message': 'Loading...'
     };
 
     ////////////////////////////
@@ -27,7 +27,7 @@ var KTDialog = function(options) {
          * Construct
          */
 
-        construct: function(options) {
+        construct: function (options) {
             Plugin.init(options);
 
             return the;
@@ -36,7 +36,7 @@ var KTDialog = function(options) {
         /**
          * Handles subtoggle click toggle
          */
-        init: function(options) {
+        init: function (options) {
             the.events = [];
 
             // merge default and user defined options
@@ -48,7 +48,7 @@ var KTDialog = function(options) {
         /**
          * Show dialog
          */
-        show: function() {
+        show: function () {
             Plugin.eventTrigger('show');
 
             element = document.createElement("DIV");
@@ -74,7 +74,7 @@ var KTDialog = function(options) {
         /**
          * Hide dialog
          */
-        hide: function() {
+        hide: function () {
             if (element) {
                 Plugin.eventTrigger('hide');
 
@@ -90,7 +90,7 @@ var KTDialog = function(options) {
         /**
          * Trigger events
          */
-        eventTrigger: function(name) {
+        eventTrigger: function (name) {
             for (var i = 0; i < the.events.length; i++) {
                 var event = the.events[i];
 
@@ -107,7 +107,7 @@ var KTDialog = function(options) {
             }
         },
 
-        addEvent: function(name, handler, one) {
+        addEvent: function (name, handler, one) {
             the.events.push({
                 name: name,
                 handler: handler,
@@ -127,35 +127,35 @@ var KTDialog = function(options) {
      * Set default options
      */
 
-    the.setDefaults = function(options) {
+    the.setDefaults = function (options) {
         defaultOptions = options;
     };
 
     /**
      * Check shown state
      */
-    the.shown = function() {
+    the.shown = function () {
         return the.state == 'shown';
     };
 
     /**
      * Check hidden state
      */
-    the.hidden = function() {
+    the.hidden = function () {
         return the.state == 'hidden';
     };
 
     /**
      * Show dialog
      */
-    the.show = function() {
+    the.show = function () {
         return Plugin.show();
     };
 
     /**
      * Hide dialog
      */
-    the.hide = function() {
+    the.hide = function () {
         return Plugin.hide();
     };
 
@@ -163,7 +163,7 @@ var KTDialog = function(options) {
      * Attach event
      * @returns {KTToggle}
      */
-    the.on = function(name, handler) {
+    the.on = function (name, handler) {
         return Plugin.addEvent(name, handler);
     };
 
@@ -171,7 +171,7 @@ var KTDialog = function(options) {
      * Attach event that will be fired once
      * @returns {KTToggle}
      */
-    the.one = function(name, handler) {
+    the.one = function (name, handler) {
         return Plugin.addEvent(name, handler, true);
     };
 

@@ -15,7 +15,7 @@
                 entityFullName: _modalManager.getModal().find("#EntityFullName").val(),
                 entityId: _modalManager.getModal().find("#EntityId").val(),
                 bodyElement: _table.find("tbody"),
-                onDeleteValues: function() {
+                onDeleteValues: function () {
                     initializePage();
                 }
             });

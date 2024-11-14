@@ -56,12 +56,12 @@ var KTMaskDemo = function () {
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             demos();
         }
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTMaskDemo.init();
 });

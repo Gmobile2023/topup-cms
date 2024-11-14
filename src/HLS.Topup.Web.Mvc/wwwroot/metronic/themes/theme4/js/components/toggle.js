@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 // Component Definition
-var KTToggle = function(elementId, options) {
+var KTToggle = function (elementId, options) {
     // Main object
     var the = this;
     var init = false;
@@ -27,7 +27,7 @@ var KTToggle = function(elementId, options) {
          * Construct
          */
 
-        construct: function(options) {
+        construct: function (options) {
             if (KTUtil.data(element).has('toggle')) {
                 the = KTUtil.data(element).get('toggle');
             } else {
@@ -46,7 +46,7 @@ var KTToggle = function(elementId, options) {
         /**
          * Handles subtoggle click toggle
          */
-        init: function(options) {
+        init: function (options) {
             the.element = element;
             the.events = [];
 
@@ -69,14 +69,14 @@ var KTToggle = function(elementId, options) {
         /**
          * Setup toggle
          */
-        build: function() {
+        build: function () {
             KTUtil.addEvent(element, 'mouseup', Plugin.toggle);
         },
 
         /**
          * Handles offcanvas click toggle
          */
-        toggle: function(e) {
+        toggle: function (e) {
             Plugin.eventTrigger('beforeToggle');
 
             if (the.state == 'off') {
@@ -95,7 +95,7 @@ var KTToggle = function(elementId, options) {
         /**
          * Handles toggle click toggle
          */
-        toggleOn: function() {
+        toggleOn: function () {
             Plugin.eventTrigger('beforeOn');
 
             if (the.options.targetToggleMode == 'class') {
@@ -120,7 +120,7 @@ var KTToggle = function(elementId, options) {
         /**
          * Handles toggle click toggle
          */
-        toggleOff: function() {
+        toggleOff: function () {
             Plugin.eventTrigger('beforeOff');
 
             if (the.options.targetToggleMode == 'class') {
@@ -145,7 +145,7 @@ var KTToggle = function(elementId, options) {
         /**
          * Trigger events
          */
-        eventTrigger: function(name) {
+        eventTrigger: function (name) {
             for (var i = 0; i < the.events.length; i++) {
                 var event = the.events[i];
 
@@ -162,7 +162,7 @@ var KTToggle = function(elementId, options) {
             }
         },
 
-        addEvent: function(name, handler, one) {
+        addEvent: function (name, handler, one) {
             the.events.push({
                 name: name,
                 handler: handler,
@@ -182,35 +182,35 @@ var KTToggle = function(elementId, options) {
      * Set default options
      */
 
-    the.setDefaults = function(options) {
+    the.setDefaults = function (options) {
         defaultOptions = options;
     };
 
     /**
      * Get toggle state
      */
-    the.getState = function() {
+    the.getState = function () {
         return the.state;
     };
 
     /**
      * Toggle
      */
-    the.toggle = function() {
+    the.toggle = function () {
         return Plugin.toggle();
     };
 
     /**
      * Toggle on
      */
-    the.toggleOn = function() {
+    the.toggleOn = function () {
         return Plugin.toggleOn();
     };
 
     /**
      * Toggle off
      */
-    the.toggleOff = function() {
+    the.toggleOff = function () {
         return Plugin.toggleOff();
     };
 
@@ -218,7 +218,7 @@ var KTToggle = function(elementId, options) {
      * Attach event
      * @returns {KTToggle}
      */
-    the.on = function(name, handler) {
+    the.on = function (name, handler) {
         return Plugin.addEvent(name, handler);
     };
 
@@ -226,7 +226,7 @@ var KTToggle = function(elementId, options) {
      * Attach event that will be fired once
      * @returns {KTToggle}
      */
-    the.one = function(name, handler) {
+    the.one = function (name, handler) {
         return Plugin.addEvent(name, handler, true);
     };
 

@@ -45,12 +45,12 @@
                                 resendWebhook(data.record.id);
                             }
                         },
-                        {
-                            text: app.localize('GoToSubscription'),
-                            action: function (data) {
-                                window.location = "/App/WebhookSubscription/Detail/ " + data.record.webhookSubscriptionId;
-                            }
-                        }]
+                            {
+                                text: app.localize('GoToSubscription'),
+                                action: function (data) {
+                                    window.location = "/App/WebhookSubscription/Detail/ " + data.record.webhookSubscriptionId;
+                                }
+                            }]
                     }
                 },
                 {
@@ -99,12 +99,13 @@
                             .done(function () {
                                 abp.notify.success(app.localize('WebhookSendAttemptInQueue'));
                             }).always(function () {
-                                abp.ui.clearBusy();
-                            });
+                            abp.ui.clearBusy();
+                        });
                     }
                 }
             );
         }
+
         $('#refresh-send-attempts-btn').click(function (e) {
             getWebhookSendAttempts();
         });

@@ -1,7 +1,7 @@
 "use strict";
-var KTDatatablesBasicScrollable = function() {
+var KTDatatablesBasicScrollable = function () {
 
-    var initTable1 = function() {
+    var initTable1 = function () {
         var table = $('#kt_datatable1');
 
         // begin first table
@@ -10,12 +10,12 @@ var KTDatatablesBasicScrollable = function() {
             scrollX: true,
             scrollCollapse: true,
             columnDefs: [{
-                    targets: -1,
-                    title: 'Actions',
-                    orderable: false,
-					width: '125px',
-                    render: function(data, type, full, meta) {
-						return '\
+                targets: -1,
+                title: 'Actions',
+                orderable: false,
+                width: '125px',
+                render: function (data, type, full, meta) {
+                    return '\
 	                        <div class="dropdown dropdown-inline">\
 	                            <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">\
 	                                <span class="svg-icon svg-icon-md">\
@@ -88,12 +88,12 @@ var KTDatatablesBasicScrollable = function() {
 	                            </span>\
 	                        </a>\
 	                    ';
-                    },
                 },
+            },
                 {
                     targets: 8,
-					width: '75px',
-                    render: function(data, type, full, meta) {
+                    width: '75px',
+                    render: function (data, type, full, meta) {
                         var status = {
                             1: {
                                 'title': 'Pending',
@@ -132,8 +132,8 @@ var KTDatatablesBasicScrollable = function() {
                 },
                 {
                     targets: 9,
-					width: '75px',
-                    render: function(data, type, full, meta) {
+                    width: '75px',
+                    render: function (data, type, full, meta) {
                         var status = {
                             1: {
                                 'title': 'Online',
@@ -159,7 +159,7 @@ var KTDatatablesBasicScrollable = function() {
         });
     };
 
-    var initTable2 = function() {
+    var initTable2 = function () {
         var table = $('#kt_datatable2');
 
         // begin second table
@@ -167,7 +167,7 @@ var KTDatatablesBasicScrollable = function() {
             scrollY: '50vh',
             scrollX: true,
             scrollCollapse: true,
-            createdRow: function(row, data, index) {
+            createdRow: function (row, data, index) {
                 var status = {
                     1: {
                         'title': 'Pending',
@@ -220,12 +220,12 @@ var KTDatatablesBasicScrollable = function() {
                 row.getElementsByTagName('td')[19].innerHTML = badge;
             },
             columnDefs: [{
-                    targets: -1,
-                    title: 'Actions',
-                    orderable: false,
-					width: '125px',
-                    render: function(data, type, full, meta) {
-						return '\
+                targets: -1,
+                title: 'Actions',
+                orderable: false,
+                width: '125px',
+                render: function (data, type, full, meta) {
+                    return '\
 	                        <div class="dropdown dropdown-inline">\
 	                            <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">\
 	                                <span class="svg-icon svg-icon-md">\
@@ -298,12 +298,12 @@ var KTDatatablesBasicScrollable = function() {
 	                            </span>\
 	                        </a>\
 	                    ';
-                    },
                 },
+            },
                 {
                     targets: 8,
-					width: '75px',
-                    render: function(data, type, full, meta) {
+                    width: '75px',
+                    render: function (data, type, full, meta) {
                         var status = {
                             1: {
                                 'title': 'Pending',
@@ -342,8 +342,8 @@ var KTDatatablesBasicScrollable = function() {
                 },
                 {
                     targets: 9,
-					width: '75px',
-                    render: function(data, type, full, meta) {
+                    width: '75px',
+                    render: function (data, type, full, meta) {
                         var status = {
                             1: {
                                 'title': 'Online',
@@ -372,7 +372,7 @@ var KTDatatablesBasicScrollable = function() {
     return {
 
         //main function to initiate the module
-        init: function() {
+        init: function () {
             initTable1();
             initTable2();
         },
@@ -381,6 +381,6 @@ var KTDatatablesBasicScrollable = function() {
 
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTDatatablesBasicScrollable.init();
 });

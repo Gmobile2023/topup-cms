@@ -4,7 +4,7 @@
         errorClass: 'invalid-feedback',
         focusInvalid: false,
         submitOnKeyPress: true,
-        ignore:':hidden',
+        ignore: ':hidden',
         highlight: function (element) {
             $(element).closest('.form-group').find('input:eq(0)').addClass('is-invalid');
         },

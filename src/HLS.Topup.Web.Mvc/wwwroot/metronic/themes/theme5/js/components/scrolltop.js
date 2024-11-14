@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 // Component Definition
-var KTScrolltop = function(elementId, options) {
+var KTScrolltop = function (elementId, options) {
     // Main object
     var the = this;
     var init = false;
@@ -29,7 +29,7 @@ var KTScrolltop = function(elementId, options) {
          * Run plugin
          * @returns {mscrolltop}
          */
-        construct: function(options) {
+        construct: function (options) {
             if (KTUtil.data(element).has('scrolltop')) {
                 the = KTUtil.data(element).get('scrolltop');
             } else {
@@ -49,18 +49,18 @@ var KTScrolltop = function(elementId, options) {
          * Handles subscrolltop click toggle
          * @returns {mscrolltop}
          */
-        init: function(options) {
+        init: function (options) {
             the.events = [];
 
             // merge default and user defined options
             the.options = KTUtil.deepExtend({}, defaultOptions, options);
         },
 
-        build: function() {
+        build: function () {
             var timer;
 
-            window.addEventListener('scroll', function() {
-                KTUtil.throttle(timer, function() {
+            window.addEventListener('scroll', function () {
+                KTUtil.throttle(timer, function () {
                     Plugin.handle();
                 }, 200);
             });
@@ -72,7 +72,7 @@ var KTScrolltop = function(elementId, options) {
         /**
          * Handles scrolltop click scrollTop
          */
-        handle: function() {
+        handle: function () {
             var pos = KTUtil.getScrollTop(); // current vertical position
 
             if (pos > the.options.offset) {
@@ -89,7 +89,7 @@ var KTScrolltop = function(elementId, options) {
         /**
          * Handles scrolltop click scrollTop
          */
-        scroll: function(e) {
+        scroll: function (e) {
             e.preventDefault();
 
             KTUtil.scrollTop(0, the.options.speed);
@@ -99,7 +99,7 @@ var KTScrolltop = function(elementId, options) {
         /**
          * Trigger events
          */
-        eventTrigger: function(name, args) {
+        eventTrigger: function (name, args) {
             for (var i = 0; i < the.events.length; i++) {
                 var event = the.events[i];
                 if (event.name == name) {
@@ -109,13 +109,13 @@ var KTScrolltop = function(elementId, options) {
                             return event.handler.call(this, the, args);
                         }
                     } else {
-                       return event.handler.call(this, the, args);
+                        return event.handler.call(this, the, args);
                     }
                 }
             }
         },
 
-        addEvent: function(name, handler, one) {
+        addEvent: function (name, handler, one) {
             the.events.push({
                 name: name,
                 handler: handler,
@@ -133,14 +133,14 @@ var KTScrolltop = function(elementId, options) {
      * Set default options
      */
 
-    the.setDefaults = function(options) {
+    the.setDefaults = function (options) {
         defaultOptions = options;
     };
 
     /**
      * Get subscrolltop mode
      */
-    the.on = function(name, handler) {
+    the.on = function (name, handler) {
         return Plugin.addEvent(name, handler);
     };
 
@@ -148,7 +148,7 @@ var KTScrolltop = function(elementId, options) {
      * Set scrolltop content
      * @returns {mscrolltop}
      */
-    the.one = function(name, handler) {
+    the.one = function (name, handler) {
         return Plugin.addEvent(name, handler, true);
     };
 

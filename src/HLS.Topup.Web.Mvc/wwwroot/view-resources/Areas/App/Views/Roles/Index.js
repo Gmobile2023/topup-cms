@@ -169,7 +169,7 @@
                     }
                 }
             );
-        };
+        }
 
         $('#CreateNewRoleButton').click(function () {
             _createOrEditModal.open();

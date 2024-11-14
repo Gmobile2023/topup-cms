@@ -29,12 +29,12 @@
                         return '/File/DownloadBinaryFile?id=' + userNotification.notification.data.properties.binaryObjectId + '&contentType=application/zip&fileName=collectedData.zip';
                     case 'App.DownloadInvalidImportUsers':
                         return '/File/DownloadTempFile?fileToken=' + userNotification.notification.data.properties.fileToken + '&fileType=' + userNotification.notification.data.properties.fileType + '&fileName=' + userNotification.notification.data.properties.fileName;
-                        //Add your custom notification names to navigate to a URL when user clicks to a notification.
+                    //Add your custom notification names to navigate to a URL when user clicks to a notification.
                 }
 
                 //No url for this notification
                 return '/Profile/Notifications';
-            };
+            }
 
             /* PUBLIC functions ******************************************/
 
@@ -104,7 +104,7 @@
                     viewUrl: abp.appPath + 'App/Notifications/SettingsModal',
                     scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Notifications/_SettingsModal.js',
                     modalClass: 'NotificationSettingsModal',
-                    modalSize:'modal-md'
+                    modalSize: 'modal-md'
                 }).open();
             };
 

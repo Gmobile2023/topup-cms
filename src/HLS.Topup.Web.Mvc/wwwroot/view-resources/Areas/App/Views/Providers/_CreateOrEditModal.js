@@ -7,11 +7,10 @@
         var _$providerInformationForm = null;
 
 
-
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
-			var modal = _modalManager.getModal();
+            var modal = _modalManager.getModal();
             modal.find('.date-picker').datetimepicker({
                 locale: abp.localization.currentLanguage.name,
                 format: 'L'
@@ -26,29 +25,28 @@
         };
 
 
-
         this.save = function () {
             if (!_$providerInformationForm.valid()) {
                 return;
             }
 
             var provider = _$providerInformationForm.serializeFormToObject();
-            var image="";
+            var image = "";
             if ($("#thumbImageId").attr("src") !== "") {
-                image=$("#thumbImageId").attr("src");
+                image = $("#thumbImageId").attr("src");
             }
-            provider.images=image;
-            provider.providerUpdateInfo=_$providerInformationForm.serializeFormToObject();
-			 _modalManager.setBusy(true);
-			 _providersService.createOrEdit(
-				provider
-			 ).done(function () {
-               abp.message.info(app.localize('SavedSuccessfully'));
-               _modalManager.close();
-               abp.event.trigger('app.createOrEditProviderModalSaved');
-			 }).always(function () {
-               _modalManager.setBusy(false);
-			});
+            provider.images = image;
+            provider.providerUpdateInfo = _$providerInformationForm.serializeFormToObject();
+            _modalManager.setBusy(true);
+            _providersService.createOrEdit(
+                provider
+            ).done(function () {
+                abp.message.info(app.localize('SavedSuccessfully'));
+                _modalManager.close();
+                abp.event.trigger('app.createOrEditProviderModalSaved');
+            }).always(function () {
+                _modalManager.setBusy(false);
+            });
         };
     };
 })(jQuery);

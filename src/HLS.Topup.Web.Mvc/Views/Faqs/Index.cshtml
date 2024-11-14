@@ -47,7 +47,7 @@
                 @foreach (var q in item.GroupContent)
                 {
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#accordion-tab-1-content-@indexQuestion">@indexQuestionType.@indexQuestion. @q.Title</a>
+                        <a href="javascript:" data-toggle="collapse" data-target="#accordion-tab-1-content-@indexQuestion">@indexQuestionType.@indexQuestion. @q.Title</a>
                         <div class="collapse" id="accordion-tab-1-content-@indexQuestion" style="margin-top:10px; font-size: 15px;">
                             @Html.Raw(@q.Answer)
                         </div>

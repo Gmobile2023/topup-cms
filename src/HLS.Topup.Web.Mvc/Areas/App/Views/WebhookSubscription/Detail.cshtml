@@ -51,7 +51,7 @@
                         @if (IsGranted(AppPermissions.Pages_Administration_WebhookSubscription_Edit))
                         {
                             <li class="navi-item">
-                                <a href="javascript:;" id="subscription-edit-btn" class="navi-link">
+                                <a href="javascript:" id="subscription-edit-btn" class="navi-link">
                                     <span class="navi-text">@L("EditWebhookSubscription")</span>
                                 </a>
                             </li>
@@ -60,7 +60,7 @@
                         @if (IsGranted(AppPermissions.Pages_Administration_WebhookSubscription_ChangeActivity))
                         {
                             <li class="navi-item">
-                                <a href="javascript:;" id="activity-toggle-btn" class="navi-link">
+                                <a href="javascript:" id="activity-toggle-btn" class="navi-link">
 
                                     @if (Model.IsActive)
                                     {

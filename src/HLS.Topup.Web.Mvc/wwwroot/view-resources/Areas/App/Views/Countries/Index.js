@@ -3,7 +3,7 @@
 
         var _$countriesTable = $('#CountriesTable');
         var _countriesService = abp.services.app.countries;
-		
+
         $('.date-picker').datetimepicker({
             locale: abp.localization.currentLanguage.name,
             format: 'L'
@@ -15,25 +15,23 @@
             'delete': abp.auth.hasPermission('Pages.Countries.Delete')
         };
 
-         var _createOrEditModal = new app.ModalManager({
+        var _createOrEditModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/Countries/CreateOrEditModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Countries/_CreateOrEditModal.js',
             modalClass: 'CreateOrEditCountryModal'
-        });       
+        });
 
-		 var _viewCountryModal = new app.ModalManager({
+        var _viewCountryModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/Countries/ViewcountryModal',
             modalClass: 'ViewCountryModal'
         });
 
-		
-		
 
         var getDateFilter = function (element) {
             if (element.data("DateTimePicker").date() == null) {
                 return null;
             }
-            return element.data("DateTimePicker").date().format("YYYY-MM-DDT00:00:00Z"); 
+            return element.data("DateTimePicker").date().format("YYYY-MM-DDT00:00:00Z");
         }
 
         var dataTable = _$countriesTable.DataTable({
@@ -44,10 +42,10 @@
                 ajaxFunction: _countriesService.getAll,
                 inputFilter: function () {
                     return {
-					filter: $('#CountriesTableFilter').val(),
-					countryCodeFilter: $('#CountryCodeFilterId').val(),
-					countryNameFilter: $('#CountryNameFilterId').val(),
-					statusFilter: $('#StatusFilterId').val()
+                        filter: $('#CountriesTableFilter').val(),
+                        countryCodeFilter: $('#CountryCodeFilterId').val(),
+                        countryNameFilter: $('#CountryNameFilterId').val(),
+                        statusFilter: $('#StatusFilterId').val()
                     };
                 }
             },
@@ -71,51 +69,51 @@
                         cssClass: 'btn btn-brand dropdown-toggle',
                         text: '<i class="fa fa-cog"></i> ' + app.localize('Actions') + ' <span class="caret"></span>',
                         items: [
-						{
+                            {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewCountryModal.open({ id: data.record.country.id });
+                                    _viewCountryModal.open({id: data.record.country.id});
                                 }
-                        },
-						{
-                            text: app.localize('Edit'),
-                            visible: function () {
-                                return _permissions.edit;
                             },
-                            action: function (data) {
-                            _createOrEditModal.open({ id: data.record.country.id });                                
-                            }
-                        }, 
-						{
-                            text: app.localize('Delete'),
-                            visible: function () {
-                                return _permissions.delete;
+                            {
+                                text: app.localize('Edit'),
+                                visible: function () {
+                                    return _permissions.edit;
+                                },
+                                action: function (data) {
+                                    _createOrEditModal.open({id: data.record.country.id});
+                                }
                             },
-                            action: function (data) {
-                                deleteCountry(data.record.country);
-                            }
-                        }]
+                            {
+                                text: app.localize('Delete'),
+                                visible: function () {
+                                    return _permissions.delete;
+                                },
+                                action: function (data) {
+                                    deleteCountry(data.record.country);
+                                }
+                            }]
                     }
                 },
-					{
-						targets: 2,
-						 data: "country.countryCode",
-						 name: "countryCode"   
-					},
-					{
-						targets: 3,
-						 data: "country.countryName",
-						 name: "countryName"   
-					},
-					{
-						targets: 4,
-						 data: "country.status",
-						 name: "status"   ,
-						render: function (status) {
-							return app.localize('Enum_CountryStatus_' + status);
-						}
-			
-					}
+                {
+                    targets: 2,
+                    data: "country.countryCode",
+                    name: "countryCode"
+                },
+                {
+                    targets: 3,
+                    data: "country.countryName",
+                    name: "countryName"
+                },
+                {
+                    targets: 4,
+                    data: "country.status",
+                    name: "status",
+                    render: function (status) {
+                        return app.localize('Enum_CountryStatus_' + status);
+                    }
+
+                }
             ]
         });
 
@@ -140,7 +138,7 @@
             );
         }
 
-		$('#ShowAdvancedFiltersSpan').click(function () {
+        $('#ShowAdvancedFiltersSpan').click(function () {
             $('#ShowAdvancedFiltersSpan').hide();
             $('#HideAdvancedFiltersSpan').show();
             $('#AdvacedAuditFiltersArea').slideDown();
@@ -154,16 +152,16 @@
 
         $('#CreateNewCountryButton').click(function () {
             _createOrEditModal.open();
-        });        
+        });
 
-		$('#ExportToExcelButton').click(function () {
+        $('#ExportToExcelButton').click(function () {
             _countriesService
                 .getCountriesToExcel({
-				filter : $('#CountriesTableFilter').val(),
-					countryCodeFilter: $('#CountryCodeFilterId').val(),
-					countryNameFilter: $('#CountryNameFilterId').val(),
-					statusFilter: $('#StatusFilterId').val()
-				})
+                    filter: $('#CountriesTableFilter').val(),
+                    countryCodeFilter: $('#CountryCodeFilterId').val(),
+                    countryNameFilter: $('#CountryNameFilterId').val(),
+                    statusFilter: $('#StatusFilterId').val()
+                })
                 .done(function (result) {
                     app.downloadTempFile(result);
                 });
@@ -173,15 +171,15 @@
             getCountries();
         });
 
-		$('#GetCountriesButton').click(function (e) {
+        $('#GetCountriesButton').click(function (e) {
             e.preventDefault();
             getCountries();
         });
 
-		$(document).keypress(function(e) {
-		  if(e.which === 13) {
-			getCountries();
-		  }
-		});
+        $(document).keypress(function (e) {
+            if (e.which === 13) {
+                getCountries();
+            }
+        });
     });
 })();

@@ -11,19 +11,18 @@
         this.save = function () {
 
             var email = $("#txtEmail").val();
-            if (email == null || email == "")
-            {
+            if (email == null || email == "") {
                 abp.message.info("Quý khách chưa nhập email để nhận báo cáo.");
                 return;
             }
 
             var objSend =
-            {
-                FromDate: $('#hdnFromDate').val(),
-                ToDate: $('#hdnToDate').val(),
-                agentCode: $("#hdnAgentCode").val(),
-                Email: $("#txtEmail").val(),
-            };
+                {
+                    FromDate: $('#hdnFromDate').val(),
+                    ToDate: $('#hdnToDate').val(),
+                    agentCode: $("#hdnAgentCode").val(),
+                    Email: $("#txtEmail").val(),
+                };
 
             _modalManager.setBusy(true);
             _rptService.sendMailReportComparePartner(

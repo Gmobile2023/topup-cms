@@ -8,25 +8,25 @@ faithful to familiar desktop graphics applications.
 
 ### Feature Overview
 
-  * Attaches unobtrusively to any image or block element
-  * Completely based on true prototypical Javascript objects for extreme flexibility
-  * Supports multiple active selections, per-selection customization
-  * Supports aspect ratio locking, minimum/maximum size, and other features
-  * Acts as in-line form element, can receive focus, tab through
-  * Keyboard support for nuding selections and trapping other keys
-  * Inherently API-driven and stylable with CSS
-  * Mobile touch support for iOS and Android
+* Attaches unobtrusively to any image or block element
+* Completely based on true prototypical Javascript objects for extreme flexibility
+* Supports multiple active selections, per-selection customization
+* Supports aspect ratio locking, minimum/maximum size, and other features
+* Acts as in-line form element, can receive focus, tab through
+* Keyboard support for nuding selections and trapping other keys
+* Inherently API-driven and stylable with CSS
+* Mobile touch support for iOS and Android
 
 ### Cross-platform Compatibility
 
 The current version of Jcrop has been cross-platform tested and core functionality
 works in all the following browsers:
 
-  * Firefox 3+
-  * Safari 4+
-  * Opera 9.5+
-  * Google Chrome 14+
-  * Internet Explorer 7+
+* Firefox 3+
+* Safari 4+
+* Opera 9.5+
+* Google Chrome 14+
+* Internet Explorer 7+
 
 Older versions of some browsers may also work.
 
@@ -40,6 +40,7 @@ be used in IE6, it just looks ugly. IE7 and newer versions deliver a nearly flaw
 Jcrop experience.
 
 -------------
+
 ## MIT License
 
 **Jcrop is free software under MIT License.**

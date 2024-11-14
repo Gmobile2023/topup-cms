@@ -110,7 +110,7 @@
                         data: null,
                         class: "text-right",
                         render: function (data, type, row) {
-                            return '<button class="btn btn-danger btn-remove" type="button" data-id="' + row.productId + '" onclick="javascript:$(\'#productDiscoutTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
+                            return '<button class="btn btn-danger btn-remove" type="button" data-id="' + row.productId + '" onclick="$(\'#productDiscoutTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
                         }
                     }
                 ],

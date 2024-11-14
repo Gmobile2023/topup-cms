@@ -1,22 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props"></Import>
+    <Import Project="..\..\common.props"></Import>
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp6.0</TargetFramework>
-    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <RootNamespace>HLS.Topup</RootNamespace>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netcoreapp6.0</TargetFramework>
+        <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+        <RootNamespace>HLS.Topup</RootNamespace>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="GraphQL" Version="2.4.0" />
-    <PackageReference Include="GraphQL.Server.Transports.AspNetCore" Version="3.4.0" />
-    <PackageReference Include="GraphQL.Server.Ui.Playground" Version="3.4.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="GraphQL" Version="2.4.0"/>
+        <PackageReference Include="GraphQL.Server.Transports.AspNetCore" Version="3.4.0"/>
+        <PackageReference Include="GraphQL.Server.Ui.Playground" Version="3.4.0"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HLS.Topup.Application.Shared\HLS.Topup.Application.Shared.csproj" />
-    <ProjectReference Include="..\HLS.Topup.Core\HLS.Topup.Core.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\HLS.Topup.Application.Shared\HLS.Topup.Application.Shared.csproj"/>
+        <ProjectReference Include="..\HLS.Topup.Core\HLS.Topup.Core.csproj"/>
+    </ItemGroup>
 
 </Project>

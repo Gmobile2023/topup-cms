@@ -122,7 +122,7 @@
             }
         });
 
-        function getProviders() {          
+        function getProviders() {
             dataTable.ajax.reload();
         }
 
@@ -143,7 +143,7 @@
                     if (result.fileName === "Warning")
                         abp.message.info(result.filePath);
                     else
-                    app.downloadTempFile(result);
+                        app.downloadTempFile(result);
                 });
         });
 
@@ -158,7 +158,7 @@
                 getProviders();
             }
         });
-        
+
         $("#selectService").select2();
         $("#selectCategory").select2();
         $("#selectProduct").select2();
@@ -274,7 +274,7 @@
         });
 
         $("#selectService").change(function (e) {
-            const serviceCode = $(e.target).val();   
+            const serviceCode = $(e.target).val();
             $("#selectCategory").text('');
             $("#selectProduct").text('');
             Sv.GetCateByServiceMuti(serviceCode, $("#selectCategory"), false);
@@ -284,7 +284,7 @@
         $("#selectCategory").change(function (e) {
             const cateCode = $(e.target).val();
             $("#selectProduct").text('');
-            Sv.GetProductByCateMuti(cateCode,$("#selectProduct"),false);
+            Sv.GetProductByCateMuti(cateCode, $("#selectProduct"), false);
         });
 
     });

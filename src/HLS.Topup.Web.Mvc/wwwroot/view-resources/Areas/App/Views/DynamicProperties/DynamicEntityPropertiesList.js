@@ -58,7 +58,7 @@
                 ]
             });
         }
-        
+
         $('#CreateNewDynamicEntityProperty').click(function () {
             _selectAnEntity.open();
         });

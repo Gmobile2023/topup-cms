@@ -1,10 +1,10 @@
 "use strict";
 
-var KTAppsEducationSchoolCalendar = function() {
+var KTAppsEducationSchoolCalendar = function () {
 
     return {
         //main function to initiate the module
-        init: function() {
+        init: function () {
             var todayDate = moment().startOf('day');
             var YM = todayDate.format('YYYY-MM');
             var YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
@@ -13,7 +13,7 @@ var KTAppsEducationSchoolCalendar = function() {
 
             var calendarEl = document.getElementById('kt_calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+                plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
                 themeSystem: 'bootstrap',
 
                 isRTL: KTUtil.isRTL(),
@@ -32,9 +32,9 @@ var KTAppsEducationSchoolCalendar = function() {
                 now: TODAY + 'T09:25:00', // just for demo
 
                 views: {
-                    dayGridMonth: { buttonText: 'month' },
-                    timeGridWeek: { buttonText: 'week' },
-                    timeGridDay: { buttonText: 'day' }
+                    dayGridMonth: {buttonText: 'month'},
+                    timeGridWeek: {buttonText: 'week'},
+                    timeGridDay: {buttonText: 'day'}
                 },
 
                 defaultView: 'dayGridMonth',
@@ -142,7 +142,7 @@ var KTAppsEducationSchoolCalendar = function() {
                     }
                 ],
 
-                eventRender: function(info) {
+                eventRender: function (info) {
                     var element = $(info.el);
 
                     if (info.event.extendedProps && info.event.extendedProps.description) {
@@ -164,6 +164,6 @@ var KTAppsEducationSchoolCalendar = function() {
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTAppsEducationSchoolCalendar.init();
 });

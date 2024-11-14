@@ -1,8 +1,8 @@
 // Class definition
-var KTQuilDemos = function() {
+var KTQuilDemos = function () {
 
     // Private functions
-    var demo1 = function() {
+    var demo1 = function () {
         var quill = new Quill('#kt_quil_1', {
             modules: {
                 toolbar: [
@@ -18,7 +18,7 @@ var KTQuilDemos = function() {
         });
     }
 
-    var demo2 = function() {
+    var demo2 = function () {
         var Delta = Quill.import('delta');
         var quill = new Quill('#kt_quil_2', {
             modules: {
@@ -30,12 +30,12 @@ var KTQuilDemos = function() {
 
         // Store accumulated changes
         var change = new Delta();
-        quill.on('text-change', function(delta) {
+        quill.on('text-change', function (delta) {
             change = change.compose(delta);
         });
 
         // Save periodically
-        setInterval(function() {
+        setInterval(function () {
             if (change.length() > 0) {
                 console.log('Saving changes', change);
                 /*
@@ -54,7 +54,7 @@ var KTQuilDemos = function() {
         }, 5 * 1000);
 
         // Check for unsaved data
-        window.onbeforeunload = function() {
+        window.onbeforeunload = function () {
             if (change.length() > 0) {
                 return 'There are unsaved changes. Are you sure you want to leave?';
             }
@@ -63,13 +63,13 @@ var KTQuilDemos = function() {
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             demo1();
             demo2();
         }
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTQuilDemos.init();
 });

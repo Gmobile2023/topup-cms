@@ -125,7 +125,7 @@
 
         function OpendLink(link) {
             window.location.href = link;
-        };
+        }
 
         function getTables() {
             dataTable.ajax.reload();

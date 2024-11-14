@@ -25,7 +25,7 @@
 
         function refreshTable() {
             _dataTable.ajax.reload();
-        };
+        }
 
         function showEntityChangeDetails(entityChange) {
             var entityChangeDetailModal = new app.ModalManager({

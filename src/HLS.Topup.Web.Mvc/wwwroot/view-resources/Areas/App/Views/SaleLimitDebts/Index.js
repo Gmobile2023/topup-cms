@@ -142,7 +142,7 @@
                             {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewSaleLimitDebtModal.open({ id: data.record.saleLimitDebt.id });
+                                    _viewSaleLimitDebtModal.open({id: data.record.saleLimitDebt.id});
                                 }
                             },
                             {
@@ -151,7 +151,7 @@
                                     return _permissions.edit;
                                 },
                                 action: function (data) {
-                                    _createOrEditModal.open({ id: data.record.saleLimitDebt.id });
+                                    _createOrEditModal.open({id: data.record.saleLimitDebt.id});
                                 }
                             },
                             {

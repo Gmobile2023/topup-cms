@@ -1,13 +1,13 @@
 "use strict";
 
-var KTCalendarGoogle = function() {
+var KTCalendarGoogle = function () {
 
     return {
         //main function to initiate the module
-        init: function() {
+        init: function () {
             var calendarEl = document.getElementById('kt_calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list', 'googleCalendar' ],
+                plugins: ['interaction', 'dayGrid', 'timeGrid', 'list', 'googleCalendar'],
 
                 isRTL: KTUtil.isRTL(),
                 header: {
@@ -23,9 +23,9 @@ var KTCalendarGoogle = function() {
                 aspectRatio: 3,  // see: https://fullcalendar.io/docs/aspectRatio
 
                 views: {
-                    dayGridMonth: { buttonText: 'month' },
-                    timeGridWeek: { buttonText: 'week' },
-                    timeGridDay: { buttonText: 'day' }
+                    dayGridMonth: {buttonText: 'month'},
+                    timeGridWeek: {buttonText: 'week'},
+                    timeGridDay: {buttonText: 'day'}
                 },
 
                 defaultView: 'dayGridMonth',
@@ -42,14 +42,14 @@ var KTCalendarGoogle = function() {
                 // US Holidays
                 events: 'en.usa#holiday@group.v.calendar.google.com',
 
-                eventClick: function(event) {
+                eventClick: function (event) {
                     // opens events in a popup window
                     window.open(event.url, 'gcalevent', 'width=700,height=600');
                     return false;
                 },
 
-                loading: function(bool) {
-                    return;
+                loading: function (bool) {
+
 
                     /*
                     KTApp.block(portlet.getSelf(), {
@@ -60,7 +60,7 @@ var KTCalendarGoogle = function() {
                     */
                 },
 
-                eventRender: function(info) {
+                eventRender: function (info) {
                     var element = $(info.el);
 
                     if (info.event.extendedProps && info.event.extendedProps.description) {
@@ -82,6 +82,6 @@ var KTCalendarGoogle = function() {
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTCalendarGoogle.init();
 });

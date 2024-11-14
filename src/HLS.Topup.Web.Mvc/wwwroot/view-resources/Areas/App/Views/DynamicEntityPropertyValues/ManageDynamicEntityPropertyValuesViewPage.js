@@ -7,15 +7,15 @@
                 entityFullName: $("#EntityFullName").val(),
                 entityId: $("#EntityId").val(),
                 bodyElement: $('#DynamicEntityPropertyValuesTable').find("tbody"),
-                onDeleteValues: function() {
+                onDeleteValues: function () {
                     setTimeout(
-                        function() {
+                        function () {
                             window.location.reload();
                         }, 500)
                 }
             });
         }
-        
+
         function saveProperties() {
             _manageDynamicEntityPropertyValueBase.save();
         }

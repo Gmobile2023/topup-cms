@@ -266,8 +266,7 @@ topupApp.controller('FeCreditController', ["$scope", "$locale", function ($scope
                                                     $('#error-modal').modal();
 
                                                     return false;
-                                                }
-                                                else {
+                                                } else {
                                                     $scope.giftcode = '';
                                                     $scope.isGiftCodeValid = '0';
                                                     $scope.isGiftCodeNotValid = '0';
@@ -425,7 +424,7 @@ topupApp.controller('FeCreditController', ["$scope", "$locale", function ($scope
                                     if (data.GiftCode === "1") {
                                         window.location.replace(data.Data);
                                     } else {
-                                        vnpay.open({ width: 768, height: 600, url: data.Data });
+                                        vnpay.open({width: 768, height: 600, url: data.Data});
                                     }
 
                                 } else {
@@ -486,7 +485,7 @@ topupApp.controller('FeCreditController', ["$scope", "$locale", function ($scope
                         if (data.GiftCode === "1") {
                             window.location.replace(data.Data);
                         } else {
-                            vnpay.open({ width: 768, height: 600, url: data.Data });
+                            vnpay.open({width: 768, height: 600, url: data.Data});
                         }
                     } else {
                         if (data.GiftCode === "1") {

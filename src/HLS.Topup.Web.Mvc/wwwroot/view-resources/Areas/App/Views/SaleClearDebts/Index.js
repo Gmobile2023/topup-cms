@@ -82,7 +82,7 @@
                         userId: $('#UserId').val(),
                         transCodeFilter: $('#TransCodeFilterId').val(),
                         transCodeBank: $('#TransCodeBank').val(),
-                        statusFilter: $('#StatusFilterId').val(), 
+                        statusFilter: $('#StatusFilterId').val(),
                         bankId: $('#BankId').val(),
                         fromDateFilter: getDateFilter($('#FromDateFilter')),
                         toDateFilter: getDateFilter($('#ToDateFilter'))
@@ -112,7 +112,7 @@
                             {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewSaleClearDebtModal.open({ id: data.record.saleClearDebt.id });
+                                    _viewSaleClearDebtModal.open({id: data.record.saleClearDebt.id});
                                 }
                             },
                             {
@@ -121,7 +121,7 @@
                                     return _permissions.edit && data.record.saleClearDebt.status !== 1;
                                 },
                                 action: function (data) {
-                                    _createOrEditModal.open({ id: data.record.saleClearDebt.id });
+                                    _createOrEditModal.open({id: data.record.saleClearDebt.id});
                                 }
                             },
                             {
@@ -166,7 +166,7 @@
                 {
                     targets: 4,
                     data: "saleClearDebt.amount",
-                    name: "amount",                    
+                    name: "amount",
                     render: function (data) {
                         return data ? Sv.format_number(data) : "0"
                     }
@@ -234,7 +234,7 @@
                 try {
                     var rawServerResponse = this.api().settings()[0].rawServerResponse;
                     if (rawServerResponse !== undefined && rawServerResponse.totalData !== undefined) {
-                        $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.saleClearDebt.amount));                       
+                        $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.saleClearDebt.amount));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -320,7 +320,7 @@
                     statusFilter: $('#StatusFilterId').val(),
                     bankId: $('#BankId').val(),
                     fromDateFilter: getDateFilter($('#FromDateFilter')),
-                    toDateFilter: getDateFilter($('#ToDateFilter'))               
+                    toDateFilter: getDateFilter($('#ToDateFilter'))
                 })
                 .done(function (result) {
                     app.downloadTempFile(result);

@@ -17,7 +17,6 @@
             pin_code: abp.auth.hasPermission('Pages.TransactionManagements.PinCode'),
         };
 
-      
 
         var getDateFilter = function (element) {
             if (element.data("DateTimePicker").date() == null) {
@@ -32,7 +31,7 @@
             }
             return element.data("DateTimePicker").date().format("YYYY/MM/DD HH:mm:ss");
         }
-        
+
         const _transaction = abp.services.app.transactions;
         const dataTable = _$providersTable.DataTable({
             paging: true,
@@ -43,7 +42,7 @@
                 inputFilter: function () {
                     return {
                         fromDate: getDateFilter($('#FromDateFilterId')),
-                        toDate: getDateFilter($('#ToDateFilterId')),                       
+                        toDate: getDateFilter($('#ToDateFilterId')),
                         originPartnerCode: $('#originAgentFilter').val(),
                         partnerCode: $('#agentFilter').val(),
                         status: $('#StatusFilterId').val(),
@@ -61,7 +60,7 @@
                     render: function () {
                         return '';
                     }
-                },               
+                },
                 {
                     targets: 1,
                     data: "status",
@@ -78,8 +77,7 @@
                             $span.addClass("label label-danger label-inline").text(app.localize('Enum_TopupStatus_' + status));
                         } else if (status === 6) {
                             $span.addClass("label label-info label-inline").text(app.localize('Enum_TopupStatus_' + status));
-                        }
-                        else if (status === 10) {
+                        } else if (status === 10) {
                             $span.addClass("label label-danger label-inline").text(app.localize('Enum_TopupStatus_' + status));
                         } else {
                             $span.addClass("label label-default label-inline").text(app.localize('Enum_TopupStatus_' + status));
@@ -97,7 +95,7 @@
                 {
                     targets: 3,
                     data: "receiverInfo"
-                },                              
+                },
                 {
                     targets: 4,
                     data: "createdTime",
@@ -130,8 +128,8 @@
                 },
                 {
                     targets: 9,
-                    data: "transCode"                 
-                }              
+                    data: "transCode"
+                }
             ]
         });
 
@@ -163,7 +161,7 @@
                 transCode: $('#txtTransCode').val()
             })
                 .done(function (result) {
-                   app.downloadTempFile(result);                   
+                    app.downloadTempFile(result);
                 });
         });
 
@@ -212,7 +210,7 @@
             minimumInputLength: 1,
             language: abp.localization.currentCulture.name
         });
-      
+
 
         $("#originAgentFilter").select2({
             placeholder: 'Chọn đại lý',
@@ -224,7 +222,7 @@
                 data: function (params) {
                     return {
                         search: params.term,
-                        page: params.page,                       
+                        page: params.page,
                     };
                 },
                 processResults: function (data, params) {
@@ -259,7 +257,7 @@
                 data: function (params) {
                     return {
                         search: params.term,
-                        page: params.page,                        
+                        page: params.page,
                     };
                 },
                 processResults: function (data, params) {

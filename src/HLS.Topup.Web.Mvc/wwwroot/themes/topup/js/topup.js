@@ -15,7 +15,7 @@
     vnpay.open = function(settings) {
         cfg = $.extend({}, cfg, settings);
          window.top.location.href = cfg.url;
-         return;
+         
         //Check browser version
         //var ua = this.browser();
        

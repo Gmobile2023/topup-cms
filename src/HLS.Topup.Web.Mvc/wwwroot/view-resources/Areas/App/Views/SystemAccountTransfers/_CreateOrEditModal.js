@@ -37,8 +37,7 @@
                 _transactionService.getBalance({accountCode: $(this).val()}).done(function (rs) {
                     $("#txtSrcBalance").val(Sv.NumberToString(rs));
                 });
-            }
-            else {
+            } else {
                 $("#txtSrcBalance").val('');
             }
         }).trigger("change");
@@ -47,9 +46,7 @@
                 _transactionService.getBalance({accountCode: $(this).val()}).done(function (rs) {
                     $("#txtDesBalance").val(Sv.NumberToString(rs));
                 });
-            }
-            else
-            {
+            } else {
                 $("#txtDesBalance").val('');
             }
         }).trigger("change");
@@ -57,9 +54,8 @@
             if (!_$systemAccountTransferInformationForm.valid()) {
                 return;
             }
-            var check=$("#FileAttachmentSrc").val();
-            if(check==null || check=="")
-            {
+            var check = $("#FileAttachmentSrc").val();
+            if (check == null || check == "") {
                 abp.message.info('Vui lòng chọn văn bản đính kèm');
                 return;
             }

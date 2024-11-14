@@ -10,19 +10,23 @@
             viewUrl: abp.appPath + 'App/ServiceConfigurations/ServiceLookupTableModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ServiceConfigurations/_ServiceConfigurationServiceLookupTableModal.js',
             modalClass: 'ServiceLookupTableModal'
-        }); var _ServiceConfigurationproviderLookupTableModal = new app.ModalManager({
+        });
+        var _ServiceConfigurationproviderLookupTableModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/ServiceConfigurations/ProviderLookupTableModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ServiceConfigurations/_ServiceConfigurationProviderLookupTableModal.js',
             modalClass: 'ProviderLookupTableModal'
-        }); var _ServiceConfigurationcategoryLookupTableModal = new app.ModalManager({
+        });
+        var _ServiceConfigurationcategoryLookupTableModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/ServiceConfigurations/CategoryLookupTableModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ServiceConfigurations/_ServiceConfigurationCategoryLookupTableModal.js',
             modalClass: 'CategoryLookupTableModal'
-        }); var _ServiceConfigurationproductLookupTableModal = new app.ModalManager({
+        });
+        var _ServiceConfigurationproductLookupTableModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/ServiceConfigurations/ProductLookupTableModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ServiceConfigurations/_ServiceConfigurationProductLookupTableModal.js',
             modalClass: 'ProductLookupTableModal'
-        }); var _ServiceConfigurationuserLookupTableModal = new app.ModalManager({
+        });
+        var _ServiceConfigurationuserLookupTableModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/ServiceConfigurations/UserLookupTableModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ServiceConfigurations/_ServiceConfigurationUserLookupTableModal.js',
             modalClass: 'UserLookupTableModal'
@@ -45,7 +49,10 @@
 
             var serviceConfiguration = _$serviceConfigurationInformationForm.serializeFormToObject();
 
-            _ServiceConfigurationserviceLookupTableModal.open({ id: serviceConfiguration.serviceId, displayName: serviceConfiguration.serviceServicesName }, function (data) {
+            _ServiceConfigurationserviceLookupTableModal.open({
+                id: serviceConfiguration.serviceId,
+                displayName: serviceConfiguration.serviceServicesName
+            }, function (data) {
                 _$serviceConfigurationInformationForm.find('input[name=serviceServicesName]').val(data.displayName);
                 _$serviceConfigurationInformationForm.find('input[name=serviceId]').val(data.id);
             });
@@ -60,7 +67,10 @@
 
             var serviceConfiguration = _$serviceConfigurationInformationForm.serializeFormToObject();
 
-            _ServiceConfigurationproviderLookupTableModal.open({ id: serviceConfiguration.providerId, displayName: serviceConfiguration.providerName }, function (data) {
+            _ServiceConfigurationproviderLookupTableModal.open({
+                id: serviceConfiguration.providerId,
+                displayName: serviceConfiguration.providerName
+            }, function (data) {
                 _$serviceConfigurationInformationForm.find('input[name=providerName]').val(data.displayName);
                 _$serviceConfigurationInformationForm.find('input[name=providerId]').val(data.id);
             });
@@ -75,7 +85,10 @@
 
             var serviceConfiguration = _$serviceConfigurationInformationForm.serializeFormToObject();
 
-            _ServiceConfigurationcategoryLookupTableModal.open({ id: serviceConfiguration.categoryId, displayName: serviceConfiguration.categoryCategoryName }, function (data) {
+            _ServiceConfigurationcategoryLookupTableModal.open({
+                id: serviceConfiguration.categoryId,
+                displayName: serviceConfiguration.categoryCategoryName
+            }, function (data) {
                 _$serviceConfigurationInformationForm.find('input[name=categoryCategoryName]').val(data.displayName);
                 _$serviceConfigurationInformationForm.find('input[name=categoryId]').val(data.id);
             });
@@ -90,7 +103,10 @@
 
             var serviceConfiguration = _$serviceConfigurationInformationForm.serializeFormToObject();
 
-            _ServiceConfigurationproductLookupTableModal.open({ id: serviceConfiguration.productId, displayName: serviceConfiguration.productProductName }, function (data) {
+            _ServiceConfigurationproductLookupTableModal.open({
+                id: serviceConfiguration.productId,
+                displayName: serviceConfiguration.productProductName
+            }, function (data) {
                 _$serviceConfigurationInformationForm.find('input[name=productProductName]').val(data.displayName);
                 _$serviceConfigurationInformationForm.find('input[name=productId]').val(data.id);
             });
@@ -105,7 +121,10 @@
 
             var serviceConfiguration = _$serviceConfigurationInformationForm.serializeFormToObject();
 
-            _ServiceConfigurationuserLookupTableModal.open({ id: serviceConfiguration.userId, displayName: serviceConfiguration.userName }, function (data) {
+            _ServiceConfigurationuserLookupTableModal.open({
+                id: serviceConfiguration.userId,
+                displayName: serviceConfiguration.userName
+            }, function (data) {
                 _$serviceConfigurationInformationForm.find('input[name=userName]').val(data.displayName);
                 _$serviceConfigurationInformationForm.find('input[name=userId]').val(data.id);
             });

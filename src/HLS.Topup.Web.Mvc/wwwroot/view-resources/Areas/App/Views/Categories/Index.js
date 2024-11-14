@@ -79,7 +79,7 @@
                             {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewCategoryModal.open({ id: data.record.category.id });
+                                    _viewCategoryModal.open({id: data.record.category.id});
                                 }
                             },
                             {
@@ -88,7 +88,7 @@
                                     return _permissions.edit;
                                 },
                                 action: function (data) {
-                                    _createOrEditModal.open({ id: data.record.category.id });
+                                    _createOrEditModal.open({id: data.record.category.id});
                                 }
                             },
                             {

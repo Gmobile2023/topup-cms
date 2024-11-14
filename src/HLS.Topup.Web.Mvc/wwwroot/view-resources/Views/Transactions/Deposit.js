@@ -33,13 +33,14 @@
                 const nf = Intl.NumberFormat();
                 append += '<div class="form-group-dashed" >' +
                     '    <div class="form-group row">' +
-                    '       <label class="col-md-6 control-label">Mã nạp: <strong>' + $val.requestCode + '</strong> </label>' +
-                    '       <label class="col-md-6 control-label">Thời gian GD: ' + date + ' </label>' +
-                    '       <label class="col-md-6 control-label">Số tiền: ' + nf.format($val.amount) + ' đ </label>' +
-                    '       <label class="col-md-6 control-label">Ngân hàng: ' + $val.bankName + ' </label>' +
-                    '       <label class="col-md-6 control-label">Trạng thái: ' + trans_status[$val.status] + ' </label>' +
+                    '       <label class="col-md-4 control-label">Mã nạp: <strong>' + $val.requestCode + '</strong> </label>' +
+                    '       <label class="col-md-4 control-label">Thời gian GD: ' + date + ' </label>' +
+                    '       <label class="col-md-4 control-label">Số tiền: ' + nf.format($val.amount) + ' đ </label>' +
+                    '       <label class="col-md-4 control-label">Ngân hàng: ' + $val.bankName + ' </label>' +
+                    '       <label class="col-md-4 control-label">Trạng thái: ' + trans_status[$val.status] + ' </label>' +
                     '   </div>' +
-                    '</div>';
+                    '</div>' + 
+                    '<hr />';
             });
             append += '</div>';
             $('.recent-deposits-list').html(append);

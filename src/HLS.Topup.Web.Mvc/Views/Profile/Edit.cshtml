@@ -86,14 +86,14 @@
                                     </div>
                                     @if (Model.User.AccountType != (byte)CommonConst.SystemAccountType.Staff && Model.User.AccountType != (byte)CommonConst.SystemAccountType.StaffApi)
                                     {
-                                        <div class="mb-5">
-                                            <label for="" class="title"> <strong>@(Model.User.IsVerifyAccount ? "Tài khoản đã xác thực thông tin" : "Tài khoản chưa xác thực thông tin")</strong> &nbsp; </label>
-                                            <a class="action_verify" href="javascript:void(0)" onclick="ctrl.showVerifyAccount()">@(Model.User.IsVerifyAccount ? "Xem thông tin xác thực." : "Xác thực ngay.")</a>
-                                        </div>
+                                    <div class="mb-5">
+                                        <label for="" class="title"> <strong>@(Model.User.IsVerifyAccount ? "Tài khoản đã xác thực thông tin" : "Tài khoản chưa xác thực thông tin")</strong> &nbsp; </label>
+                                        <a class="action_verify" href="javascript:void(0)" onclick="ctrl.showVerifyAccount()">@(Model.User.IsVerifyAccount ? "Xem thông tin xác thực." : "Xác thực ngay.")</a>
+                                    </div>
 
-                                        <div id="blockVerify" style="display: none">
-                                            @await Html.PartialAsync("_Verify", Model)
-                                        </div>
+                                    <div id="blockVerify" style="display: none">
+                                        @await Html.PartialAsync("_Verify", Model)
+                                    </div>
                                     }
                                 </div>
                                 <div class="section-body-middle-form-p2">

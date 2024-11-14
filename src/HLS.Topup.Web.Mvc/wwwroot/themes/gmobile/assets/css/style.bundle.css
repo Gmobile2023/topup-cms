@@ -55833,7 +55833,7 @@ button {
 .nav.nav-pills.nav-primary .nav-link:hover:not(.active) .nav-icon .svg-icon svg g [fill] {
     -webkit-transition: fill 0.3s ease;
     transition: fill 0.3s ease;
-    fill: #6993FF;
+    fill: #ffc528;
 }
 
 .nav.nav-pills.nav-primary .show > .nav-link .nav-icon .svg-icon svg:hover g [fill],

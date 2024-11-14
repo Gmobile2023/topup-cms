@@ -38,26 +38,30 @@
             <div class="card-body">
                 <!--begin::Nav Tabs-->
                 <ul class="dashboard-tabs nav nav-pills nav-primary row row-paddingless m-0 p-0 flex-column flex-sm-row" role="tablist">
-                    <!--begin::Item-->
-                    <li class="nav-item d-flex col-md-2 mr-3 mb-3 mb-lg-0">
-                        <a class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center" data-toggle="pill" href="#tab_forms_widget_1">
-                            <span class="nav-icon py-2 w-auto">
-                                <span class="svg-icon svg-icon-3x">
-                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Home/Library.svg-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect x="0" y="0" width="24" height="24"/>
-                                            <path d="M5,3 L6,3 C6.55228475,3 7,3.44771525 7,4 L7,20 C7,20.5522847 6.55228475,21 6,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,4 C4,3.44771525 4.44771525,3 5,3 Z M10,3 L11,3 C11.5522847,3 12,3.44771525 12,4 L12,20 C12,20.5522847 11.5522847,21 11,21 L10,21 C9.44771525,21 9,20.5522847 9,20 L9,4 C9,3.44771525 9.44771525,3 10,3 Z" fill="#000000"/>
-                                            <rect fill="#000000" opacity="0.3" transform="translate(17.825568, 11.945519) rotate(-19.000000) translate(-17.825568, -11.945519)" x="16.3255682" y="2.94551858" width="3" height="18" rx="1"/>
-                                        </g>
-                                    </svg>
-                                    <!--end::Svg Icon-->
+                    @if (IsGranted(AppPermissions.Pages_TransactionHistory))
+                    {
+                        <!--begin::Item-->
+                        <li class="nav-item d-flex col-md-2 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("TransactionHistory", "Transactions")" class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                                <span class="nav-icon py-2 w-auto">
+                                    <span class="svg-icon svg-icon-3x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <defs></defs>
+                                            <g id="Stockholm-icons-/-Navigation-/-Exchange" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                                <rect id="Rectangle" fill="#000000" opacity="0.3" transform="translate(13.000000, 6.000000) rotate(-450.000000) translate(-13.000000, -6.000000) " x="12" y="8.8817842e-16" width="2" height="12" rx="1"></rect>
+                                                <path d="M9.79289322,3.79289322 C10.1834175,3.40236893 10.8165825,3.40236893 11.2071068,3.79289322 C11.5976311,4.18341751 11.5976311,4.81658249 11.2071068,5.20710678 L8.20710678,8.20710678 C7.81658249,8.59763107 7.18341751,8.59763107 6.79289322,8.20710678 L3.79289322,5.20710678 C3.40236893,4.81658249 3.40236893,4.18341751 3.79289322,3.79289322 C4.18341751,3.40236893 4.81658249,3.40236893 5.20710678,3.79289322 L7.5,6.08578644 L9.79289322,3.79289322 Z" id="Path-104" fill="#000000" fill-rule="nonzero" transform="translate(7.500000, 6.000000) rotate(-270.000000) translate(-7.500000, -6.000000) "></path>
+                                                <rect id="Rectangle-Copy" fill="#000000" opacity="0.3" transform="translate(11.000000, 18.000000) scale(1, -1) rotate(90.000000) translate(-11.000000, -18.000000) " x="10" y="12" width="2" height="12" rx="1"></rect>
+                                                <path d="M18.7928932,15.7928932 C19.1834175,15.4023689 19.8165825,15.4023689 20.2071068,15.7928932 C20.5976311,16.1834175 20.5976311,16.8165825 20.2071068,17.2071068 L17.2071068,20.2071068 C16.8165825,20.5976311 16.1834175,20.5976311 15.7928932,20.2071068 L12.7928932,17.2071068 C12.4023689,16.8165825 12.4023689,16.1834175 12.7928932,15.7928932 C13.1834175,15.4023689 13.8165825,15.4023689 14.2071068,15.7928932 L16.5,18.0857864 L18.7928932,15.7928932 Z" id="Path-104-Copy" fill="#000000" fill-rule="nonzero" transform="translate(16.500000, 18.000000) scale(1, -1) rotate(270.000000) translate(-16.500000, -18.000000) "></path>
+                                            </g>
+                                        </svg>
+                                    </span>
                                 </span>
-                            </span>
-                            <span class="font-size-lg py-2 font-weight-bold text-dark text-center">SAAS Application</span>
-                        </a>
-                    </li>
-                    <!--end::Item-->
+                                <span class="font-size-lg py-2 font-weight-bold text-dark text-center">Lịch sử giao dịch</span>
+                            </a>
+                        </li>
+                        <!--end::Item-->
+                    }
                 </ul>
                 <!--end::Nav Tabs-->
             </div>

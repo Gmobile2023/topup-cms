@@ -196,7 +196,7 @@
                 data: function (params) {
                     return {
                         search: params.term,
-                        accountType:99
+                        accountType: 99
                         //page: params.page
                     };
                 },

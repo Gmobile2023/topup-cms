@@ -117,9 +117,8 @@
             var accountCode = $("#selectUserSale").val();
             if (accountCode === null || accountCode === "") {
                 abp.message.error("Quý khách chưa chọn nhân viên kinh doanh");
-                return;
-            }
-            else {
+
+            } else {
                 dataTable.ajax.reload();
             }
         }

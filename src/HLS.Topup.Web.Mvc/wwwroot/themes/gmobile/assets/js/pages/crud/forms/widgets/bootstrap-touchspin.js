@@ -1,9 +1,9 @@
 "use strict";
 // Class definition
-var KTKBootstrapTouchspin = function() {
+var KTKBootstrapTouchspin = function () {
 
     // Private functions
-    var demos = function() {
+    var demos = function () {
         // minimum setup
         $('#kt_touchspin_1, #kt_touchspin_2_1').TouchSpin({
             buttondown_class: 'btn btn-secondary',
@@ -60,7 +60,7 @@ var KTKBootstrapTouchspin = function() {
         });
     }
 
-    var validationStateDemos = function() {
+    var validationStateDemos = function () {
         // validation state demos
         $('#kt_touchspin_1_validate').TouchSpin({
             buttondown_class: 'btn btn-secondary',
@@ -97,13 +97,13 @@ var KTKBootstrapTouchspin = function() {
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             demos();
             validationStateDemos();
         }
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTKBootstrapTouchspin.init();
 });

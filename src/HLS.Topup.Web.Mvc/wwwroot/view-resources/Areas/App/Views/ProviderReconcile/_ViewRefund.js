@@ -25,7 +25,7 @@
                     return {
                         transDate: $('#hdnTrandate').val(),
                         providerCode: $('#hdnProvider').val(),
-                        keyCode: $('#hdnKeyCode').val() 
+                        keyCode: $('#hdnKeyCode').val()
                     };
                 }
             },
@@ -40,13 +40,12 @@
                     targets: 0
                 },
                 {
-                    targets: 1,                                       
+                    targets: 1,
                     data: "transDate",
                     render: function (data, type, row) {
                         if (row.status === 0) {
                             return '<input type="checkbox" id="check_' + row.transCode + '" > <input type="text" style="display:none" id="hdn_' + row.transCode + '" value="' + row.agentCode + '|' + row.amount + '|' + row.status + '"/> ';
-                        }
-                        else {
+                        } else {
                             return '<input type="checkbox" id="checkRefund_' + row.transCode + '" disabled="disabled"> <input type="text" style="display:none" id="hdn_' + row.transCode + '" value="' + row.agentCode + '|' + row.amount + '|' + row.status + '"/> ';
                         }
                     },
@@ -54,7 +53,7 @@
                 },
                 {
                     targets: 2,
-                    title: 'Thời gian GD',    
+                    title: 'Thời gian GD',
                     data: "transDate",
                     render: function (transDate) {
                         if (transDate) {
@@ -154,7 +153,7 @@
             _svcCompareService.getCompareRefundDetailListToExcel({
                 transDate: $('#hdnTrandate').val(),
                 providerCode: $('#hdnProvider').val(),
-                keyCode: $('#hdnKeyCode').val() 
+                keyCode: $('#hdnKeyCode').val()
             })
                 .done(function (result) {
                     app.downloadTempFile(result);
@@ -169,12 +168,11 @@
                 var id = $(this).attr("id");
                 if (id.startsWith("check_") && id != "checkAll") {
                     if (isCheck) {
-                       
+
                         if (!$(this).prop('checked'))
                             $(this).prop('checked', true);
-                    }
-                    else {
-                       
+                    } else {
+
                         if ($(this).prop('checked')) {
                             $(this).prop('checked', false);
                         }

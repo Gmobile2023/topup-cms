@@ -21,8 +21,8 @@
                     _modalManager.close();
                     abp.event.trigger('app.createOrEditDynamicEntityPropertiesModalSaved');
                 }).always(function () {
-                    _modalManager.setBusy(false);
-                });
+                _modalManager.setBusy(false);
+            });
         };
     };
 })();

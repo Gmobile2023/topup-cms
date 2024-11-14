@@ -183,7 +183,7 @@
                             //         deleteDeposit(data.record.deposit);
                             //     }
                             // }
-                            ],
+                        ],
                         "headerCallback": function (thead, data, start, end, display) {
                             try {
                                 var rawServerResponse = this.api().settings()[0].rawServerResponse;

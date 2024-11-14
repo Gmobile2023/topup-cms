@@ -228,8 +228,7 @@
             } else {
                 $('#btnNextTopup').show();
             }
-        }
-        else if (type == "PINCODE") {
+        } else if (type == "PINCODE") {
             var obj = ctrlList.getFormPinCodeValue();
             length = obj.length;
             if (length <= 0) {
@@ -237,8 +236,7 @@
             } else {
                 $('#btnNextPinCode').show();
             }
-        }
-        else if (type == "PAYBILL") {
+        } else if (type == "PAYBILL") {
             var obj = ctrlList.getFormPayBillValue();
             length = obj.length;
             if (length <= 0) {
@@ -260,32 +258,30 @@
             var dto = ctrlList.getFormTopupValue();
             Sv.Post({
                 Url: abp.appPath + "BatchTopup/QueryPriceTopupList",
-                Data: { query: dto }
+                Data: {query: dto}
             }, function (response) {
                 ctrlList.addTableDataTopupConfirm(response.result.payload);
             }, function () {
                 abp.message.error("Chính giá bị lỗi!");
             });
-        }
-        else if (type == "PINCODE") {
+        } else if (type == "PINCODE") {
             $('#input_pinCode_box_confirm').show();
             var dto1 = ctrlList.getFormPinCodeValue();
             Sv.Post({
                 Url: abp.appPath + "BatchTopup/QueryPriceTopupList",
-                Data: { query: dto1 }
+                Data: {query: dto1}
             }, function (response) {
                 ctrlList.addTableDataPinCodeConfirm(response.result.payload);
             }, function () {
                 abp.message.error("Chính sách giá lỗi!");
             });
-        }
-        else if (type == "PAYBILL") {
+        } else if (type == "PAYBILL") {
             $('#input_payBill_box_confirm').show();
             var dto2 = ctrlList.getFormPayBillValue();
-            
+
             Sv.Post({
                 Url: abp.appPath + "BatchTopup/QueryPriceTopupList",
-                Data: { query: dto2 }
+                Data: {query: dto2}
             }, function (response) {
                 ctrlList.addTableDataPayBillConfirm(response.result.payload);
             }, function () {
@@ -333,7 +329,7 @@
                 });
             });
     },
-    
+
     topupTable: null,
     topupTableConfirm: null,
     initTopupTable: function () {

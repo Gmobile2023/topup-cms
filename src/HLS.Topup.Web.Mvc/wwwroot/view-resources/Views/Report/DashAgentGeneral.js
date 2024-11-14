@@ -67,15 +67,15 @@
                         ValueFormatString: "#,##0k",
                         dataPoints: reponse.revenues
                     },
-                    {
-                        type: "column",
-                        name: "Hoa hồng",
-                        showInLegend: true,
-                        color: "#FE9A2E",
-                        indexLabel: "{y}",
-                        ValueFormatString: "#,##0k",
-                        dataPoints: reponse.commistions
-                    }
+                        {
+                            type: "column",
+                            name: "Hoa hồng",
+                            showInLegend: true,
+                            color: "#FE9A2E",
+                            indexLabel: "{y}",
+                            ValueFormatString: "#,##0k",
+                            dataPoints: reponse.commistions
+                        }
                     ]
                 });
                 chart.render();
@@ -134,7 +134,7 @@
                 try {
                     var rawServerResponse = this.api().settings()[0].rawServerResponse;
                     if (rawServerResponse.warning.length > 0)
-                        abp.message.info(rawServerResponse.warning);                   
+                        abp.message.info(rawServerResponse.warning);
                 } catch (e) {
                     console.log("không có total")
                 }
@@ -160,13 +160,11 @@
             var days = Math.floor(diff / (1000 * 60 * 60 * 24));
             if (days < 0) {
                 abp.message.info('Thời gian tìm kiếm không hợp lệ. Quý khách chọn thời gian từ lớn hơn tới');
-            }
-            else if (days > 31) {
+            } else if (days > 31) {
 
                 abp.message.info('Thời gian tìm kiếm không hợp lệ. Quý khách tìm kiếm trong khoảng 31 ngày');
-                return;
-            }
-            else {
+
+            } else {
                 getDashboard();
                 getTables();
             }
@@ -217,7 +215,7 @@
                 agentCode: $('#selectAgent').val()
             })
                 .done(function (result) {
-                     if (result.fileName === "Warning")
+                    if (result.fileName === "Warning")
                         abp.message.info(result.filePath);
                     else
                         app.downloadTempFile(result);

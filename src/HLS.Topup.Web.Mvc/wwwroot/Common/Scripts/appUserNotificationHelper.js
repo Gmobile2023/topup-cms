@@ -38,7 +38,7 @@
 
                 //No url for this notification
                 return '/Profile/Notifications';
-            };
+            }
 
             function bindNotificationEvents() {
                 $('#setAllNotificationsAsReadLink').click(function (e) {

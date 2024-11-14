@@ -87,7 +87,7 @@
                             if (viewMode === 'view') {
                                 return data;
                             } else {
-                                return '<button class="btn btn-danger btn-remove" onclick="javascript:$(\'#AgentPayBacksTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
+                                return '<button class="btn btn-danger btn-remove" onclick="$(\'#AgentPayBacksTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
                             }
                         }
                     }

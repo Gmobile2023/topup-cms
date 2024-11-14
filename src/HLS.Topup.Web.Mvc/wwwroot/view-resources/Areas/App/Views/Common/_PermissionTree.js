@@ -5,7 +5,9 @@
         function initFiltering() {
             var to = false;
             $('#PermissionTreeFilter').keyup(function () {
-                if (to) { clearTimeout(to); }
+                if (to) {
+                    clearTimeout(to);
+                }
                 to = setTimeout(function () {
                     var v = $('#PermissionTreeFilter').val();
                     if ($tree.jstree(true)) {
@@ -74,7 +76,7 @@
             }
 
             initFiltering();
-        };
+        }
 
         function selectNodeAndAllParents(node) {
             $tree.jstree('select_node', node, true);
@@ -82,7 +84,7 @@
             if (parent) {
                 selectNodeAndAllParents(parent);
             }
-        };
+        }
 
         function getSelectedPermissionNames() {
             var permissionNames = [];
@@ -93,7 +95,7 @@
             }
 
             return permissionNames;
-        };
+        }
 
         return {
             init: init,

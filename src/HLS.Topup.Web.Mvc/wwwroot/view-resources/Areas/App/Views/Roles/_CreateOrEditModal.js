@@ -13,10 +13,10 @@
             _permissionsTree.init(_modalManager.getModal().find('.permission-tree'));
 
             _$roleInformationForm = _modalManager.getModal().find('form[name=RoleInformationsForm]');
-            _$roleInformationForm.validate({ ignore: "" });
+            _$roleInformationForm.validate({ignore: ""});
         };
 
-        this.save = function() {
+        this.save = function () {
             if (!_$roleInformationForm.valid()) {
                 return;
             }

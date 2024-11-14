@@ -51,7 +51,7 @@
         var _agentService = abp.services.app.agentManagerment;
 
         var _modalManager;
-     
+
 
         var _$systemInformationForm = null;
         this.init = function (modalManager) {
@@ -62,7 +62,7 @@
             //    locale: abp.localization.currentLanguage.name,
             //    format: 'L'
             //});
-          
+
             _$systemInformationForm = _modalManager.getModal().find('form[name=ConvertPhoneInformationsForm]');
             _$systemInformationForm.validate();
             Sv.SetupAmountMask();
@@ -70,14 +70,13 @@
                 app.uploadFile($("#FileAttachment"), $('#FileAttachmentSrc'));
             });
         };
-     
+
         this.save = function () {
             if (!_$systemInformationForm.valid()) {
                 return;
             }
-            var check=$("#FileAttachmentSrc").val();
-            if(check==null || check=="")
-            {
+            var check = $("#FileAttachmentSrc").val();
+            if (check == null || check == "") {
                 abp.message.info('Vui lòng chọn văn bản đính kèm');
                 return;
             }
@@ -97,11 +96,11 @@
 
 
             var systemConvert =
-            {
-                UserId: $("#hdnUserId").val(),
-                UserName: phone,
-                Attachment: $('#FileAttachmentSrc').val()
-            };
+                {
+                    UserId: $("#hdnUserId").val(),
+                    UserName: phone,
+                    Attachment: $('#FileAttachmentSrc').val()
+                };
 
             _modalManager.setBusy(true);
             _agentService.updateUserName(

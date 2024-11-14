@@ -1,5 +1,5 @@
 ﻿(function () {
-    $(function () {                     
+    $(function () {
         var _$table = $('#tableDetail');
         var _transService = abp.services.app.transactions;
         var dataTable = _$table.DataTable({
@@ -28,17 +28,17 @@
                 {
                     targets: 1,
                     className: 'all ctrl-ss',
-                    data: "batchName"                                      
+                    data: "batchName"
                 },
                 {
                     targets: 2,
                     className: 'all ctrl-ss',
-                    data: "receiverInfo"                   
+                    data: "receiverInfo"
                 },
                 {
                     targets: 3,
                     className: 'all ctrl-ss',
-                    data: "categoryName",                   
+                    data: "categoryName",
                 },
                 {
                     targets: 4,
@@ -48,28 +48,28 @@
                     render: function (data, dispaly, row) {
                         return (data ? Sv.format_number(data) : "0");
                     }
-                },               
+                },
                 {
                     targets: 5,
                     className: "all text-right",
                     data: "discountAmount",
-                    render: function (data, dispaly, row) {                       
-                            return (data ? Sv.format_number(data) : "0");
+                    render: function (data, dispaly, row) {
+                        return (data ? Sv.format_number(data) : "0");
                     }
                 },
                 {
                     targets: 6,
                     className: "all text-right",
                     data: "paymentAmount",
-                    render: function (data, dispaly, row) {                        
-                            return (data ? Sv.format_number(data) : "0");
+                    render: function (data, dispaly, row) {
+                        return (data ? Sv.format_number(data) : "0");
                     }
                 },
                 {
                     targets: 7,
                     className: 'all ctrl-ss',
                     data: "statusName"
-                },               
+                },
                 {
                     targets: 8,
                     data: "updateTime",
@@ -90,7 +90,7 @@
                     if (rawServerResponse !== undefined && rawServerResponse.totalData !== undefined) {
                         $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.amount));
                         $(thead).find('th').eq(2).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.discountAmount));
-                        $(thead).find('th').eq(3).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.paymentAmount));   ;
+                        $(thead).find('th').eq(3).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.paymentAmount));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -126,7 +126,6 @@
 
 
         $("#TableFilter").focus();
-
 
 
         $('#btnSeachDetail').click(function (e) {

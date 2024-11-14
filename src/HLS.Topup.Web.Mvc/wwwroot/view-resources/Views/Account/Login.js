@@ -40,7 +40,7 @@
             if (!$('form.login-form').valid()) {
                 return;
             }
-            
+
             submit();
         }
 

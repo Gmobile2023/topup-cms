@@ -8,7 +8,9 @@
         function initFiltering() {
             var to = false;
             $('#OrganizationTreeFilter').keyup(function () {
-                if (to) { clearTimeout(to); }
+                if (to) {
+                    clearTimeout(to);
+                }
                 to = setTimeout(function () {
                     var v = $('#OrganizationTreeFilter').val();
                     $tree.jstree(true).search(v);
@@ -24,7 +26,7 @@
             $tree.jstree({
                 "types": {
                     "default": {
-                        "icon": "fa fa-folder kt--font-warning" 
+                        "icon": "fa fa-folder kt--font-warning"
                     },
                     "file": {
                         "icon": "fa fa-file kt--font-warning"
@@ -42,7 +44,7 @@
             });
 
             $tree.on("changed.jstree", function (e, data) {
-                
+
                 if (!$options.cascadeSelectEnabled) {
                     return;
                 }
@@ -66,7 +68,7 @@
             });
 
             initFiltering();
-        };
+        }
 
         function selectNodeAndAllParents(node) {
             $tree.jstree('select_node', node, true);
@@ -74,7 +76,7 @@
             if (parent) {
                 selectNodeAndAllParents(parent);
             }
-        };
+        }
 
         function getSelectedOrganizations() {
             var organizationIds = [];
@@ -85,7 +87,7 @@
             }
 
             return organizationIds;
-        };
+        }
 
         return {
             init: init,

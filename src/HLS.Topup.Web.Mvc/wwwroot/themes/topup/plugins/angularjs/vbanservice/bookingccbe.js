@@ -388,7 +388,7 @@ topupApp.controller('FlightController', ["$scope", "$locale", function ($scope, 
                     });
                 }
             });
-        };
+        }
     };
 
     $scope.searchInternationFlight = function () {

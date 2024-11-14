@@ -1,11 +1,13 @@
 ﻿var CheckBoxInputType = (function () {
     return function () {
         var _options;
+
         function init(inputTypeInfo, options) {
             _options = options;
         }
 
         var $checkbox;
+
         function getView(selectedValues, allItems) {
             $div = $('<div class="form-group checkbox-list">');
             $label = $('<label class="checkbox">').appendTo($div)

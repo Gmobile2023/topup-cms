@@ -39,9 +39,7 @@
                     regex: '^[a-zA-Z][a-zA-Z0-9_-]{1,}$'
                 }
             },
-            messages: {
-
-            },
+            messages: {},
             invalidHandler: function (event, validator) {
 
             },

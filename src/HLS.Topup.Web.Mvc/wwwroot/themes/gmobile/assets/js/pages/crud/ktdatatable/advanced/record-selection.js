@@ -1,7 +1,7 @@
 "use strict";
 // Class definition
 
-var KTDatatableRecordSelectionDemo = function() {
+var KTDatatableRecordSelectionDemo = function () {
     // Private functions
 
     var options = {
@@ -45,7 +45,7 @@ var KTDatatableRecordSelectionDemo = function() {
         }, {
             field: 'Country',
             title: 'Country',
-            template: function(row) {
+            template: function (row) {
                 return row.Country + ' ' + row.ShipCountry;
             },
         }, {
@@ -60,7 +60,7 @@ var KTDatatableRecordSelectionDemo = function() {
             field: 'Status',
             title: 'Status',
             // callback function support for column rendering
-            template: function(row) {
+            template: function (row) {
                 var status = {
                     1: {'title': 'Pending', 'class': 'label-light-primary'},
                     2: {'title': 'Delivered', 'class': ' label-light-danger'},
@@ -75,9 +75,9 @@ var KTDatatableRecordSelectionDemo = function() {
         }, {
             field: 'Type',
             title: 'Type',
-	        autoHide: false,
+            autoHide: false,
             // callback function support for column rendering
-            template: function(row) {
+            template: function (row) {
                 var status = {
                     1: {'title': 'Online', 'state': 'danger'},
                     2: {'title': 'Retail', 'state': 'primary'},
@@ -92,8 +92,8 @@ var KTDatatableRecordSelectionDemo = function() {
             width: 125,
             overflow: 'visible',
             textAlign: 'left',
-	        autoHide: false,
-            template: function() {
+            autoHide: false,
+            template: function () {
                 return '\
                     <div class="dropdown dropdown-inline">\
                         <a href="javascript:;" class="btn btn-sm btn-clean btn-icon mr-2" data-toggle="dropdown">\
@@ -172,7 +172,7 @@ var KTDatatableRecordSelectionDemo = function() {
     };
 
     // basic demo
-    var localSelectorDemo = function() {
+    var localSelectorDemo = function () {
         // enable extension
         options.extensions = {
             // boolean or object (extension options)
@@ -186,11 +186,11 @@ var KTDatatableRecordSelectionDemo = function() {
 
         var datatable = $('#kt_datatable').KTDatatable(options);
 
-        $('#kt_datatable_search_status').on('change', function() {
+        $('#kt_datatable_search_status').on('change', function () {
             datatable.search($(this).val().toLowerCase(), 'Status');
         });
 
-        $('#kt_datatable_search_type').on('change', function() {
+        $('#kt_datatable_search_type').on('change', function () {
             datatable.search($(this).val().toLowerCase(), 'Type');
         });
 
@@ -198,7 +198,7 @@ var KTDatatableRecordSelectionDemo = function() {
 
         datatable.on(
             'datatable-on-check datatable-on-uncheck',
-            function(e) {
+            function (e) {
                 var checkedNodes = datatable.rows('.datatable-row-active').nodes();
                 var count = checkedNodes.length;
                 $('#kt_datatable_selected_records').html(count);
@@ -209,11 +209,8 @@ var KTDatatableRecordSelectionDemo = function() {
                 }
             });
 
-        $('#kt_datatable_fetch_modal').on('show.bs.modal', function(e) {
-            var ids = datatable.rows('.datatable-row-active').
-            nodes().
-            find('.checkbox > [type="checkbox"]').
-            map(function(i, chk) {
+        $('#kt_datatable_fetch_modal').on('show.bs.modal', function (e) {
+            var ids = datatable.rows('.datatable-row-active').nodes().find('.checkbox > [type="checkbox"]').map(function (i, chk) {
                 return $(chk).val();
             });
             console.log(ids);
@@ -225,12 +222,12 @@ var KTDatatableRecordSelectionDemo = function() {
                 c.appendChild(li);
             }
             $('#kt_datatable_fetch_display').append(c);
-        }).on('hide.bs.modal', function(e) {
+        }).on('hide.bs.modal', function (e) {
             $('#kt_datatable_fetch_display').empty();
         });
     };
 
-    var serverSelectorDemo = function() {
+    var serverSelectorDemo = function () {
         // enable extension
         options.extensions = {
             // boolean or object (extension options)
@@ -243,11 +240,11 @@ var KTDatatableRecordSelectionDemo = function() {
 
         var datatable = $('#kt_datatable_2').KTDatatable(options);
 
-        $('#kt_datatable_search_status_2').on('change', function() {
+        $('#kt_datatable_search_status_2').on('change', function () {
             datatable.search($(this).val().toLowerCase(), 'Status');
         });
 
-        $('#kt_datatable_search_type_2').on('change', function() {
+        $('#kt_datatable_search_type_2').on('change', function () {
             datatable.search($(this).val().toLowerCase(), 'Type');
         });
 
@@ -255,7 +252,7 @@ var KTDatatableRecordSelectionDemo = function() {
 
         datatable.on(
             'datatable-on-click-checkbox',
-            function(e) {
+            function (e) {
                 // datatable.checkbox() access to extension methods
                 var ids = datatable.checkbox().getSelectedId();
                 var count = ids.length;
@@ -269,7 +266,7 @@ var KTDatatableRecordSelectionDemo = function() {
                 }
             });
 
-        $('#kt_datatable_fetch_modal_2').on('show.bs.modal', function(e) {
+        $('#kt_datatable_fetch_modal_2').on('show.bs.modal', function (e) {
             var ids = datatable.checkbox().getSelectedId();
             var c = document.createDocumentFragment();
             for (var i = 0; i < ids.length; i++) {
@@ -279,20 +276,20 @@ var KTDatatableRecordSelectionDemo = function() {
                 c.appendChild(li);
             }
             $('#kt_datatable_fetch_display_2').append(c);
-        }).on('hide.bs.modal', function(e) {
+        }).on('hide.bs.modal', function (e) {
             $('#kt_datatable_fetch_display_2').empty();
         });
     };
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             localSelectorDemo();
             serverSelectorDemo();
         },
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTDatatableRecordSelectionDemo.init();
 });

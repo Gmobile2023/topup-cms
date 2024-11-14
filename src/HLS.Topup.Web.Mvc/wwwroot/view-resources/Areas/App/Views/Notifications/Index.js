@@ -170,7 +170,7 @@
                     }
                 }
             );
-        };
+        }
 
         function deleteNotifications() {
             abp.message.confirm(
@@ -191,7 +191,7 @@
                     }
                 }
             );
-        };
+        }
 
         function getRowClass(formattedRecord) {
             return formattedRecord.state === 'READ' ? 'notification-read' : '';
@@ -213,11 +213,11 @@
             _appUserNotificationHelper.setAllAsRead(function () {
                 getNotifications();
             });
-        };
+        }
 
         function openNotificationSettingsModal() {
             _appUserNotificationHelper.openSettingsModal();
-        };
+        }
 
         _$targetValueFilterSelectionCombobox.change(function () {
             getNotifications();

@@ -1,11 +1,13 @@
-@media print{
-    .noprint{
-        display:none;
+@media print {
+    .noprint {
+        display: none;
     }
+
     body, html, .print-body, .print-body, .print-hls-content {
         margin: 0 !important;
         padding: 0 !important;
     }
+
     .section-card-line {
         padding-left: 0 !important;
         padding-right: 0 !important;

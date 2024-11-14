@@ -37,7 +37,7 @@
                 if (!$button.hasClass('button-busy')) {
                     return;
                 }
-                
+
                 //enable button
                 $button.removeAttr('disabled');
 
@@ -57,7 +57,7 @@
         });
     };
 
-    $.fn.serializeFormToObject = function() {
+    $.fn.serializeFormToObject = function () {
         var $form = $(this);
         var fields = $form.find('[disabled]');
         fields.prop('disabled', false);

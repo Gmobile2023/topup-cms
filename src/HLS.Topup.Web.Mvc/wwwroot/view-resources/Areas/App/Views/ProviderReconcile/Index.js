@@ -9,7 +9,7 @@
         });
 
         var _permissions = {
-            compare: abp.auth.hasPermission('Pages.ProviderReconcile.Compare'),            
+            compare: abp.auth.hasPermission('Pages.ProviderReconcile.Compare'),
         };
 
 
@@ -21,14 +21,14 @@
             viewUrl: abp.appPath + 'App/ProviderReconcile/CreateOrEditModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ProviderReconcile/_CreateOrEditModal.js',
             modalClass: 'CreateOrEditModal',
-            modalSize: 'modal-xl'  
+            modalSize: 'modal-xl'
         });
 
         var _viewDetailModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/ProviderReconcile/ReponseModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/ProviderReconcile/_Reponse.js',
             modalClass: 'ReponseModal',
-            modalSize: 'modal-xl'             
+            modalSize: 'modal-xl'
         });
 
         var getDateFilter = function (element) {
@@ -76,8 +76,12 @@
                         items: [
                             {
                                 text: app.localize('View'),
-                                action: function (data) {                                    
-                                    _viewDetailModal.open({ providerCode: data.record.providerCode, date: data.record.transDate, keyCode: data.record.keyCode });
+                                action: function (data) {
+                                    _viewDetailModal.open({
+                                        providerCode: data.record.providerCode,
+                                        date: data.record.transDate,
+                                        keyCode: data.record.keyCode
+                                    });
                                 }
                             },
                             {
@@ -88,7 +92,7 @@
                                 action: function (data) {
                                 }
                             }
-                        ]                       
+                        ]
                     }
                 },
                 {
@@ -198,7 +202,7 @@
                         $(thead).find('th').eq(8).addClass("text-left").html(Sv.format_number(rawServerResponse.totalData.providerOnlyQuantity));
                     }
                 } catch (e) {
-                    console.log("không có total")
+                    console.log("khï¿½ng cï¿½ total")
                 }
             }
         });
@@ -224,8 +228,6 @@
                 });
         });
 
-
-        
 
         $('#GetProvidersButton').click(function (e) {
             e.preventDefault();

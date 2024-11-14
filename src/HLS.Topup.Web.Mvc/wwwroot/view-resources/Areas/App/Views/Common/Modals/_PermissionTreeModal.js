@@ -4,7 +4,8 @@
         var _permissionsTree = null;
 
         var _options = {
-            onSelectionDone: function () { }
+            onSelectionDone: function () {
+            }
         };
 
         this.init = function (modalManager) {

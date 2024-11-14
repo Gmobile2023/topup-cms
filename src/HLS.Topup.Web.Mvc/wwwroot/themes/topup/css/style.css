@@ -14,14 +14,21 @@
     position: absolute;
     background: #fff;
     z-index: 9999;
-    -webkit-border-radius: 10px;border-radius: 10px;-moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
 }
+
 .vnpay_content {
-    width:100% !important;height:100% !important;
+    width: 100% !important;
+    height: 100% !important;
 }
+
 #vnpay_frame {
-width:100% !important;height:100% !important;
+    width: 100% !important;
+    height: 100% !important;
 }
+
 .vnpay_close {
     position: absolute;
     background: url(close.png) no-repeat 0 0;
@@ -35,7 +42,11 @@ width:100% !important;height:100% !important;
     background-size: cover;
     opacity: 1;
 }
-a.vnpay_close:hover {opacity: .8;}
-.collapse.show{
+
+a.vnpay_close:hover {
+    opacity: .8;
+}
+
+.collapse.show {
     display: block !important;
 }

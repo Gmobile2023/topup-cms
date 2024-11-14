@@ -61,7 +61,7 @@
                         targets: 5,
                         data: null,
                         render: function (data, type, row) {
-                            return '<button class="btn btn-danger btn-remove" onclick="javascript:$(\'#AgentPayBacksTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
+                            return '<button class="btn btn-danger btn-remove" onclick="$(\'#AgentPayBacksTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
                         }
                     }
                 ],

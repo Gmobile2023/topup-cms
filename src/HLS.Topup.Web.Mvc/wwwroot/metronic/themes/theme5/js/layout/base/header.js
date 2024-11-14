@@ -35,7 +35,7 @@ var KTLayoutHeader = function() {
             _elementForMobile = KTUtil.getById(idForMobile);
 
             if (!_element) {
-                return;
+                
             }
 		},
 

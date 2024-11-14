@@ -47,7 +47,7 @@
                     }
                 }
             );
-        };
+        }
 
         $('#CreateNewEditionButton').click(function () {
             _createModal.open();
@@ -86,7 +86,7 @@
                                     return _permissions.edit;
                                 },
                                 action: function (data) {
-                                    _editModal.open({ id: data.record.id });
+                                    _editModal.open({id: data.record.id});
                                 }
                             }, {
                                 text: app.localize('Delete'),
@@ -102,7 +102,7 @@
                                     return _permissions.moveTenantsToAnotherEdition;
                                 },
                                 action: function (data) {
-                                    _moveTenantsToAnotherEditionModal.open({ id: data.record.id });
+                                    _moveTenantsToAnotherEditionModal.open({id: data.record.id});
                                 }
                             }
                         ]

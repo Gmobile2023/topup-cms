@@ -80,7 +80,7 @@
                 }
             },
             submitHandler: function () {
-                return;
+                
             }
         });
     });

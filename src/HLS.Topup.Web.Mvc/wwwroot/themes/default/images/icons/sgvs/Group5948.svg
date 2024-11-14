@@ -1,12 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
-  <g id="Group_5948" data-name="Group 5948" transform="translate(-790 -1069)">
-    <rect id="Rectangle_461" data-name="Rectangle 461" width="30" height="30" rx="15" transform="translate(790 1069)" fill="#f5f5f5" opacity="0"/>
-    <g id="Group_5680" data-name="Group 5680" transform="translate(-320 -365.423)">
-      <g id="trending-up-outline" transform="translate(1113 1439.423)">
-        <path id="Path_3872" data-name="Path 3872" d="M352,144h6.461v6.461" transform="translate(-334.462 -144)" fill="none" stroke="#363636" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-        <path id="Path_3873" data-name="Path 3873" d="M48,172l7-7a1.846,1.846,0,0,1,2.611,0l2.927,2.927a1.846,1.846,0,0,0,2.611,0L71.077,160" transform="translate(-48 -159.077)" fill="none" stroke="#363636" stroke-linecap="round" stroke-width="1.5"/>
-      </g>
-      <line id="Line_1016" data-name="Line 1016" x2="24" transform="translate(1113 1457.612)" fill="none" stroke="#363636" stroke-linecap="round" stroke-width="1.5"/>
+    <g id="Group_5948" data-name="Group 5948" transform="translate(-790 -1069)">
+        <rect id="Rectangle_461" data-name="Rectangle 461" width="30" height="30" rx="15"
+              transform="translate(790 1069)" fill="#f5f5f5" opacity="0"/>
+        <g id="Group_5680" data-name="Group 5680" transform="translate(-320 -365.423)">
+            <g id="trending-up-outline" transform="translate(1113 1439.423)">
+                <path id="Path_3872" data-name="Path 3872" d="M352,144h6.461v6.461" transform="translate(-334.462 -144)"
+                      fill="none" stroke="#363636" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                <path id="Path_3873" data-name="Path 3873"
+                      d="M48,172l7-7a1.846,1.846,0,0,1,2.611,0l2.927,2.927a1.846,1.846,0,0,0,2.611,0L71.077,160"
+                      transform="translate(-48 -159.077)" fill="none" stroke="#363636" stroke-linecap="round"
+                      stroke-width="1.5"/>
+            </g>
+            <line id="Line_1016" data-name="Line 1016" x2="24" transform="translate(1113 1457.612)" fill="none"
+                  stroke="#363636" stroke-linecap="round" stroke-width="1.5"/>
+        </g>
     </g>
-  </g>
 </svg>

@@ -1,11 +1,11 @@
 ﻿"use strict";
 
 // Component Definition
-var KTApp = function() {
+var KTApp = function () {
     /** @type {object} colors State colors **/
     var settings = {};
 
-    var initTooltip = function(el) {
+    var initTooltip = function (el) {
         var theme = el.data('theme') ? 'tooltip-' + el.data('theme') : '';
         var width = el.data('width') == 'auto' ? 'tooltop-auto-width' : '';
         var trigger = el.data('trigger') ? el.data('trigger') : 'hover';
@@ -19,14 +19,14 @@ var KTApp = function() {
         });
     }
 
-    var initTooltips = function() {
+    var initTooltips = function () {
         // init bootstrap tooltips
-        $('[data-toggle="tooltip"]').each(function() {
+        $('[data-toggle="tooltip"]').each(function () {
             initTooltip($(this));
         });
     }
 
-    var initPopover = function(el) {
+    var initPopover = function (el) {
         var skin = el.data('skin') ? 'popover-' + el.data('skin') : '';
         var triggerValue = el.data('trigger') ? el.data('trigger') : 'hover';
 
@@ -41,30 +41,30 @@ var KTApp = function() {
         });
     }
 
-    var initPopovers = function() {
+    var initPopovers = function () {
         // init bootstrap popover
-        $('[data-toggle="popover"]').each(function() {
+        $('[data-toggle="popover"]').each(function () {
             initPopover($(this));
         });
     }
 
-    var initFileInput = function() {
+    var initFileInput = function () {
         // init bootstrap popover
-        $('.custom-file-input').on('change', function() {
+        $('.custom-file-input').on('change', function () {
             var fileName = $(this).val();
             $(this).next('.custom-file-label').addClass("selected").html(fileName);
         });
     }
 
-    var initScroll = function() {
-        $('[data-scroll="true"]').each(function() {
+    var initScroll = function () {
+        $('[data-scroll="true"]').each(function () {
             var el = $(this);
 
             KTUtil.scrollInit(this, {
                 mobileNativeScroll: true,
                 handleWindowResize: true,
                 rememberPosition: (el.data('remember-position') == 'true' ? true : false),
-                height: function() {
+                height: function () {
                     if (KTUtil.isBreakpointDown('lg') && el.data('mobile-height')) {
                         return el.data('mobile-height');
                     } else {
@@ -75,22 +75,22 @@ var KTApp = function() {
         });
     }
 
-    var initAlerts = function() {
+    var initAlerts = function () {
         // init bootstrap popover
-        $('body').on('click', '[data-close=alert]', function() {
+        $('body').on('click', '[data-close=alert]', function () {
             $(this).closest('.alert').hide();
         });
     }
 
-    var initCard = function(el, options) {
+    var initCard = function (el, options) {
         // init card tools
         var el = $(el);
         var card = new KTCard(el[0], options);
     }
 
-    var initCards = function() {
+    var initCards = function () {
         // init card tools
-        $('[data-card="true"]').each(function() {
+        $('[data-card="true"]').each(function () {
             var el = $(this);
             var options = {};
 
@@ -101,7 +101,7 @@ var KTApp = function() {
         });
     }
 
-    var initStickyCard = function() {
+    var initStickyCard = function () {
         if (typeof Sticky === 'undefined') {
             return;
         }
@@ -109,30 +109,30 @@ var KTApp = function() {
         var sticky = new Sticky('[data-sticky="true"]');
     }
 
-    var initAbsoluteDropdown = function(context) {
+    var initAbsoluteDropdown = function (context) {
         var dropdownMenu;
 
         if (!context) {
             return;
         }
 
-        $('body').on('show.bs.dropdown', context, function(e) {
-        	dropdownMenu = $(e.target).find('.dropdown-menu');
-        	$('body').append(dropdownMenu.detach());
-        	dropdownMenu.css('display', 'block');
-        	dropdownMenu.position({
-        		'my': 'right top',
-        		'at': 'right bottom',
-        		'of': $(e.relatedTarget),
-        	});
-        }).on('hide.bs.dropdown', context, function(e) {
-        	$(e.target).append(dropdownMenu.detach());
-        	dropdownMenu.hide();
+        $('body').on('show.bs.dropdown', context, function (e) {
+            dropdownMenu = $(e.target).find('.dropdown-menu');
+            $('body').append(dropdownMenu.detach());
+            dropdownMenu.css('display', 'block');
+            dropdownMenu.position({
+                'my': 'right top',
+                'at': 'right bottom',
+                'of': $(e.relatedTarget),
+            });
+        }).on('hide.bs.dropdown', context, function (e) {
+            $(e.target).append(dropdownMenu.detach());
+            dropdownMenu.hide();
         });
     }
 
-    var initAbsoluteDropdowns = function() {
-        $('body').on('show.bs.dropdown', function(e) {
+    var initAbsoluteDropdowns = function () {
+        $('body').on('show.bs.dropdown', function (e) {
             // e.target is always parent (contains toggler and menu)
             var $toggler = $(e.target).find("[data-attach='body']");
             if ($toggler.length === 0) {
@@ -153,7 +153,7 @@ var KTApp = function() {
             });
         });
 
-        $('body').on('hide.bs.dropdown', function(e) {
+        $('body').on('hide.bs.dropdown', function (e) {
             var $toggler = $(e.target).find("[data-attach='body']");
             if ($toggler.length === 0) {
                 return;
@@ -168,7 +168,7 @@ var KTApp = function() {
     };
 
     return {
-        init: function(settingsArray) {
+        init: function (settingsArray) {
             if (settingsArray) {
                 settings = settingsArray;
             }
@@ -176,7 +176,7 @@ var KTApp = function() {
             KTApp.initComponents();
         },
 
-        initComponents: function() {
+        initComponents: function () {
             initScroll();
             initTooltips();
             initPopovers();
@@ -187,39 +187,39 @@ var KTApp = function() {
             initAbsoluteDropdowns();
         },
 
-        initTooltips: function() {
+        initTooltips: function () {
             initTooltips();
         },
 
-        initTooltip: function(el) {
+        initTooltip: function (el) {
             initTooltip(el);
         },
 
-        initPopovers: function() {
+        initPopovers: function () {
             initPopovers();
         },
 
-        initPopover: function(el) {
+        initPopover: function (el) {
             initPopover(el);
         },
 
-        initCard: function(el, options) {
+        initCard: function (el, options) {
             initCard(el, options);
         },
 
-        initCards: function() {
+        initCards: function () {
             initCards();
         },
 
-        initSticky: function() {
+        initSticky: function () {
             initSticky();
         },
 
-        initAbsoluteDropdown: function(context) {
+        initAbsoluteDropdown: function (context) {
             initAbsoluteDropdown(context);
         },
 
-        block: function(target, options) {
+        block: function (target, options) {
             var el = $(target);
 
             options = $.extend(true, {
@@ -279,7 +279,7 @@ var KTApp = function() {
                     cursor: 'wait',
                     zIndex: (target == 'body' ? 1100 : 10)
                 },
-                onUnblock: function() {
+                onUnblock: function () {
                     if (el && el[0]) {
                         KTUtil.css(el[0], 'position', '');
                         KTUtil.css(el[0], 'zoom', '');
@@ -296,7 +296,7 @@ var KTApp = function() {
             }
         },
 
-        unblock: function(target) {
+        unblock: function (target) {
             if (target && target != 'body') {
                 $(target).unblock();
             } else {
@@ -304,15 +304,15 @@ var KTApp = function() {
             }
         },
 
-        blockPage: function(options) {
+        blockPage: function (options) {
             return KTApp.block('body', options);
         },
 
-        unblockPage: function() {
+        unblockPage: function () {
             return KTApp.unblock('body');
         },
 
-        progress: function(target, options) {
+        progress: function (target, options) {
             var color = (options && options.color) ? options.color : 'light';
             var alignment = (options && options.alignment) ? options.alignment : 'right';
             var size = (options && options.size) ? ' spinner-' + options.size : '';
@@ -325,12 +325,12 @@ var KTApp = function() {
             $(target).data('progress-classes', classes);
         },
 
-        unprogress: function(target) {
+        unprogress: function (target) {
             $(target).removeClass($(target).data('progress-classes'));
             KTUtil.removeAttr(target, 'disabled');
         },
 
-        getSettings: function() {
+        getSettings: function () {
             return settings;
         }
     };
@@ -342,6 +342,6 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 }
 
 // Initialize KTApp class on document ready
-$(document).ready(function() {
+$(document).ready(function () {
     KTApp.init(KTAppSettings);
 });

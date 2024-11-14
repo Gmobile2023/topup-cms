@@ -7,11 +7,10 @@
         var _$serviceInformationForm = null;
 
 
-
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
-			var modal = _modalManager.getModal();
+            var modal = _modalManager.getModal();
             modal.find('.date-picker').datetimepicker({
                 locale: abp.localization.currentLanguage.name,
                 format: 'L'
@@ -21,7 +20,6 @@
         };
 
 
-
         this.save = function () {
             if (!_$serviceInformationForm.valid()) {
                 return;
@@ -29,16 +27,16 @@
 
             var service = _$serviceInformationForm.serializeFormToObject();
 
-			 _modalManager.setBusy(true);
-			 _servicesService.createOrEdit(
-				service
-			 ).done(function () {
-               abp.message.info(app.localize('SavedSuccessfully'));
-               _modalManager.close();
-               abp.event.trigger('app.createOrEditServiceModalSaved');
-			 }).always(function () {
-               _modalManager.setBusy(false);
-			});
+            _modalManager.setBusy(true);
+            _servicesService.createOrEdit(
+                service
+            ).done(function () {
+                abp.message.info(app.localize('SavedSuccessfully'));
+                _modalManager.close();
+                abp.event.trigger('app.createOrEditServiceModalSaved');
+            }).always(function () {
+                _modalManager.setBusy(false);
+            });
         };
     };
 })(jQuery);

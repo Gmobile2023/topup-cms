@@ -1,49 +1,71 @@
 @model HLS.Topup.Web.Models.Account.PaymentVerifyTransTypeModel
 @{
-    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
+    ViewBag.Title = "Hình thức bảo mật";
 }
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.Profile_SecurityMethod;
-    ViewBag.Title = "Hình thức bảo mật";
+    ViewBag.PageTitle = "Hình thức bảo mật";
     ViewBag.ImageTitle = "/themes/topup/images/secure_method_white.svg";
     var method = (int) Model.Method;
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Thông tin cá nhân", Url.Action("", "")),
+        (ViewBag.PageTitle, Url.Action("", "")),
+    };
 }
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
 
 @section Scripts
 {
     <script abp-src="/view-resources/Views/Profile/SecureMethod.js" asp-append-version="true"></script>
 }
 
-<div id="Faqs_Page" class="section-body-middle">
-    <div class="group-help__section group-help__section--link clearfix group-help-link__ul--padding-bg">
-        <h3 class="h1-dark" style="text-transform: none;">Vui lòng chọn hình thức bảo mật khi giao dịch trên website:</h3>
-
-        <div class="option-item-destiantion row" style="padding-top: 10px;">
-            <input type="hidden" value="@method" name="old_method" id="old_method">
-            <div class="form-group col-xs-12" style="padding-bottom: 15px;">
-                <div class="checkbox checkbox-left radio">
-                    <label for="password_level2" class="checkbox-radio__label">
-                        <input type="radio" class="checkbox-radio__input" value="1" name="security_method" id="password_level2" @(method == 1 ? "checked='true'" : "")>
-                        <span class="checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> Bảo mật bằng mật khẩu cấp 2
-                    </label>
-                </div>
-            </div>
-            <div class="form-group col-xs-12">
-                <div class="checkbox checkbox-left radio">
-                    <label class="checkbox-radio__label" for="odp">
-                        <input class="checkbox-radio__input" type="radio" value="2" name="security_method" id="odp" @(method == 2 ? "checked='true'" : "")>
-                        <span class="checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> Bảo mật bằng ODP
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section-body-middle-form-p2">
+<div class="d-flex flex-column-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12 text-center">
-                <button type="button" class="button btn-custom btn-grey" onclick="window.location.href = '@Url.Action("Index", "Profile")'">Quay lại</button>
-                <button class="button btn-custom btn-blue" id="confirm_security_method_btn">Xác nhận</button>
+            <div class="col-12">
+                <div class="card card-custom card-stretch gutter-b">
+                    <div class="card-header border-0">
+                        <h3 class="card-title font-weight-bolder text-dark">Vui lòng chọn hình thức bảo mật khi giao dịch trên website:</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div id="Faqs_Page" class="section-body-middle">
+                            <div class="group-help__section group-help__section--link clearfix group-help-link__ul--padding-bg">
+                                <div class="option-item-destiantion">
+                                    <input type="hidden" value="@method" name="old_method" id="old_method">
+                                    <div class="form-group">
+                                        <div class="checkbox checkbox-left radio">
+                                            <label for="password_level2" class="checkbox-radio__label">
+                                                <input type="radio" class="checkbox-radio__input" value="1" name="security_method" id="password_level2" @(method == 1 ? "checked='true'" : "")>
+                                                <span class="checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> Bảo mật bằng mật khẩu cấp 2
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox checkbox-left radio">
+                                            <label class="checkbox-radio__label" for="odp">
+                                                <input class="checkbox-radio__input" type="radio" value="2" name="security_method" id="odp" @(method == 2 ? "checked='true'" : "")>
+                                                <span class="checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> Bảo mật bằng ODP
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-body-middle-form-p2">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="button" class="btn btn-secondary mr-2" onclick="window.location.href = '@Url.Action("Index", "Profile")'">Quay lại</button>
+                                        <button class="btn btn-primary" id="confirm_security_method_btn">Xác nhận</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+

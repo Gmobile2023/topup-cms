@@ -19,7 +19,7 @@
     var disabled = Model.User.IsVerifyAccount ? "disabled" : "";
     <div class="row">
         <div class="col-md-12">
-            <label for="" class="title"> @(L("Name_Agent")) &nbsp;&nbsp;<span class="lightred">(*)</span> </label>
+            <label for="" class="title"> @(L("Name_Agent")) <span class="text-danger">(*)</span></label>
             <input type="hidden" name="isVerifyAccount" value="@(Model.User.IsVerifyAccount ? 1 : 0)">
         </div>
         <div class="col-md-12">
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <label for="" class="title"> <strong>@(L("Address_Agent"))</strong> &nbsp;<span class="lightred">(*)</span> </label>
+            <label for="" class="title"> <strong>@(L("Address_Agent"))</strong> <span class="text-danger">(*)</span></label>
         </div>
         <div class="col-md-4">
             <div class="form-group ">
@@ -75,56 +75,53 @@
         </div>
 
         <div class="col-md-12">
-            <label for="" class="title"> <strong>@(L("Identification"))</strong> &nbsp;<span class="lightred">(*)</span> </label>
+            <label for="" class="title"> <strong>@(L("Identification"))</strong> <span class="text-danger">(*)</span></label>
         </div>
-        <div class="block clearfix">
-            <div class="col-md-6">
-                <div class="form-group ">
-                    <label for="" class="title">@(L("Identification_Image Before")) &nbsp; </label>
-                    <div class="form-group-wrap">
-                        <label class="preview_img">
-                            @if (string.IsNullOrEmpty(disabled))
+        <div class="col-md-6">
+            <div class="form-group ">
+                <label for="" class="title">@(L("Identification_Image Before")) &nbsp; </label>
+                <div class="form-group-wrap">
+                    <label class="preview_img">
+                        @if (string.IsNullOrEmpty(disabled))
+                        {
+                        <input type='file' id="img_before" onchange="ctrl.readURL(this, 'pre_before')" style="display:none" accept="image/*"/>
+                        }
+                        <div id="pre_before" data-src="@agency.FrontPhoto" alt="">
+                            @if (!string.IsNullOrEmpty(agency.FrontPhoto))
                             {
-                                <input type='file' id="img_before" onchange="ctrl.readURL(this, 'pre_before')" style="display:none" accept="image/*"/>
+                            <img alt="" src="@agency.FrontPhoto"/>
                             }
-                            <div id="pre_before" data-src="@agency.FrontPhoto" alt="">
-                                @if (!string.IsNullOrEmpty(agency.FrontPhoto))
-                                {
-                                    <img alt="" src="@agency.FrontPhoto"/>
-                                }
-                                else
-                                {
-                                    <i class="fas fa-camera"></i>
-                                }
-                            </div>
-                        </label>
-                    </div>
+                            else
+                            {
+                            <i class="fas fa-camera"></i>
+                            }
+                        </div>
+                    </label>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group " style="display:@(agency.IdType == CommonConst.IdType.Passport ? "none" : "block")">
-                    <label for="" class="title">@(L("Identification_Image After")) &nbsp; </label>
-                    <div class="form-group-wrap">
-                        <label class="preview_img">
-                            @if (string.IsNullOrEmpty(disabled))
+        </div>
+        <div class="col-md-6">
+            <div class="form-group " style="display:@(agency.IdType == CommonConst.IdType.Passport ? "none" : "block")">
+                <label for="" class="title">@(L("Identification_Image After")) &nbsp; </label>
+                <div class="form-group-wrap">
+                    <label class="preview_img">
+                        @if (string.IsNullOrEmpty(disabled))
+                        {
+                        <input type='file' id="img_after" onchange="ctrl.readURL(this, 'pre_after')" style="display:none" accept="image/*"/>
+                        }
+                        <div id="pre_after" data-src="@agency.BackSitePhoto" alt="">
+                            @if (!string.IsNullOrEmpty(agency.BackSitePhoto))
                             {
-                                <input type='file' id="img_after" onchange="ctrl.readURL(this, 'pre_after')" style="display:none" accept="image/*"/>
+                            <img alt="" src="@agency.BackSitePhoto"/>
                             }
-                            <div id="pre_after" data-src="@agency.BackSitePhoto" alt="">
-                                @if (!string.IsNullOrEmpty(agency.BackSitePhoto))
-                                {
-                                    <img alt="" src="@agency.BackSitePhoto"/>
-                                }
-                                else
-                                {
-                                    <i class="fas fa-camera"></i>
-                                }
-                            </div>
-                        </label>
-                    </div>
+                            else
+                            {
+                            <i class="fas fa-camera"></i>
+                            }
+                        </div>
+                    </label>
                 </div>
             </div>
-
         </div>
 
         <div class="col-md-6">

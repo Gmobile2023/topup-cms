@@ -7,7 +7,6 @@
         var _$cardStockInformationForm = null;
 
 
-
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
@@ -23,7 +22,6 @@
             modal.find('#serviceCode').on('change', serviceChangeModal);
             modal.find('#vendorCode').on('change', categoryChangeModal);
         };
-
 
 
         this.save = function () {
@@ -42,8 +40,7 @@
                     abp.message.info(app.localize('SavedSuccessfully'));
                     _modalManager.close();
                     abp.event.trigger('app.createOrEditCardStockModalSaved');
-                }
-                else {
+                } else {
                     abp.message.error(rs.responseMessage);
                 }
             }).always(function () {
@@ -57,11 +54,11 @@
             var cateCode = $e.val();
             abp.services.app.cards.getCategoryByServiceCode(cateCode)
                 .done(function (result) {
-                    let html = "<option value=\"\">Chọn loại sản phẩm</option>"; 
+                    let html = "<option value=\"\">Chọn loại sản phẩm</option>";
                     if (result.length > 0) {
                         for (let i = 0; i < result.length; i++) {
                             let item = result[i];
-                            html += ("<option value=\""+item.categoryCode+"\">"+item.categoryName+" </option>");
+                            html += ("<option value=\"" + item.categoryCode + "\">" + item.categoryName + " </option>");
                         }
                     }
                     _s.find("[name='vendorCode']").html(html);
@@ -70,7 +67,8 @@
                 .always(function () {
                     abp.ui.clearBusy();
                 });
-        };
+        }
+
         function categoryChangeModal(e) {
             var $e = $(e.target);
             let _s = $e.closest('.modal-body');
@@ -81,7 +79,7 @@
                     if (result.length > 0) {
                         for (let i = 0; i < result.length; i++) {
                             let item = result[i];
-                            html += ("<option value=\""+item.productValue+"\">"+Sv.NumberToString(item.productValue)+"đ </option>");
+                            html += ("<option value=\"" + item.productValue + "\">" + Sv.NumberToString(item.productValue) + "đ </option>");
                         }
                     }
                     _s.find("[name='cardValue']").html(html);
@@ -89,6 +87,6 @@
                 .always(function () {
                     abp.ui.clearBusy();
                 });
-        };
+        }
     };
 })(jQuery);

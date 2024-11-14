@@ -20,7 +20,7 @@
             viewUrl: abp.appPath + 'App/CardStocks/CreateOrEditModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/CardStocks/_CreateOrEditModal.js',
             modalClass: 'CreateOrEditCardStockModal',
-            modalSize:'modal-xl'
+            modalSize: 'modal-xl'
         });
 
         var _editQuantityModal = new app.ModalManager({
@@ -33,21 +33,21 @@
         var _viewCardStockModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/CardStocks/ViewcardStockModal',
             modalClass: 'ViewCardStockModal',
-            modalSize:'modal-xl'
+            modalSize: 'modal-xl'
         });
 
         var _transferStockModal_old = new app.ModalManager({
             viewUrl: abp.appPath + 'App/CardStocks/TransferModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/CardStocks/_TransferModal.js',
             modalClass: 'TransferStockModal',
-            modalSize:'modal-xl'
+            modalSize: 'modal-xl'
         });
 
         var _transferStockModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/CardStocks/TransferCardModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/CardStocks/_TransferCardModal.js',
             modalClass: 'TransferCardStockModal',
-            modalSize:'modal-xl'
+            modalSize: 'modal-xl'
         });
 
         var getDateFilter = function (element) {
@@ -68,10 +68,10 @@
                         filter: $('#CardStocksTableFilter').val(),
                         stockCodeFilter: $('#stockCodeFilter').val(),
                         statusFilter: $('#StatusFilterId').val(),
-                        
+
                         serviceCodeFilter: $('#serviceCodeFilter').val(),
                         categoryCodeFilter: $('#categoryCodeFilter').val(),
- 
+
                         minCardValueFilter: $('#cardValueFilter').val(),
                         maxCardValueFilter: $('#cardValueFilter').val(),
                     };
@@ -100,7 +100,11 @@
                             {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewCardStockModal.open({ code: data.record.stockCode, productCode: data.record.productCode, cardValue: data.record.cardValue });
+                                    _viewCardStockModal.open({
+                                        code: data.record.stockCode,
+                                        productCode: data.record.productCode,
+                                        cardValue: data.record.cardValue
+                                    });
                                 }
                             },
                             {
@@ -109,7 +113,11 @@
                                     return _permissions.edit;
                                 },
                                 action: function (data) {
-                                    _createOrEditModal.open({ code: data.record.stockCode, productCode: data.record.productCode, cardValue: data.record.cardValue });
+                                    _createOrEditModal.open({
+                                        code: data.record.stockCode,
+                                        productCode: data.record.productCode,
+                                        cardValue: data.record.cardValue
+                                    });
                                 }
                                 // },
                                 // {
@@ -127,8 +135,12 @@
                                     return _permissions.editQuantity;
                                 },
                                 action: function (data) {
-                                    _editQuantityModal.open({ code: data.record.stockCode, productCode: data.record.productCode, cardValue: data.record.cardValue });
-                                }                               
+                                    _editQuantityModal.open({
+                                        code: data.record.stockCode,
+                                        productCode: data.record.productCode,
+                                        cardValue: data.record.cardValue
+                                    });
+                                }
                             }
                         ]
                     }
@@ -159,16 +171,16 @@
                     data: "cardValue",
                     name: "cardValue",
                     render: function (data, e, row) {
-                        if(data == 0){
+                        if (data == 0) {
                             var arr = row.productCode.split("_");
-                            var val = arr[arr.length-1];
-                            return Sv.NumberToString(parseFloat(val)*1000)+"đ";
+                            var val = arr[arr.length - 1];
+                            return Sv.NumberToString(parseFloat(val) * 1000) + "đ";
                         }
-                        return Sv.NumberToString(data)+"đ";
+                        return Sv.NumberToString(data) + "đ";
                     }
                 },
                 {
-                    targets: 6, 
+                    targets: 6,
                     data: "inventory",
                     name: "inventory",
                     class: "all text-right",
@@ -179,7 +191,7 @@
                 {
                     targets: 7,
                     data: "status",
-                    name: "status"   ,
+                    name: "status",
                     render: function (status) {
                         return app.localize('Enum_CardStockStatus_' + status);
                     }
@@ -206,7 +218,7 @@
                 try {
                     var rawServerResponse = this.api().settings()[0].rawServerResponse;
                     if (rawServerResponse !== undefined && rawServerResponse.totalData !== undefined) {
-                        $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.inventory));                      
+                        $(thead).find('th').eq(1).addClass("text-right").html(Sv.format_number(rawServerResponse.totalData.inventory));
                     }
                 } catch (e) {
                     console.log("không có total")
@@ -282,8 +294,8 @@
             getCardStocks();
         });
 
-        $(document).keypress(function(e) {
-            if(e.which === 13) {
+        $(document).keypress(function (e) {
+            if (e.which === 13) {
                 getCardStocks();
             }
         });
@@ -300,7 +312,7 @@
                     if (result.length > 0) {
                         for (let i = 0; i < result.length; i++) {
                             let item = result[i];
-                            html += ("<option value=\"" + item.id + "\">" +item.displayName + " </option>");
+                            html += ("<option value=\"" + item.id + "\">" + item.displayName + " </option>");
                         }
                     }
                     _s.find("#categoryCodeFilter").html(html);
@@ -309,7 +321,8 @@
                 .always(function () {
                     abp.ui.clearBusy();
                 });
-        };
+        }
+
         function categoryChange(e) {
             var cateCode = $(e.target).val();
             abp.services.app.cards.getProductByCategory(cateCode)
@@ -319,7 +332,7 @@
                     if (result.length > 0) {
                         for (let i = 0; i < result.length; i++) {
                             let item = result[i];
-                            html += ("<option value=\""+item.productValue+"\">"+Sv.NumberToString(item.productValue)+"đ </option>");
+                            html += ("<option value=\"" + item.productValue + "\">" + Sv.NumberToString(item.productValue) + "đ </option>");
                         }
                     }
                     _s.find("#cardValueFilter").html(html);
@@ -327,7 +340,7 @@
                 .always(function () {
                     abp.ui.clearBusy();
                 });
-        };
+        }
 
     });
 })();

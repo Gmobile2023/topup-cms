@@ -18,7 +18,7 @@
 
         function refreshTable() {
             dataTable.ajax.reload();
-        };
+        }
 
         this.init = function (modalManager) {
             _modalManager = modalManager;

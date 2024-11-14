@@ -1,7 +1,7 @@
 // Class definition
 
 var KTBootstrapSelect = function () {
-    
+
     // Private functions
     var demos = function () {
         // minimum setup
@@ -10,12 +10,12 @@ var KTBootstrapSelect = function () {
 
     return {
         // public functions
-        init: function() {
-            demos(); 
+        init: function () {
+            demos();
         }
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTBootstrapSelect.init();
 });

@@ -125,15 +125,15 @@
                 receiverType: $('#selectReceiverType').val(),
                 providerReceiverType: $('#selectReceiverTypeResponse').val()
             }).done(function (result) {
-                    if (result.fileName === "Warning")
-                        abp.message.info(result.filePath);
-                    else
-                        app.downloadTempFile(result);
-           });
+                if (result.fileName === "Warning")
+                    abp.message.info(result.filePath);
+                else
+                    app.downloadTempFile(result);
+            });
         });
 
         $('#GetProvidersButton').click(function (e) {
-            e.preventDefault();         
+            e.preventDefault();
             getProviders();
         });
 

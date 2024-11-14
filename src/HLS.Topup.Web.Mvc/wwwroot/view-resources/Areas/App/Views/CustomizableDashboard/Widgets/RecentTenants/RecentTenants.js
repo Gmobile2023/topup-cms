@@ -33,8 +33,8 @@
                     result.tenantCreationStartDate
                 );
             }).always(function () {
-                abp.ui.clearBusy(_$container);
-            });
+            abp.ui.clearBusy(_$container);
+        });
     };
 
     var _recentTenantsDataTable = null;

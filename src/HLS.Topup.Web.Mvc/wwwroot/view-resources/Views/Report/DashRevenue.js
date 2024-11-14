@@ -143,13 +143,11 @@
             var days = Math.floor(diff / (1000 * 60 * 60 * 24));
             if (days < 0) {
                 abp.message.info('Thời gian tìm kiếm không hợp lệ. Quý khách chọn thời gian từ lớn hơn tới');
-            }
-            else if (days > 31) {
+            } else if (days > 31) {
 
                 abp.message.info('Thời gian tìm kiếm không hợp lệ. Quý khách tìm kiếm trong khoảng 31 ngày');
-                return;
-            }
-            else {
+
+            } else {
                 getDashboard();
                 getTables();
             }

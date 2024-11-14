@@ -79,8 +79,8 @@
             .done(function (result) {
                 initDailySales(result.dailySales);
             }).always(function () {
-                abp.ui.clearBusy(_$Container);
-            });
+            abp.ui.clearBusy(_$Container);
+        });
     };
 
     _widgetBase.runDelayed(getDailySales);

@@ -43,7 +43,7 @@
                         return '';
                     },
                     targets: 0
-                },             
+                },
                 {
                     targets: 1,
                     orderable: false,

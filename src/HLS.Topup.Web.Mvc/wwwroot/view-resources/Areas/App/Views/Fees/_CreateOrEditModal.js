@@ -101,7 +101,7 @@
                         targets: 6,
                         data: null,
                         render: function (data, type, row) {
-                            return '<button class="btn btn-danger btn-remove" data-id="' + row.productId + '" onclick="javascript:$(\'#ProductFeesTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
+                            return '<button class="btn btn-danger btn-remove" data-id="' + row.productId + '" onclick="$(\'#ProductFeesTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
                         }
                     }
                 ],

@@ -19,14 +19,14 @@
             let modal = _modalManager.getModal();
 
             modal.find('input#ImportFromExcel').on('change', uploadFileImport);
-            
+
             modal.find('.date-picker').datetimepicker({
                 locale: abp.localization.currentLanguage.name,
                 format: 'L'
             });
 
             modal.find('.select2').select2();
-            
+
             let viewMode = $('input[name="mode"]').val();
 
             Sv.SetupAmountMask();
@@ -52,8 +52,8 @@
                     {
                         targets: 0,
                         data: "order",
-                        render: function ( data, type, row, meta ) {
-                            return  meta.row + 1;
+                        render: function (data, type, row, meta) {
+                            return meta.row + 1;
                         }
                     },
                     {
@@ -78,7 +78,7 @@
                         render: function (data, type, row) {
                             let limitQuantity = row.limitQuantity === null ? "" : row.limitQuantity;
                             if (viewMode === 'view') {
-                                return '<span class="amount-mask" style="font-weight: 500;">'+ limitQuantity +'</span>';
+                                return '<span class="amount-mask" style="font-weight: 500;">' + limitQuantity + '</span>';
                             } else {
                                 return '<input class="limit-product form-control txtLimitQuantity text-right" id="txtLimitQuantity_' + row.productId + '" data-id=' + row.productId + ' type="text" value = ' + limitQuantity + '   >';
                             }
@@ -91,7 +91,7 @@
                         render: function (data, type, row) {
                             let limitAmount = row.limitAmount === null ? "" : row.limitAmount;
                             if (viewMode === 'view') {
-                                return '<span class="amount-mask" style="font-weight: 500;">'+ limitAmount +'</span>';
+                                return '<span class="amount-mask" style="font-weight: 500;">' + limitAmount + '</span>';
                             } else {
                                 return '<input class="limit-product form-control amount-mask txtLimitAmount text-right" id="txtLimitAmount_' + row.productId + '" data-id=' + row.productId + ' type="text" value = ' + limitAmount + '   >';
                             }
@@ -105,15 +105,15 @@
                             if (viewMode === 'view') {
                                 return '';
                             } else {
-                                return '<button class="btn btn-danger btn-remove" type="button" data-id="' + row.productId + '" onclick="javascript:$(\'#LimitProductsDetailTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
+                                return '<button class="btn btn-danger btn-remove" type="button" data-id="' + row.productId + '" onclick="$(\'#LimitProductsDetailTable\').DataTable().row($(this).parents(\'tr\')).remove().draw(false)"> Xoá </button>';
                             }
                         }
                     }
                 ],
-                "drawCallback": function( settings ) {
+                "drawCallback": function (settings) {
                     Sv.SetupAmountMask();
                 },
-                "rowCallback": function( row, data ) {
+                "rowCallback": function (row, data) {
                     Sv.SetupAmountMask();
                 },
             });
@@ -165,7 +165,7 @@
                 if (checkItemInArray(servicesCode, serviceCode) === -1) {
                     servicesCode.push(serviceCode);
                 }
-                let serviceName = $('#ServiceSelect option[value="'+ serviceCode +'"]').text();
+                let serviceName = $('#ServiceSelect option[value="' + serviceCode + '"]').text();
                 getProductType(serviceCode, serviceName);
             } else {
                 $('#ProductType').prop('disabled', true);
@@ -181,7 +181,7 @@
                     if (checkItemInArray(productsType, e) === -1) {
                         productsType.push(e);
                     }
-                    let serviceName = $('#ProductType option[value="'+ e +'"]').attr('data-service');
+                    let serviceName = $('#ProductType option[value="' + e + '"]').attr('data-service');
                     getProductList(e, serviceName);
                 })
             } else {
@@ -206,7 +206,7 @@
         $(document).on('keyup', '.limit-product', function () {
             let reg = /^\d+$/;
 
-            if(!reg.test($(this).val())) {
+            if (!reg.test($(this).val())) {
                 return $(this).val($(this).val().slice(0, -1));
             }
         });
@@ -221,12 +221,12 @@
                 });
         });
 
-        $('#productMode').click(function() {
+        $('#productMode').click(function () {
             $('#productModeBlock').css({'display': 'flex'});
             $('#importModeBlock').css({'display': 'none'});
         });
 
-        $('#importMode').click(function() {
+        $('#importMode').click(function () {
             $('#importModeBlock').css({'display': 'block'});
             $('#productModeBlock').css({'display': 'none'});
         });
@@ -305,8 +305,7 @@
                 $('#ProductList').empty().trigger('change');
                 $('#ProductType').empty().trigger('change');
                 $('#ServiceSelect').val('').trigger('change');
-            }
-            else if (productItem.val() !== '' && productItem.val().length > 1) {
+            } else if (productItem.val() !== '' && productItem.val().length > 1) {
                 let productSelected = productItem.val();
 
                 $.each(productSelected, function (index, element) {
@@ -370,7 +369,7 @@
                 $('#ServiceSelect').val('').trigger('change');
             }
         }
-        
+
         function checkItemInArray(arr, value) {
             return arr.indexOf(value);
         }
@@ -389,7 +388,7 @@
             return uniqueValues.size < arr.length;
         }
 
-        function resetValueFile(){
+        function resetValueFile() {
             document.getElementById('ImportFromExcel').value = "";
         }
 
@@ -424,20 +423,20 @@
                 Sv.AjaxPostFile2({
                     url: abp.appPath + "App/LimitProducts/ReadFileImport",
                     data: formData
-                }).then(function(rs){
+                }).then(function (rs) {
                     let response = rs.result;
 
                     let _dataTable = _$limitProductsTable.DataTable();
 
                     let data = [];
                     let path = "";
-                    if (response.responseCode == "01"){
+                    if (response.responseCode == "01") {
                         data = response.payload;
                     }
 
                     let format_error = false;
 
-                    $.each(data, function(i, e) {
+                    $.each(data, function (i, e) {
                         if (parseInt(e.limitQuantity) < 0) {
                             format_error = true;
                             abp.message.warn("File Import có hạn mức số lượng không đúng định dạng!");
@@ -464,7 +463,7 @@
                     _dataTable.rows.add(data).draw();
                     Sv.SetupAmountMask();
 
-                    if(response.responseCode != "01"){
+                    if (response.responseCode != "01") {
                         resetValueFile();
                         abp.message.warn(response.responseMessage);
                     }

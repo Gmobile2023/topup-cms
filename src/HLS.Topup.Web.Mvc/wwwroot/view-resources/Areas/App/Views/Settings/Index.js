@@ -131,11 +131,11 @@
         //Security
         $('#Setting_PasswordComplexity_UseDefaultSettings').change(function (val) {
             if ($(this).prop("checked")) {
-                $('#PasswordComplexitySettingsForm').hide("fast", function(){
+                $('#PasswordComplexitySettingsForm').hide("fast", function () {
                     $('#DefaultPasswordComplexitySettingsForm').show("fast");
                 });
             } else {
-                $('#DefaultPasswordComplexitySettingsForm').hide("fast",function(){
+                $('#DefaultPasswordComplexitySettingsForm').hide("fast", function () {
                     $('#PasswordComplexitySettingsForm').show("fast");
                 });
             }
@@ -382,6 +382,7 @@
                 }),
             });
         }
+
         initializeOpenIdConnectClaimsMappings();
 
         function initializeWsFederationClaimsMappings() {
@@ -398,64 +399,65 @@
                 }),
             });
         }
+
         initializeWsFederationClaimsMappings();
 
         $('#Setting_Microsoft_UseHostSettings').change(function () {
-            if($(this).prop("checked")){
+            if ($(this).prop("checked")) {
                 $("#Setting_Microsoft_ClientId").val("");
                 $("#Setting_Microsoft_ClientSecret").val("");
                 $("#ExternalLoginMicrosoftSettingsForm .collapse").collapse("hide");
-            }else  {
+            } else {
                 $("#ExternalLoginMicrosoftSettingsForm .collapse").collapse("show");
             }
         });
 
         $('#Setting_Twitter_UseHostSettings').change(function () {
-            if($(this).prop("checked")){
+            if ($(this).prop("checked")) {
                 $("#Setting_Twitter_ConsumerKey").val("");
                 $("#Setting_Twitter_ConsumerSecret").val("");
                 $("#ExternalLoginTwitterSettingsForm .collapse").collapse("hide");
-            }else  {
+            } else {
                 $("#ExternalLoginTwitterSettingsForm .collapse").collapse("show");
             }
         });
 
         $('#Setting_Google_UseHostSettings').change(function () {
-            if($(this).prop("checked")){
+            if ($(this).prop("checked")) {
                 $("#Setting_Google_ClientId").val("");
                 $("#Setting_Google_ClientSecret").val("");
                 $("#Setting_Google_UserInfoEndpoint").val("");
                 $("#ExternalLoginGoogleSettingsForm .collapse").collapse("hide");
-            }else  {
+            } else {
                 $("#ExternalLoginGoogleSettingsForm .collapse").collapse("show");
             }
         });
 
         $('#Setting_Facebook_UseHostSettings').change(function () {
-            if($(this).prop("checked")){
+            if ($(this).prop("checked")) {
                 $("#Setting_Facebook_AppId").val("");
                 $("#Setting_Facebook_AppSecret").val("");
                 $("#ExternalLoginFacebookSettingsForm .collapse").collapse("hide");
-            }else  {
+            } else {
                 $("#ExternalLoginFacebookSettingsForm .collapse").collapse("show");
             }
         });
 
         $('#Setting_OpenIdConnect_UseHostSettings').change(function () {
-            if($(this).prop("checked")){
+            if ($(this).prop("checked")) {
                 $("#Setting_OpenIdConnect_ClientId").val("");
                 $("#Setting_OpenIdConnect_ClientSecret").val("");
                 $("#Setting_OpenIdConnect_Authority").val("");
                 $("#Setting_OpenIdConnect_ValidateIssuer").val("");
 
                 $("#ExternalLoginOpenIdConnectSettingsForm .collapse").collapse("hide");
-            }else  {
+            } else {
                 $("#ExternalLoginOpenIdConnectSettingsForm .collapse").collapse("show");
             }
         });
 
         $('#Setting_WsFederation_UseHostSettings').change(function () {
-            if($(this).prop("checked")){
+            if ($(this).prop("checked")) {
                 $("#Setting_WsFederation_ClientId").val("");
                 $("#Setting_WsFederation_Tenant").val("");
                 $("#Setting_WsFederation_MetaDataAddress").val("");
@@ -463,7 +465,7 @@
                 $("#Setting_WsFederation_Wtrealm").val("");
 
                 $("#ExternalLoginWsFederationSettingsForm .collapse").collapse("hide");
-            }else  {
+            } else {
                 $("#ExternalLoginWsFederationSettingsForm .collapse").collapse("show");
             }
         });

@@ -232,7 +232,7 @@ $(document).ready(function () {
         $('input[name="phoneNumber"]').prop('readonly', 'readonly');
         $('input[name="password"]').prop('readonly', 'readonly');
     }
-    
+
     $('#weekdays').weekdays();
     $(".hour-select").timepicker();
 

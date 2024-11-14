@@ -2,128 +2,128 @@
 
 // Class definition
 
-var KTKanbanBoardDemo = function() {
+var KTKanbanBoardDemo = function () {
     // Private functions
-    var _demo1 = function() {
+    var _demo1 = function () {
         var kanban = new jKanban({
             element: '#kt_kanban_1',
             gutter: '0',
             widthBoard: '250px',
             boards: [{
-                    'id': '_inprocess',
-                    'title': 'In Process',
-                    'item': [{
-                            'title': '<span class="font-weight-bold">You can drag me too</span>'
-                        },
-                        {
-                            'title': '<span class="font-weight-bold">Buy Milk</span>'
-                        }
-                    ]
-                }, {
-                    'id': '_working',
-                    'title': 'Working',
-                    'item': [{
-                            'title': '<span class="font-weight-bold">Do Something!</span>'
-                        },
-                        {
-                            'title': '<span class="font-weight-bold">Run?</span>'
-                        }
-                    ]
-                }, {
-                    'id': '_done',
-                    'title': 'Done',
-                    'item': [{
-                            'title': '<span class="font-weight-bold">All right</span>'
-                        },
-                        {
-                            'title': '<span class="font-weight-bold">Ok!</span>'
-                        }
-                    ]
-                }
+                'id': '_inprocess',
+                'title': 'In Process',
+                'item': [{
+                    'title': '<span class="font-weight-bold">You can drag me too</span>'
+                },
+                    {
+                        'title': '<span class="font-weight-bold">Buy Milk</span>'
+                    }
+                ]
+            }, {
+                'id': '_working',
+                'title': 'Working',
+                'item': [{
+                    'title': '<span class="font-weight-bold">Do Something!</span>'
+                },
+                    {
+                        'title': '<span class="font-weight-bold">Run?</span>'
+                    }
+                ]
+            }, {
+                'id': '_done',
+                'title': 'Done',
+                'item': [{
+                    'title': '<span class="font-weight-bold">All right</span>'
+                },
+                    {
+                        'title': '<span class="font-weight-bold">Ok!</span>'
+                    }
+                ]
+            }
             ]
         });
     }
 
-    var _demo2 = function() {
+    var _demo2 = function () {
         var kanban = new jKanban({
             element: '#kt_kanban_2',
             gutter: '0',
             widthBoard: '250px',
             boards: [{
-                    'id': '_inprocess',
-                    'title': 'In Process',
-                    'class': 'primary',
-                    'item': [{
-                            'title': '<span class="font-weight-bold">You can drag me too</span>',
-                            'class': 'light-primary',
-                        },
-                        {
-                            'title': '<span class="font-weight-bold">Buy Milk</span>',
-                            'class': 'light-primary',
-                        }
-                    ]
-                }, {
-                    'id': '_working',
-                    'title': 'Working',
-                    'class': 'success',
-                    'item': [{
-                            'title': '<span class="font-weight-bold">Do Something!</span>',
-                            'class': 'light-success',
-                        },
-                        {
-                            'title': '<span class="font-weight-bold">Run?</span>',
-                            'class': 'light-success',
-                        }
-                    ]
-                }, {
-                    'id': '_done',
-                    'title': 'Done',
-                    'class': 'danger',
-                    'item': [{
-                            'title': '<span class="font-weight-bold">All right</span>',
-                            'class': 'light-danger',
-                        },
-                        {
-                            'title': '<span class="font-weight-bold">Ok!</span>',
-                            'class': 'light-danger',
-                        }
-                    ]
-                }
+                'id': '_inprocess',
+                'title': 'In Process',
+                'class': 'primary',
+                'item': [{
+                    'title': '<span class="font-weight-bold">You can drag me too</span>',
+                    'class': 'light-primary',
+                },
+                    {
+                        'title': '<span class="font-weight-bold">Buy Milk</span>',
+                        'class': 'light-primary',
+                    }
+                ]
+            }, {
+                'id': '_working',
+                'title': 'Working',
+                'class': 'success',
+                'item': [{
+                    'title': '<span class="font-weight-bold">Do Something!</span>',
+                    'class': 'light-success',
+                },
+                    {
+                        'title': '<span class="font-weight-bold">Run?</span>',
+                        'class': 'light-success',
+                    }
+                ]
+            }, {
+                'id': '_done',
+                'title': 'Done',
+                'class': 'danger',
+                'item': [{
+                    'title': '<span class="font-weight-bold">All right</span>',
+                    'class': 'light-danger',
+                },
+                    {
+                        'title': '<span class="font-weight-bold">Ok!</span>',
+                        'class': 'light-danger',
+                    }
+                ]
+            }
             ]
         });
     }
 
-    var _demo3 = function() {
+    var _demo3 = function () {
         var kanban = new jKanban({
             element: '#kt_kanban_3',
             gutter: '0',
             widthBoard: '250px',
-            click: function(el) {
+            click: function (el) {
                 alert(el.innerHTML);
             },
             boards: [{
-                    'id': '_todo',
-                    'title': 'To Do',
-                    'class': 'light-primary',
-                    'dragTo': ['_working'],
-                    'item': [{
-                            'title': 'My Task Test',
-                            'class': 'primary'
-                        },
-                        {
-                            'title': 'Buy Milk',
-                            'class': 'primary'
-                        }
-                    ]
+                'id': '_todo',
+                'title': 'To Do',
+                'class': 'light-primary',
+                'dragTo': ['_working'],
+                'item': [{
+                    'title': 'My Task Test',
+                    'class': 'primary'
                 },
+                    {
+                        'title': 'Buy Milk',
+                        'class': 'primary'
+                    }
+                ]
+            },
                 {
                     'id': '_working',
                     'title': 'Working',
                     'class': 'light-warning',
                     'item': [{
-                            'title': 'Do Something!',
-                            'class': 'warning'
-                        },
+                        'title': 'Do Something!',
+                        'class': 'warning'
+                    },
                         {
                             'title': 'Run?',
                             'class': 'warning'
@@ -136,9 +136,9 @@ var KTKanbanBoardDemo = function() {
                     'class': 'light-success',
                     'dragTo': ['_working'],
                     'item': [{
-                            'title': 'All right',
-                            'class': 'success'
-                        },
+                        'title': 'All right',
+                        'class': 'success'
+                    },
                         {
                             'title': 'Ok!',
                             'class': 'success'
@@ -150,9 +150,9 @@ var KTKanbanBoardDemo = function() {
                     'title': 'Notes',
                     'class': 'light-danger',
                     'item': [{
-                            'title': 'Warning Task',
-                            'class': 'danger'
-                        },
+                        'title': 'Warning Task',
+                        'class': 'danger'
+                    },
                         {
                             'title': 'Do not enter',
                             'class': 'danger'
@@ -163,19 +163,19 @@ var KTKanbanBoardDemo = function() {
         });
     }
 
-    var _demo4 = function() {
+    var _demo4 = function () {
         var kanban = new jKanban({
             element: '#kt_kanban_4',
             gutter: '0',
-            click: function(el) {
+            click: function (el) {
                 alert(el.innerHTML);
             },
             boards: [{
-                    'id': '_backlog',
-                    'title': 'Backlog',
-                    'class': 'light-dark',
-                    'item': [{
-                            'title': `
+                'id': '_backlog',
+                'title': 'Backlog',
+                'class': 'light-dark',
+                'item': [{
+                    'title': `
                                 <div class="d-flex align-items-center">
                         	        <div class="symbol symbol-success mr-3">
                         	            <img alt="Pic" src="assets/media/users/300_24.jpg" />
@@ -186,9 +186,9 @@ var KTKanbanBoardDemo = function() {
                         	        </div>
                         	    </div>
                             `,
-                        },
-                        {
-                            'title': `
+                },
+                    {
+                        'title': `
                                 <div class="d-flex align-items-center">
                         	        <div class="symbol symbol-success mr-3">
                         	            <span class="symbol-label font-size-h4">A.D</span>
@@ -199,15 +199,15 @@ var KTKanbanBoardDemo = function() {
                         	        </div>
                         	    </div>
                             `,
-                        }
-                    ]
-                },
+                    }
+                ]
+            },
                 {
                     'id': '_todo',
                     'title': 'To Do',
                     'class': 'light-danger',
                     'item': [{
-                            'title': `
+                        'title': `
                                 <div class="d-flex align-items-center">
                         	        <div class="symbol symbol-success mr-3">
                         	            <img alt="Pic" src="assets/media/users/300_16.jpg" />
@@ -218,7 +218,7 @@ var KTKanbanBoardDemo = function() {
                         	        </div>
                         	    </div>
                             `,
-                        },
+                    },
                         {
                             'title': `
                                 <div class="d-flex align-items-center">
@@ -239,7 +239,7 @@ var KTKanbanBoardDemo = function() {
                     'title': 'Working',
                     'class': 'light-primary',
                     'item': [{
-                            'title': `
+                        'title': `
                                 <div class="d-flex align-items-center">
                         	        <div class="symbol symbol-success mr-3">
                             	         <img alt="Pic" src="assets/media/users/300_24.jpg" />
@@ -250,7 +250,7 @@ var KTKanbanBoardDemo = function() {
                         	        </div>
                         	    </div>
                             `,
-                        },
+                    },
                         {
                             'title': `
                                 <div class="d-flex align-items-center">
@@ -271,7 +271,7 @@ var KTKanbanBoardDemo = function() {
                     'title': 'Done',
                     'class': 'light-success',
                     'item': [{
-                            'title': `
+                        'title': `
                                 <div class="d-flex align-items-center">
                         	        <div class="symbol symbol-success mr-3">
                         	            <img alt="Pic" src="assets/media/users/300_11.jpg" />
@@ -282,7 +282,7 @@ var KTKanbanBoardDemo = function() {
                         	        </div>
                         	    </div>
                             `,
-                        },
+                    },
                         {
                             'title': `
                                 <div class="d-flex align-items-center">
@@ -303,7 +303,7 @@ var KTKanbanBoardDemo = function() {
                     'title': 'Deploy',
                     'class': 'light-primary',
                     'item': [{
-                            'title': `
+                        'title': `
                                 <div class="d-flex align-items-center">
                         	        <div class="symbol symbol-light-warning mr-3">
                         	            <span class="symbol-label font-size-h4">D.L</span>
@@ -314,7 +314,7 @@ var KTKanbanBoardDemo = function() {
                         	        </div>
                         	    </div>
                             `,
-                        },
+                    },
                         {
                             'title': `
                                 <div class="d-flex align-items-center">
@@ -334,7 +334,7 @@ var KTKanbanBoardDemo = function() {
         });
 
         var toDoButton = document.getElementById('addToDo');
-        toDoButton.addEventListener('click', function() {
+        toDoButton.addEventListener('click', function () {
             kanban.addElement(
                 '_todo', {
                     'title': `
@@ -353,14 +353,14 @@ var KTKanbanBoardDemo = function() {
         });
 
         var addBoardDefault = document.getElementById('addDefault');
-        addBoardDefault.addEventListener('click', function() {
+        addBoardDefault.addEventListener('click', function () {
             kanban.addBoards(
                 [{
                     'id': '_default',
                     'title': 'New Board',
                     'class': 'primary-light',
                     'item': [{
-                            'title': `
+                        'title': `
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-success mr-3">
                                         <img alt="Pic" src="assets/media/users/300_13.jpg" />
@@ -370,8 +370,9 @@ var KTKanbanBoardDemo = function() {
                                         <span class="label label-inline label-light-primary font-weight-bold">In development</span>
                                     </div>
                                 </div>
-                        `},{
-                            'title': `
+                        `
+                    }, {
+                        'title': `
                                 <div class="d-flex align-items-center">
                                     <div class="symbol symbol-success mr-3">
                                         <img alt="Pic" src="assets/media/users/300_12.jpg" />
@@ -381,21 +382,22 @@ var KTKanbanBoardDemo = function() {
                                     <span class="label label-inline label-light-danger font-weight-bold">Pending</span>
                                 </div>
                             </div>
-                        `}
+                        `
+                    }
                     ]
                 }]
             )
         });
 
         var removeBoard = document.getElementById('removeBoard');
-        removeBoard.addEventListener('click', function() {
+        removeBoard.addEventListener('click', function () {
             kanban.removeBoard('_done');
         });
     }
 
     // Public functions
     return {
-        init: function() {
+        init: function () {
             _demo1();
             _demo2();
             _demo3();
@@ -404,6 +406,6 @@ var KTKanbanBoardDemo = function() {
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTKanbanBoardDemo.init();
 });

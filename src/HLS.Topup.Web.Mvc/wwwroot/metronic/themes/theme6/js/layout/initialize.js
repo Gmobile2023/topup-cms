@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 // Initialization
-KTUtil.ready(function() {
+KTUtil.ready(function () {
     ////////////////////////////////////////////////////
     // Layout Base Partials(mandatory for core layout)//
     ////////////////////////////////////////////////////
@@ -42,10 +42,10 @@ KTUtil.ready(function() {
     KTLayoutStretchedCard.init('kt_page_stretched_card');
 
     // Init Code Highlighter & Preview Blocks(used to demonstrate the theme features)
-	KTLayoutExamples.init();
+    KTLayoutExamples.init();
 
     // Init Demo Selection Panel
-	KTLayoutDemoPanel.init('kt_demo_panel');
+    KTLayoutDemoPanel.init('kt_demo_panel');
 
     // Init Chat App(quick modal chat)
     KTLayoutChat.init();

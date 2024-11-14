@@ -5,7 +5,7 @@
         var _commonLookupService = abp.services.app.commonLookup;
         var _profileService = abp.services.app.profile;
         const _passwordComplexityHelper = new app.PasswordComplexityHelper();
-        var _$form=$("#create-agent-form")
+        var _$form = $("#create-agent-form")
         $(document).ready(function () {
             // _profileService.getPasswordComplexitySetting().done(function (result) {
             //     _passwordComplexityHelper.setPasswordComplexityRules(_$form.find("input[name=Password],input[name=NewPasswordRepeat]"), result.setting);
@@ -107,13 +107,13 @@
             }
             abp.ui.setBusy();
             const formToObject = _$form.serializeFormToObject();
-            let valid = VietNamMobile.valid(formToObject.phoneNumber); 
-            if (valid.length > 0 ) {
+            let valid = VietNamMobile.valid(formToObject.phoneNumber);
+            if (valid.length > 0) {
                 abp.message.error("Số điện thoại không hợp lệ!");
                 abp.ui.clearBusy();
                 return;
-            }  
-            
+            }
+
             _agentService.createOrEditSubAgent(
                 formToObject
             ).done(function () {

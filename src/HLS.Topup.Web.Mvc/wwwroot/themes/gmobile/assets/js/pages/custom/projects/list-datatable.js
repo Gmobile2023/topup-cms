@@ -1,11 +1,11 @@
 "use strict";
 // Class definition
 
-var KTAppsProjectsListDatatable = function() {
+var KTAppsProjectsListDatatable = function () {
     // Private functions
 
     // basic demo
-    var _demo = function() {
+    var _demo = function () {
         var datatable = $('#kt_datatable').KTDatatable({
             // datasource definition
             data: {
@@ -47,27 +47,27 @@ var KTAppsProjectsListDatatable = function() {
                 type: 'number',
                 selector: false,
                 textAlign: 'left',
-                template: function(data) {
+                template: function (data) {
                     return '<span class="font-weight-bolder">' + data.RecordID + '</span>';
                 }
             }, {
                 field: 'OrderID',
                 title: 'Customer',
                 width: 250,
-                template: function(data) {
+                template: function (data) {
                     var number = KTUtil.getRandomInt(1, 10);
                     var img = number + '.png';
 
-					var skills = [
-				        'Angular, React',
-				        'Vue, Kendo',
-				        '.NET, Oracle, MySQL',
-				        'Node, SASS, Webpack',
-				        'MangoDB, Java',
-				        'HTML5, jQuery, CSS3',
-						'React, Vue',
-						'MangoDB, Node.js'
-				    ];
+                    var skills = [
+                        'Angular, React',
+                        'Vue, Kendo',
+                        '.NET, Oracle, MySQL',
+                        'Node, SASS, Webpack',
+                        'MangoDB, Java',
+                        'HTML5, jQuery, CSS3',
+                        'React, Vue',
+                        'MangoDB, Node.js'
+                    ];
 
                     var output = '';
                     if (number < 7) {
@@ -78,7 +78,7 @@ var KTAppsProjectsListDatatable = function() {
 								<div class="ml-3">\
 									<div class="text-dark-75 font-weight-bolder font-size-lg mb-0">' + data.CompanyAgent + '</div>\
 									<a href="#" class="text-muted font-weight-bold text-hover-primary">' +
-                            		skills[number -1] + '</a>\
+                            skills[number - 1] + '</a>\
 								</div>\
 							</div>';
                     } else {
@@ -112,7 +112,7 @@ var KTAppsProjectsListDatatable = function() {
             }, {
                 field: 'Country',
                 title: 'Country',
-                template: function(row) {
+                template: function (row) {
                     var output = '';
 
                     output += '<div class="font-weight-bolder font-size-lg mb-0">' + row.Country + '</div>';
@@ -125,7 +125,7 @@ var KTAppsProjectsListDatatable = function() {
                 title: 'Ship Date',
                 type: 'date',
                 format: 'MM/DD/YYYY',
-                template: function(row) {
+                template: function (row) {
                     var output = '';
 
                     var status = {
@@ -144,7 +144,7 @@ var KTAppsProjectsListDatatable = function() {
             }, {
                 field: 'CompanyName',
                 title: 'Company Name',
-                template: function(row) {
+                template: function (row) {
                     var output = '';
 
                     output += '<div class="font-weight-bold text-muted">' + row.CompanyName + '</div>';
@@ -155,7 +155,7 @@ var KTAppsProjectsListDatatable = function() {
                 field: 'Status',
                 title: 'Status',
                 // callback function support for column rendering
-                template: function(row) {
+                template: function (row) {
                     var status = {
                         1: {
                             'title': 'Pending',
@@ -195,7 +195,7 @@ var KTAppsProjectsListDatatable = function() {
                 width: 130,
                 overflow: 'visible',
                 autoHide: false,
-                template: function() {
+                template: function () {
                     return '\
                         <div class="dropdown dropdown-inline">\
                             <a href="javascript:;" class="btn btn-sm btn-default btn-text-primary btn-hover-primary btn-icon mr-2" data-toggle="dropdown">\
@@ -277,12 +277,12 @@ var KTAppsProjectsListDatatable = function() {
 
     return {
         // public functions
-        init: function() {
+        init: function () {
             _demo();
         },
     };
 }();
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     KTAppsProjectsListDatatable.init();
 });

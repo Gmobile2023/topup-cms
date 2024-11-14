@@ -137,7 +137,7 @@
             var fromDate = $("#FromDateFilterId").val();
             var todate = $("#ToDateFilterId").val();
             var discount = format_number($("#txtTotalDiscount").val());
-            abp.message.confirm("Bạn có muốn thu hoạch lãi từ ngày: " + fromDate + " tới ngày: " + todate +". Số tiền thu hoạch là: "+discount).then(function (confirmed) {
+            abp.message.confirm("Bạn có muốn thu hoạch lãi từ ngày: " + fromDate + " tới ngày: " + todate + ". Số tiền thu hoạch là: " + discount).then(function (confirmed) {
                 if (confirmed) {
                     abp.ui.setBusy();
                     _discountsService.collectDiscount({
@@ -147,9 +147,9 @@
                         search: $("#TableFilter").val()
                     }).done(function (rs) {
                         if (rs.responseCode === "01") {
-                            console.log(rs.extraInfo.replace('.',','));
-                            console.log(rs.payload.replace('.',','));
-                            abp.message.success("Thu hoạch lãi thành công. Số tiền lãi thu hoạch được là: " + format_number(rs.payload.replace('.',',')) +". Số dư sau giao dịch là: "+ format_number(rs.extraInfo.replace('.',',')));
+                            console.log(rs.extraInfo.replace('.', ','));
+                            console.log(rs.payload.replace('.', ','));
+                            abp.message.success("Thu hoạch lãi thành công. Số tiền lãi thu hoạch được là: " + format_number(rs.payload.replace('.', ',')) + ". Số dư sau giao dịch là: " + format_number(rs.extraInfo.replace('.', ',')));
                             //location.reload(true);
                         } else {
                             abp.notify.error(rs.responseMessage);

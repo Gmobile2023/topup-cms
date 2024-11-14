@@ -5,7 +5,7 @@
 
         var _modalManager;
         var _$saleLimitDebtInformationForm = null;
-       
+
         this.init = function (modalManager) {
             _modalManager = modalManager;
 
@@ -14,7 +14,7 @@
                 locale: abp.localization.currentLanguage.name,
                 format: 'L'
             });
-           
+
             Sv.SetupAmountMask();
             _$saleLimitDebtInformationForm = _modalManager.getModal().find('form[name=SaleLimitDebtInformationsForm]');
             _$saleLimitDebtInformationForm.validate();
@@ -58,7 +58,7 @@
             if (!_$saleLimitDebtInformationForm.valid()) {
                 return;
             }
-           
+
             if ($('#userId').prop('required') && $('#userId').val() == '') {
                 abp.message.error('Vui lòng chọn nhân viên viên Sale');
                 return;
@@ -72,12 +72,11 @@
                 return false;
             }
 
-            if (debtAge === "" || debtAge === null)
-            {
+            if (debtAge === "" || debtAge === null) {
                 abp.message.error('Vui lòng nhập tuổi nợ');
                 return false;
             }
-                    
+
             if (parseInt(amount) < amount) {
                 abp.message.error('Vui lòng nhập công nợ là số nguyên dương');
                 return false;

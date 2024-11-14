@@ -108,7 +108,7 @@
                             {
                                 text: app.localize('View'),
                                 action: function (data) {
-                                    _viewCardModal.open({ id: data.record.id });
+                                    _viewCardModal.open({id: data.record.id});
                                 }
                             },
                             {
@@ -117,7 +117,7 @@
                                     return _permissions.edit && data.record.status !== 2 && data.record.status !== 3 && data.record.status !== 4;
                                 },
                                 action: function (data) {
-                                    _createOrEditModal.open({ id: data.record.id });
+                                    _createOrEditModal.open({id: data.record.id});
                                 }
                             },
                             {
@@ -126,7 +126,7 @@
                                     return _permissions.delete && data.record.status !== 2 && data.record.status !== 3 && data.record.status !== 4;
                                 },
                                 action: function (data) {
-                                    deleteCard({ id: data.record.id });
+                                    deleteCard({id: data.record.id});
                                 }
                             }]
                     }
@@ -335,7 +335,8 @@
                 .always(function () {
                     abp.ui.clearBusy();
                 });
-        };
+        }
+
         function categoryChange(e) {
             var cateCode = $(e.target).val();
             abp.services.app.cards.getProductByCategory(cateCode)
@@ -353,7 +354,7 @@
                 .always(function () {
                     abp.ui.clearBusy();
                 });
-        };
+        }
 
     });
 })();

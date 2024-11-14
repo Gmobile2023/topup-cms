@@ -14,7 +14,7 @@
             edit: abp.auth.hasPermission('Pages.CardBatchs.Edit'),
             'delete': abp.auth.hasPermission('Pages.CardBatchs.Delete')
         };
- 
+
         var _importCardsModal = new app.ModalManager({
             viewUrl: abp.appPath + 'App/Cards/ImportCardsModal',
             scriptUrl: abp.appPath + 'view-resources/Areas/App/Views/Cards/_ImportCardsModal.js',
@@ -75,7 +75,7 @@
                     };
                 }
             },
-            columnDefs: [ 
+            columnDefs: [
                 {
                     width: 120,
                     targets: 0,
@@ -114,7 +114,7 @@
                             {
                                 text: app.localize('Delete'),
                                 visible: function (data) {
-                                    return  (data.record.status != 1) && _permissions.delete;
+                                    return (data.record.status != 1) && _permissions.delete;
                                 },
                                 action: function (data) {
                                     deleteCardBatch(data.record);
@@ -144,15 +144,15 @@
                     targets: 3,
                     data: "providerName",
                     name: "providerName"
-                },  
+                },
                 {
                     targets: 5,
                     class: "text-right",
                     data: "totalAmount",
                     name: "totalAmount",
-                    render: function (data, e, row) { 
-                        if(data && data > 0)
-                        return Sv.NumberToString(data) + "đ";
+                    render: function (data, e, row) {
+                        if (data && data > 0)
+                            return Sv.NumberToString(data) + "đ";
                         return 0;
                     }
                 },
@@ -162,16 +162,16 @@
                     data: "totalQuantity",
                     name: "totalQuantity",
                     render: function (data, e, row) {
-                        if(data && data > 0)
-                            return Sv.NumberToString(data) ;
-                        return 0; 
+                        if (data && data > 0)
+                            return Sv.NumberToString(data);
+                        return 0;
                     }
                 },
                 {
                     targets: 6,
                     class: "text-right",
                     data: "importType",
-                    name: "importType", 
+                    name: "importType",
                 },
                 {
                     targets: 7,
@@ -189,7 +189,7 @@
         }
 
         function deleteCardBatch(cardBatch) {
-            if(cardBatch.status != 0){
+            if (cardBatch.status != 0) {
                 abp.notify.error(app.localize('StatusNotValid'));
                 return false;
             }
@@ -222,7 +222,7 @@
         $('#CreateNewCardBatchButton').click(function () {
             _createOrEditModal.open();
         });
- 
+
 
         $('#ImportCardsButton').click(function () {
             _importCardsModal.open();
@@ -273,6 +273,6 @@
                 getCardBatchs();
             }
         });
-       
+
     });
 })();

@@ -1,11 +1,18 @@
 ﻿@{
-    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
 }
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.Deposit;
     ViewBag.Title = "Nạp tiền tài khoản";
+    ViewBag.PageTitle = "Nạp tiền tài khoản";
     ViewBag.ImageTitle = "/themes/topup/images/ic-transfer-white.svg";
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Giao dịch", Url.Action("", "")),
+        (ViewBag.PageTitle, Url.Action("", "")),
+    };
 }
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
 
 @section Scripts
 {
@@ -23,121 +30,138 @@
     </style>
 }
 
-<div id="Deposit_Page" class="section-body-middle">
-    <div class="section-body-middle-introduce">
-        <ul class="navbar-card row">
-            <li onclick="ctrl.TabActive('card__slider_menu1')" class="card__slider_menu1 active">
-                <div class="navbar-card__slider"></div>
-                <a data-toggle="tab" href="#card__slider_menu1">Nạp tiền</a>
-            </li>
-            <li onclick="ctrl.TabActive('card__slider_menu2')" class="card__slider_menu2">
-                <a data-toggle="tab" href="#card__slider_menu2"> Giao dịch gần nhất</a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
-        <div class="tab-content tab-content--card">
-            <div id="card__slider_menu1" class="tab-pane fade active">
-                <form class="step step1" id="mainForm1">
-                    <div class="row">
-                        <div class="form-group margin-big col-md-6" style="margin-bottom: 15px;">
-                            <div class="form-group margin-big">
-                                <label for="" class="title">Chọn ngân hàng <span class="lightred">(*)</span></label>
-                                <div class="form-group-wrap">
-                                    <span class="down-arrow-black arrow-big"></span>
-                                    <img src="/themes/topup/images/1ceilings-service.png" class="form-logo ng-scope" alt="NT" style="display: none;"/>
-                                    <select class="form-control select2 form-control-big form-blue select2-bank" name="bankId" id="bankId">
-                                        <option value="">Chọn ngân hàng</option>
-                                    </select>
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-custom card-stretch gutter-b">
+                    <div class="card-header border-0">
+                        <h3 class="card-title font-weight-bolder text-dark">Nạp tiền tài khoản</h3>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div id="Deposit_Page" class="section-body-middle">
+                            <div class="section-body-middle-introduce">
+                                <ul class="nav nav-tabs nav-tabs-space-lg nav-tabs-line nav-bold row mb-3 ml-0">
+                                    <li onclick="ctrl.TabActive('card__slider_menu1')" class="card__slider_menu1 nav-item">
+                                        <div class="navbar-card__slider"></div>
+                                        <a data-toggle="tab" href="#card__slider_menu1" class="nav-link active">Nạp tiền</a>
+                                    </li>
+                                    <li onclick="ctrl.TabActive('card__slider_menu2')" class="card__slider_menu2 nav-item">
+                                        <a data-toggle="tab" href="#card__slider_menu2" class="nav-link"> Giao dịch gần nhất</a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                                <div class="tab-content tab-content--card">
+                                    <div id="card__slider_menu1" class="tab-pane fade active">
+                                        <form class="step step1" id="mainForm1">
+                                            <div class="row">
+                                                <div class="form-group margin-big col-md-6" style="margin-bottom: 15px;">
+                                                    <div class="form-group margin-big">
+                                                        <label for="" class="title">Chọn ngân hàng <span class="lightred">(*)</span></label>
+                                                        <div class="form-group-wrap">
+                                                            <span class="down-arrow-black arrow-big"></span>
+                                                            @* <img src="/themes/topup/images/1ceilings-service.png" class="form-logo ng-scope" alt="NT" style="display: none;"/> *@
+                                                            <select class="form-control select2 form-control-big form-blue select2-bank" name="bankId" id="bankId">
+                                                                <option value="">Chọn ngân hàng</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group margin-big col-md-6" style="margin-bottom: 15px;">
+                                                    <div class="form-group margin-big">
+                                                        <label for="" class="title">
+                                                            Số tiền cần nạp <span class="lightred">*</span>
+                                                        </label>
+                                                        <div class="form-group-wrap">
+                                                            <input required="required" id="txtAmount" numbers-only placeholder="Nhập số tiền cần nạp"
+                                                                   type="text" name="amount" class="form-control amount-mask">
+                                                        </div>
+                                                        <div class="form-group-wrap form-padding-custom" style="padding-top: 10px;">
+                                                            <span class="amount-to-text" id="amount-to-text" style="color: #2188C9"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <input required="required" placeholder="Nhập số tài khoản" readonly="readonly"
+                                                   type="hidden" name="bankAccountCode" class="form-control">
+                                            <input required="required" placeholder="Nhập chủ tài khoản" readonly="readonly"
+                                                   type="hidden" name="bankAccountName" class="form-control">
+                                            <input required="required" placeholder="Chi nhánh" readonly="readonly"
+                                                   type="hidden" name="branchName" class="form-control">
+                                            <input required="required" placeholder="Tên ngân hàng" readonly="readonly"
+                                                   type="hidden" name="bankName" class="form-control">
+
+                                            <div class="form-group bank-account-info">
+                                                <label for="" class="title">Thông tin tài khoản</label>
+                                                <div class="form-group-wrap">
+                                                    <i>
+                                                        <small>(Vui lòng chọn ngân hàng)</small>
+                                                    </i>
+                                                    <p class="bankAccountCode" id="bankAccountCode"></p>
+                                                    <p class="bankAccountName" id="bankAccountName"></p>
+                                                    <p class="branchName" id="branchName"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="" class="title"> Nội dung chuyển khoản <span class="lightred">(*)</span></label>
+                                                <p class="sys-notice">
+                                                    @L("Deposit_Instruction_1") <span style="color: #D41F26; font-weight: 600; font-size: 15px;">[Mã nạp] - Nap tien - @ViewBag.AccountCode</span>
+                                                </p>
+                                                <p class="sys-notice" style="padding: 0;">
+                                                    <small><i style="font-size: 1rem;">* Mã nạp sẽ xuất hiện khi quý khách xác nhận yêu cầu nạp tiền.</i></small>
+                                                </p>
+                                                <input type="hidden" name="description" class="form-control" value="Nap tien - @ViewBag.AccountCode">
+                                                @* <div class="form-group-wrap"> *@
+                                                @*     <input required="required" placeholder="Nhập ghi chú" type="text" name="description" class="form-control" value="Nap tien - @ViewBag.AccountCode"> *@
+                                                @*     <input type="hidden" name="requestCode" value=""> *@
+                                                @*     <button type="button" class="icon-copy"> *@
+                                                @*         <i class="far fa-copy"></i> *@
+                                                @*     </button> *@
+                                                @* </div> *@
+                                                <p class="sys-notice">@L("Deposit_Instruction_2")</p>
+                                            </div>
+
+                                            <div class="tab-content tab-content--card">
+                                                <div class="text-right">
+                                                    <button type="button" onClick="ctrl.nextToStep()" class="btn btn-primary">Xác nhận</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form class="step step2" id="mainForm2" style="display:none">
+                                            <div class="section-body-middle-form-p1 no-border-top" style="padding: 20px 0;"></div>
+                                            <div class="section-body-middle-form-p2">
+                                                <div class="row">
+                                                    <div tabindex="12" class="col-md-12 text-center">
+                                                        <button type="button" onClick="ctrl.activeStep(1)" class="btn btn-secondary">Quay lại</button>
+                                                        <button type="button" onClick="ctrl.nextToStep2()" class="btn btn-primary">Nạp tiền</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div id="card__slider_menu2" class="tab-pane fade">
+                                        <div class="tab-content tab-content--card no-border-top">
+                                            <div class="form-group mb-3 mt-3">
+                                                <label for="" class="title" style="font-size: 14px; font-weight: 600">
+                                                    <img src="/themes/topup/images/ic_dark/ic-03.svg" alt="" style="width: 40px">
+                                                    Giao dịch gần nhất
+                                                </label>
+                                            </div>
+                                            <div class="recent-deposits-list"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group margin-big col-md-6" style="margin-bottom: 15px;">
-                            <div class="form-group margin-big">
-                                <label for="" class="title">
-                                    Số tiền cần nạp <span class="lightred">*</span>
-                                </label>
-                                <div class="form-group-wrap">
-                                    <input required="required" id="txtAmount" numbers-only placeholder="Nhập số tiền cần nạp"
-                                           type="text" name="amount" class="form-control amount-mask">
-                                </div>
-                                <div class="form-group-wrap form-padding-custom" style="padding-top: 10px;">
-                                    <span class="amount-to-text" id="amount-to-text" style="color: #2188C9"></span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-                    <input required="required" placeholder="Nhập số tài khoản" readonly="readonly"
-                           type="hidden" name="bankAccountCode" class="form-control">
-                    <input required="required" placeholder="Nhập chủ tài khoản" readonly="readonly"
-                           type="hidden" name="bankAccountName" class="form-control">
-                    <input required="required" placeholder="Chi nhánh" readonly="readonly"
-                           type="hidden" name="branchName" class="form-control">
-                    <input required="required" placeholder="Tên ngân hàng" readonly="readonly"
-                           type="hidden" name="bankName" class="form-control">
-
-                    <div class="form-group bank-account-info">
-                        <label for="" class="title">Thông tin tài khoản</label>
-                        <div class="form-group-wrap">
-                            <i>
-                                <small>(Vui lòng chọn ngân hàng)</small>
-                            </i>
-                            <p class="bankAccountCode" id="bankAccountCode"></p>
-                            <p class="bankAccountName" id="bankAccountName"></p>
-                            <p class="branchName" id="branchName"></p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="" class="title"> Nội dung chuyển khoản <span class="lightred">(*)</span></label>
-                        <p class="sys-notice">
-                            @L("Deposit_Instruction_1") <span style="color: #D41F26; font-weight: 600; font-size: 15px;">[Mã nạp] - Nap tien - @ViewBag.AccountCode</span>
-                        </p>
-                        <p class="sys-notice" style="padding: 0;">
-                            <small><i>* Mã nạp sẽ xuất hiện khi quý khách xác nhận yêu cầu nạp tiền.</i></small>
-                        </p>
-                        <input type="hidden" name="description" class="form-control" value="Nap tien - @ViewBag.AccountCode">
-                        @* <div class="form-group-wrap"> *@
-                        @*     <input required="required" placeholder="Nhập ghi chú" type="text" name="description" class="form-control" value="Nap tien - @ViewBag.AccountCode"> *@
-                        @*     <input type="hidden" name="requestCode" value=""> *@
-                        @*     <button type="button" class="icon-copy"> *@
-                        @*         <i class="far fa-copy"></i> *@
-                        @*     </button> *@
-                        @* </div> *@
-                        <p class="sys-notice">@L("Deposit_Instruction_2")</p>
-                    </div>
-
-                    <div class="tab-content tab-content--card">
-                        <div class="text-right">
-                            <button type="button" onClick="ctrl.nextToStep()" class="button btn-custom btn-blue">Xác nhận</button>
-                        </div>
-                    </div>
-                </form>
-                <form class="step step2" id="mainForm2" style="display:none">
-                    <div class="section-body-middle-form-p1 no-border-top" style="padding: 40px 0;"></div>
-
-                    <div class="section-body-middle-form-p2">
-                        <div class="row">
-                            <div tabindex="12" class="col-md-12 text-center">
-                                <button type="button" onClick="ctrl.activeStep(1)" class="button btn-custom btn-grey">Quay lại</button>
-                                <button type="button" onClick="ctrl.nextToStep2()" class="button btn-custom btn-blue">Nạp tiền</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div id="card__slider_menu2" class="tab-pane fade">
-                <div class="tab-content tab-content--card no-border-top">
-                    <div class="form-group">
-                        <label for="" class="title">
-                            <img src="/themes/topup/images/ic_dark/ic-03.svg" alt="">Giao dịch gần nhất
-                        </label>
-                    </div>
-                    <div class="recent-deposits-list"></div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>
+
+

@@ -2,3 +2,42 @@
     height: .3rem;
     margin-top: 5px;
 }
+
+.required:after {
+    content: "*";
+    position: relative;
+    font-size: inherit;
+    color: red;
+    padding-left: .25rem;
+    font-weight: 600;
+}
+
+.card-body .divider {
+    border-top: 1px solid #EBEDF3;
+    margin-left: -29px;
+    margin-right: -29px;
+}
+
+#Table_wrapper #Table_processing {
+    text-align: center;
+}
+
+#Table_wrapper #Table_info {
+    display: none;
+}
+
+#Table_wrapper .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#Table_wrapper #Table_length label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Table_wrapper #Table_length label select {
+    margin: 0 8px;
+}

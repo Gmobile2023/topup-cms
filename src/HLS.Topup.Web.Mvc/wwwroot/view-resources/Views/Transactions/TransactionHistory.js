@@ -176,6 +176,7 @@
 
 
         $('#ExportToExcelButton').click(function () {
+            abp.ui.setBusy();
             _transactionService.getTransactionHistoryUserToExcel({
                 filter: $("#Filter").val(),
                 serviceCode: $('#ServiceCodeFilter').val(),
@@ -184,6 +185,7 @@
                 toDate: getDateFilter($('#ToDateFilterId'))
             })
                 .done(function (result) {
+                    abp.ui.clearBusy();
                     app.downloadTempFile(result);
                 });
         });

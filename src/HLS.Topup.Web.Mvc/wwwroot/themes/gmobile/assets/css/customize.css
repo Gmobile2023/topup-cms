@@ -41,3 +41,18 @@
 #Table_wrapper #Table_length label select {
     margin: 0 8px;
 }
+
+.nav.nav-pills .menu-service {
+    /*-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .1);*/
+    /*box-shadow: 0 1px 5px rgba(0, 0, 0, .1);*/
+    border: 2px solid #ffc425 !important;
+}
+
+.nav.nav-pills .menu-service:hover {
+    background: #ffc425 !important;
+    color: #fff;
+}
+
+.nav.nav-pills .menu-service:hover .nav-icon .svg-icon svg g [fill] {
+    fill: #fff !important;
+}

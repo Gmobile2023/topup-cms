@@ -1,6 +1,7 @@
 ﻿@{
     var breadcrumbs = ViewBag.Breadcrumbs as List<(string Text, string Url)> ?? new List<(string, string)>();
     var pageTitle = ViewBag.PageTitle as string ?? "Dashboard";
+    var mobileToggle = ViewBag.MobileToggle ?? false;
     var customButtons = ViewBag.CustomButtons as List<(string Text, string Url, string Class)> ?? new List<(string, string, string)>();
 }
 
@@ -8,6 +9,15 @@
     <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
         <!--begin::Info-->
         <div class="d-flex align-items-center flex-wrap mr-1">
+            @if (mobileToggle)
+            {
+                <!--begin::Mobile Toggle-->
+                <button class="burger-icon burger-icon-left mr-4 d-inline-block d-lg-none" id="kt_subheader_mobile_toggle">
+                    <span></span>
+                </button>
+                <!--end::Mobile Toggle-->
+            }
+            
             <div class="d-flex flex-column">
                 <!--begin::Title-->
                 <h2 class="text-white font-weight-bold my-2 mr-5">@pageTitle</h2>

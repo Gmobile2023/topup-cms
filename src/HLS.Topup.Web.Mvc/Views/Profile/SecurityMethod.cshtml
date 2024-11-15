@@ -6,12 +6,11 @@
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.Profile_SecurityMethod;
     ViewBag.PageTitle = "Hình thức bảo mật";
-    ViewBag.ImageTitle = "/themes/topup/images/secure_method_white.svg";
-    var method = (int) Model.Method;
+    var method = (int)Model.Method;
     ViewBag.Breadcrumbs = new List<(string Text, string Url)>
     {
-        ("Thông tin cá nhân", Url.Action("", "")),
-        (ViewBag.PageTitle, Url.Action("", "")),
+        ("Thông tin cá nhân", Url.Action("Index", "Profile")),
+        (ViewBag.PageTitle, Url.Action("", "Profile")),
     };
 }
 @await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
@@ -21,51 +20,65 @@
     <script abp-src="/view-resources/Views/Profile/SecureMethod.js" asp-append-version="true"></script>
 }
 
+<!--begin::Entry-->
 <div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card card-custom card-stretch gutter-b">
-                    <div class="card-header border-0">
-                        <h3 class="card-title font-weight-bolder text-dark">Vui lòng chọn hình thức bảo mật khi giao dịch trên website:</h3>
+        <!--begin::Profile Personal Information-->
+        <div class="d-flex flex-row">
+            @await Html.PartialAsync("~/Views/Profile/_ProfileAside.cshtml")
+            <!--begin::Content-->
+            <div class="flex-row-fluid ml-lg-8">
+                <!--begin::Card-->
+                <div class="card card-custom card-stretch">
+                    <!--begin::Header-->
+                    <div class="card-header py-3">
+                        <div class="card-title align-items-start flex-column">
+                            <h3 class="card-label font-weight-bolder text-dark">@ViewBag.PageTitle</h3>
+                        </div>
+                        <div class="card-toolbar">
+                        </div>
                     </div>
-                    <div class="card-body pt-0">
-                        <div id="Faqs_Page" class="section-body-middle">
-                            <div class="group-help__section group-help__section--link clearfix group-help-link__ul--padding-bg">
-                                <div class="option-item-destiantion">
-                                    <input type="hidden" value="@method" name="old_method" id="old_method">
-                                    <div class="form-group">
-                                        <div class="checkbox checkbox-left radio">
-                                            <label for="password_level2" class="checkbox-radio__label">
-                                                <input type="radio" class="checkbox-radio__input" value="1" name="security_method" id="password_level2" @(method == 1 ? "checked='true'" : "")>
-                                                <span class="checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> Bảo mật bằng mật khẩu cấp 2
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="checkbox checkbox-left radio">
-                                            <label class="checkbox-radio__label" for="odp">
-                                                <input class="checkbox-radio__input" type="radio" value="2" name="security_method" id="odp" @(method == 2 ? "checked='true'" : "")>
-                                                <span class="checkbox-custom checkbox-custom--big visible cbutton cbutton--effect-boris"></span> Bảo mật bằng ODP
-                                            </label>
-                                        </div>
+                    <!--end::Header-->
+                    <!--begin::Form-->
+                    <form class="form" id="changePassword">
+                        <input type="hidden" value="@method" name="old_method" id="old_method">
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label required">Vui lòng chọn hình thức bảo mật khi giao dịch trên website</label>
+                                <div class="col-lg-9 col-xl-6">
+                                    <div class="radio-list">
+                                        <label class="radio">
+                                            <input type="radio" name="security_method" value="1" id="password_level2" @(method == 1 ? "checked='true'" : "")/>
+                                            <span></span> Bảo mật bằng mật khẩu cấp 2
+                                        </label>
+                                        <label class="radio">
+                                            <input type="radio" name="security_method" value="2" id="odp" @(method == 2 ? "checked='true'" : "")/>
+                                            <span></span> Bảo mật bằng ODP
+                                        </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="section-body-middle-form-p2">
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <button type="button" class="btn btn-secondary mr-2" onclick="window.location.href = '@Url.Action("Index", "Profile")'">Quay lại</button>
-                                        <button class="btn btn-primary" id="confirm_security_method_btn">Xác nhận</button>
+
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label"></label>
+                                <div class="col-lg-9 col-xl-6">
+                                    <div class="btn-group">
+                                        <button type="button" id="confirm_security_method_btn" class="btn btn-success mr-2">Xác nhận</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <!--end::Body-->
+                    </form>
+                    <!--end::Form-->
                 </div>
             </div>
+            <!--end::Content-->
         </div>
+        <!--end::Profile Personal Information-->
     </div>
+    <!--end::Container-->
 </div>
-
-
+<!--end::Entry-->

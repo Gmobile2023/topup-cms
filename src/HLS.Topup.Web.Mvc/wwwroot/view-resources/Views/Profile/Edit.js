@@ -314,7 +314,7 @@ $(document).ready(function () {
     ctrl.initValid();
     ctrl.enterHandler();
     ctrl.eventChangeAvatar();
-    bindVerify.init();
+    //bindVerify.init();
     ctrl.textVerifyAccount();
     ctrl.changeIdType();
 });

@@ -27,7 +27,7 @@
     },
     // Submit
     nextToStep: function () {
-        if (!ctrl.valid()) {
+        if (!ctrl.form.valid()) {
             return false;
         }
         var obj = ctrl.getFormValue();

@@ -37,12 +37,12 @@
             <!--begin::Body-->
             <div class="card-body">
                 <!--begin::Nav Tabs-->
-                <ul class="dashboard-tabs nav nav-pills nav-primary row row-paddingless m-0 p-0 flex-column flex-sm-row" role="tablist">
+                <ul class="dashboard-tabs nav nav-pills nav-primary row row-paddingless m-0 p-0" role="tablist">
                     @if (IsGranted(AppPermissions.Pages_TransactionHistory))
                     {
                         <!--begin::Item-->
-                        <li class="nav-item d-flex col-md-2 mr-3 mb-3 mb-lg-0">
-                            <a href="@Url.Action("TransactionHistory", "Transactions")" class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("TransactionHistory", "Transactions")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
                                 <span class="nav-icon py-2 w-auto">
                                     <span class="svg-icon svg-icon-3x">
                                         <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -57,7 +57,171 @@
                                         </svg>
                                     </span>
                                 </span>
-                                <span class="font-size-lg py-2 font-weight-bold text-dark text-center">Lịch sử giao dịch</span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Lịch sử giao dịch</span>
+                            </a>
+                        </li>
+                        <!--end::Item-->
+                    }
+                </ul>
+                <!--end::Nav Tabs-->
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--begin::Nav Panel Widget 1-->
+    </div>
+</div>
+<!--end::Row-->
+
+<!--begin::Row-->
+<div class="row">
+    <div class="col-xl-12">
+        <!--begin::Nav Panel Widget 1-->
+        <div class="card card-custom gutter-b">
+            <div class="card-header flex-wrap py-3">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        Báo cáo
+                        <span class="d-block text-muted pt-2 font-size-sm">Tổng hợp báo cáo</span>
+                    </h3>
+                </div>
+            </div>
+            <!--begin::Body-->
+            <div class="card-body">
+                <!--begin::Nav Tabs-->
+                <ul class="dashboard-tabs nav nav-pills nav-primary row row-paddingless m-0 p-0" role="tablist">
+                    @if (IsGranted(AppPermissions.Pages_BatchLotHistory))
+                    {
+                        <!--begin::Item-->
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("History", "BatchTopup")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                                <span class="nav-icon py-2 w-auto">
+                                    <span class="svg-icon svg-icon-3x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <defs></defs>
+                                            <g id="Stockholm-icons-/-Shopping-/-Chart-pie" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <path d="M4.00246329,12.2004927 L13,14 L13,4.06189375 C16.9463116,4.55399184 20,7.92038235 20,12 C20,16.418278 16.418278,20 12,20 C7.64874861,20 4.10886412,16.5261253 4.00246329,12.2004927 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                                                <path d="M3.0603968,10.0120794 C3.54712466,6.05992157 6.91622084,3 11,3 L11,11.6 L3.0603968,10.0120794 Z" id="Combined-Shape-Copy" fill="#000000"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Lịch sử nạp lô</span>
+                            </a>
+                        </li>
+                        <!--end::Item-->
+                    }
+
+                    @if (IsGranted(AppPermissions.Pages_BalanceHistory))
+                    {
+                        <!--begin::Item-->
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("TotalDay", "Report")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                                <span class="nav-icon py-2 w-auto">
+                                    <span class="svg-icon svg-icon-3x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <defs></defs>
+                                            <g id="Stockholm-icons-/-Shopping-/-Chart-pie" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <path d="M4.00246329,12.2004927 L13,14 L13,4.06189375 C16.9463116,4.55399184 20,7.92038235 20,12 C20,16.418278 16.418278,20 12,20 C7.64874861,20 4.10886412,16.5261253 4.00246329,12.2004927 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                                                <path d="M3.0603968,10.0120794 C3.54712466,6.05992157 6.91622084,3 11,3 L11,11.6 L3.0603968,10.0120794 Z" id="Combined-Shape-Copy" fill="#000000"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Báo cáo tổng hợp</span>
+                            </a>
+                        </li>
+                        <!--end::Item-->
+                    }
+
+                    @if (IsGranted(AppPermissions.Pages_TransactionHistory))
+                    {
+                        <!--begin::Item-->
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("DashRevenue", "Report")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                                <span class="nav-icon py-2 w-auto">
+                                    <span class="svg-icon svg-icon-3x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <defs></defs>
+                                            <g id="Stockholm-icons-/-Shopping-/-Chart-pie" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <path d="M4.00246329,12.2004927 L13,14 L13,4.06189375 C16.9463116,4.55399184 20,7.92038235 20,12 C20,16.418278 16.418278,20 12,20 C7.64874861,20 4.10886412,16.5261253 4.00246329,12.2004927 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                                                <path d="M3.0603968,10.0120794 C3.54712466,6.05992157 6.91622084,3 11,3 L11,11.6 L3.0603968,10.0120794 Z" id="Combined-Shape-Copy" fill="#000000"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Báo cáo tổng hợp doanh số</span>
+                            </a>
+                        </li>
+                        <!--end::Item-->
+                    }
+
+                    @if (IsGranted(AppPermissions.Pages_Report_CommissionAgentDetail))
+                    {
+                        <!--begin::Item-->
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("CommissionDetail", "Report")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                                <span class="nav-icon py-2 w-auto">
+                                    <span class="svg-icon svg-icon-3x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <defs></defs>
+                                            <g id="Stockholm-icons-/-Shopping-/-Chart-pie" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <path d="M4.00246329,12.2004927 L13,14 L13,4.06189375 C16.9463116,4.55399184 20,7.92038235 20,12 C20,16.418278 16.418278,20 12,20 C7.64874861,20 4.10886412,16.5261253 4.00246329,12.2004927 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                                                <path d="M3.0603968,10.0120794 C3.54712466,6.05992157 6.91622084,3 11,3 L11,11.6 L3.0603968,10.0120794 Z" id="Combined-Shape-Copy" fill="#000000"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Báo cáo chi tiết bán hàng đại lý cấp 1</span>
+                            </a>
+                        </li>
+                        <!--end::Item-->
+                    }
+
+                    @if (IsGranted(AppPermissions.Pages_Report_CommissionAgentTotal))
+                    {
+                        <!--begin::Item-->
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("CommissionTotal", "Report")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                                <span class="nav-icon py-2 w-auto">
+                                    <span class="svg-icon svg-icon-3x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <defs></defs>
+                                            <g id="Stockholm-icons-/-Shopping-/-Chart-pie" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <path d="M4.00246329,12.2004927 L13,14 L13,4.06189375 C16.9463116,4.55399184 20,7.92038235 20,12 C20,16.418278 16.418278,20 12,20 C7.64874861,20 4.10886412,16.5261253 4.00246329,12.2004927 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                                                <path d="M3.0603968,10.0120794 C3.54712466,6.05992157 6.91622084,3 11,3 L11,11.6 L3.0603968,10.0120794 Z" id="Combined-Shape-Copy" fill="#000000"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Báo cáo tổng hợp tài khoản đại lý cấp 1</span>
+                            </a>
+                        </li>
+                        <!--end::Item-->
+                    }
+
+                    @if (IsGranted(AppPermissions.Pages_Report_CommissionAgentDash))
+                    {
+                        <!--begin::Item-->
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("DashAgentGeneral", "Report")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                                <span class="nav-icon py-2 w-auto">
+                                    <span class="svg-icon svg-icon-3x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <defs></defs>
+                                            <g id="Stockholm-icons-/-Shopping-/-Chart-pie" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                                <path d="M4.00246329,12.2004927 L13,14 L13,4.06189375 C16.9463116,4.55399184 20,7.92038235 20,12 C20,16.418278 16.418278,20 12,20 C7.64874861,20 4.10886412,16.5261253 4.00246329,12.2004927 Z" id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                                                <path d="M3.0603968,10.0120794 C3.54712466,6.05992157 6.91622084,3 11,3 L11,11.6 L3.0603968,10.0120794 Z" id="Combined-Shape-Copy" fill="#000000"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Báo cáo tổng hợp doanh số đại lý cấp 1</span>
                             </a>
                         </li>
                         <!--end::Item-->
@@ -88,10 +252,54 @@
             <!--begin::Body-->
             <div class="card-body">
                 <!--begin::Nav Tabs-->
-                <ul class="dashboard-tabs nav nav-pills nav-primary row row-paddingless m-0 p-0 flex-column flex-sm-row" role="tablist">
+                <ul class="dashboard-tabs nav nav-pills nav-primary row row-paddingless m-0 p-0" role="tablist">
+                    @if (IsGranted(AppPermissions.Pages_SubAgentManagement))
+                    {
+                        <!--begin::Item-->
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("Index", "AgentManagement")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                                <span class="nav-icon py-2 w-auto">
+                                    <span class="svg-icon svg-icon-3x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <g id="Stockholm-icons-/-General-/-User" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                                <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" id="Mask" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                                <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" id="Mask-Copy" fill="#000000" fill-rule="nonzero"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Quản lý đại lý</span>
+                            </a>
+                        </li>
+                        <!--end::Item-->
+                    }
+
+                    @if (IsGranted(AppPermissions.Pages_StaffManager))
+                    {
+                        <!--begin::Item-->
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("StaffManager", "Profile")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                                <span class="nav-icon py-2 w-auto">
+                                    <span class="svg-icon svg-icon-3x">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <g id="Stockholm-icons-/-General-/-User" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                                <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" id="Mask" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                                <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" id="Mask-Copy" fill="#000000" fill-rule="nonzero"></path>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Quản lý nhân viên</span>
+                            </a>
+                        </li>
+                        <!--end::Item-->
+                    }
+
                     <!--begin::Item-->
-                    <li class="nav-item d-flex col-md-2 mr-3 mb-3 mb-lg-0">
-                        <a href="@Url.Action("Index", "Profile")" class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                    <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                        <a href="@Url.Action("Index", "Profile")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
                             <span class="nav-icon py-2 w-auto">
                                 <span class="svg-icon svg-icon-3x">
                                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -103,15 +311,16 @@
                                     </svg>
                                 </span>
                             </span>
-                            <span class="font-size-lg py-2 font-weight-bold text-dark text-center">Thông tin tài khoản</span>
+                            <span class="menu-title font-size-lg py-2 font-weight-bold text-dark text-center">Thông tin tài khoản</span>
                         </a>
                     </li>
                     <!--end::Item-->
+
                     @if (IsGranted(AppPermissions.Pages_RequestDeposit))
                     {
                         <!--begin::Item-->
-                        <li class="nav-item d-flex col-md-2 mr-3 mb-3 mb-lg-0">
-                            <a href="@Url.Action("Deposit", "Transactions")" class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                        <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                            <a href="@Url.Action("Deposit", "Transactions")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
                                 <span class="nav-icon py-2 w-auto">
                                     <span class="svg-icon svg-icon-3x">
                                         <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -124,15 +333,15 @@
                                         </svg>
                                     </span>
                                 </span>
-                                <span class="font-size-lg py-2 font-weight-bolder text-dark text-center">Nạp tiền tài khoản</span>
+                                <span class="menu-title font-size-lg py-2 font-weight-bolder text-dark text-center">Nạp tiền tài khoản</span>
                             </a>
                         </li>
                         <!--end::Item-->
                     }
 
                     <!--begin::Item-->
-                    <li class="nav-item d-flex col-md-2 mr-3 mb-3 mb-lg-0">
-                        <a href="@Url.Action("ChangePassword", "Profile")" class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                    <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                        <a href="@Url.Action("SecurityMethod", "Profile")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
                             <span class="nav-icon py-2 w-auto">
                                 <span class="svg-icon svg-icon-3x">
                                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -149,7 +358,31 @@
                                     </svg>
                                 </span>
                             </span>
-                            <span class="font-size-lg py-2 font-weight-bolder text-dark text-center">Đổi mật khẩu</span>
+                            <span class="menu-title font-size-lg py-2 font-weight-bolder text-dark text-center">Hình thức bảo mật</span>
+                        </a>
+                    </li>
+                    <!--end::Item-->
+
+                    <!--begin::Item-->
+                    <li class="nav-item d-flex col-md-2 col-6 mr-3 mb-3 mb-lg-0">
+                        <a href="@Url.Action("ChangePassword", "Profile")" class="menu-service nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center">
+                            <span class="nav-icon py-2 w-auto">
+                                <span class="svg-icon svg-icon-3x">
+                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs>
+                                            <polygon id="path-1" points="0 0 24 0 24 24 0 24"></polygon>
+                                        </defs>
+                                        <g id="Stockholm-icons-/-General-/-Unlock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <mask id="mask-2" fill="white">
+                                                <use xlink:href="#path-1"></use>
+                                            </mask>
+                                            <g id="bound"></g>
+                                            <path d="M15.6274517,4.55882251 L14.4693753,6.2959371 C13.9280401,5.51296885 13.0239252,5 12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L14,10 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C13.4280904,3 14.7163444,3.59871093 15.6274517,4.55882251 Z" id="Combined-Shape" fill="#000000"></path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </span>
+                            <span class="menu-title font-size-lg py-2 font-weight-bolder text-dark text-center">Đổi mật khẩu</span>
                         </a>
                     </li>
                     <!--end::Item-->

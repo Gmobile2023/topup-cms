@@ -7,7 +7,6 @@
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.Profile;
     ViewBag.Title = "Thông tin tài khoản";
-    //ViewBag.ImageTitle = Url.Action("GetProfilePicture", "Profile", new {area = string.Empty});
     ViewBag.ImageTitle = "/themes/topup/images/ic_banner_top/profile-white.svg";
 }
 
@@ -18,323 +17,59 @@
             setLocalStorage('modalVerify', true);
             window.location.href = ('/Profile/Edit');
         }
+
+        var KTProfile = function () {
+            // Elements
+            var offcanvas;
+
+            // Private functions
+            var _initAside = function () {
+                // Mobile offcanvas for mobile mode
+                offcanvas = new KTOffcanvas('kt_profile_aside', {
+                    overlay: true,
+                    baseClass: 'offcanvas-mobile',
+                    //closeBy: 'kt_user_profile_aside_close',
+                    toggleBy: 'kt_subheader_mobile_toggle'
+                });
+            }
+
+            return {
+                // public functions
+                init: function() {
+                    _initAside();
+                }
+            };
+        }();
+
+        jQuery(document).ready(function() {
+            KTProfile.init();
+        });
     </script>
 }
 
-@* <div class="d-flex flex-column-fluid"> *@
-@* <div class="container"> *@
-@* <!--begin::Row--> *@
-@* <div class="row"> *@
-@*     <div class="col-xl-12"> *@
-@*         <!--begin::Nav Panel Widget 1--> *@
-@*         <div class="card card-custom gutter-b"> *@
-@*             <div class="card-header flex-wrap py-3"> *@
-@*                 <div class="card-title"> *@
-@*                     <h3 class="card-label"> *@
-@*                         Dịch vụ *@
-@*                         <span class="d-block text-muted pt-2 font-size-sm">Tất cả dịch vụ</span> *@
-@*                     </h3> *@
-@*                 </div> *@
-@*             </div> *@
-@*             <!--begin::Body--> *@
-@*             <div class="card-body"> *@
-@*                 <!--begin::Nav Tabs--> *@
-@*                 <ul class="dashboard-tabs nav nav-pills nav-primary row row-paddingless m-0 p-0 flex-column flex-sm-row" role="tablist"> *@
-@*                     <!--begin::Item--> *@
-@*                     <li class="nav-item d-flex col-md-2 mr-3 mb-3 mb-lg-0"> *@
-@*                         <a href="@Url.Action("Edit", "Profile")" class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center"> *@
-@*                             <span class="nav-icon py-2 w-auto"> *@
-@*                                 <span class="svg-icon svg-icon-3x"> *@
-@*                                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> *@
-@*                                         <defs></defs> *@
-@*                                         <g id="Stockholm-icons-/-Navigation-/-Exchange" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> *@
-@*                                             <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon> *@
-@*                                             <rect id="Rectangle" fill="#000000" opacity="0.3" transform="translate(13.000000, 6.000000) rotate(-450.000000) translate(-13.000000, -6.000000) " x="12" y="8.8817842e-16" width="2" height="12" rx="1"></rect> *@
-@*                                             <path d="M9.79289322,3.79289322 C10.1834175,3.40236893 10.8165825,3.40236893 11.2071068,3.79289322 C11.5976311,4.18341751 11.5976311,4.81658249 11.2071068,5.20710678 L8.20710678,8.20710678 C7.81658249,8.59763107 7.18341751,8.59763107 6.79289322,8.20710678 L3.79289322,5.20710678 C3.40236893,4.81658249 3.40236893,4.18341751 3.79289322,3.79289322 C4.18341751,3.40236893 4.81658249,3.40236893 5.20710678,3.79289322 L7.5,6.08578644 L9.79289322,3.79289322 Z" id="Path-104" fill="#000000" fill-rule="nonzero" transform="translate(7.500000, 6.000000) rotate(-270.000000) translate(-7.500000, -6.000000) "></path> *@
-@*                                             <rect id="Rectangle-Copy" fill="#000000" opacity="0.3" transform="translate(11.000000, 18.000000) scale(1, -1) rotate(90.000000) translate(-11.000000, -18.000000) " x="10" y="12" width="2" height="12" rx="1"></rect> *@
-@*                                             <path d="M18.7928932,15.7928932 C19.1834175,15.4023689 19.8165825,15.4023689 20.2071068,15.7928932 C20.5976311,16.1834175 20.5976311,16.8165825 20.2071068,17.2071068 L17.2071068,20.2071068 C16.8165825,20.5976311 16.1834175,20.5976311 15.7928932,20.2071068 L12.7928932,17.2071068 C12.4023689,16.8165825 12.4023689,16.1834175 12.7928932,15.7928932 C13.1834175,15.4023689 13.8165825,15.4023689 14.2071068,15.7928932 L16.5,18.0857864 L18.7928932,15.7928932 Z" id="Path-104-Copy" fill="#000000" fill-rule="nonzero" transform="translate(16.500000, 18.000000) scale(1, -1) rotate(270.000000) translate(-16.500000, -18.000000) "></path> *@
-@*                                         </g> *@
-@*                                     </svg> *@
-@*                                 </span> *@
-@*                             </span> *@
-@*                             <span class="font-size-lg py-2 font-weight-bold text-dark text-center">Lịch sử giao dịch</span> *@
-@*                         </a> *@
-@*                     </li> *@
-@*                     <!--end::Item--> *@
-@*                      *@
-@*                     @if (IsGranted(AppPermissions.Pages_TransactionHistory)) *@
-@*                     { *@
-@*                         <!--begin::Item--> *@
-@*                         <li class="nav-item d-flex col-md-2 mr-3 mb-3 mb-lg-0"> *@
-@*                             <a href="@Url.Action("TransactionHistory", "Transactions")" class="nav-link border py-10 d-flex flex-grow-1 rounded flex-column align-items-center"> *@
-@*                                 <span class="nav-icon py-2 w-auto"> *@
-@*                                     <span class="svg-icon svg-icon-3x"> *@
-@*                                         <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> *@
-@*                                             <defs></defs> *@
-@*                                             <g id="Stockholm-icons-/-Navigation-/-Exchange" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> *@
-@*                                                 <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon> *@
-@*                                                 <rect id="Rectangle" fill="#000000" opacity="0.3" transform="translate(13.000000, 6.000000) rotate(-450.000000) translate(-13.000000, -6.000000) " x="12" y="8.8817842e-16" width="2" height="12" rx="1"></rect> *@
-@*                                                 <path d="M9.79289322,3.79289322 C10.1834175,3.40236893 10.8165825,3.40236893 11.2071068,3.79289322 C11.5976311,4.18341751 11.5976311,4.81658249 11.2071068,5.20710678 L8.20710678,8.20710678 C7.81658249,8.59763107 7.18341751,8.59763107 6.79289322,8.20710678 L3.79289322,5.20710678 C3.40236893,4.81658249 3.40236893,4.18341751 3.79289322,3.79289322 C4.18341751,3.40236893 4.81658249,3.40236893 5.20710678,3.79289322 L7.5,6.08578644 L9.79289322,3.79289322 Z" id="Path-104" fill="#000000" fill-rule="nonzero" transform="translate(7.500000, 6.000000) rotate(-270.000000) translate(-7.500000, -6.000000) "></path> *@
-@*                                                 <rect id="Rectangle-Copy" fill="#000000" opacity="0.3" transform="translate(11.000000, 18.000000) scale(1, -1) rotate(90.000000) translate(-11.000000, -18.000000) " x="10" y="12" width="2" height="12" rx="1"></rect> *@
-@*                                                 <path d="M18.7928932,15.7928932 C19.1834175,15.4023689 19.8165825,15.4023689 20.2071068,15.7928932 C20.5976311,16.1834175 20.5976311,16.8165825 20.2071068,17.2071068 L17.2071068,20.2071068 C16.8165825,20.5976311 16.1834175,20.5976311 15.7928932,20.2071068 L12.7928932,17.2071068 C12.4023689,16.8165825 12.4023689,16.1834175 12.7928932,15.7928932 C13.1834175,15.4023689 13.8165825,15.4023689 14.2071068,15.7928932 L16.5,18.0857864 L18.7928932,15.7928932 Z" id="Path-104-Copy" fill="#000000" fill-rule="nonzero" transform="translate(16.500000, 18.000000) scale(1, -1) rotate(270.000000) translate(-16.500000, -18.000000) "></path> *@
-@*                                             </g> *@
-@*                                         </svg> *@
-@*                                     </span> *@
-@*                                 </span> *@
-@*                                 <span class="font-size-lg py-2 font-weight-bold text-dark text-center">Lịch sử giao dịch</span> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                         <!--end::Item--> *@
-@*                     } *@
-@*                 </ul> *@
-@*                 <!--end::Nav Tabs--> *@
-@*             </div> *@
-@*             <!--end::Body--> *@
-@*         </div> *@
-@*         <!--begin::Nav Panel Widget 1--> *@
-@*     </div> *@
-@* </div> *@
-@* <!--end::Row--> *@
-@* *@
-@* <div id="Topup_Page" class="section-body-middle"> *@
-@* <form class="step step1" id="topupForm"> *@
-@*     <div class="section-body-middle-form-p1 no-border-top"> *@
-@*         <div class="section-body-right bg-white affix-wrap affix-top"> *@
-@*             @if (Model.UserInfo.AccountType == (byte)CommonConst.SystemAccountType.StaffApi) *@
-@*             { *@
-@*                 @await Html.PartialAsync("_SatffApiInfo.cshtml", Model) *@
-@*             } *@
-@*             else *@
-@*             { *@
-@*                 @await Html.PartialAsync("_AccountInfo.cshtml", Model) *@
-@*             } *@
-@*         </div> *@
-@*     </div> *@
-@*     <div class="section-body-middle-form-p2" style="font-size: 14px; line-height: initial;"> *@
-@*         <div class="row"> *@
-@*             <div class="col-md-12"> *@
-@*                 <ul class="group-help grid4" tabindex="2"> *@
-@*                     <li> *@
-@*                         <a href="@Url.Action("Edit", "Profile")" class="group-help__frame"> *@
-@*                             <div class="group-help__ic"> *@
-@*                                 <img src="/themes/topup/images/nhattran/Profile-01.svg" width="50" alt=""> *@
-@*                             </div> *@
-@*                             <div class="group-help__title"> *@
-@*                                 Chỉnh sửa thông tin *@
-@*                             </div> *@
-@*                         </a> *@
-@*                     </li> *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_TransactionHistory)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("Detail", "Report")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/02-History-A.svg" width="50" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Lịch sử giao dịch *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_BalanceHistory)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("TotalDay", "Report")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/03-Bien-dong-so-du-A.svg" width="50" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Báo cáo tổng hợp *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_TransactionHistory)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("DashRevenue", "Report")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/02-History-A.svg" width="50" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Báo cáo tổng hợp doanh số *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_BatchLotHistory)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("History", "BatchTopup")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/03-Bien-dong-so-du-A.svg" width="50" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Lịch sử nạp lô *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_Report_CommissionAgentDetail)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("CommissionDetail", "Report")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/02-History-A.svg" width="50" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Báo cáo chi tiết bán hàng đại lý cấp 1 *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_Report_CommissionAgentTotal)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("CommissionTotal", "Report")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/02-History-A.svg" width="50" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Báo cáo tổng hợp tài khoản đại lý cấp 1 *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_Report_CommissionAgentDash)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("DashAgentGeneral", "Report")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/02-History-A.svg" width="50" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Báo cáo tổng hợp doanh số đại lý cấp 1 *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_SubAgentManagement)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("Index", "AgentManagement")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/Profile-02.svg" width="50" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Quản lý đại lý *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_StaffManager)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("StaffManager", "Profile")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/Profile-02.svg" width="50" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Quản lý nhân viên *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     <li> *@
-@*                         <a href="@Url.Action("SalesPolicy", "Profile")" class="group-help__frame"> *@
-@*                             <div class="group-help__ic"> *@
-@*                                 <img src="/themes/topup/images/nhattran/discount.svg" width="50" alt=""> *@
-@*                             </div> *@
-@*                             <div class="group-help__title"> *@
-@*                                 Chính sách bán hàng *@
-@*                             </div> *@
-@*                         </a> *@
-@*                     </li> *@
-@* *@
-@*                     <li> *@
-@*                         <a href="@Url.Action("Index", "Faqs")" class="group-help__frame"> *@
-@*                             <div class="group-help__ic"> *@
-@*                                 <img src="/themes/topup/images/help.svg" alt=""> *@
-@*                             </div> *@
-@*                             <div class="group-help__title"> *@
-@*                                 Câu hỏi thường gặp *@
-@*                             </div> *@
-@*                         </a> *@
-@*                     </li> *@
-@* *@
-@*                     <li> *@
-@*                         <a href="@Url.Action("SecurityMethod", "Profile")" class="group-help__frame"> *@
-@*                             <div class="group-help__ic"> *@
-@*                                 <img src="/themes/topup/images/secure_method.svg" alt=""> *@
-@*                             </div> *@
-@*                             <div class="group-help__title"> *@
-@*                                 Hình thức bảo mật *@
-@*                             </div> *@
-@*                         </a> *@
-@*                     </li> *@
-@* *@
-@*                     <li> *@
-@*                         <a href="@Url.Action("ChangePassword", "Profile")" class="group-help__frame"> *@
-@*                             <div class="group-help__ic"> *@
-@*                                 <img src="/themes/topup/images/nhattran/05-Doi-mk-lv2-A.svg" alt=""> *@
-@*                             </div> *@
-@*                             <div class="group-help__title"> *@
-@*                                 Đổi mật khẩu *@
-@*                             </div> *@
-@*                         </a> *@
-@*                     </li> *@
-@* *@
-@*                     <li> *@
-@*                         <a href="@Url.Action("Password2Level", "Profile")" class="group-help__frame"> *@
-@*                             <div class="group-help__ic"> *@
-@*                                 <img src="/themes/topup/images/nhattran/05-Doi-mk-lv2-A.svg" alt=""> *@
-@*                             </div> *@
-@*                             <div class="group-help__title"> *@
-@*                                 @(Model.IsLevel2Password ? "Thay đổi MK cấp 2" : "Tạo MK cấp 2") *@
-@*                             </div> *@
-@*                         </a> *@
-@*                     </li> *@
-@* *@
-@*                     @if (IsGranted(AppPermissions.Pages_PostManagement)) *@
-@*                     { *@
-@*                         <li> *@
-@*                             <a href="@Url.Action("Index", "PostManagement")" class="group-help__frame"> *@
-@*                                 <div class="group-help__ic"> *@
-@*                                     <img src="/themes/topup/images/nhattran/Profile-02.svg" alt=""> *@
-@*                                 </div> *@
-@*                                 <div class="group-help__title"> *@
-@*                                     Quản lý bưu cục *@
-@*                                 </div> *@
-@*                             </a> *@
-@*                         </li> *@
-@*                     } *@
-@* *@
-@*                     <li> *@
-@*                         <a href="@Url.Action("Logout", "Account")" class="group-help__frame"> *@
-@*                             <div class="group-help__ic"> *@
-@*                                 <img src="/themes/topup/images/nhattran/06-Sign-out-B.svg" alt=""> *@
-@*                             </div> *@
-@*                             <div class="group-help__title"> *@
-@*                                 Đăng xuất *@
-@*                             </div> *@
-@*                         </a> *@
-@*                     </li> *@
-@*                 </ul> *@
-@*             </div> *@
-@*         </div> *@
-@*     </div> *@
-@* </form> *@
-@* </div> *@
-@* </div> *@
-@* </div> *@
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Profile_Edit;
+    ViewBag.PageTitle = "Thông tin tài khoản";
+    ViewBag.MobileToggle = true;
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Trang chủ", Url.Action("Index", "Home")),
+        ("Thông tin tài khoản", Url.Action("Index", "Profile")),
+    };
+}
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
+
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Profile Personal Information-->
+        <div class="d-flex flex-row">
+            @await Html.PartialAsync("~/Views/Profile/_ProfileAside.cshtml")
+            @await Html.PartialAsync("~/Views/Profile/_AccountInfo.cshtml")
+        </div>
+        <!--end::Profile Personal Information-->
+    </div>
+    <!--end::Container-->
+</div>
+<!--end::Entry-->

@@ -1,85 +1,95 @@
-﻿<!--begin::Header-->
+﻿@using HLS.Topup.Authorization
+@using HLS.Topup.Web.Session
+@inject IPerRequestSessionCache SessionCache
+@{ var loginInfo = await SessionCache.GetCurrentLoginInformationsAsync(); }
+
+<!--begin::Header-->
 <div id="kt_header" class="header header-fixed">
-	<!--begin::Container-->
-	<div class="container d-flex align-items-stretch justify-content-between">
-		<!--begin::Left-->
-		<div class="d-flex align-items-stretch mr-3">
-			<!--begin::Header Logo-->
-			<div class="header-logo">
-				<a href="@Url.Action("Index", "Home")">
-					<img alt="Logo" src="/themes/gmobile/assets/images/gmobile.svg" class="logo-default max-h-40px w-100" />
-					<img alt="Logo" src="/themes/gmobile/assets/images/gmobile-full-h100.png" class="logo-sticky max-h-40px w-100" />
-				</a>
-			</div>
-			<!--end::Header Logo-->
-			<!--begin::Header Menu Wrapper-->
-			<div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
-				<!--begin::Header Menu-->
-				<div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile header-menu-layout-default">
-					<!--begin::Header Nav-->
-					<ul class="menu-nav">
-						<li class="menu-item menu-item-rel">
-							<a href="@Url.Action("Index", "Home")" class="menu-link">
-								<span class="menu-text">Trang chủ</span>
-								<i class="menu-arrow"></i>
-							</a>
-						</li>
-						<li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
-							<a href="javascript:" class="menu-link menu-toggle">
-								<span class="menu-text">Topup</span>
-								<i class="menu-arrow"></i>
-							</a>
-							<div class="menu-submenu menu-submenu-classic menu-submenu-left">
-								<ul class="menu-subnav">
-									<li class="menu-item menu-item-active" aria-haspopup="true">
-										<a href="javascript:" class="menu-link">
-											<span class="menu-text">Nạp tiền</span>
-											<span class="menu-desc"></span>
-										</a>
-									</li>
-									<li class="menu-item" aria-haspopup="true">
-										<a href="javascript:" class="menu-link">
-											<span class="menu-text">Mua mã thẻ</span>
-											<span class="menu-desc"></span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="menu-item menu-item-rel">
-							<a href="@Url.Action("TransactionHistory", "Transactions")" class="menu-link">
-								<span class="menu-text">Lịch sử giao dịch</span>
-								<i class="menu-arrow"></i>
-							</a>
-						</li>
-					</ul>
-					<!--end::Header Nav-->
-				</div>
-				<!--end::Header Menu-->
-			</div>
-			<!--end::Header Menu Wrapper-->
-		</div>
-		<!--end::Left-->
-		<!--begin::Topbar-->
-		<div class="topbar">
-			<!--begin::User-->
-			<div class="dropdown">
-				<!--begin::Toggle-->
-				<div class="topbar-item">
-					<div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto" id="kt_quick_user_toggle">
-						<span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">Xin chào,</span>
-						<span class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">Sean</span>
-						<span class="symbol symbol-35">
-							<span class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">A</span>
-						</span>
-					</div>
-				</div>
-				<!--end::Toggle-->
-			</div>
-			<!--end::User-->
-		</div>
-		<!--end::Topbar-->
-	</div>
-	<!--end::Container-->
+    <!--begin::Container-->
+    <div class="container d-flex align-items-stretch justify-content-between">
+        <!--begin::Left-->
+        <div class="d-flex align-items-stretch mr-3">
+            <!--begin::Header Logo-->
+            <div class="header-logo">
+                <a href="@Url.Action("Index", "Home")">
+                    <img alt="Logo" src="/themes/gmobile/assets/images/gmobile.svg" class="logo-default max-h-40px w-100"/>
+                    <img alt="Logo" src="/themes/gmobile/assets/images/gmobile-full-h100.png" class="logo-sticky max-h-40px w-100"/>
+                </a>
+            </div>
+            <!--end::Header Logo-->
+            <!--begin::Header Menu Wrapper-->
+            <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+                <!--begin::Header Menu-->
+                <div id="kt_header_menu" class="header-menu header-menu-left header-menu-mobile header-menu-layout-default">
+                    <!--begin::Header Nav-->
+                    <ul class="menu-nav">
+                        <li class="menu-item menu-item-rel">
+                            <a href="@Url.Action("Index", "Home")" class="menu-link">
+                                <span class="menu-text">Trang chủ</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                        </li>
+                        
+                        @if (IsGranted(AppPermissions.Pages_CreatePayment))
+                        {
+                            <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+                                <a href="javascript:" class="menu-link menu-toggle">
+                                    <span class="menu-text">Topup</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                                <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                                    <ul class="menu-subnav">
+                                        <li class="menu-item menu-item-active" aria-haspopup="true">
+                                            <a href="@Url.Action("Index", "Topup")" class="menu-link">
+                                                <span class="menu-text">Nạp tiền điện thoại</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item" aria-haspopup="true">
+                                            <a href="@Url.Action("PinCode", "Topup")" class="menu-link">
+                                                <span class="menu-text">Mua mã thẻ</span>
+                                                <span class="menu-desc"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        
+                        <li class="menu-item menu-item-rel">
+                            <a href="@Url.Action("TransactionHistory", "Transactions")" class="menu-link">
+                                <span class="menu-text">Lịch sử giao dịch</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--end::Header Nav-->
+                </div>
+                <!--end::Header Menu-->
+            </div>
+            <!--end::Header Menu Wrapper-->
+        </div>
+        <!--end::Left-->
+        <!--begin::Topbar-->
+        <div class="topbar">
+            <!--begin::User-->
+            <div class="dropdown">
+                <!--begin::Toggle-->
+                <div class="topbar-item">
+                    <div class="btn btn-icon btn-hover-transparent-white d-flex align-items-center btn-lg px-md-2 w-md-auto" id="kt_quick_user_toggle">
+                        <span class="text-white opacity-70 font-weight-bold font-size-base d-none d-md-inline mr-1">Xin chào,</span>
+                        <span class="text-white opacity-90 font-weight-bolder font-size-base d-none d-md-inline mr-4">@(loginInfo?.User?.UserName)</span>
+                        <span class="symbol symbol-35">
+                            <span class="symbol-label text-white font-size-h5 font-weight-bold bg-white-o-30">A</span>
+                        </span>
+                    </div>
+                </div>
+                <!--end::Toggle-->
+            </div>
+            <!--end::User-->
+        </div>
+        <!--end::Topbar-->
+    </div>
+    <!--end::Container-->
 </div>
 <!--end::Header-->

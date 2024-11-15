@@ -1,0 +1,126 @@
+﻿@{
+    var currentAction = ViewContext.RouteData.Values["Action"].ToString();
+    var currentController = ViewContext.RouteData.Values["Controller"].ToString();
+
+    string IsActive(string action, string controller = "Profile")
+    {
+        return currentAction.Equals(action, StringComparison.OrdinalIgnoreCase) &&
+               currentController.Equals(controller, StringComparison.OrdinalIgnoreCase)
+            ? "active"
+            : "";
+    }
+}
+
+<!--begin::Aside-->
+<div class="flex-row-auto offcanvas-mobile w-250px w-xxl-350px" id="kt_profile_aside">
+    <!--begin::Profile Card-->
+    <div class="card card-custom card-stretch">
+        <!--begin::Body-->
+        <div class="card-body pt-10">
+            <!--begin::Nav-->
+            <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
+                <div class="navi-item mb-2">
+                    <a href="@Url.Action("Index", "Profile")" class="navi-link py-4 @IsActive("Index")">
+                        <span class="navi-icon mr-2">
+                            <span class="svg-icon">
+                                <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24"/>
+                                        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+                                        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero"/>
+                                    </g>
+                                </svg>
+                                <!--end::Svg Icon-->
+                            </span>
+                        </span>
+                        <span class="navi-text font-size-lg">Thông tin tài khoản</span>
+                    </a>
+                </div>
+                <div class="navi-item mb-2">
+                    <a href="@Url.Action("Edit", "Profile")" class="navi-link py-4 @IsActive("Edit")">
+                        <span class="navi-icon mr-2">
+                            <span class="svg-icon">
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs></defs>
+                                    <g id="Stockholm-icons-/-General-/-Edit" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect id="bound" x="0" y="0" width="24" height="24"></rect>
+                                        <path d="M7.10343995,21.9419885 L6.71653855,8.03551821 C6.70507204,7.62337518 6.86375628,7.22468355 7.15529818,6.93314165 L10.2341093,3.85433055 C10.8198957,3.26854411 11.7696432,3.26854411 12.3554296,3.85433055 L15.4614112,6.9603121 C15.7369117,7.23581259 15.8944065,7.6076995 15.9005637,7.99726737 L16.1199293,21.8765672 C16.1330212,22.7048909 15.4721452,23.3869929 14.6438216,23.4000848 C14.6359205,23.4002097 14.6280187,23.4002721 14.6201167,23.4002721 L8.60285976,23.4002721 C7.79067946,23.4002721 7.12602744,22.7538546 7.10343995,21.9419885 Z" id="Path-11" fill="#000000" fill-rule="nonzero" transform="translate(11.418039, 13.407631) rotate(-135.000000) translate(-11.418039, -13.407631) "></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="navi-text font-size-lg">Chỉnh sửa thông tin</span>
+                    </a>
+                </div>
+                <div class="navi-item mb-2">
+                    <a href="@Url.Action("SecurityMethod", "Profile")" class="navi-link py-4 @IsActive("SecurityMethod")">
+                        <span class="navi-icon mr-2">
+                            <span class="svg-icon">
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs>
+                                        <polygon id="path-1" points="0 0 24 0 24 24 0 24"></polygon>
+                                    </defs>
+                                    <g id="Stockholm-icons-/-General-/-Unlock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <mask id="mask-2" fill="white">
+                                            <use xlink:href="#path-1"></use>
+                                        </mask>
+                                        <g id="bound"></g>
+                                        <path d="M15.6274517,4.55882251 L14.4693753,6.2959371 C13.9280401,5.51296885 13.0239252,5 12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L14,10 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C13.4280904,3 14.7163444,3.59871093 15.6274517,4.55882251 Z" id="Combined-Shape" fill="#000000"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="navi-text font-size-lg">Hình thức bảo mật</span>
+                    </a>
+                </div>
+                <div class="navi-item mb-2">
+                    <a href="@Url.Action("ChangePassword", "Profile")" class="navi-link py-4 @IsActive("ChangePassword")">
+                        <span class="navi-icon mr-2">
+                            <span class="svg-icon">
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs>
+                                        <polygon id="path-1" points="0 0 24 0 24 24 0 24"></polygon>
+                                    </defs>
+                                    <g id="Stockholm-icons-/-General-/-Unlock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <mask id="mask-2" fill="white">
+                                            <use xlink:href="#path-1"></use>
+                                        </mask>
+                                        <g id="bound"></g>
+                                        <path d="M15.6274517,4.55882251 L14.4693753,6.2959371 C13.9280401,5.51296885 13.0239252,5 12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L14,10 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C13.4280904,3 14.7163444,3.59871093 15.6274517,4.55882251 Z" id="Combined-Shape" fill="#000000"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="navi-text font-size-lg">Đổi mật khẩu</span>
+                    </a>
+                </div>
+                <div class="navi-item mb-2">
+                    <a href="@Url.Action("Password2Level", "Profile")" class="navi-link py-4 @IsActive("Password2Level")">
+                        <span class="navi-icon mr-2">
+                            <span class="svg-icon">
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs>
+                                        <polygon id="path-1" points="0 0 24 0 24 24 0 24"></polygon>
+                                    </defs>
+                                    <g id="Stockholm-icons-/-General-/-Unlock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <mask id="mask-2" fill="white">
+                                            <use xlink:href="#path-1"></use>
+                                        </mask>
+                                        <g id="bound"></g>
+                                        <path d="M15.6274517,4.55882251 L14.4693753,6.2959371 C13.9280401,5.51296885 13.0239252,5 12,5 C10.3431458,5 9,6.34314575 9,8 L9,10 L14,10 L17,10 L18,10 C19.1045695,10 20,10.8954305 20,12 L20,18 C20,19.1045695 19.1045695,20 18,20 L6,20 C4.8954305,20 4,19.1045695 4,18 L4,12 C4,10.8954305 4.8954305,10 6,10 L7,10 L7,8 C7,5.23857625 9.23857625,3 12,3 C13.4280904,3 14.7163444,3.59871093 15.6274517,4.55882251 Z" id="Combined-Shape" fill="#000000"></path>
+                                    </g>
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="navi-text font-size-lg">Mật khẩu cấp 2</span>
+                    </a>
+                </div>
+            </div>
+            <!--end::Nav-->
+        </div>
+        <!--end::Body-->
+    </div>
+    <!--end::Profile Card-->
+</div>
+<!--end::Aside-->

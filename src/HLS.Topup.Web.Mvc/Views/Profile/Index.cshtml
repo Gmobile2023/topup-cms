@@ -1,6 +1,5 @@
 ﻿@{
-    Layout = $"~/Views/Layout/_LayoutFull.cshtml";
-    // Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
 }
 @using HLS.Topup.Authorization
 @using HLS.Topup.Dtos.Accounts
@@ -8,7 +7,6 @@
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.Profile;
     ViewBag.Title = "Thông tin tài khoản";
-    //ViewBag.ImageTitle = Url.Action("GetProfilePicture", "Profile", new {area = string.Empty});
     ViewBag.ImageTitle = "/themes/topup/images/ic_banner_top/profile-white.svg";
 }
 
@@ -19,275 +17,59 @@
             setLocalStorage('modalVerify', true);
             window.location.href = ('/Profile/Edit');
         }
+
+        var KTProfile = function () {
+            // Elements
+            var offcanvas;
+
+            // Private functions
+            var _initAside = function () {
+                // Mobile offcanvas for mobile mode
+                offcanvas = new KTOffcanvas('kt_profile_aside', {
+                    overlay: true,
+                    baseClass: 'offcanvas-mobile',
+                    //closeBy: 'kt_user_profile_aside_close',
+                    toggleBy: 'kt_subheader_mobile_toggle'
+                });
+            }
+
+            return {
+                // public functions
+                init: function() {
+                    _initAside();
+                }
+            };
+        }();
+
+        jQuery(document).ready(function() {
+            KTProfile.init();
+        });
     </script>
 }
 
-<div id="Topup_Page" class="section-body-middle">
-<form class="step step1" id="topupForm">
-<div class="section-body-middle-form-p1 no-border-top">
-    <div class="section-body-right bg-white affix-wrap affix-top">
-        @if (Model.UserInfo.AccountType == (byte)CommonConst.SystemAccountType.StaffApi)
-        {
-            @await Html.PartialAsync("_SatffApiInfo.cshtml", Model)
-        }
-        else
-        {
-            @await Html.PartialAsync("_AccountInfo.cshtml", Model)
-        }
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Profile_Edit;
+    ViewBag.PageTitle = "Thông tin tài khoản";
+    ViewBag.MobileToggle = true;
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Trang chủ", Url.Action("Index", "Home")),
+        ("Thông tin tài khoản", Url.Action("Index", "Profile")),
+    };
+}
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
+
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Profile Personal Information-->
+        <div class="d-flex flex-row">
+            @await Html.PartialAsync("~/Views/Profile/_ProfileAside.cshtml")
+            @await Html.PartialAsync("~/Views/Profile/_AccountInfo.cshtml")
+        </div>
+        <!--end::Profile Personal Information-->
     </div>
+    <!--end::Container-->
 </div>
-<div class="section-body-middle-form-p2" style="font-size: 14px; line-height: initial;">
-<div class="row">
-<div class="col-md-12">
-<ul class="group-help grid4" tabindex="2">
-<li>
-    <a href="@Url.Action("Edit", "Profile")" class="group-help__frame">
-        <div class="group-help__ic">
-            <img src="/themes/topup/images/nhattran/Profile-01.svg" alt="">
-        </div>
-        <div class="group-help__title">
-            Chỉnh sửa thông tin
-        </div>
-    </a>
-</li>
-
-@* <li class="pay-bill-category-code"> *@
-@*     <a href="@Url.Action("Edit", "Profile")"> *@
-@*         Chỉnh sửa thông tin *@
-@*         <span class="checkbox-custom"></span> *@
-@*     </a> *@
-@* </li> *@
-
-@if (IsGranted(AppPermissions.Pages_TransactionHistory))
-{
-    <li>
-        <a href="@Url.Action("Detail", "Report")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/02-History-A.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Lịch sử giao dịch
-            </div>
-        </a>
-    </li>
-
-                            @*                         <li class="pay-bill-category-code"> *@
-                            @*                             <a href="@Url.Action("TransactionHistory", "Transactions")"> *@
-                            @*                                 Lịch sử giao dịch *@
-                            @*                                 <span class="checkbox-custom"></span> *@
-                            @*                             </a> *@
-                            @*                         </li> *@
-}
-@if (IsGranted(AppPermissions.Pages_BalanceHistory))
-{
-    <li>
-        <a href="@Url.Action("TotalDay", "Report")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/03-Bien-dong-so-du-A.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Báo cáo tổng hợp
-            </div>
-        </a>
-    </li>
-}
-@if (IsGranted(AppPermissions.Pages_TransactionHistory))
-{
-    <li>
-        <a href="@Url.Action("DashRevenue", "Report")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/02-History-A.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Báo cáo tổng hợp doanh số
-            </div>
-        </a>
-    </li>
-}
-@if (IsGranted(AppPermissions.Pages_BatchLotHistory))
-{
-    <li>
-        <a href="@Url.Action("History", "BatchTopup")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/03-Bien-dong-so-du-A.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Lịch sử nạp lô
-            </div>
-        </a>
-    </li>
-}
-@if (IsGranted(AppPermissions.Pages_Report_CommissionAgentDetail))
-{
-    <li>
-        <a href="@Url.Action("CommissionDetail", "Report")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/02-History-A.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Báo cáo chi tiết bán hàng đại lý cấp 1
-            </div>
-        </a>
-    </li>
-}
-@if (IsGranted(AppPermissions.Pages_Report_CommissionAgentTotal))
-{
-    <li>
-        <a href="@Url.Action("CommissionTotal", "Report")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/02-History-A.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Báo cáo tổng hợp tài khoản đại lý cấp 1
-            </div>
-        </a>
-    </li>
-}
-@if (IsGranted(AppPermissions.Pages_Report_CommissionAgentDash))
-{
-    <li>
-        <a href="@Url.Action("DashAgentGeneral", "Report")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/02-History-A.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Báo cáo tổng hợp doanh số đại lý cấp 1
-            </div>
-        </a>
-    </li>
-}
-
-@if (IsGranted(AppPermissions.Pages_SubAgentManagement))
-{
-    <li>
-        <a href="@Url.Action("Index", "AgentManagement")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/Profile-02.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Quản lý đại lý
-            </div>
-        </a>
-    </li>
-}
-
-@if (IsGranted(AppPermissions.Pages_StaffManager))
-{
-    <li>
-        <a href="@Url.Action("StaffManager", "Profile")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/Profile-02.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Quản lý nhân viên
-            </div>
-        </a>
-    </li>
-
-@*                         <li class="pay-bill-category-code"> *@
-@*                             <a href="@Url.Action("StaffManager", "Profile")"> *@
-@*                                 Quản lý nhân viên *@
-@*                                 <span class="checkbox-custom"></span> *@
-@*                             </a> *@
-@*                         </li> *@
-}
-
-<li>
-    <a href="@Url.Action("SalesPolicy", "Profile")" class="group-help__frame">
-        <div class="group-help__ic">
-            <img src="/themes/topup/images/nhattran/discount.svg" alt="">
-        </div>
-        <div class="group-help__title">
-            Chính sách bán hàng
-        </div>
-    </a>
-</li>
-
-<li>
-    <a href="@Url.Action("Index", "Faqs")" class="group-help__frame">
-        <div class="group-help__ic">
-            <img src="/themes/topup/images/help.svg" alt="">
-        </div>
-        <div class="group-help__title">
-            Câu hỏi thường gặp
-        </div>
-    </a>
-</li>
-
-<li>
-    <a href="@Url.Action("SecurityMethod", "Profile")" class="group-help__frame">
-        <div class="group-help__ic">
-            <img src="/themes/topup/images/secure_method.svg" alt="">
-        </div>
-        <div class="group-help__title">
-            Hình thức bảo mật
-        </div>
-    </a>
-</li>
-
-<li>
-    <a href="@Url.Action("ChangePassword", "Profile")" class="group-help__frame">
-        <div class="group-help__ic">
-            <img src="/themes/topup/images/nhattran/05-Doi-mk-lv2-A.svg" alt="">
-        </div>
-        <div class="group-help__title">
-            Đổi mật khẩu
-        </div>
-    </a>
-</li>
-
-@* <li class="pay-bill-category-code"> *@
-@*     <a href="@Url.Action("ChangePassword", "Profile")"> *@
-@*         Đổi mật khẩu *@
-@*         <span class="checkbox-custom"></span> *@
-@*     </a> *@
-@* </li> *@
-
-<li>
-    <a href="@Url.Action("Password2Level", "Profile")" class="group-help__frame">
-        <div class="group-help__ic">
-            <img src="/themes/topup/images/nhattran/05-Doi-mk-lv2-A.svg" alt="">
-        </div>
-        <div class="group-help__title">
-            @(Model.IsLevel2Password ? "Thay đổi MK cấp 2" : "Tạo MK cấp 2")
-        </div>
-    </a>
-</li>
-
-@if (IsGranted(AppPermissions.Pages_PostManagement))
-{
-    <li>
-        <a href="@Url.Action("Index", "PostManagement")" class="group-help__frame">
-            <div class="group-help__ic">
-                <img src="/themes/topup/images/nhattran/Profile-02.svg" alt="">
-            </div>
-            <div class="group-help__title">
-                Quản lý bưu cục
-            </div>
-        </a>
-    </li>
-}
-
-<li>
-    <a href="@Url.Action("Logout", "Account")" class="group-help__frame">
-        <div class="group-help__ic">
-            <img src="/themes/topup/images/nhattran/06-Sign-out-B.svg" alt="">
-        </div>
-        <div class="group-help__title">
-            Đăng xuất
-        </div>
-    </a>
-</li>
-
-@* <li class="pay-bill-category-code"> *@
-@*     <a href="@Url.Action("Logout", "Account")"> *@
-@*         Đăng xuất *@
-@*         <span class="checkbox-custom"></span> *@
-@*     </a> *@
-@* </li> *@
-</ul>
-</div>
-</div>
-</div>
-</form>
-</div>
+<!--end::Entry-->

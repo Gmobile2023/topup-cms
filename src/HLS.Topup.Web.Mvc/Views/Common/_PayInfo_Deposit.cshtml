@@ -3,26 +3,26 @@
 <div class="section-body-right bg-white affix-wrap affix-top">
     <div class="section-body-right-header">
         <div class="cart"></div>
-        <p>Thông tin giao dịch nạp tiền</p>
+        <p class="font-weight-bolder">Thông tin giao dịch nạp tiền</p>
     </div> 
     <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Số tiền nạp</label>
+        <label class="col-md-4 col-xs-6 control-label font-weight-bolder">Số tiền nạp</label>
         <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.Amount.ToFormat()</label>
     </div>
     <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Ngân hàng nhận tiền</label>
+        <label class="col-md-4 col-xs-6 control-label font-weight-bolder">Ngân hàng nhận tiền</label>
         <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.BankName</label>
     </div>
     <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Số tài khoản nhận tiền</label>
+        <label class="col-md-4 col-xs-6 control-label font-weight-bolder">Số tài khoản nhận tiền</label>
         <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.BankAccountCode</label>
     </div>
     <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Chủ tài khoản Ngân hàng</label>
+        <label class="col-md-4 col-xs-6 control-label font-weight-bolder">Chủ tài khoản Ngân hàng</label>
         <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.BankAccountName</label>
     </div>
     <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Chi nhánh Ngân hàng</label>
+        <label class="col-md-4 col-xs-6 control-label font-weight-bolder">Chi nhánh Ngân hàng</label>
         <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.BranchName</label>
     </div>
     @* <div class="form-group form-group-dashed row"> *@
@@ -30,7 +30,6 @@
     @*     <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.Description</label> *@
     @* </div> *@
     <p class="sys-notice" style="padding-top: 10px; padding-left: 25px;">
-        <small><i>* Mã nạp sẽ xuất hiện khi quý khách xác nhận yêu cầu nạp tiền.</i></small>
+        <small style="font-size: 13px"><i>* Mã nạp sẽ xuất hiện khi quý khách xác nhận yêu cầu nạp tiền.</i></small>
     </p>
-     
 </div>

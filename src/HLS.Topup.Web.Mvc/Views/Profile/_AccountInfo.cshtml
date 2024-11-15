@@ -3,63 +3,89 @@
 @{
     var agency = Model.AgentProfile != null ? Model.AgentProfile : new UserProfileDto();
 }
-<div class="form-group form-group-dashed row">
-    <label class="col-md-4 col-xs-6 control-label">Mã đại lý</label>
-    <label class="col-md-8 col-xs-6 control-label  ">
-        <strong>@(Model.UserInfo.AccountCode)</strong>
-    </label>
-</div>
-<div class="form-group form-group-dashed row">
-    <label class="col-md-4 col-xs-6 control-label">Họ tên</label>
-    <label class="col-md-8 col-xs-6 control-label  ">@(Model.UserInfo.FullName)</label>
-</div>
-<div class="form-group form-group-dashed row">
-    @if (Model.UserInfo.AccountType == (byte) CommonConst.SystemAccountType.Staff)
-    {
-        <label class="col-md-4 col-xs-6 control-label">Hạn mức hiện tại</label>
-        <label class="col-md-8 col-xs-6 control-label  ">
-            <span class="">@await Component.InvokeAsync(typeof(LimitAmountViewComponent)) đ</span>
-        </label>
-    }
-    else
-    {
-        <label class="col-md-4 col-xs-6 control-label">Số dư hiện tại</label>
-        <label class="col-md-8 col-xs-6 control-label  ">
-            <span class="">@await Component.InvokeAsync(typeof(BalanceViewComponent))</span>
-        </label>
-    }
-</div>
-<div class="form-group form-group-dashed row">
-    <label class="col-md-4 col-xs-6 control-label">Loại tài khoản</label>
-    <label class="col-md-8 col-xs-6 control-label  ">
-        <strong>@L("Enum_AccountType_" + Model.UserInfo.AccountType)</strong>
-    </label>
-</div>
-<div class="form-group form-group-dashed row">
-    <label class="col-md-4 col-xs-6 control-label">Số điện thoại</label>
-    <label class="col-md-8 col-xs-6 control-label  ">
-        <strong>@Model.UserInfo.PhoneNumber</strong>
-    </label>
-</div>
 
-@if (Model.UserInfo.AccountType != (byte) CommonConst.SystemAccountType.Staff && Model.UserInfo.AccountType != (byte) CommonConst.SystemAccountType.StaffApi)
-{
-    if (Model.UserInfo.IsVerifyAccount)
-    {
-        <div class="form-group form-group-dashed row">
-            <label class="col-md-4 col-xs-6 control-label">Tên cửa hàng</label>
-            <label class="col-md-8 col-xs-6 control-label  ">
-                <strong>@agency.AgentName</strong>
-            </label>
+<!--begin::Content-->
+<div class="flex-row-fluid ml-lg-8">
+    <!--begin::Card-->
+    <div class="card card-custom card-stretch">
+        <!--begin::Header-->
+        <div class="card-header py-3">
+            <div class="card-title align-items-start flex-column">
+                <h3 class="card-label font-weight-bolder text-dark">Thông tin tài khoản</h3>
+            </div>
+            <div class="card-toolbar">
+            </div>
         </div>
-    }
-
-    <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Trạng thái</label>
-        <label class="col-md-8 col-xs-6 control-label  ">
-            <label for="" class="title"> <strong>@(Model.UserInfo.IsVerifyAccount ? "Tài khoản đã xác thực thông tin" : "Tài khoản chưa xác thực thông tin")</strong> &nbsp; </label>
-            <a href="javascript:void(0)" onclick="editVerifyAccount()">@(Model.UserInfo.IsVerifyAccount ? "Xem thông tin xác thực." : "Xác thực ngay.")</a>
-
-        </label>
+        <!--end::Header-->
+        <!--begin::Form-->
+        <form class="form">
+            <!--begin::Body-->
+            <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-xl-3 col-lg-3 col-form-label">Mã tài khoản</label>
+                    <div class="col-lg-9 col-xl-6">
+                        <input class="form-control form-control-lg" type="text" value="@(Model.UserInfo.AccountCode)" disabled/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xl-3 col-lg-3 col-form-label">Họ tên</label>
+                    <div class="col-lg-9 col-xl-6">
+                        <input class="form-control form-control-lg" type="text" value="@(Model.UserInfo.FullName)" disabled/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-xl-3 col-lg-3 col-form-label">Số điện thoại</label>
+                    <div class="col-lg-9 col-xl-6">
+                        <input class="form-control form-control-lg" type="text" value="@Model.UserInfo.PhoneNumber" disabled/>
+                    </div>
+                </div>
+                @if (Model.UserInfo.AccountType == (byte)CommonConst.SystemAccountType.Staff)
+                {
+                    <div class="form-group row">
+                        <label class="col-xl-3 col-lg-3 col-form-label">Hạn mức hiện tại</label>
+                        <div class="col-lg-9 col-xl-6">
+                            <input class="form-control form-control-lg" type="text" value="@await Component.InvokeAsync(typeof(LimitAmountViewComponent))" disabled/>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group row">
+                        <label class="col-xl-3 col-lg-3 col-form-label">Số dư hiện tại</label>
+                        <div class="col-lg-9 col-xl-6">
+                            <input class="form-control form-control-lg" type="text" value="@await Component.InvokeAsync(typeof(BalanceViewComponent))" disabled/>
+                        </div>
+                    </div>
+                }
+                <div class="form-group row">
+                    <label class="col-xl-3 col-lg-3 col-form-label">Loại tài khoản</label>
+                    <div class="col-lg-9 col-xl-6">
+                        <input class="form-control form-control-lg" type="text" value="@L("Enum_AccountType_" + Model.UserInfo.AccountType)" disabled/>
+                    </div>
+                </div>
+                @if (Model.UserInfo.AccountType != (byte)CommonConst.SystemAccountType.Staff && Model.UserInfo.AccountType != (byte)CommonConst.SystemAccountType.StaffApi)
+                {
+                    if (Model.UserInfo.IsVerifyAccount)
+                    {
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Tên cửa hàng</label>
+                            <div class="col-lg-9 col-xl-6">
+                                <input class="form-control form-control-lg" type="text" value="@agency.AgentName" disabled/>
+                            </div>
+                        </div>
+                    }
+                    
+                    <div class="form-group row">
+                        <label class="col-xl-3 col-lg-3 col-form-label">Trạng thái</label>
+                        <div class="col-lg-9 col-xl-6">
+                            <input class="form-control form-control-lg" type="text" value="@(Model.UserInfo.IsVerifyAccount ? "Tài khoản đã xác thực thông tin" : "Tài khoản chưa xác thực thông tin")" disabled/>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!--end::Body-->
+        </form>
+        <!--end::Form-->
     </div>
-}
+</div>
+<!--end::Content-->

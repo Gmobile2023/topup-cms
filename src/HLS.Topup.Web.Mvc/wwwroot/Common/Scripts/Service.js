@@ -398,10 +398,7 @@ var Service = function () {
         });
     }
     this.RequestStart = function () {
-        // abp.ui.setBusy();
-        $(".se-pre-con")
-            .css('background-color', 'rgba(255,255,255,0.5)')
-            .show();
+        abp.ui.setBusy();
     };
     this.EncodeHtml = function (string) {
         var entityMap = {
@@ -417,13 +414,12 @@ var Service = function () {
         });
     };
     this.RequestEnd = function () {
-        $(".se-pre-con").fadeOut("slow");
-        //abp.ui.clearBusy();
-        //setTimeout(function () {
-        //    if ($("body").find("div.ajaxInProgress").length > 0)
-        //        $("body").find("div.ajaxInProgress").hide();
-        //    //$("body").find("div.ajaxInProgress").remove();
-        //}, 200);
+        abp.ui.clearBusy();
+        setTimeout(function () {
+           if ($("body").find("div.ajaxInProgress").length > 0)
+               $("body").find("div.ajaxInProgress").hide();
+           //$("body").find("div.ajaxInProgress").remove();
+        }, 200);
     }
 
     this.Api = function (option, fnSuccess, fnError) {

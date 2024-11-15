@@ -678,7 +678,7 @@ namespace HLS.Topup.Reports.Exporting
              {
                 var request = input.Request.FromJson<ReportServiceDetailRequest>();
                 var rs = AsyncHelper.RunSync(() => _reportsManager.ReportServiceDetailReport(request));
-                //string link = "https://ftp.daily.nhattran.com.vn/Uploads/ReportFiles/20211119//c4a79c8b-8819-40fd-b7cb-21a072ec3437.xlsx";
+                //string link = "https://sandbox-ftp-topup.gmobile.vn/Uploads/ReportFiles/20211119//c4a79c8b-8819-40fd-b7cb-21a072ec3437.xlsx";
                 AsyncHelper.RunSync(() => _appNotifier.GdUrllinkDownload(input.User,  rs.ExtraInfo));
                 _logger.LogInformation($"Export file success");
             }

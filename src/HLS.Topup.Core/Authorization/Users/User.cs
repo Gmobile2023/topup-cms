@@ -97,11 +97,11 @@ namespace HLS.Topup.Authorization.Users
                 case CommonConst.SystemAccountType.Agent:
                 case CommonConst.SystemAccountType.MasterAgent:
                 case CommonConst.SystemAccountType.Company:
-                    return "NT9" + random;
+                    return "GMB" + random;
                 case CommonConst.SystemAccountType.Staff:
-                    return "NT9" + random + Id;
+                    return "GMB" + random + Id;
                 case CommonConst.SystemAccountType.StaffApi:
-                    return "NT9" + random + Id;
+                    return "GMB" + random + Id;
                 case CommonConst.SystemAccountType.Sale:
                     return "S" + random + Id;
                 case CommonConst.SystemAccountType.SaleLead:
@@ -109,7 +109,7 @@ namespace HLS.Topup.Authorization.Users
                 case CommonConst.SystemAccountType.System:
                     break;
                 default:
-                    return "A" + Id.ToString("000000000000");
+                    return "GMB" + Id.ToString("000000000000");
             }
 
             return "A" + Id.ToString("000000000000");

@@ -27,11 +27,11 @@ namespace HLS.Topup.Net.Sms
             {
                 if (_mobileGoConfiguration.IsSendSms)
                 {
-                    _logger.LogInformation($"NTSender request: {number}-{sms}");
+                    _logger.LogInformation($"GMBSender request: {number}-{sms}");
                     //var request = $"{_mobileGoConfiguration.Url}/api?action=sendmessage&username={_mobileGoConfiguration.UserName}&password={_mobileGoConfiguration.Password}&recipient={number}&messagedata={sms}";
                     var request = $"{_mobileGoConfiguration.Url}/http/send-message?to={number}&message={sms}";
                     var result = await request.GetStringFromUrlAsync();
-                    _logger.LogInformation($"NTSender: {number} - Message: {sms} - Result: {result}");
+                    _logger.LogInformation($"GMBSender: {number} - Message: {sms} - Result: {result}");
                     return "0";
                 }
 

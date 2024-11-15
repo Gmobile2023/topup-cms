@@ -53,8 +53,8 @@ namespace HLS.Topup.Common
             return new
             {
                 Hotline = "0522553333",
-                TermsOfUse = "https://cms.daily.nhattran.com.vn/dieu-khoan-su-dung",
-                PrivacyPolicy = "https://cms.daily.nhattran.com.vn/chinh-sach-bao-mat",
+                TermsOfUse = "https://cms.sandbox-topup.gmobile.vn/dieu-khoan-su-dung",
+                PrivacyPolicy = "https://cms.sandbox-topup.gmobile.vn/chinh-sach-bao-mat",
                 VerifyPaymentMethod =
                     await _settingManger.GetPaymentVerifyMethod(CommonConst.Channel.APP,
                         AbpSession.ToUserIdentifier()), ////Hình thức xác thực khi thanh toán
@@ -81,8 +81,8 @@ namespace HLS.Topup.Common
             return new
             {
                 Hotline = "0522553333",
-                TermsOfUse = "https://cms.daily.nhattran.com.vn/dieu-khoan-su-dung",
-                PrivacyPolicy = "https://cms.daily.nhattran.com.vn/chinh-sach-bao-mat",
+                TermsOfUse = "https://cms.sandbox-topup.gmobile.vn/dieu-khoan-su-dung",
+                PrivacyPolicy = "https://cms.sandbox-topup.gmobile.vn/chinh-sach-bao-mat",
                 VerifyPaymentMethod =
                     await _settingManger.GetPaymentVerifyMethod(CommonConst.Channel.APP,
                         AbpSession.ToUserIdentifier()), ////Hình thức xác thực khi thanh toán

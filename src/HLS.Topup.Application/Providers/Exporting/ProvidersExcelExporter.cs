@@ -72,7 +72,7 @@ namespace HLS.Topup.Providers.Exporting
                         "Tổng Mệnh giá BF NCC",
                         "SL khớp",
                         "SL lệch",
-                        "NT có NCC không có",
+                        "GMB có NCC không có",
                         "NCC có NT không có",
                         "Người đối soát"
                     );

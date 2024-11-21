@@ -47,7 +47,7 @@ namespace HLS.Topup.Net.Sms
             try
             {
                 _logger.LogInformation($"MobileNetSender: {number}");
-                var transCode = "NT" + DateTime.Now.ToString("ddMMyyyyhhmmss") + "_" + number;
+                var transCode = "GMB" + DateTime.Now.ToString("ddMMyyyyhhmmss") + "_" + number;
                 var sms = L("Message_Sms", _mobileNetSenderConfiguration.Company, verifycode);
                 var smsMsg = new SmsMessageRequest()
                 {

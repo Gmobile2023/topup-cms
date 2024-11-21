@@ -36,7 +36,7 @@ namespace HLS.Topup.Cms
         
         public async Task<AcfFaqsAppDto> GetFaqsAcfByPage(int pageId)
         {
-            var client = new JsonServiceClient("https://cms.daily.nhattran.com.vn/wp-json/")
+            var client = new JsonServiceClient("https://cms.sandbox-topup.gmobile.vn/wp-json/")
             {
             };
             try

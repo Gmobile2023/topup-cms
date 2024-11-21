@@ -485,7 +485,7 @@ namespace HLS.Topup.Deposits
                             checkDes.AccountCode + "-" + checkDes.FullName,
                             deposit.Amount.ToFormat("đ"), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
                             deposit.Description,
-                            "https://daily.nhattran.com.vn/App/Deposits");
+                            "https://sandbox-topup.gmobile.vn/App/Deposits");
                         await _appNotifier.PublishTeleMessage(new SendTeleMessageRequest
                         {
                             Message = message,
@@ -1179,7 +1179,7 @@ namespace HLS.Topup.Deposits
                             deposit.Amount.ToFormat("đ"), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
                             //deposit.Description,
                             $"Mã nạp: {deposit.RequestCode}",
-                            "https://daily.nhattran.com.vn/App/Deposits");
+                            "https://sandbox-topup.gmobile.vn/App/Deposits");
 
                     else
                         message = L("Bot_Send_RequestDepositInSale", checkDes.AccountCode + "-" + checkDes.FullName,
@@ -1188,7 +1188,7 @@ namespace HLS.Topup.Deposits
                             deposit.Amount.ToFormat("đ"), DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
                             //deposit.Description,
                             $"Mã nạp: {deposit.RequestCode}",
-                            "https://daily.nhattran.com.vn/App/Deposits");
+                            "https://sandbox-topup.gmobile.vn/App/Deposits");
 
                     await _appNotifier.PublishTeleMessage(new SendTeleMessageRequest
                     {

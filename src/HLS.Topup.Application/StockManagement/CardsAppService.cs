@@ -120,7 +120,7 @@ namespace HLS.Topup.StockManagement
                 var rs = await _cardManager.CardGetListRequest(request);
 
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDto<CardDto>(
                         0,
                         new List<CardDto>()
@@ -163,7 +163,7 @@ namespace HLS.Topup.StockManagement
         public async Task<GetCardForViewDto> GetCardForView(Guid id)
         {
             var rs = await _cardManager.CardGetRequest(new CardGetRequest { Id = id });
-            if (rs == null || rs.ResponseCode != "01")
+            if (rs == null || rs.ResponseCode != "1")
                 return new GetCardForViewDto
                 {
                     Card = new CardDto
@@ -190,7 +190,7 @@ namespace HLS.Topup.StockManagement
         public async Task<GetCardForEditOutput> GetCardForEdit(Guid id)
         {
             var rs = await _cardManager.CardGetFullRequest(new CardGetFullRequest { Id = id });
-            if (rs == null || rs.ResponseCode != "01")
+            if (rs == null || rs.ResponseCode != "1")
                 return new GetCardForEditOutput
                 {
                     Card = new CreateOrEditCardDto
@@ -243,7 +243,7 @@ namespace HLS.Topup.StockManagement
                 },
                 BatchCode = input.BatchCode,
             });
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 throw new UserFriendlyException(rs.ResponseMessage);
         }
 
@@ -259,7 +259,7 @@ namespace HLS.Topup.StockManagement
                 Serial = input.Serial,
                 Status = (byte)input.Status,
             });
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 throw new UserFriendlyException(rs.ResponseMessage);
         }
 
@@ -342,7 +342,7 @@ namespace HLS.Topup.StockManagement
         {
             var rs = await _cardManager.CardGetFullRequest(new CardGetFullRequest { Id = id });
 
-            if (rs == null || rs.ResponseCode != "01")
+            if (rs == null || rs.ResponseCode != "1")
 
                 return new GetCardForViewDto
                 {
@@ -401,7 +401,7 @@ namespace HLS.Topup.StockManagement
             }
 
             var response = await GetCardImportList(list);
-            if (response.ResponseCode != "01")
+            if (response.ResponseCode != "1")
             {
                 await _appNotifier.SendMessageAsync(user, response.ResponseMessage,
                     Abp.Notifications.NotificationSeverity.Error);
@@ -434,7 +434,7 @@ namespace HLS.Topup.StockManagement
             {
                 var rs = await _cardManager.CardImportFileRequest(request);
                 _logger.LogInformation($"ImportCardsJob: {rs.ResponseCode}|{rs.ResponseMessage}");
-                if (rs.ResponseCode == "01")
+                if (rs.ResponseCode == "1")
                 {
                     await _appNotifier.SendMessageAsync(user,
                         "Nhập thẻ qua file thành công: " + request.Data.Sum(x => x.Quantity) + " thẻ.",
@@ -461,7 +461,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Kiểm tra lại thông tin dữ liệu không hợp lệ"
                 };
             }
@@ -471,7 +471,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Kiểm tra lại thông tin dữ liệu không hợp lệ: " +
                                       list.FirstOrDefault(x => !x.CanBeImported())?.Exception,
                     Payload = list
@@ -484,7 +484,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Dữ liệu trong file không hợp lệ. Quý khác kiểm tra lại trường dữ liệu."
                 };
             }
@@ -495,7 +495,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Kiểm tra lại dữ liệu, trùng serial"
                 };
             }
@@ -507,7 +507,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Kiểm tra lại dữ liệu, trùng mã"
                 };
             }
@@ -573,7 +573,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Kiểm tra lại thông tin thẻ và loại thẻ không phù hợp",
                     Payload = data
                 };
@@ -583,7 +583,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Kiểm tra lại thông tin loại thẻ và dịch vụ thẻ không phù hợp",
                     Payload = data
                 };
@@ -593,7 +593,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Kiểm tra lại thông tin thẻ không hợp lệ",
                     Payload = data
                 };
@@ -603,7 +603,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Kiểm tra lại thông tin loại thẻ không hợp lệ",
                     Payload = data
                 };
@@ -613,7 +613,7 @@ namespace HLS.Topup.StockManagement
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Kiểm tra lại thông tin dịch vụ thẻ không hợp lệ",
                     Payload = data
                 };
@@ -622,7 +622,7 @@ namespace HLS.Topup.StockManagement
 
             return new ResponseMessages()
             {
-                ResponseCode = "01",
+                ResponseCode = "1",
                 ResponseMessage = "ok",
                 Payload = data
             };
@@ -647,7 +647,7 @@ namespace HLS.Topup.StockManagement
         public async Task UpdateCardStatus(CardUpdateStatusRequest input)
         {
             var rs = await _cardManager.CardUpdateStatusRequest(input);
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 throw new UserFriendlyException(rs.ResponseMessage);
         }
 
@@ -689,7 +689,7 @@ namespace HLS.Topup.StockManagement
             };
             var rs = await _cardManager.CardBatchGetListRequest(request);
 
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 return new List<CardBatchLookupTableDto>();
             var data = rs.Payload.ConvertTo<List<CardBatchDto>>();
             if (data.Any())
@@ -789,7 +789,7 @@ namespace HLS.Topup.StockManagement
                 request.Offset = input.SkipCount;
                 var rs = await _cardManager.CardStockTransListAsync(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDto<StockTransRequestDto>(
                         0,
                         new List<StockTransRequestDto>()

@@ -29,7 +29,7 @@ namespace HLS.Topup.Transactions
                 var rs = await _transactionManager.GetBatchLotListRequest(request);
                 var totalCount = rs.Total;
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<BatchItemDto>(0, new BatchItemDto(),
                         new List<BatchItemDto>());
 
@@ -138,7 +138,7 @@ namespace HLS.Topup.Transactions
                 var rs = await _transactionManager.GetBatchLotDetaiListLRequest(request);
                 var totalCount = rs.Total;
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<BatchDetailDto>(0, new BatchDetailDto(),
                         new List<BatchDetailDto>());
 
@@ -199,7 +199,7 @@ namespace HLS.Topup.Transactions
             {
                 return new ResponseMessages()
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Lỗi"
                 };
             }

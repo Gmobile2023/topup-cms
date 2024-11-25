@@ -55,7 +55,7 @@
             _modalManager.setBusy(true);
             _cardsService.importCardsApi(postData).done(function (result) {                
                 _modalManager.setBusy(false);
-                if (result.responseStatus.errorCode === "01") {
+                if (result.responseStatus.errorCode === "1") {
                     abp.message.info('Xác nhận nhập thẻ từ API đối tác!. Tiến trình đang xử lý. Vui lòng chờ thông báo kết quả');
                     _modalManager.close();
                     abp.event.trigger('app.importCardsApiSaved');

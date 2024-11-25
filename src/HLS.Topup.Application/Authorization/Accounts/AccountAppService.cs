@@ -342,7 +342,7 @@ namespace HLS.Topup.Authorization.Accounts
         public async Task ValidateAccount(VerifyAccountDto model)
         {
             var checkPhone = await UserManager.ValidateAccountRegister(model.PhoneNumber);
-            if (checkPhone.ResponseCode != "01")
+            if (checkPhone.ResponseCode != "1")
                 throw new UserFriendlyException(checkPhone.ResponseMessage);
             if (model.IsSendCode)
                 await _otpAppService.SendOtpAsync(new OtpRequestInput

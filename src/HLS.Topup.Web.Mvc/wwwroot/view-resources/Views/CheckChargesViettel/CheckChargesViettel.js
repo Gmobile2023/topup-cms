@@ -70,7 +70,7 @@
                 processData: false,
                 success: function (response) {
                     var jsonResult = response.result;
-                    if (jsonResult.responseCode == "01") {
+                    if (jsonResult.responseCode == "1") {
                         _$listTopup = jsonResult.payload;
                         if (jsonResult.payload && jsonResult.payload.length >= 1) {
                             $("#GetCheckCharges").show();
@@ -94,7 +94,7 @@
                         abp.ui.setBusy();
                         _topupService.createCheckChargesListRequest(checkcharges)
                             .done((rs) => {
-                                if (rs.responseCode === "01") {
+                                if (rs.responseCode === "1") {
                                     window.location.href = abp.appPath + "CheckCharges/PaymentSuccess";
                                     //abp.message.success("Giao dịch thực hiện thành công");
                                     //location.reload(true);

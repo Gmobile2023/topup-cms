@@ -770,7 +770,7 @@ namespace HLS.Topup.Reports
             {
                 var rs = await client.GetAsync<ResponseMessages>(request);
                 _logger.LogInformation($"ReportCompareRefundSingle return: {rs.ResponseCode} - {rs.Payload}");
-                if (rs.ResponseCode == "01")
+                if (rs.ResponseCode == "1")
                 {
                     return rs.ExtraInfo.FromJson<CompareRefunDto>();
                 }

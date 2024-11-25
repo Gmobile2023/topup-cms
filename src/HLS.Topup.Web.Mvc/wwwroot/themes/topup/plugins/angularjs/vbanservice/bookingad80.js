@@ -759,7 +759,7 @@ topupApp.controller('FlightController', ["$scope", "$locale", function ($scope, 
             complete: function () {
             },
             success: function (data) {
-                if (data.Code === "00") {
+                if (data.Code === "0") {
                     $scope.AirlineNews = data.Data;
                 }
 
@@ -798,7 +798,7 @@ topupApp.controller('FlightController', ["$scope", "$locale", function ($scope, 
                 complete: function () {
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         $scope.dTextdepart = data.dTextdepart;
                         $scope.dTextArrival = data.dTextarrival;
                         $scope.iTextdepart = data.iTextdepart;
@@ -1048,7 +1048,7 @@ topupApp.controller('BookPayController', ["$scope", "$locale", function ($scope,
                                 $("#service-loader-wrapper").css("display", "none");
                             },
                             success: function (data) {
-                                if (data.Code === "00") {
+                                if (data.Code === "0") {
                                     $("#btnpay").removeClass("section-frame__btn--disable");
                                     $scope.detailStatus = 2;
                                     $scope.Passenger = JSON.parse(data.passenger);
@@ -1354,7 +1354,7 @@ topupApp.controller('BookPayController', ["$scope", "$locale", function ($scope,
                                 $("#service-loader-wrapper").css("display", "none");
                             },
                             success: function (data) {
-                                if (data.Code === "00") {
+                                if (data.Code === "0") {
                                     if (data.GiftCode === "1") {
                                         window.location.replace(data.Data);
                                     } else {
@@ -1413,7 +1413,7 @@ topupApp.controller('BookPayController', ["$scope", "$locale", function ($scope,
                     $("#service-loader-wrapper").css("display", "none");
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         if (data.GiftCode === "1") {
                             window.location.replace(data.Data);
                         } else {
@@ -1481,7 +1481,7 @@ topupApp.controller('BookPayController', ["$scope", "$locale", function ($scope,
                 complete: function () {
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         $scope.feetnx = data.Data;
                         $scope.amountpaytemp = $scope.amountpay;
                         $scope.amountpay = $scope.amountpay + $scope.feetnx;
@@ -1515,7 +1515,7 @@ topupApp.controller('BookPayController', ["$scope", "$locale", function ($scope,
             complete: function () {
             },
             success: function (data) {
-                if (data.Code === "00") {
+                if (data.Code === "0") {
                     $scope.AirlineNews = data.Data;
                 }
 
@@ -1567,7 +1567,7 @@ topupApp.controller('BookPayController', ["$scope", "$locale", function ($scope,
                 complete: function () {
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         $scope.feetnx = data.Data;
                         $scope.amountpaytemp = $scope.amountpay;
                         $scope.amountpay = $scope.amountpay + $scope.feetnx;

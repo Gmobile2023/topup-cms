@@ -44,7 +44,7 @@
             user.DiscountDetail = objs;
             _modalManager.setBusy(true);
             _accountService.createOrEditAccount(user).done(function (rs) {
-                if (rs.responseCode === "01") {
+                if (rs.responseCode === "1") {
                     abp.notify.info(app.localize('SavedSuccessfully'));
                     _modalManager.close();
                     abp.event.trigger('app.createOrEditAgentModalSaved');

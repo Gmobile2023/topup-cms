@@ -80,7 +80,7 @@ namespace HLS.Topup.Providers
                 var sumList = rs.SumData.ConvertTo<List<CompareDtoReponse>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new CompareDtoReponse();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<CompareDtoReponse>(0, new CompareDtoReponse(),
                         new List<CompareDtoReponse>());
 
@@ -118,7 +118,7 @@ namespace HLS.Topup.Providers
                 var sumList = rs.SumData.ConvertTo<List<CompareReponseDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new CompareReponseDto();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<CompareReponseDto>(0, new CompareReponseDto(),
                         new List<CompareReponseDto>());
 
@@ -157,7 +157,7 @@ namespace HLS.Topup.Providers
                 var sumList = rs.SumData.ConvertTo<List<CompareReponseDetailDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new CompareReponseDetailDto();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<CompareReponseDetailDto>(0, new CompareReponseDetailDto(),
                         new List<CompareReponseDetailDto>());
 
@@ -196,7 +196,7 @@ namespace HLS.Topup.Providers
                 var sumList = rs.SumData.ConvertTo<List<CompareRefunDetailDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new CompareRefunDetailDto();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<CompareRefunDetailDto>(0, new CompareRefunDetailDto(),
                         new List<CompareRefunDetailDto>());
 
@@ -235,7 +235,7 @@ namespace HLS.Topup.Providers
                 var sumList = rs.SumData.ConvertTo<List<CompareRefunDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new CompareRefunDto();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<CompareRefunDto>(0, new CompareRefunDto(),
                         new List<CompareRefunDto>());
 

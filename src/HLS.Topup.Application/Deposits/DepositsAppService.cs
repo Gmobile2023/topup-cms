@@ -640,7 +640,7 @@ namespace HLS.Topup.Deposits
                 });
                 //deposit.ExtraInfo = requestDeposit.ToJson();
                 deposit.ExtraInfo =$"{requestDeposit.ResponseCode}|{requestDeposit.ResponseMessage}";
-                if (requestDeposit.ResponseCode == "01")
+                if (requestDeposit.ResponseCode == "1")
                 {
                     deposit.Status = CommonConst.DepositStatus.Approved;
                     await Task.Run(async () =>
@@ -750,7 +750,7 @@ namespace HLS.Topup.Deposits
                     TransRef = request.TransCode,
                 });
 
-                if (requestDeposit.ResponseCode == "01")
+                if (requestDeposit.ResponseCode == "1")
                 {
                     deposit.Status = CommonConst.DepositStatus.Approved;
                     if (debtHistory != null)
@@ -825,7 +825,7 @@ namespace HLS.Topup.Deposits
                 });
                 //deposit.ExtraInfo = requestDeposit.ToJson();
                 deposit.ExtraInfo = $"{requestDeposit.ResponseCode}|{requestDeposit.ResponseMessage}";
-                if (requestDeposit.ResponseCode == "01")
+                if (requestDeposit.ResponseCode == "1")
                 {
                     deposit.Status = CommonConst.DepositStatus.Approved;
                     await Task.Run(async () =>
@@ -872,7 +872,7 @@ namespace HLS.Topup.Deposits
             }
 
             await _depositRepository.UpdateAsync(deposit);
-            if (requestDeposit.ResponseCode != "01")
+            if (requestDeposit.ResponseCode != "1")
                 throw new UserFriendlyException(requestDeposit.ResponseMessage);
         }
 
@@ -1209,7 +1209,7 @@ namespace HLS.Topup.Deposits
             return new ResponseMessages
             {
                 Payload = deposit.TransCode,
-                ResponseCode = "01",
+                ResponseCode = "1",
                 ExtraInfo = _commonManger.EncryptQueryParameters(
                     $"/Transactions/TransactionInfo?code=01&transCode={deposit.TransCode}&message={L("Message_RequestDeposit_Success")}&transType={CommonConst.TransactionType.Deposit}"),
                 ResponseMessage = deposit.RequestCode + " - Nap tien - " + checkDes.AccountCode,
@@ -1289,7 +1289,7 @@ namespace HLS.Topup.Deposits
             var rand = new Random();
             var randRequestCode = "NP" + rand.Next(000000, 999999).ToString("000000");
 
-            var rs = new ResponseMessages("01");
+            var rs = new ResponseMessages("1");
             rs.Payload = randRequestCode;
 
             return rs;

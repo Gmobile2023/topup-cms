@@ -101,7 +101,7 @@
                 console.log(response);
                 console.log(e);
                 var jsonResult = response.result;
-                if (jsonResult.result.responseCode === "01") {
+                if (jsonResult.result.responseCode === "1") {
                     abp.message.info('Import file thành công!. Tiến trình đang xử lý. Vui lòng chờ thông báo kết quả');
                     _modalManager.close();
                     abp.event.trigger('app.createOrEditCardModalSaved');

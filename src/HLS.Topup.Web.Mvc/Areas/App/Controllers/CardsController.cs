@@ -173,7 +173,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = "Lỗi không load được dữ liệu file import"
                     };
                 }
@@ -183,7 +183,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
             {
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = L("Error")
                 };
             }
@@ -221,7 +221,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
 
                 return new ResponseMessages
                 {
-                    ResponseCode = "01",
+                    ResponseCode = "1",
                     ResponseMessage = L("Bắt đầu nhập file thẻ, vui lòng chờ thông báo kết quả xử lý!")
                 };
             }
@@ -229,7 +229,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
             {
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = L("Error")
                 };
             }

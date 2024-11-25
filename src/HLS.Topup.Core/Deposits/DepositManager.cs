@@ -113,7 +113,7 @@ namespace HLS.Topup.Deposits
                     });
                     //deposit.ExtraInfo = requestDeposit.ToJson();
                     deposit.ExtraInfo =$"{requestDeposit.ResponseCode}|{requestDeposit.ResponseMessage}";
-                    if (requestDeposit.ResponseCode == "01")
+                    if (requestDeposit.ResponseCode == "1")
                     {
                         deposit.Status = CommonConst.DepositStatus.Approved;
                         await Task.Run(async () =>
@@ -226,7 +226,7 @@ namespace HLS.Topup.Deposits
                         TransRef = transcode
                     });
 
-                    if (requestDeposit.ResponseCode == "01")
+                    if (requestDeposit.ResponseCode == "1")
                     {
                         deposit.Status = CommonConst.DepositStatus.Approved;
                         if (debtHistory != null)
@@ -261,7 +261,7 @@ namespace HLS.Topup.Deposits
                         TransNote = deposit.Description
                     });
                     deposit.ExtraInfo = requestDeposit.ToJson();
-                    if (requestDeposit.ResponseCode == "01")
+                    if (requestDeposit.ResponseCode == "1")
                     {
                         deposit.Status = CommonConst.DepositStatus.Approved;
                         await Task.Run(async () =>
@@ -309,7 +309,7 @@ namespace HLS.Topup.Deposits
 
                 await _depositRepository.UpdateAsync(deposit);
                 await CurrentUnitOfWork.SaveChangesAsync();
-                if (requestDeposit.ResponseCode != "01")
+                if (requestDeposit.ResponseCode != "1")
                     throw new UserFriendlyException(requestDeposit.ResponseMessage);
             }
             catch (Exception e)

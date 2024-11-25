@@ -64,7 +64,7 @@ namespace HLS.Topup.StockManagement
             var rs = await _stockAirtimeManager.GetAllBatchAirtime(request);
 
             var totalCount = rs.Total;
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 return new PagedResultDto<BatchAirtimeDto>(
                     0,
                     new List<BatchAirtimeDto>()
@@ -114,7 +114,7 @@ namespace HLS.Topup.StockManagement
         {
             var response =
                 await _stockAirtimeManager.GetBatchAirtime(new GetBatchAirtimeRequest() {BatchCode = batchCode});
-            if (response.ResponseCode != "01")
+            if (response.ResponseCode != "1")
                 return null;
             var data = response.Payload;
             var provider = await _lookupProviderRepository.GetAll()
@@ -173,7 +173,7 @@ namespace HLS.Topup.StockManagement
         {
             var response =
                 await _stockAirtimeManager.GetBatchAirtime(new GetBatchAirtimeRequest() {BatchCode = code});
-            if (response.ResponseCode != "01")
+            if (response.ResponseCode != "1")
                 throw new UserFriendlyException(response.ResponseMessage);
             var data = response.Payload;
             await _stockAirtimeManager.DateteBatchAirtime(data.ConvertTo<DeleteBatchAirtimeRequest>());

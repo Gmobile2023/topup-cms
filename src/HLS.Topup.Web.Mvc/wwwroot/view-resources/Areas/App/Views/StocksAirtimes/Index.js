@@ -83,7 +83,7 @@
                                     abp.services.app.stocksAirtimes.query(data.record.keyCode.trim())
                                         .done(function (data) {
                                             abp.ui.clearBusy();
-                                            let str = data && data.responseCode === "01" ? Sv.NumberToString(data.payload) : "0" ;
+                                            let str = data && data.responseCode === "1" ? Sv.NumberToString(data.payload) : "0" ;
                                             abp.message.success('Số dư thực tế: ' + str);
                                         }).catch(function () {
                                         abp.ui.clearBusy();
@@ -225,7 +225,7 @@ function queryBalance(e) {
     abp.services.app.stocksAirtimes.query(code.trim())
         .done(function (data) {
             abp.ui.clearBusy();
-            let str = data && data.responseCode === "01" ? Sv.NumberToString(data.payload) : "0" ;
+            let str = data && data.responseCode === "1" ? Sv.NumberToString(data.payload) : "0" ;
             $p.find(".q_airtime").html(str);
         }).catch(function () {
             $p.find(".q_airtime").html("Không xác định");

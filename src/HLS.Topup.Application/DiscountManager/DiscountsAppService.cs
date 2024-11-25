@@ -616,7 +616,7 @@ namespace HLS.Topup.DiscountManager
         {
             if (!dataList.Any())
             {
-                return new ResponseMessages("00", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
+                return new ResponseMessages("0", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
             }
 
             var query = from lst in dataList
@@ -640,10 +640,10 @@ namespace HLS.Topup.DiscountManager
             var discountImports = query as DiscountImport[] ?? query.ToArray();
             if (!discountImports.Any())
             {
-                return new ResponseMessages("00", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
+                return new ResponseMessages("0", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
             }
 
-            var rs = new ResponseMessages("01");
+            var rs = new ResponseMessages("1");
             rs.Payload = discountImports.ToList();
 
             return rs;

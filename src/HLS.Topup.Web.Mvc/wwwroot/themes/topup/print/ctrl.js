@@ -5,7 +5,7 @@
                 Data: {transcode: transcode}
             },
             function (rs) {
-                callback("01", rs);
+                callback("1", rs);
             },
             function (e) {
                 callback("00", e);
@@ -18,7 +18,7 @@
     // néu desktop => in nhiệt
     printOther: function (transcode) {
         print.getData(transcode, function (code, rs) {
-            if (code === "01") {
+            if (code === "1") {
                 if (Sv.isMobile()) {
                     print.mobile(rs.result.data)
                 } else {

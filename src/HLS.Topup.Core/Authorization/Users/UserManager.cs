@@ -469,7 +469,7 @@ namespace HLS.Topup.Authorization.Users
             var rs = new ResponseMessages();
             if (string.IsNullOrEmpty(userName))
             {
-                rs.ResponseCode = "00";
+                rs.ResponseCode = "0";
                 rs.ResponseMessage = "Chưa nhập username";
                 return rs;
             }
@@ -484,13 +484,13 @@ namespace HLS.Topup.Authorization.Users
 
             if (ValidationHelper.IsPhone(userName) == false)
             {
-                rs.ResponseCode = "00";
+                rs.ResponseCode = "0";
                 rs.ResponseMessage = "Số điện thoại không hợp lệ";
                 return rs;
             }
 
 
-            rs.ResponseCode = "01";
+            rs.ResponseCode = "1";
             rs.ResponseMessage = "Success";
             return rs;
         }
@@ -501,14 +501,14 @@ namespace HLS.Topup.Authorization.Users
             var rs = new ResponseMessages();
             if (string.IsNullOrEmpty(mobile))
             {
-                rs.ResponseCode = "00";
+                rs.ResponseCode = "0";
                 rs.ResponseMessage = L("Required_PhoneNumber");
                 return rs;
             }
 
             // if (string.IsNullOrEmpty(email))
             // {
-            //     rs.ResponseCode = "00";
+            //     rs.ResponseCode = "0";
             //     rs.ResponseMessage = L("Required_Email");
             //     return rs;
             // }
@@ -522,7 +522,7 @@ namespace HLS.Topup.Authorization.Users
 
             if (ValidationHelper.IsPhone(mobile) == false)
             {
-                rs.ResponseCode = "00";
+                rs.ResponseCode = "0";
                 rs.ResponseMessage = L("MobileInvalid");
                 return rs;
             }
@@ -542,7 +542,7 @@ namespace HLS.Topup.Authorization.Users
                 return rs;
             }
 
-            rs.ResponseCode = "01";
+            rs.ResponseCode = "1";
             rs.ResponseMessage = "Success";
             return rs;
         }

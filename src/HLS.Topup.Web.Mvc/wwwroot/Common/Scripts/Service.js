@@ -333,7 +333,7 @@ var Service = function () {
         base.AuthenAjaxPost({
             Url: window.location.href + "/CheckPermission?permission=" + permission.toUpperCase()
         }, function (rs) {
-            if (rs.code == "00") {
+            if (rs.code == "0") {
                 alert(rs.message);
                 return false;
             } else {
@@ -1630,7 +1630,7 @@ var Service = function () {
             Url: url,
             Data: model
         }, function (rs) {
-            if (rs.Status === "00") {
+            if (rs.Status === "0") {
                 Dialog.Alert(rs.Message, Dialog.Error);
             } else {
                 if (typeof callback == "function")

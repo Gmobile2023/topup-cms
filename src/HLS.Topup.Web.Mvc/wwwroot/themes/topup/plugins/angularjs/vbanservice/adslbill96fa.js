@@ -362,7 +362,7 @@ topupApp.controller('ADSLController', ["$scope", "$locale", function ($scope, $l
                                     //    },
                                     //    success: function (data) {
                                     //        console.log(data);
-                                    //        if (data.Code === "00") {
+                                    //        if (data.Code === "0") {
                                     //            $scope.qrimg = data.Data;
 
                                     //            //create connection notify
@@ -527,7 +527,7 @@ topupApp.controller('ADSLController', ["$scope", "$locale", function ($scope, $l
                                 $("#service-loader-wrapper").css("display", "none");
                             },
                             success: function (data) {
-                                if (data.Code === "00") {
+                                if (data.Code === "0") {
                                     if (data.GiftCode === "1") {
                                         window.location.replace(data.Data);
                                     } else {
@@ -589,7 +589,7 @@ topupApp.controller('ADSLController', ["$scope", "$locale", function ($scope, $l
                     $("#service-loader-wrapper").css("display", "none");
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         if (data.GiftCode === "1") {
                             window.location.replace(data.Data);
                         } else {
@@ -655,7 +655,7 @@ topupApp.controller('ADSLController', ["$scope", "$locale", function ($scope, $l
                 complete: function () {
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         $scope.feetnx = data.Data;
                         $scope.amountpaytemp = $scope.amountpay;
                         $scope.amountpay = $scope.amountpay + $scope.feetnx;
@@ -704,7 +704,7 @@ topupApp.controller('ADSLController', ["$scope", "$locale", function ($scope, $l
                 complete: function () {
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         $scope.feetnx = data.Data;
                         $scope.amountpaytemp = $scope.amountpay;
                         $scope.amountpay = $scope.amountpay + $scope.feetnx;

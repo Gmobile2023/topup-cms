@@ -404,16 +404,16 @@ namespace HLS.Topup.Common
                          (string.IsNullOrEmpty(obj.requestCode) ? "" : $"\nMã nạp: {obj.requestCode}") +
                          "\nSố tiền nạp: " + (obj.amount.ReplaceAll("(", "").ReplaceAll(")", "")) +
                          "\nNội dung: " + (obj.note ?? "") +
-                         (code == "00" ? $"\nLỗi: {(message ?? "")}" : $"\nMã đại lý: {(obj.account ?? "")}");
+                         (code == "0" ? $"\nLỗi: {(message ?? "")}" : $"\nMã đại lý: {(obj.account ?? "")}");
 
             if (obj != null)
                 await _appNotifier.PublishTeleMessage(new SendTeleMessageRequest
                 {
                     Message = notify,
                     Module = "API",
-                    Title = code == "01" ? "Duyệt yêu cầu nạp tiền ngân hàng thành công" : "Cảnh báo Duyệt yêu cầu nạp tiền ngân hàng không thành công",
+                    Title = code == "1" ? "Duyệt yêu cầu nạp tiền ngân hàng thành công" : "Cảnh báo Duyệt yêu cầu nạp tiền ngân hàng không thành công",
                     BotType = (byte)CommonConst.BotType.Deposit,
-                    MessageType = code == "01" ? (byte)CommonConst.BotMessageType.Message : (byte)CommonConst.BotMessageType.Wraning,
+                    MessageType = code == "1" ? (byte)CommonConst.BotMessageType.Message : (byte)CommonConst.BotMessageType.Wraning,
                     Code = code
                 });
 

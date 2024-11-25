@@ -45,7 +45,7 @@ namespace HLS.Topup.Web.Controllers
             model.TransInfo = new Dtos.Transactions.TopupRequestResponseDto();
             if (model.TransType == CommonConst.TransactionType.Transfer.ToString("G"))
                 return View(model);
-            if (model.Code != "01") return View(model);
+            if (model.Code != "1") return View(model);
             var user = _userManager.GetAccountInfo();
 
             if (model.TransType == CommonConst.TransactionType.Deposit.ToString("G"))
@@ -53,7 +53,7 @@ namespace HLS.Topup.Web.Controllers
                 var check = await _deposits.GetDeposit(model.TransCode, AbpSession.UserId ?? 0);
                 if (check == null)
                 {
-                    model.Code = "00";
+                    model.Code = "0";
                     model.Message = "Xin lỗi! Không tìm thấy thông tin giao dịch của bạn";
                     return View(model);
                 }
@@ -67,7 +67,7 @@ namespace HLS.Topup.Web.Controllers
             var data = await _transactionsAppService.GetTransactionByCode(model.TransCode);
             if (data == null)
             {
-                model.Code = "00";
+                model.Code = "0";
                 model.Message = "Xin lỗi! Không tìm thấy thông tin giao dịch của bạn";
                 return View(model);
             }

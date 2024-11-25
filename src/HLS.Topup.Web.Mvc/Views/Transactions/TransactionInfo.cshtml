@@ -15,10 +15,10 @@
             <div class="section-body-right bg-white affix-wrap affix-top">
                 <div class="section-body-right-header">
                     <div class="cart"></div>
-                    <p>@((Model.Code == "01") ? "Giao dịch thành công" : "Giao dịch không thành công")</p>
+                    <p>@((Model.Code == "1") ? "Giao dịch thành công" : "Giao dịch không thành công")</p>
                 </div>
 
-                @if (Model.Code == "01")
+                @if (Model.Code == "1")
                 {
                     if (Model.TransType == CommonConst.TransactionType.Deposit.ToString("G"))
                     {
@@ -124,7 +124,7 @@
         <div class="section-body-middle-form-p2">
             <div class="row">
 
-                @if (Model.Code == "01" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_CODE
+                @if (Model.Code == "1" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_CODE
                                          || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_DATA
                                          || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_GAME))
                 {
@@ -148,7 +148,7 @@
                     {
                         <button type="button" onclick="historyNext()" class="button btn-custom btn-blue" style="width: auto !important; padding: 0 20px;">Xem lịch sử giao dịch</button>
                     }
-                    @if (Model.Code == "01" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP_DATA
+                    @if (Model.Code == "1" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP_DATA
                                              || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PAY_BILL
                                              || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP))
                     {

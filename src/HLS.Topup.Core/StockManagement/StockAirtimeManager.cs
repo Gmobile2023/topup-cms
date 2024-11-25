@@ -411,7 +411,7 @@ namespace HLS.Topup.StockManagement
                     Offset = 0,
                     Status = 99
                 });
-                if (rs?.ResponseCode != "01")
+                if (rs?.ResponseCode != "1")
                     return null;
                 var data = rs.Payload;
                 if (data.Any())

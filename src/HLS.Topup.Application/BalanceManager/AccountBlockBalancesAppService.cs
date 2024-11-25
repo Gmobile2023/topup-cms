@@ -244,9 +244,9 @@ namespace HLS.Topup.BalanceManager
                 }
 
                 detail.TransNote = response.ToJson();
-                detail.Success = response.ResponseCode == "01";
+                detail.Success = response.ResponseCode == "1";
                 await _accountBlockBalanceDetailRepository.UpdateAsync(detail);
-                if (response.ResponseCode == "01")
+                if (response.ResponseCode == "1")
                 {
                     var payload = response.Payload;
                     try

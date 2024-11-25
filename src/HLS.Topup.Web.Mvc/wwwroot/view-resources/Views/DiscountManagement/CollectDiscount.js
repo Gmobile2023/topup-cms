@@ -146,7 +146,7 @@
                         toDate: getDateFilter($('#ToDateFilterId')),
                         search: $("#TableFilter").val()
                     }).done(function (rs) {
-                        if (rs.responseCode === "01") {
+                        if (rs.responseCode === "1") {
                             console.log(rs.extraInfo.replace('.', ','));
                             console.log(rs.payload.replace('.', ','));
                             abp.message.success("Thu hoạch lãi thành công. Số tiền lãi thu hoạch được là: " + format_number(rs.payload.replace('.', ',')) + ". Số dư sau giao dịch là: " + format_number(rs.extraInfo.replace('.', ',')));

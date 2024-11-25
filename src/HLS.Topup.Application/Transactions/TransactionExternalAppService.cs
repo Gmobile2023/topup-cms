@@ -102,7 +102,7 @@ namespace HLS.Topup.Transactions
         public async Task<TransactionResponse> Transfer(TransferRequest input)
         {
             var rs = await TransferMoney(input);
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 throw new UserFriendlyException(int.Parse(rs.ResponseCode), rs.ResponseMessage);
             return rs;
         }

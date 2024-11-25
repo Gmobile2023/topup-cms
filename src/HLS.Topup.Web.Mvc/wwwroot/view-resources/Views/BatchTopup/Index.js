@@ -918,7 +918,7 @@
             }, function (response) {
                 ctrlList.addTableDataTopup(response.result.payload);
                 document.getElementById('fileTopupInput').value = "";
-                if (response.result.responseCode == "00") {
+                if (response.result.responseCode == "0") {
                     abp.message.error(response.result.responseMessage);
                 }
             }, function () {
@@ -952,7 +952,7 @@
             }, function (response) {
                 ctrlList.addTableDataPinCode(response.result.payload);
                 document.getElementById('filePinCodeInput').value = "";
-                if (response.result.responseCode == "00") {
+                if (response.result.responseCode == "0") {
                     abp.message.error(response.result.responseMessage);
                 }
             }, function () {
@@ -987,7 +987,7 @@
             }, function (response) {
                 ctrlList.addTableDataPayBill(response.result.payload);
                 document.getElementById('filePayBillInput').value = "";
-                if (response.result.responseCode == "00") {
+                if (response.result.responseCode == "0") {
                     abp.message.error(response.result.responseMessage);
                 }
             }, function () {

@@ -54,7 +54,7 @@ namespace HLS.Topup.Auditing
 
                 var rs = await _auditManger.GetAccountActivityHistoryRequest(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDto<AccountActivityHistoryDto>(
                         0,
                         new List<AccountActivityHistoryDto>()
@@ -102,7 +102,7 @@ namespace HLS.Topup.Auditing
 
                 var rs = await _auditManger.GetAccountActivityHistoryRequest(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDto<AccountActivityHistoryDto>(
                         0,
                         new List<AccountActivityHistoryDto>()

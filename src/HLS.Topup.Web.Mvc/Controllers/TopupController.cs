@@ -216,7 +216,7 @@ namespace HLS.Topup.Web.Controllers
 
                 return new ResponseMessages
                 {
-                    ResponseCode = "01",
+                    ResponseCode = "1",
                     ResponseMessage = msg,
                     Payload = data
                 };
@@ -225,7 +225,7 @@ namespace HLS.Topup.Web.Controllers
             {
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = L("Error")
                 };
             }

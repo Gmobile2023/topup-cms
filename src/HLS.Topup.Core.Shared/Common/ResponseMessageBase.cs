@@ -5,7 +5,7 @@ namespace HLS.Topup.Common
         public string Code { get; set; }
         public ResponseMessageBase()
         {
-            Code = "00";
+            Code = "0";
         }
         public string Message { get; set; }
         public string ExtraInfo { get; set; }

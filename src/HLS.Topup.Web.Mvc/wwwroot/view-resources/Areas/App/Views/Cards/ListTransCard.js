@@ -229,7 +229,7 @@
                     provider: data.record.provider
                 }
             ).done(function (rs) {
-                if (rs.responseCode === "01") {
+                if (rs.responseCode === "1") {
                     abp.message.info("Giao dịch thành công");
                     getListTransCards();
                 } else if (rs.responseCode === "4007") {

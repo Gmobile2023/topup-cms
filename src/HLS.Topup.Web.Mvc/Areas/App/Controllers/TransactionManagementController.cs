@@ -79,7 +79,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = "Quý khách chưa chọn file để import"
                     };
                 }
@@ -97,7 +97,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                         list = await ReadFileExls();
                         return new ResponseMessages
                         {
-                            ResponseCode = "01",
+                            ResponseCode = "1",
                             ResponseMessage = "Thành công",
                             Payload = list
                         };
@@ -106,7 +106,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                     {
                         return new ResponseMessages
                         {
-                            ResponseCode = "00",
+                            ResponseCode = "0",
                             ResponseMessage = "Định dạng file không hợp lệ."
                         };
                     }
@@ -117,7 +117,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 _logger.LogError($"ReadFileCompare error: {ex.Message}|{ex.InnerException}|{ex.StackTrace}");
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = L("Error")
                 };
             }
@@ -134,7 +134,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = "Quý khách chưa chọn file để import"
                     };
                 }
@@ -154,7 +154,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                         BackgroundJob.Enqueue<TransactionsAppService>((x) => x.ProcessSyncStatusTransactionJob(AbpSession.ToUserIdentifier(), data));                        
                         return new ResponseMessages
                         {
-                            ResponseCode = "01",
+                            ResponseCode = "1",
                             ResponseMessage = "Thành công",
                             Payload = list
                         };
@@ -163,7 +163,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                     {
                         return new ResponseMessages
                         {
-                            ResponseCode = "00",
+                            ResponseCode = "0",
                             ResponseMessage = "Định dạng file không hợp lệ."
                         };
                     }
@@ -174,7 +174,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 _logger.LogError($"ProcessFromJobExcel error: {ex.Message}|{ex.InnerException}|{ex.StackTrace}");
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = L("Error")
                 };
             }

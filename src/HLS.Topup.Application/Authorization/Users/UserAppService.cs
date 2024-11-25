@@ -302,7 +302,7 @@ namespace HLS.Topup.Authorization.Users
                 var checkPhone =
                     await _userManager.ValidateEmailPhone(input.User.PhoneNumber, input.User.EmailAddress,
                         input.User.Id);
-                if (checkPhone.ResponseCode != "01")
+                if (checkPhone.ResponseCode != "1")
                     throw new UserFriendlyException("Số điên thoại/Email không hợp lệ hoặc đã tồn tại");
                 //Update user properties
                 ObjectMapper.Map(input.User, user); //Passwords is not mapped (see mapping configuration)
@@ -372,7 +372,7 @@ namespace HLS.Topup.Authorization.Users
 
                 var checkPhone =
                     await _userManager.ValidateEmailPhone(input.User.PhoneNumber, input.User.EmailAddress, null);
-                if (checkPhone.ResponseCode != "01")
+                if (checkPhone.ResponseCode != "1")
                     throw new UserFriendlyException(checkPhone.ResponseMessage);
                 var user = ObjectMapper.Map<User>(input.User); //Passwords is not mapped (see mapping configuration)
                 user.TenantId = AbpSession.TenantId;

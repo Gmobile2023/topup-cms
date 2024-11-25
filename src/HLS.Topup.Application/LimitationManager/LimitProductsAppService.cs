@@ -579,7 +579,7 @@ namespace HLS.Topup.LimitationManager
         {
             if (!dataList.Any())
             {
-                return new ResponseMessages("00", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
+                return new ResponseMessages("0", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
             }
 
             var query = from lst in dataList
@@ -604,10 +604,10 @@ namespace HLS.Topup.LimitationManager
             var limitProductList = query as LimitProductImport[] ?? query.ToArray();
             if (!limitProductList.Any())
             {
-                return new ResponseMessages("00", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
+                return new ResponseMessages("0", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
             }
 
-            var rs = new ResponseMessages("01");
+            var rs = new ResponseMessages("1");
             rs.Payload = limitProductList.ToList();
             
             return rs;

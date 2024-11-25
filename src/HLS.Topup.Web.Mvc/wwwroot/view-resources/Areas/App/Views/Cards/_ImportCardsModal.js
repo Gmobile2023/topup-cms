@@ -129,7 +129,7 @@
                     _dataTable.clear();
                     let data = [];
                     let path = "";
-                    if (response.result.responseCode == "01") {
+                    if (response.result.responseCode == "1") {
                         data = response.result.payload;
                         data.forEach(function (v) {
                             delete v.discount;
@@ -137,7 +137,7 @@
                     }
                     _dataTable.rows.add(data).draw();
                     Sv.SetupAmountMask();
-                    if (response.result.responseCode != "01") {
+                    if (response.result.responseCode != "1") {
                         resetValueFile();
                         abp.message.warn(response.result.responseMessage);
                     }
@@ -221,7 +221,7 @@
                 data: formData
             }).then(function (response) {
                 _modalManager.setBusy(false);
-                if (response.result.responseCode === "01") {
+                if (response.result.responseCode === "1") {
                     abp.message.info('Xác nhận nhập thẻ từ file!. Tiến trình đang xử lý. Vui lòng chờ thông báo kết quả');
                     _modalManager.close();
                     abp.event.trigger('app.importCardsFileSaved');

@@ -35,7 +35,7 @@
                 amount,
                 providerCode
             ).done(function (data) {
-                if (data.responseCode === "01") {
+                if (data.responseCode === "1") {
                     abp.message.success('Nạp tiền thành công');
                 } else {
                     abp.message.error(data.responseMessage);

@@ -1,43 +1,61 @@
 ﻿@{
-    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
 }
 @{
-    ViewBag.Title = "Thông báo hệ thống";
     var message = "Vui lòng quay lại sau";
     if (ViewBag.Type == CommonConst.MessageType.ServiceDisible)
     {
         message = "Dịch vụ tạm thời dừng hoạt động. Vui lòng quay lại sau";
     }
+
     if (ViewBag.Type == CommonConst.MessageType.StaffOutTime)
     {
         message = "Tài khoản của bạn nằm ngoài thời gian giao dịch cho phép. Vui lòng quay lại sau";
     }
 }
 
+@{
+    ViewBag.PageTitle = "Thông báo hệ thống";
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Trang chủ", Url.Action("Index", "Home")),
+        ("Thông báo hệ thống", Url.Action("Index", "Home")),
+    };
+}
 
-<div class="section-body-middle">
-    <form class="" id="transactionInfoForm">
-        <div class="section-body-middle-form-p1 no-border-top" style="padding-bottom: 0;">
-            <div class="section-body-right bg-white affix-wrap affix-top">
-                <div class="section-body-right-header">
-                    <div class="cart"></div>
-                    <p>Thông báo hệ thống</p>
-                </div>
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-12 col-xs-12 control-label text-center">
-                        <span>@message</span>
-                    </label>
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
+
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Dashboard-->
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card card-custom gutter-b">
+                    <!--begin::Body-->
+                    <div class="card-body p-0">
+
+                        <div class="alert alert-custom alert-notice alert-light-warning fade show mb-0" role="alert">
+                            <div class="alert-icon">
+                                <i class="flaticon-warning"></i>
+                            </div>
+                            <div class="alert-text">@message</div>
+                            <div class="alert-close">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        <i class="ki ki-close"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Body-->
                 </div>
             </div>
         </div>
-        <div class="section-body-middle-form-p2">
-            <div class="row">
-                <div tabindex="12" class="col-md-12 text-center">
-                    <button type="button" onclick="goHome()" class="button btn-custom btn-grey">Quay lại</button>
-                </div>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 
 @section Scripts

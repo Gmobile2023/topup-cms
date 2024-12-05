@@ -152,7 +152,7 @@
             //    type: "Search",
             //})
             //    .done(function (result) {
-            //        if (result.code !== "01")
+            //        if (result.code !== "1")
             //            abp.message.info(result.message);
             //        else {
             //            dataTable.ajax.reload();

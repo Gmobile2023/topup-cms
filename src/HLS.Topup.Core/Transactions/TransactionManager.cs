@@ -205,7 +205,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"GetLevelDiscountsRequest error: {e}");
                 return new TransactionResponse
                 {
-                    ResponseCode = "00"
+                    ResponseCode = "0"
                 };
             }
         }
@@ -229,7 +229,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"CollectDiscountRequest error: {ex}");
                 return new TransactionResponse
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Lỗi chuyển tiền không thành công"
                 };
             }
@@ -428,7 +428,7 @@ namespace HLS.Topup.Transactions
                 return new ResponseMessages
                 {
                     ResponseMessage = "Yêu cầu dừng lô chưa chưa thành công.",
-                    ResponseCode = "00"
+                    ResponseCode = "0"
                 };
             }
             catch (TaskCanceledException ex)
@@ -437,7 +437,7 @@ namespace HLS.Topup.Transactions
                 return new ResponseMessages
                 {
                     ResponseMessage = "Yêu cầu dừng lô chưa có kết quả",
-                    ResponseCode = "01"
+                    ResponseCode = "1"
                 };
             }
             catch (Exception ex)
@@ -446,7 +446,7 @@ namespace HLS.Topup.Transactions
                 return new ResponseMessages
                 {
                     ResponseMessage = "Yêu cầu dừng lô chưa chưa thành công.",
-                    ResponseCode = "00"
+                    ResponseCode = "0"
                 };
             }
         }
@@ -514,7 +514,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"TopupCancelRequestAsync error: {ex}");
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Giao dịch chưa có kết quả. Xin vui lòng chờ kết quả"
                 };
             }
@@ -747,7 +747,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogInformation($"ProviderCheckTransRequest error: {ex}");
                 return new NewMessageReponseBase<ResponseProvider>
                 {
-                    ResponseStatus = new ResponseStatus("00", "Check giao dịch không thành công"),
+                    ResponseStatus = new ResponseStatus("0", "Check giao dịch không thành công"),
                     Results = new ResponseProvider()
                 };
             }
@@ -772,7 +772,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogInformation($"CheckTransStatusRequestError: {ex}");
                 return new NewMessageReponseBase<string>
                 {
-                    ResponseStatus = new ResponseStatus("00", "Check giao dịch không thành công")
+                    ResponseStatus = new ResponseStatus("0", "Check giao dịch không thành công")
                 };
             }
         }

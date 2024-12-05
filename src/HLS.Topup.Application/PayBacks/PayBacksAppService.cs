@@ -304,7 +304,7 @@ namespace HLS.Topup.PayBacks
         {
             if (!dataList.Any())
             {
-                return new ResponseMessages("00", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
+                return new ResponseMessages("0", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
 //              throw new UserFriendlyException("Kiểm tra lại thông tin dữ liệu không hợp lệ");
             }
 
@@ -323,7 +323,7 @@ namespace HLS.Topup.PayBacks
             var payBacksImports = query as PayBacksImport[] ?? query.ToArray();
             if (!payBacksImports.Any())
             {
-                return new ResponseMessages("00", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
+                return new ResponseMessages("0", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
                 // throw new UserFriendlyException("Kiểm tra lại thông tin dữ liệu không hợp lệ");
             }
 
@@ -337,12 +337,12 @@ namespace HLS.Topup.PayBacks
 
             if (lstNotUser.Any())
             {
-                return new ResponseMessages("00",
+                return new ResponseMessages("0",
                     "File Import có thông tin đại lý không đúng định dạng hoặc chưa có trên hệ thống");
                 //throw new UserFriendlyException("Kiểm tra lại thông tin dữ liệu không hợp lệ: " + lstNotUser.Join(";"));
             }
 
-            var rs = new ResponseMessages("01");
+            var rs = new ResponseMessages("1");
             rs.Payload = payBacksImports.ToList();
             return rs;
         }

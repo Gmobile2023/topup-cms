@@ -964,7 +964,7 @@ namespace HLS.Topup.Configuration
             var listStatusDto = new List<ServiceConfigurationStatusResponseLookupTableDto>();
             listStatusDto.Add(new ServiceConfigurationStatusResponseLookupTableDto
             {
-                ResponseCode = "01",
+                ResponseCode = "1",
                 ResponseMessage = L("TransactionIsSuccessful")
             });
             listStatusDto.Add(new ServiceConfigurationStatusResponseLookupTableDto

@@ -51,7 +51,7 @@ topupApp.controller('NewsController', ["$scope", "$locale", function ($scope, $l
             complete: function () {
             },
             success: function (data) {
-                if (data.Code === "00") {
+                if (data.Code === "0") {
                     $scope.TopList = data.Data;
                     if ($scope.TopList.length > 0) {
                         if ($scope.TopList.length >= 3) {
@@ -99,7 +99,7 @@ topupApp.controller('NewsController', ["$scope", "$locale", function ($scope, $l
                     $("#service-loader-wrapper").css("display", "none");
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         for (var ii = 0; ii < data.Data.length ; ii++) {
                             $scope.MoreList.push(data.Data[ii]);
                         }
@@ -132,7 +132,7 @@ topupApp.controller('NewsController', ["$scope", "$locale", function ($scope, $l
                     $("#service-loader-wrapper").css("display", "none");
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         $scope.ProNews = data.Data;
                     }
 
@@ -165,7 +165,7 @@ topupApp.controller('NewsController', ["$scope", "$locale", function ($scope, $l
                     $("#service-loader-wrapper").css("display", "none");
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         for (var ii = 0; ii < data.Data.length ; ii++) {
                             $scope.ProNews.push(data.Data[ii]);
                         }

@@ -55,7 +55,7 @@
 
                 let data = [];
                 _dataTable.rows().remove();
-                if (response.result.responseCode == "01") {
+                if (response.result.responseCode == "1") {
                     data = response.result.payload;
                     data.forEach(function (v) {
                         delete v.discount;
@@ -80,7 +80,7 @@
                 data: formData
             }).then(function (response) {
                 _modalManager.setBusy(false);
-                if (response.result.responseCode === "01") {
+                if (response.result.responseCode === "1") {
                     abp.message.info("Chuyển đổi trạng thái giao dịch bằng file đang được xử lý....");
                     _modalManager.close();
                 } else {

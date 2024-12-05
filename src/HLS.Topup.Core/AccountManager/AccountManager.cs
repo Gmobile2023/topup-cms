@@ -167,7 +167,7 @@ namespace HLS.Topup.AccountManager
                 }
 
                 var checkPhone = await _userManager.ValidateEmailPhone(input.PhoneNumber, input.EmailAddress, null);
-                if (checkPhone.ResponseCode != "01")
+                if (checkPhone.ResponseCode != "1")
                     throw new UserFriendlyException("Số điên thoại/Email không hợp lệ hoặc đã tồn tại");
                 if (!string.IsNullOrEmpty(input.AccountCode))
                 {

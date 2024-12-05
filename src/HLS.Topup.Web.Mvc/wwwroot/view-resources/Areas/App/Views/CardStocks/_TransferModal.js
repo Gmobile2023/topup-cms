@@ -36,7 +36,7 @@
                 cardStock
             ).done(function (rs) {
                 console.log(rs);
-                if (rs.responseCode === "01") {
+                if (rs.responseCode === "1") {
                     abp.message.info(app.localize('SavedSuccessfully'));
                     _modalManager.close();
                     abp.event.trigger('app.createOrEditCardStockModalSaved');

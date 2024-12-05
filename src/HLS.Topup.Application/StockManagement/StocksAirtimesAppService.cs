@@ -61,7 +61,7 @@ namespace HLS.Topup.StockManagement
             var rs = await _stockAirtimeManager.GetAllStockAirtime(request);
 
             var totalCount = rs.Total;
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 return new PagedResultDto<StocksAirtimeDto>(
                     0,
                     new List<StocksAirtimeDto>()
@@ -183,7 +183,7 @@ namespace HLS.Topup.StockManagement
         {
             var request = new GetAvailableStockAirtimeRequest() {ProviderCode = providerCode};
             var response = await _stockAirtimeManager.GetAvailableStockAirtime(request);
-            if (response.ResponseStatus.ErrorCode != "01")
+            if (response.ResponseStatus.ErrorCode != "1")
                 return new ResponseMessages()
                 {
                     ResponseCode = response.ResponseStatus.ErrorCode,
@@ -192,7 +192,7 @@ namespace HLS.Topup.StockManagement
             var balance = decimal.Parse(response.Results.ToString(CultureInfo.InvariantCulture)?.Replace(".", ","));
             return new ResponseMessages()
             {
-                ResponseCode = "01",
+                ResponseCode = "1",
                 Payload = balance
             };
         }
@@ -204,7 +204,7 @@ namespace HLS.Topup.StockManagement
                 var request = new ViettelDepositRequest() {Amount = amount, ProviderCode = providerCode};
                 var response = await _stockAirtimeManager.DepositStockAirtime(request);
                 _logger.LogInformation($"DepositAirtimeViettel : {response.ToJson()}");
-                if (response.ResponseStatus.ErrorCode != "01")
+                if (response.ResponseStatus.ErrorCode != "1")
                     return new ResponseMessages()
                     {
                         ResponseCode = response.ResponseStatus.ErrorCode,
@@ -213,7 +213,7 @@ namespace HLS.Topup.StockManagement
                 //var balance = decimal.Parse(response.Results.ToString(CultureInfo.InvariantCulture)?.Replace(".", ","));
                 return new ResponseMessages()
                 {
-                    ResponseCode = "01"
+                    ResponseCode = "1"
                     //Payload = balance
                 };
             }

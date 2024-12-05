@@ -16,10 +16,10 @@
             <div class="section-body-right bg-white affix-wrap affix-top">
                 <div class="section-body-right-header">
                     <div class="cart"></div>
-                    <p>@((Model.Code == "01") ? "Giao dịch thành công" : "Giao dịch không thành công")</p>
+                    <p>@((Model.Code == "1") ? "Giao dịch thành công" : "Giao dịch không thành công")</p>
                 </div>
 
-                @if (Model.Code == "01")
+                @if (Model.Code == "1")
                 {
                     if (Model.TransType == CommonConst.TransactionType.PinCode.ToString("G"))
                     {
@@ -61,7 +61,7 @@
             <div class="row">
                 <div tabindex="12" class="col-md-12 text-center">
                     <button type="button" onclick="back()" class="button btn-custom btn-grey">Quay lại</button>
-                    @if (Model.Code == "01")
+                    @if (Model.Code == "1")
                     {
                         <button type="button" onclick="zipTopupCode()" class="button btn-custom btn-blue" style="width: auto !important; padding: 0 20px;">Tải xuống</button>
                     }

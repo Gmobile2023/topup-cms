@@ -116,7 +116,7 @@
                                     abp.services.app.stocksAirtimes.query(data.record.provider.code)
                                         .done(function (data) {
                                             abp.ui.clearBusy();
-                                            if (data.responseCode === "01") {
+                                            if (data.responseCode === "1") {
                                                 abp.message.success('Số dư thực tế: ' + Sv.NumberToString(data.payload));
                                             } else {
                                                 abp.message.error(data.responseMessage);

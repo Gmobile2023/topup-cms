@@ -151,7 +151,7 @@ namespace HLS.Topup.Transactions
                 response.ExtraInfo =
                     $"/Transactions/TransactionInfo?code={response.ResponseCode}&account={desAccount.AccountCode + " - " + desAccount.FullName + " - " + desAccount.PhoneNumber}&amount={input.Amount}&message={response.ResponseMessage}&description={input.Description}&transtype={CommonConst.TransactionType.Transfer}";
                 response.ExtraInfo = _commonManger.EncryptQueryParameters(response.ExtraInfo);
-                if (response.ResponseCode == "01")
+                if (response.ResponseCode == "1")
                 {
                     await Task.Run(async () =>
                     {
@@ -255,7 +255,7 @@ namespace HLS.Topup.Transactions
                 };
                 var rs = await _transactionManager.BalanceHistoriesGetRequest(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDto<BalanceHistoryDto>(
                         0,
                         new List<BalanceHistoryDto>()
@@ -376,7 +376,7 @@ namespace HLS.Topup.Transactions
                 //var agentList = _lookupUserRepository.GetAll();
 
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDto<TopupRequestResponseDto>(
                         0,
                         new List<TopupRequestResponseDto>()
@@ -556,7 +556,7 @@ namespace HLS.Topup.Transactions
                 Limit = 2,
                 Offset = 0
             });
-            if (rs.ResponseCode != "01") return null;
+            if (rs.ResponseCode != "1") return null;
             var lst = rs.Payload.ConvertTo<List<HLS.Topup.Report.ReportItemDetailDto>>();
             if (!lst.Any()) return null;
             var trans = lst.FirstOrDefault();
@@ -595,7 +595,7 @@ namespace HLS.Topup.Transactions
                 Limit = 2,
                 Offset = 0
             });
-            if (rs.ResponseCode != "01") return null;
+            if (rs.ResponseCode != "1") return null;
             var lst = rs.Payload.ConvertTo<List<ReportItemDetailDto>>();
             if (!lst.Any()) return null;
             var first = lst.FirstOrDefault();
@@ -674,7 +674,7 @@ namespace HLS.Topup.Transactions
                 Offset = 0
             });
 
-            if (rs.ResponseCode != "01") return null;
+            if (rs.ResponseCode != "1") return null;
             var lst = rs.Payload.ConvertTo<List<ReportTransferDetailDto>>();
             if (!lst.Any()) return null;
             var trans = lst.FirstOrDefault();
@@ -732,7 +732,7 @@ namespace HLS.Topup.Transactions
                 };
                 var rs = await _transactionManager.GetTopupDetailsRequest(request);
                 var totalCount = rs != null ? rs.Total : 0;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDto<TopupDetailResponseDTO>(
                         0,
                         new List<TopupDetailResponseDTO>()
@@ -768,7 +768,7 @@ namespace HLS.Topup.Transactions
                 if (request.ToDate != null)
                     request.ToDate = request.ToDate?.AddHours(23).AddMinutes(59).AddSeconds(59);
                 var rs = await _transactionManager.GetDiscountAvailableRequest(request);
-                if (rs.ResponseCode == "01")
+                if (rs.ResponseCode == "1")
                     return decimal.Parse(rs.Payload.ToString().Replace(".", ","));
                 return 0;
             }
@@ -1304,7 +1304,7 @@ namespace HLS.Topup.Transactions
 
                 var rs = await _transactionManager.GetTopupDetailsRequest(request);
                 var totalCount = rs != null ? rs.Total : 0;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDto<TopupDetailResponseDTO>(
                         0,
                         new List<TopupDetailResponseDTO>()
@@ -1536,7 +1536,7 @@ namespace HLS.Topup.Transactions
                 var rs = await _transactionManager.GetOffsetTopupListRequestAsync(request);
 
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDto<SaleOffsetReponseDto>(
                         0,
                         new List<SaleOffsetReponseDto>()

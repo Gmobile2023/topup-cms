@@ -177,7 +177,7 @@
                         _discountsService.delete({
                             id: discount.id
                         }).done(function (rs) {
-                            if (rs.responseCode === "01") {
+                            if (rs.responseCode === "1") {
                                 getDiscounts(true);
                                 abp.notify.success(app.localize('SuccessfullyDeleted'));
                             }
@@ -197,7 +197,7 @@
                         _discountsService.approval({
                             id: discount.id
                         }).done(function (rs) {
-                            if (rs.responseCode === "01") {
+                            if (rs.responseCode === "1") {
                                 getDiscounts(true);
                                 abp.notify.success(rs.responseMessage);
                             }
@@ -217,7 +217,7 @@
                         _discountsService.cancel({
                             id: discount.id
                         }).done(function (rs) {
-                            if (rs.responseCode === "01") {
+                            if (rs.responseCode === "1") {
                                 getDiscounts(true);
                                 abp.notify.success(rs.responseMessage);
                             }

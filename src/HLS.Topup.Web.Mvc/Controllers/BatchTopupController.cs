@@ -169,7 +169,7 @@ namespace HLS.Topup.Web.Controllers
 
         public async Task<IActionResult> Result(BatchLotInfoModel model)
         {
-            if (model.Code == "01")
+            if (model.Code == "1")
             {
                 var single = await _transactionSvc.GetBatchLotSingle(new Transactions.Dtos.BatchSingleInput()
                 {
@@ -293,7 +293,7 @@ namespace HLS.Topup.Web.Controllers
 
                 return new ResponseMessages
                 {
-                    ResponseCode = "01",
+                    ResponseCode = "1",
                     ResponseMessage = "",
                     Payload = data
                 };
@@ -302,7 +302,7 @@ namespace HLS.Topup.Web.Controllers
             {
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = L("Error")
                 };
             }
@@ -391,7 +391,7 @@ namespace HLS.Topup.Web.Controllers
                                 data = new List<ImportBatchDto>();
                                 return new ResponseMessages
                                 {
-                                    ResponseCode = "00",
+                                    ResponseCode = "0",
                                     ResponseMessage = msg,
                                     Payload = data,
                                 };
@@ -414,7 +414,7 @@ namespace HLS.Topup.Web.Controllers
                                 data = new List<ImportBatchDto>();
                                 return new ResponseMessages
                                 {
-                                    ResponseCode = "00",
+                                    ResponseCode = "0",
                                     ResponseMessage = msg,
                                     Payload = data,
                                 };
@@ -427,7 +427,7 @@ namespace HLS.Topup.Web.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = msg,
                         Payload = data,
                     };
@@ -437,7 +437,7 @@ namespace HLS.Topup.Web.Controllers
 
                 return new ResponseMessages
                 {
-                    ResponseCode = "01",
+                    ResponseCode = "1",
                     ResponseMessage = msg,
                     Payload = data
                 };
@@ -446,7 +446,7 @@ namespace HLS.Topup.Web.Controllers
             {
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = L("Error")
                 };
             }

@@ -2,10 +2,10 @@ namespace HLS.Topup.Common
 {
     public class ResponseCodeConst
     {
-        public const string Success = "01"; //Thành công
-        public const string Error = "00"; //Lỗi
-        public const string ResponseCode_Success = "01";
-        public const string ResponseCode_00 = "00";
+        public const string Success = "1"; //Thành công
+        public const string Error = "0"; //Lỗi
+        public const string ResponseCode_Success = "1";
+        public const string ResponseCode_00 = "0";
         public const string ResponseCode_RequestReceived = "4000";//Đã tiếp nhận giao dịch
         public const string ResponseCode_RequestAlreadyExists = "4001";//Giao dịch đối tác đã tồn tại
         public const string ResponseCode_Cancel = "4002";

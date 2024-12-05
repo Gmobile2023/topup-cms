@@ -137,7 +137,7 @@
                                 if (pos - 2 > -1 && maskset.buffer[pos - 2] !== ".") {
                                     chrs = maskset.buffer[pos - 2] + chrs;
                                 } else chrs = "0" + chrs;
-                            } else chrs = "00" + chrs;
+                            } else chrs = "0" + chrs;
                             return new RegExp("25[0-5]|2[0-4][0-9]|[01][0-9][0-9]").test(chrs);
                         }
                     }

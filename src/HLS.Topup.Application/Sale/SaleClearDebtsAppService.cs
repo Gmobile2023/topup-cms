@@ -348,7 +348,7 @@ namespace HLS.Topup.Sale
                 TransNote = note
             });
 
-            if (requestDeposit.ResponseCode == "01")
+            if (requestDeposit.ResponseCode == "1")
             {
                 deposit.LastModificationTime = DateTime.Now;
                 deposit.LastModifierUserId = AbpSession.UserId ?? 0;
@@ -379,7 +379,7 @@ namespace HLS.Topup.Sale
                 await _saleClearDebtRepository.UpdateAsync(deposit);
             }
 
-            if (requestDeposit.ResponseCode != "01")
+            if (requestDeposit.ResponseCode != "1")
                 throw new UserFriendlyException(requestDeposit.ResponseMessage);
         }
 

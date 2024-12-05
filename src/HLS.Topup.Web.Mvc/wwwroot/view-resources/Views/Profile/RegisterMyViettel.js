@@ -8,7 +8,7 @@
 
             abp.ui.setBusy();
             _viettelService.getCaptchaRequest().done(function (rs) {
-                if (rs.responseCode === "01") {
+                if (rs.responseCode === "1") {
                     $("#txtSid").val(rs.payload.sid);
                     $("#txtSid1").val(rs.payload.sid);
                     $("#captcha").attr("src", rs.payload.url);
@@ -30,7 +30,7 @@
             //var user = _$userInformationForm.serializeFormToObject();
             abp.ui.setBusy();
             _viettelService.getOtpRequest(phone, false).done(function (rs) {
-                if (rs.responseCode === "01") {
+                if (rs.responseCode === "1") {
                     resetCapChar();
                     $("#box-info").removeClass("hidden").addClass("show");
                 } else {
@@ -51,7 +51,7 @@
             info.CaptchaCode = $("#txtCaptcha").val();
             abp.ui.setBusy();
             _viettelService.registerMyViettelRequest(info).done(function (rs) {
-                if (rs.responseCode === "01") {
+                if (rs.responseCode === "1") {
                     abp.message.success("Đăng ký MyViettel thành công. Mật khẩu đăng nhập MyViettel là: " + rs.extraInfo);
                     //window.location.href = '/Topup/Index';
                 } else {

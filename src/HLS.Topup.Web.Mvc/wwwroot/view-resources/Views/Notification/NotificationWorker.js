@@ -2,7 +2,7 @@
 var _appUserNotificationHelper = new app.UserNotificationHelper();
 var userId = abp.session.userId;
 var messaging = firebase.messaging();
-messaging.usePublicVapidKey('BKfx-TVY0OAgsOxZCOy7myb0mzWBE0PTq-MZdurSgFaCdg4I3RulwJ5rSnZsp9IPSEe_N8cAcaOPVzjjsFdtkcw');
+messaging.usePublicVapidKey('xxxxxx');
 
 // [START refresh_token]
 // Callback fired if Instance ID token is updated.

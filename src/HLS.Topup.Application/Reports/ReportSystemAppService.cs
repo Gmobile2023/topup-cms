@@ -121,7 +121,7 @@ namespace HLS.Topup.Reports
                 };
                 var rs = await _reportsManager.ReportDetailGetRequest(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportDetailDto>(
                         0,
                         new ReportDetailDto(),
@@ -187,7 +187,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _transactionManager.BalanceHistoriesGetRequest(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportDetailDto>(0,
                      new ReportDetailDto(),
                      new List<ReportDetailDto>());
@@ -267,7 +267,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.BalanceTotalGetRequest(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportTotalDto>(0,
                         new ReportTotalDto(),
                         new List<ReportTotalDto>()
@@ -322,7 +322,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.BalanceGroupTotalGetRequest(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportGroupDto>(
                         0,
                         new ReportGroupDto(),
@@ -383,7 +383,7 @@ namespace HLS.Topup.Reports
                 var rs = await _reportsManager.ReportTransDetailReport(request);
 
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportTransDetailDto>(0,
                         new ReportTransDetailDto(),
                         new List<ReportTransDetailDto>()
@@ -722,7 +722,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportTotalDayReport(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportItemTotalDay>(
                         0,
                         new ReportItemTotalDay(),
@@ -772,7 +772,7 @@ namespace HLS.Topup.Reports
                 var rs = await _reportsManager.ReportDebtDetailReport(request);
                 var totalCount = rs.Total;
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportDebtDetailDto>(0, new ReportDebtDetailDto(),
                         new List<ReportDebtDetailDto>());
 
@@ -826,7 +826,7 @@ namespace HLS.Topup.Reports
                 var rs = await _reportsManager.ReportTotalDebtReport(request);
                 var totalCount = rs.Total;
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportItemTotalDebt>(
                         0,
                         new ReportItemTotalDebt(),
@@ -894,7 +894,7 @@ namespace HLS.Topup.Reports
                 var rs = await _reportsManager.ReportRefundDetailReport(request);
                 var totalCount = rs.Total;
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportRefundDetailDto>(0, new ReportRefundDetailDto(),
                         new List<ReportRefundDetailDto>());
 
@@ -943,7 +943,7 @@ namespace HLS.Topup.Reports
                 var totalCount = rs.Total;
                 var sumList = rs.SumData.ConvertTo<List<ReportServiceDetailDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportServiceDetailDto();
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportServiceDetailDto>(0, new ReportServiceDetailDto(),
                         new List<ReportServiceDetailDto>());
 
@@ -988,7 +988,7 @@ namespace HLS.Topup.Reports
                 var totalCount = rs.Total;
                 var sumList = rs.SumData.ConvertTo<List<ReportTransferDetailDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportTransferDetailDto();
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportTransferDetailDto>(0, new ReportTransferDetailDto(),
                         new List<ReportTransferDetailDto>());
                 var lst = rs.Payload.ConvertTo<List<ReportTransferDetailDto>>();
@@ -1036,7 +1036,7 @@ namespace HLS.Topup.Reports
                 var sumList = rs.SumData.ConvertTo<List<ReportServiceTotalDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportServiceTotalDto();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportServiceTotalDto>(0, new ReportServiceTotalDto(),
                         new List<ReportServiceTotalDto>());
 
@@ -1095,7 +1095,7 @@ namespace HLS.Topup.Reports
                 var sumList = rs.SumData.ConvertTo<List<ReportServiceProviderDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportServiceProviderDto();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportServiceProviderDto>(0, new ReportServiceProviderDto(),
                         new List<ReportServiceProviderDto>());
 
@@ -1152,7 +1152,7 @@ namespace HLS.Topup.Reports
 
                 var sumList = rs.SumData.ConvertTo<List<ReportAgentBalanceDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportAgentBalanceDto();
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportAgentBalanceDto>(0, new ReportAgentBalanceDto(),
                         new List<ReportAgentBalanceDto>());
 
@@ -1207,7 +1207,7 @@ namespace HLS.Topup.Reports
                 var rs = await _reportsManager.ReportRevenueAgentReport(request);
                 var totalCount = rs.Total;
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportRevenueAgentDto>(0, new ReportRevenueAgentDto(),
                         new List<ReportRevenueAgentDto>());
 
@@ -1267,7 +1267,7 @@ namespace HLS.Topup.Reports
                 var rs = await _reportsManager.ReportRevenueCityReport(request);
                 var totalCount = rs.Total;
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportRevenueCityDto>(0, new ReportRevenueCityDto(),
                         new List<ReportRevenueCityDto>());
 
@@ -1324,7 +1324,7 @@ namespace HLS.Topup.Reports
                 var rs = await _reportsManager.ReportTotalSaleAgentReport(request);
                 var totalCount = rs.Total;
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportTotalSaleAgentDto>(0, new ReportTotalSaleAgentDto(),
                         new List<ReportTotalSaleAgentDto>());
                 var sumList = rs.SumData.ConvertTo<List<ReportTotalSaleAgentDto>>();
@@ -1382,7 +1382,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportRevenueActiveReport(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportRevenueActiveDto>(0, new ReportRevenueActiveDto(),
                         new List<ReportRevenueActiveDto>());
 
@@ -1467,7 +1467,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportRevenueDashboardDayList(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportRevenueDashboardDay>(0, new ReportRevenueDashboardDay(),
                         new List<ReportRevenueDashboardDay>());
 
@@ -1526,7 +1526,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportRevenueDashboardDayList(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new List<DashRevenueItem>();
 
                 var lst = rs.Payload.ConvertTo<List<ReportRevenueDashboardDay>>();
@@ -2190,7 +2190,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportCardStockHistories(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportCardStockHistoriesDto>(
                         0, new ReportCardStockHistoriesDto(),
                         new List<ReportCardStockHistoriesDto>(), warning: msg
@@ -2242,7 +2242,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportCardStockImExPort(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportCardStockImExPortDto>(
                         0,
                         new ReportCardStockImExPortDto(),
@@ -2301,7 +2301,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportCardStockImExProvider(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportCardStockImExPortDto>(
                         0, new ReportCardStockImExPortDto(),
                         new List<ReportCardStockImExPortDto>()
@@ -2357,7 +2357,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportCardStockInventory(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportCardStockInventoryDto>(
                         0, new ReportCardStockInventoryDto(),
                         new List<ReportCardStockInventoryDto>()
@@ -2527,7 +2527,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportAgentGeneralDashDayList(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportRevenueCommistionDashDay>(0, new ReportRevenueCommistionDashDay(),
                         new List<ReportRevenueCommistionDashDay>());
 
@@ -2601,7 +2601,7 @@ namespace HLS.Topup.Reports
 
                 var rs = await _reportsManager.ReportAgentGeneralDashDayList(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new DashAgentGenerals()
                     {
                         Commistions = new List<DashRevenueItem>(),
@@ -2690,7 +2690,7 @@ namespace HLS.Topup.Reports
                 var totalCount = rs.Total;
                 var sumList = rs.SumData.ConvertTo<List<ReportTopupRequestLogDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportTopupRequestLogDto();
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportTopupRequestLogDto>(0, new ReportTopupRequestLogDto(),
                         new List<ReportTopupRequestLogDto>());
 

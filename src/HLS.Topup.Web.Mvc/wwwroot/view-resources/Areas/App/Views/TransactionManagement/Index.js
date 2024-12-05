@@ -637,7 +637,7 @@
                         _transaction.updateStatus(
                             { transCode: data.record.transCode, status: result }
                         ).done(function (rs) {
-                            if (rs.responseCode === "01") {
+                            if (rs.responseCode === "1") {
                                 abp.message.info(app.localize('SavedSuccessfully'));
                                 getProviders();
                             } else {
@@ -661,7 +661,7 @@
                     providerCode: data.record.provider
                 }
             ).done(function (rs) {
-                if (rs.responseCode === "01") {
+                if (rs.responseCode === "1") {
                     abp.message.info("Giao dịch thành công");
                 } else if (rs.responseCode === "4007") {
                     abp.message.warn("Giao dịch chưa có kết quả");
@@ -699,7 +699,7 @@
                     transCode: data.record.transCode,
                 }
             ).done(function (rs) {
-                if (rs.responseStatus.errorCode == "01") {
+                if (rs.responseStatus.errorCode == "1") {
                     abp.message.info(rs.responseStatus.message);
                 } else {
                     abp.message.error(rs.responseStatus.message);

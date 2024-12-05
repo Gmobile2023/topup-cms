@@ -420,7 +420,7 @@ namespace HLS.Topup.BalanceManager
                 request.Limit = input.MaxResultCount;
                 var rs = await _payBatchBackendService.PayBatchBillGetRequest(request);
                 var totalCount = rs.Total;
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<PayBatchBillItem>(
                         0,
                         new PayBatchBillItem(),

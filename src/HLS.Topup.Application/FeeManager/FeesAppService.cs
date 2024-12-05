@@ -500,7 +500,7 @@ namespace HLS.Topup.FeeManager
         {
             if (!dataList.Any())
             {
-                return new ResponseMessages("00", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
+                return new ResponseMessages("0", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
             }
 
             var query = from lst in dataList
@@ -521,10 +521,10 @@ namespace HLS.Topup.FeeManager
             var listFees = query as FeeImport[] ?? query.ToArray();
             if (!listFees.Any())
             {
-                return new ResponseMessages("00", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
+                return new ResponseMessages("0", "Kiểm tra lại thông tin dữ liệu không hợp lệ");
             }
 
-            var rs = new ResponseMessages("01");
+            var rs = new ResponseMessages("1");
             rs.Payload = listFees.ToList();
 
             return rs;

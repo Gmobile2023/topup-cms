@@ -55,7 +55,7 @@ namespace HLS.Topup.Reports
                 var totalCount = rs.Total;
                 var sumList = rs.SumData.ConvertTo<List<ReportCommissionDetailDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportCommissionDetailDto();
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportCommissionDetailDto>(0, new ReportCommissionDetailDto(),
                         new List<ReportCommissionDetailDto>());
 
@@ -102,7 +102,7 @@ namespace HLS.Topup.Reports
                 var sumList = rs.SumData.ConvertTo<List<ReportCommissionTotalDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportCommissionTotalDto();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportCommissionTotalDto>(0, new ReportCommissionTotalDto(),
                         new List<ReportCommissionTotalDto>());
 
@@ -192,7 +192,7 @@ namespace HLS.Topup.Reports
                 var totalCount = rs.Total;
                 var sumList = rs.SumData.ConvertTo<List<ReportCommissionAgentDetailDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportCommissionAgentDetailDto();
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportCommissionAgentDetailDto>(0, new ReportCommissionAgentDetailDto(),
                         new List<ReportCommissionAgentDetailDto>());
 
@@ -240,7 +240,7 @@ namespace HLS.Topup.Reports
                 var sumList = rs.SumData.ConvertTo<List<ReportCommissionAgentTotalDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportCommissionAgentTotalDto();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportCommissionAgentTotalDto>(0, new ReportCommissionAgentTotalDto(),
                         new List<ReportCommissionAgentTotalDto>());
 

@@ -56,7 +56,7 @@ namespace HLS.Topup.Reports
                 var sumList = rs.SumData.ConvertTo<List<ReportComparePartnerDto>>();
                 var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new ReportComparePartnerDto();
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportComparePartnerDto>(0, new ReportComparePartnerDto(),
                         new List<ReportComparePartnerDto>());
 
@@ -104,7 +104,7 @@ namespace HLS.Topup.Reports
                 var rs = await _reportsManager.ReportBalancePartner(request);
                 var totalCount = rs.Total;
 
-                if (rs.ResponseCode != "01")
+                if (rs.ResponseCode != "1")
                     return new PagedResultDtoReport<ReportBalancePartnerDto>(0, new ReportBalancePartnerDto(),
                         new List<ReportBalancePartnerDto>());
 

@@ -396,7 +396,7 @@ topupApp.controller('CardShoppingController', ["$scope", "$locale", function ($s
                                 $("#service-loader-wrapper").css("display", "none");
                             },
                             success: function (data) {
-                                if (data.Code === "00") {
+                                if (data.Code === "0") {
                                     if (data.GiftCode === "1") {
                                         window.location.replace(data.Data);
                                     } else {
@@ -456,7 +456,7 @@ topupApp.controller('CardShoppingController', ["$scope", "$locale", function ($s
                     $("#service-loader-wrapper").css("display", "none");
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         if (data.GiftCode === "1") {
                             window.location.replace(data.Data);
                         } else {
@@ -589,7 +589,7 @@ topupApp.controller('CardShoppingController', ["$scope", "$locale", function ($s
                     },
                     success: function (data) {
                         $scope.CardDataAccess = data;
-                        if (data.Code !== "00") {
+                        if (data.Code !== "0") {
                             $('#error-modal').modal();
                         }
                         if (!$scope.$$phase)

@@ -145,7 +145,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
             try
             {
                 var reponse = await CompareFileMappingFull(providerCode, transDate);
-                if (reponse.ResponseCode == "01")
+                if (reponse.ResponseCode == "1")
                 {
                     reponse.Payload = CompareViewData(reponse.Payload.ConvertTo<CompareProviderRequest>());
                     return reponse;
@@ -157,7 +157,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 _logger.LogError($"{providerCode}|{transDate} ReadFileCompare error: {ex.Message}|{ex.InnerException}|{ex.StackTrace}");
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = L("Error")
                 };
             }
@@ -176,19 +176,19 @@ namespace HLS.Topup.Web.Areas.App.Controllers
 
 
 
-                if (reponseCheck.ResponseCode != "01")
+                if (reponseCheck.ResponseCode != "1")
                     return reponseCheck;
                 else if (Convert.ToInt32(reponseCheck.Payload) > 0)
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = $"Đã đối soát kênh {providerCode} của ngày giao dịch trên."
                     };
                 }
 
                 var reponse = await CompareFileMappingFull(providerCode, transDate);
-                if (reponse.ResponseCode != "01")
+                if (reponse.ResponseCode != "1")
                     return reponse;
 
 
@@ -197,7 +197,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
 
                 return new ResponseMessages
                 {
-                    ResponseCode = "01",
+                    ResponseCode = "1",
                     ResponseMessage = L("Bắt đầu đồng bộ dữ liệu đối soát, vui lòng chờ thông báo kết quả xử lý!")
                 };
             }
@@ -206,7 +206,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 _logger.LogError($"{providerCode}|{transDate} ImportFileCompareFromJobExcel error: {ex.Message}|{ex.InnerException}|{ex.StackTrace}");
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = L("Error")
                 };
             }
@@ -223,7 +223,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
             {
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Quý khách chưa chọn nhà cung cấp"
                 };
             }
@@ -232,7 +232,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
             {
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Quý khách chưa nhập ngày giao dịch."
                 };
             }
@@ -242,7 +242,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
             {
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Quý khách chưa chọn file Nhà cung cấp"
                 };
             }
@@ -274,7 +274,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                         {
                             return new ResponseMessages
                             {
-                                ResponseCode = "00",
+                                ResponseCode = "0",
                                 ResponseMessage = $"Định dạng file NCC {providerCode} không hợp lệ.",
                             };
                         }
@@ -313,7 +313,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = $"Định dạng file NCC {providerCode} không hợp lệ.",
                     };
                 }
@@ -325,7 +325,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
             {
                 return new ResponseMessages
                 {
-                    ResponseCode = "00",
+                    ResponseCode = "0",
                     ResponseMessage = "Quý khách chưa chọn file Gmobile JSC"
                 };
             }
@@ -336,7 +336,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = "Định dạng đuôi file của Gmobile JSC không hợp lệ",
                     };
                 }
@@ -351,7 +351,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = "Định dạng tên file NT không hợp lệ.",
                     };
                 }
@@ -360,7 +360,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = "Mã nhà cung cấp không hợp lệ với tên file đối soát NT.",
                     };
                 }
@@ -369,7 +369,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = "Ngày đối soát ở file NT và thời gian chọn ngày giao dịch đối soát không hợp lệ.",
                     };
                 }
@@ -379,7 +379,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = "Định dạng file NT không hợp lệ.",
                     };
                 }
@@ -390,7 +390,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                     {
                         return new ResponseMessages
                         {
-                            ResponseCode = "00",
+                            ResponseCode = "0",
                             ResponseMessage = "Định dạng ngày trong file và ngày phát sinh giao dịch của NT không hợp lệ.",
                         };
                     }
@@ -402,7 +402,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                     {
                         return new ResponseMessages
                         {
-                            ResponseCode = "00",
+                            ResponseCode = "0",
                             ResponseMessage = "Ngày giao dịch trong file nhà cung cấp và ngày giao dịch của NT không hợp lệ.",
                         };
                     }
@@ -411,7 +411,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
                 {
                     return new ResponseMessages
                     {
-                        ResponseCode = "00",
+                        ResponseCode = "0",
                         ResponseMessage = "Không phát sinh giao dịch trong ngày đối soát.Vui lòng đối soát NCC khác.",
                     };
                 }
@@ -425,7 +425,7 @@ namespace HLS.Topup.Web.Areas.App.Controllers
 
             return new ResponseMessages()
             {
-                ResponseCode = "01",
+                ResponseCode = "1",
                 ResponseMessage = "OKE",
                 Payload = reponseCompare,
             };

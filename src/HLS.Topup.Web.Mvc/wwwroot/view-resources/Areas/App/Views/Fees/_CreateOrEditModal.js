@@ -480,7 +480,7 @@
 
                     let data = [];
                     let path = "";
-                    if (response.responseCode == "01"){
+                    if (response.responseCode == "1"){
                         data = response.payload;
                     }
 
@@ -526,7 +526,7 @@
                     _dataTable.rows.add(data).draw();
                     Sv.SetupAmountMask();
 
-                    if(response.responseCode != "01"){
+                    if(response.responseCode != "1"){
                         resetValueFile();
                         abp.message.warn(response.responseMessage);
                     }

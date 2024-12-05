@@ -238,7 +238,7 @@ topupApp.controller('VisaDirectController', ["$scope", "$locale", function ($sco
                         complete: function () {
                         },
                         success: function (data) {
-                            if (data.Code === "00") {
+                            if (data.Code === "0") {
                                 if ($scope.amount < 10000) {
                                     $scope.msg = "Vui lòng nhập số tiền lớn hơn hoặc bằng 10.000";
                                     if (!$scope.$$phase)
@@ -261,7 +261,7 @@ topupApp.controller('VisaDirectController', ["$scope", "$locale", function ($sco
                                         $("#service-loader-wrapper").css("display", "none");
                                     },
                                     success: function (data) {
-                                        if (data.sRespCode === "00") {
+                                        if (data.sRespCode === "0") {
                                             $scope.cardmask = data.maskCard;
                                             $scope.cardtype = data.cardType;
                                             $scope.bankreleased = data.issuerName;
@@ -371,7 +371,7 @@ topupApp.controller('VisaDirectController', ["$scope", "$locale", function ($sco
                     $("#service-loader-wrapper").css("display", "none");
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         vnpay.open({width: 768, height: 600, url: data.Data});
                     } else {
                         $scope.msg = data.Data;
@@ -396,7 +396,7 @@ topupApp.controller('VisaDirectController', ["$scope", "$locale", function ($sco
         $scope.isprocess = "1";
         if (!$scope.$$phase)
             $scope.$apply();
-        if ($scope.payrspcode !== "00") {
+        if ($scope.payrspcode !== "0") {
             $scope.iserror = "1";
             $scope.isprocess = "0";
             if ($scope.payrspcode === "24") {
@@ -409,7 +409,7 @@ topupApp.controller('VisaDirectController', ["$scope", "$locale", function ($sco
                 $scope.$apply();
         }
         setTimeout(function () {
-            if ($scope.payrspcode === "00") {
+            if ($scope.payrspcode === "0") {
                 $.ajax({
                     url: "../../service/visadirect/check-order",
                     data: {
@@ -427,7 +427,7 @@ topupApp.controller('VisaDirectController', ["$scope", "$locale", function ($sco
                             $scope.$apply();
                     },
                     success: function (data) {
-                        if (data.Code === "00" || data.Code === "082") {
+                        if (data.Code === "0" || data.Code === "082") {
                             $scope.issuccess = "1";
                         } else {
                             $scope.iserror = "1";

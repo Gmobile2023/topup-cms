@@ -50,7 +50,7 @@
             _discountsService.createOrEdit(
                 discount
             ).done(function (rs) {
-                if (rs.responseCode === "01") {
+                if (rs.responseCode === "1") {
                     abp.notify.info(app.localize('SavedSuccessfully'));
                     _modalManager.close();
                     abp.event.trigger('app.createOrEditDiscountModalSaved');

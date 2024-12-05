@@ -497,7 +497,7 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
                                 //    },
                                 //    success: function (data) {
                                 //        console.log(data);
-                                //        if (data.Code === "00") {
+                                //        if (data.Code === "0") {
                                 //            $scope.qrimg = data.Data;
 
                                 //            //create connection notify
@@ -677,7 +677,7 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
                                     $("#service-loader-wrapper").css("display", "none");
                                 },
                                 success: function (data) {
-                                    if (data.Code === "00") {
+                                    if (data.Code === "0") {
                                         if (data.GiftCode === "1") {
                                             window.location.replace(data.Data);
                                         } else {
@@ -738,7 +738,7 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
                         $("#service-loader-wrapper").css("display", "none");
                     },
                     success: function (data) {
-                        if (data.Code === "00") {
+                        if (data.Code === "0") {
                             if (data.GiftCode === "1") {
                                 window.location.replace(data.Data);
                             } else {
@@ -785,7 +785,7 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
                 complete: function () {
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         $scope.feetnx = data.Data;
                         $scope.amountpaytemp = $scope.amountpay;
                         $scope.amountpay = $scope.amountpay + $scope.feetnx;
@@ -834,7 +834,7 @@ topupApp.controller('MobileBillController', ["$scope", "$locale", function ($sco
                 complete: function () {
                 },
                 success: function (data) {
-                    if (data.Code === "00") {
+                    if (data.Code === "0") {
                         $scope.feetnx = data.Data;
                         $scope.amountpaytemp = $scope.amountpay;
                         $scope.amountpay = $scope.amountpay + $scope.feetnx;

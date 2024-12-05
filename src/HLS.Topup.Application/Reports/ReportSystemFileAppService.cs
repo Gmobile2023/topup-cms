@@ -330,7 +330,7 @@ namespace HLS.Topup.Reports
             var enable = IsValidateSearch(input, ref msg);
             var dto = new ValidateSearch()
             {
-                Code = enable ? "01" : "00",
+                Code = enable ? "1" : "0",
                 Message = msg
             };
 

@@ -67,7 +67,7 @@ namespace HLS.Topup.StockManagement
             };
             var rs = await _cardManager.CardBatchGetListRequest(request);
             var totalCount = rs.Total;
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 return new PagedResultDto<CardBatchDto>(
                     0, new List<CardBatchDto>()
                 );
@@ -97,7 +97,7 @@ namespace HLS.Topup.StockManagement
         {
             var rs = await _cardManager.CardBatchGetRequest(new CardBatchGetRequest {Id = id});
 
-            if (rs == null || rs.ResponseCode != "01")
+            if (rs == null || rs.ResponseCode != "1")
                 return new GetCardBatchForViewDto
                 {
                     CardBatch = new CardBatchDto()
@@ -144,7 +144,7 @@ namespace HLS.Topup.StockManagement
         {
             var rs = await _cardManager.CardBatchGetRequest(new CardBatchGetRequest {Id = id});
 
-            if (rs == null || rs.ResponseCode != "01")
+            if (rs == null || rs.ResponseCode != "1")
                 return new GetCardBatchForEditOutput
                 {
                     CardBatch = new CreateOrEditCardBatchDto()
@@ -206,7 +206,7 @@ namespace HLS.Topup.StockManagement
         protected virtual async Task Create(CreateOrEditCardBatchDto input)
         {
             var rs = await _cardManager.CardBatchCreateRequest(input.ConvertTo<CardBatchCreateRequest>());
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 throw new UserFriendlyException(rs.ResponseMessage);
         }
 
@@ -214,7 +214,7 @@ namespace HLS.Topup.StockManagement
         protected virtual async Task Update(CreateOrEditCardBatchDto input)
         {
             var rs = await _cardManager.CardBatchUpdateRequest(input.ConvertTo<CardBatchUpdateRequest>());
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 throw new UserFriendlyException(rs.ResponseMessage);
         }
 
@@ -222,7 +222,7 @@ namespace HLS.Topup.StockManagement
         public async Task Delete(Guid id)
         {
             var rs = await _cardManager.CardBatchDeleteRequest(new CardBatchDeleteRequest {Id = id});
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 throw new UserFriendlyException(rs.ResponseMessage);
         }
 
@@ -246,7 +246,7 @@ namespace HLS.Topup.StockManagement
             };
             var rs = await _cardManager.CardBatchGetListRequest(request);
 
-            if (rs == null || rs.ResponseCode != "01")
+            if (rs == null || rs.ResponseCode != "1")
                 return null;
             var data = rs.Payload.ConvertTo<List<CardBatchDto>>();
             if (data.Any())

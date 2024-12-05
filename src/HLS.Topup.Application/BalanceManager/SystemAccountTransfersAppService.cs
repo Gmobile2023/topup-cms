@@ -194,7 +194,7 @@ namespace HLS.Topup.BalanceManager
                 TransNote = item.Description,
                 TransRef = item.TransCode
             });
-            if (response.ResponseCode == "01")
+            if (response.ResponseCode == "1")
             {
                 item.ApproverId = AbpSession.UserId ?? 0;
                 item.DateApproved = DateTime.Now;
@@ -202,7 +202,7 @@ namespace HLS.Topup.BalanceManager
             }
 
             await _systemAccountTransferRepository.UpdateAsync(item);
-            if (response.ResponseCode != "01")
+            if (response.ResponseCode != "1")
                 throw new UserFriendlyException(response.ResponseMessage);
         }
 

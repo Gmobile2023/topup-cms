@@ -66,7 +66,7 @@ namespace HLS.Topup.StockManagement
             var totalCount = rs.Total;
             var sumList = rs.SumData.ConvertTo<List<CardStockDto>>();
             var sumData = sumList != null && sumList.Count >= 1 ? sumList[0] : new CardStockDto();
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 return new PagedResultDtoReport<CardStockDto>(
                     0,
                     new CardStockDto(),
@@ -106,7 +106,7 @@ namespace HLS.Topup.StockManagement
             var rs = await _cardManager.CardStockGetRequest(new CardStockGetRequest
             { StockCode = code, ProductCode = productCode, CardValue = cardValue });
 
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 return new GetCardStockForViewDto
                 {
                     CardStock = new CardStockDto
@@ -140,7 +140,7 @@ namespace HLS.Topup.StockManagement
             var rs = await _cardManager.CardStockGetRequest(new CardStockGetRequest
             { StockCode = code, ProductCode = productCode, CardValue = cardValue });
 
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 return new GetCardStockForEditOutput
                 {
                     CardStock = new CreateOrEditCardStockDto
@@ -244,7 +244,7 @@ namespace HLS.Topup.StockManagement
             };
 
             var rs = await _cardManager.CardStockGetListRequest(request);
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 _cardStocksExcelExporter.ExportToFile(new List<CardStockDto>());
 
             var data = rs.Payload.ConvertTo<List<CardStockDto>>();
@@ -272,7 +272,7 @@ namespace HLS.Topup.StockManagement
         public async Task<TransferCardStockDto> GetTransferStock(Guid id)
         {
             var rs = await _cardManager.CardsStockTransferRequest(id);
-            if (rs.ResponseCode != "01")
+            if (rs.ResponseCode != "1")
                 return null;
             return rs.Payload.ConvertTo<TransferCardStockDto>();
         }
@@ -297,7 +297,7 @@ namespace HLS.Topup.StockManagement
         public async Task<List<StockTransferItemInfo>> GetCardInfoTransfer(GetCardInfoTransferInput request)
         {
             var data = await _cardManager.GetCardInfoTransferRequest(request.ConvertTo<GetCardInfoTransferRequest>());
-            if (data.ResponseCode != "01")
+            if (data.ResponseCode != "1")
                 return new List<StockTransferItemInfo>();
             var prodList = data.Payload.ConvertTo<List<StockTransferItemInfo>>();
 

@@ -139,7 +139,7 @@
                 let data = [];
                 _dataTable.rows().remove();
                 //   .draw();
-                if (response.result.responseCode == "01") {
+                if (response.result.responseCode == "1") {
                     data = response.result.payload;
                     data.forEach(function (v) { delete v.discount; });
                     _dataTable.rows.add(data).draw();
@@ -185,7 +185,7 @@
                     data: formData
                 }).then(function (response) {
                     _modalManager.setBusy(false);
-                    if (response.result.responseCode === "01") {
+                    if (response.result.responseCode === "1") {
                         abp.message.info('Xác nhận đối soát. Tiến trình đang được xử lý, vui lòng kiểm tra email để xem kết quả.');
                         _modalManager.close();
                         abp.event.trigger('app.compareAirtimeFile');

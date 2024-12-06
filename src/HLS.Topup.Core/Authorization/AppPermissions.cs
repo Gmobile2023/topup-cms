@@ -9,7 +9,7 @@
         public const string Pages_LowBalanceAlerts = "Pages.LowBalanceAlerts";
         public const string Pages_LowBalanceAlerts_Create = "Pages.LowBalanceAlerts.Create";
         public const string Pages_LowBalanceAlerts_Edit = "Pages.LowBalanceAlerts.Edit";
-        
+
         public const string Pages_ProviderReconcile = "Pages.ProviderReconcile";
         public const string Pages_ProviderReconcile_Comapre = "Pages.ProviderReconcile.Comapre";
 
@@ -25,7 +25,7 @@
         public const string Pages_SubAgentManagement_Edit = "Pages.SubAgentManagement.Edit";
         public const string Pages_SubAgentManagement_Lock = "Pages.SubAgentManagement.Lock";
         public const string Pages_SubAgentManagement_Unlock = "Pages.SubAgentManagement.Unlock";
-        
+
         public const string Pages_TopupGateResponseMessage = "Pages.TopupGateResponseMessage";
         public const string Pages_TopupGateResponseMessage_Create = "Pages.TopupGateResponseMessage.Create";
         public const string Pages_TopupGateResponseMessage_Edit = "Pages.TopupGateResponseMessage.Edit";
@@ -386,7 +386,6 @@
         public const string Pages_Report_ReportTopupRequestLogs = "Pages.Report.ReportTopupRequestLogs";
 
 
-
         public const string Pages_TransactionManagements = "Pages.TransactionManagements";
         public const string Pages_TransactionManagements_Create = "Pages.TransactionManagements.Create";
         public const string Pages_TransactionManagements_Edit = "Pages.TransactionManagements.Edit";
@@ -399,6 +398,9 @@
         public const string Pages_RequestDeposit = "Pages.RequestDeposit";
         public const string Pages_TransferMoney = "Pages.TransferMoney";
         public const string Pages_CreatePayment = "Pages.CreatePayment";
+        public const string Pages_CreatePayment_Topup = "Pages.CreatePayment.Topup";
+        public const string Pages_CreatePayment_PinCode = "Pages.CreatePayment.PinCode";
+        public const string Pages_CreatePayment_PayBill = "Pages.CreatePayment.PayBill";
         public const string Pages_CreateBatchLotPayment = "Pages.CreateBatchLotPayment";
         public const string Pages_BatchLotTopup = "Pages.BatchLotTopup";
         public const string Pages_BatchLotPayBill = "Pages.BatchLotPayBill";
@@ -426,6 +428,5 @@
         public const string Pages_PartnerServiceConfigurations_Create = "Pages.PartnerServiceConfigurations.Create";
         public const string Pages_PartnerServiceConfigurations_Edit = "Pages.PartnerServiceConfigurations.Edit";
         public const string Pages_PartnerServiceConfigurations_Delete = "Pages.PartnerServiceConfigurations.Delete";
-
     }
 }

@@ -14,7 +14,7 @@ namespace HLS.Topup.Transactions
     //Service này cho các thằng đối tác như Ba Khía gọi
     public partial class TransactionsAppService
     {
-        [AbpAuthorize(AppPermissions.Pages_CreatePayment)]
+        [AbpAuthorize(AppPermissions.Pages_CreatePayment_Topup)]
         public async Task<NewMessageReponseBase<string>> Topup(CreateOrEditTopupRequestDto input)
         {
             if (string.IsNullOrEmpty(input.TransCode))
@@ -37,7 +37,7 @@ namespace HLS.Topup.Transactions
             return await _transactionManager.ProcessTopupRequest(request);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_CreatePayment)]
+        [AbpAuthorize(AppPermissions.Pages_CreatePayment_PinCode)]
         public async Task<NewMessageReponseBase<string>> PinCode(CreateOrEditPinCodeRequestDto input)
         {
             if (string.IsNullOrEmpty(input.TransCode))
@@ -61,7 +61,7 @@ namespace HLS.Topup.Transactions
            return await _transactionManager.ProcessPinCodeRequest(request);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_CreatePayment)]
+        [AbpAuthorize(AppPermissions.Pages_CreatePayment_PayBill)]
         public async Task<BillPaymentInfoDto> BillQuery(BillQueryRequest input)
         {
             await CheckAccountIsNetwork(AbpSession.UserId ?? 0, input.PartnerCode, input.ProductCode,

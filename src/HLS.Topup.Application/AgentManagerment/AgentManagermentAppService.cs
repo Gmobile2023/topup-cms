@@ -558,12 +558,12 @@ namespace HLS.Topup.AgentManagerment
                     input.IdentityServerStorage.IsActive = createUser.IsActive;
                     input.IdentityServerStorage.ClientSecrets = new List<string> {input.PartnerConfig.SecretKey};
                     await _commonManger.CreateOrUpdateClientId(input.IdentityServerStorage);
-                    await Task.Run(() =>
-                    {
-                        _userEmailer.SendEmailCreateAgentApi(createUser, input.EmailTech,
-                            input.Password, input.IdentityServerStorage.ClientId,
-                            input.IdentityServerStorage.ClientSecrets?.FirstOrDefault());
-                    }).ConfigureAwait(false);
+                    // await Task.Run(() =>
+                    // {
+                    //     _userEmailer.SendEmailCreateAgentApi(createUser, input.EmailTech,
+                    //         input.Password, input.IdentityServerStorage.ClientId,
+                    //         input.IdentityServerStorage.ClientSecrets?.FirstOrDefault());
+                    // }).ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -652,12 +652,12 @@ namespace HLS.Topup.AgentManagerment
             var client = await _commonManger.GetClientId(profile.UserFk.AccountCode);
             if (client == null)
                 throw new UserFriendlyException("Tài khoản chưa có thông tin kết nối");
-            await Task.Run(() =>
-            {
-                _userEmailer.SendEmailCreateAgentApi(profile.UserFk, profile.EmailTech,
-                    null, client.ClientId,
-                    client.ClientSecrets.FromJson<List<string>>().FirstOrDefault());
-            }).ConfigureAwait(false);
+            // await Task.Run(() =>
+            // {
+            //     _userEmailer.SendEmailCreateAgentApi(profile.UserFk, profile.EmailTech,
+            //         null, client.ClientId,
+            //         client.ClientSecrets.FromJson<List<string>>().FirstOrDefault());
+            // }).ConfigureAwait(false);
         }
 
         [AbpAuthorize(AppPermissions.Pages_AgentsManage_Edit)]

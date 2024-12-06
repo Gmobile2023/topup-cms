@@ -29,7 +29,7 @@
                                 <i class="menu-arrow"></i>
                             </a>
                         </li>
-                        
+
                         @if (IsGranted(AppPermissions.Pages_CreatePayment))
                         {
                             <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
@@ -39,23 +39,29 @@
                                 </a>
                                 <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                                     <ul class="menu-subnav">
-                                        <li class="menu-item menu-item-active" aria-haspopup="true">
-                                            <a href="@Url.Action("Index", "Topup")" class="menu-link">
-                                                <span class="menu-text">Nạp tiền điện thoại</span>
-                                                <span class="menu-desc"></span>
-                                            </a>
-                                        </li>
-                                        <li class="menu-item" aria-haspopup="true">
-                                            <a href="@Url.Action("PinCode", "Topup")" class="menu-link">
-                                                <span class="menu-text">Mua mã thẻ</span>
-                                                <span class="menu-desc"></span>
-                                            </a>
-                                        </li>
+                                        @if (IsGranted(AppPermissions.Pages_CreatePayment_Topup))
+                                        {
+                                            <li class="menu-item menu-item-active" aria-haspopup="true">
+                                                <a href="@Url.Action("Index", "Topup")" class="menu-link">
+                                                    <span class="menu-text">Nạp tiền điện thoại</span>
+                                                    <span class="menu-desc"></span>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (IsGranted(AppPermissions.Pages_CreatePayment_PinCode))
+                                        {
+                                            <li class="menu-item" aria-haspopup="true">
+                                                <a href="@Url.Action("PinCode", "Topup")" class="menu-link">
+                                                    <span class="menu-text">Mua mã thẻ</span>
+                                                    <span class="menu-desc"></span>
+                                                </a>
+                                            </li>
+                                        }
                                     </ul>
                                 </div>
                             </li>
                         }
-                        
+
                         <li class="menu-item menu-item-rel">
                             <a href="@Url.Action("TransactionHistory", "Transactions")" class="menu-link">
                                 <span class="menu-text">Lịch sử giao dịch</span>

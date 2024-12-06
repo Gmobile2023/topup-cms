@@ -137,7 +137,7 @@ namespace HLS.Topup.Transactions
                 var transcode = await _commonManger.GetIncrementCodeAsync("T");
                 var desAccount = await UserManager.GetUserByAccountCodeAsync(input.DesAccount);
                 if (desAccount == null || !desAccount.IsActive || desAccount.IsAccountSystem())
-                    throw new UserFriendlyException("Tài khoản nhận không tồn tại hoạc không hợp lệ");
+                    throw new UserFriendlyException("Tài khoản nhận không tồn tại hoặc không hợp lệ");
                 var checkSrc = await UserManager.GetUserByIdAsync(_session.UserId ?? 0);
                 if (checkSrc.IsAccountSystem())
                     throw new UserFriendlyException("Tài khoản không thể thực hiện giao dịch");
@@ -854,7 +854,7 @@ namespace HLS.Topup.Transactions
             return _transactionsExcelExporter.TopupDetailExportToFile(lst);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_CreatePayment)]
+        [AbpAuthorize(AppPermissions.Pages_CreatePayment_Topup)]
         public async Task<ResponseMessages> CreateTopupRequest(CreateOrEditTopupRequestDto input)
         {
             var account = UserManager.GetAccountInfo();
@@ -889,7 +889,7 @@ namespace HLS.Topup.Transactions
             return obj;
         }
 
-        [AbpAuthorize(AppPermissions.Pages_CreatePayment)]
+        [AbpAuthorize(AppPermissions.Pages_CreatePayment_Topup)]
         public async Task<ResponseMessages> CreateTopupListRequest(TopupListRequestDto input)
         {
             var account = UserManager.GetAccountInfo();
@@ -969,7 +969,7 @@ namespace HLS.Topup.Transactions
             return obj;
         }
 
-        [AbpAuthorize(AppPermissions.Pages_CreatePayment)]
+        [AbpAuthorize(AppPermissions.Pages_CreatePayment_PinCode)]
         public async Task<ResponseMessages> CreatePinCodeRequest(CreateOrEditPinCodeRequestDto input)
         {
             var accountInfo = GetAccountInfo();
@@ -1003,7 +1003,7 @@ namespace HLS.Topup.Transactions
             return response;
         }
 
-        [AbpAuthorize(AppPermissions.Pages_CreatePayment)]
+        [AbpAuthorize(AppPermissions.Pages_CreatePayment_PayBill)]
         public async Task<BillPaymentInfoDto> BillQueryRequest(BillQueryRequest input)
         {
             if (input.CategoryCode == CommonConst.CategoryCodeConts.EVN_BILL)
@@ -1022,7 +1022,7 @@ namespace HLS.Topup.Transactions
             return await _transactionManager.ProcessBillQueryRequest(input);
         }
 
-        [AbpAuthorize(AppPermissions.Pages_CreatePayment)]
+        [AbpAuthorize(AppPermissions.Pages_CreatePayment_PayBill)]
         public async Task<ResponseMessages> PayBillRequest(PayBillRequest input)
         {
             var account = UserManager.GetAccountInfo();

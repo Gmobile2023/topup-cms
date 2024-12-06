@@ -2041,6 +2041,9 @@
         <text name="TransactionManagements_Refund">Hoàn tiền</text>
 
         <text name="Pages_CreatePayment">Thực hiện giao dịch</text>
+        <text name="Pages_CreatePayment_Topup">Nạp tiền điện thoại</text>
+        <text name="Pages_CreatePayment_PinCode">Mua mã thẻ</text>
+        <text name="Pages_CreatePayment_PayBill">Thanh toán hóa đơn</text>
         <text name="Pages_RequestDeposit">Yêu cầu nạp tiền</text>
         <text name="Pages_TransferMoney">Chuyển tiền ngang</text>
         <text name="Pages_BalanceHistory">Xem biến động số dư</text>

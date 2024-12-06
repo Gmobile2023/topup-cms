@@ -61,13 +61,15 @@
                                 </div>
                             </li>
                         }
-
-                        <li class="menu-item menu-item-rel">
-                            <a href="@Url.Action("TransactionHistory", "Transactions")" class="menu-link">
-                                <span class="menu-text">Lịch sử giao dịch</span>
-                                <i class="menu-arrow"></i>
-                            </a>
-                        </li>
+                        @if (IsGranted(AppPermissions.Pages_TransactionHistory))
+                        {
+                            <li class="menu-item menu-item-rel">
+                                <a href="@Url.Action("TransactionHistory", "Transactions")" class="menu-link">
+                                    <span class="menu-text">Lịch sử giao dịch</span>
+                                    <i class="menu-arrow"></i>
+                                </a>
+                            </li>
+                        }
                     </ul>
                     <!--end::Header Nav-->
                 </div>

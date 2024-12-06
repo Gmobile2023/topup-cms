@@ -56,3 +56,19 @@
 .nav.nav-pills .menu-service:hover .nav-icon .svg-icon svg g [fill] {
     fill: #fff !important;
 }
+
+.dataTables_wrapper table thead {
+    border: 1px solid #c5e7f2;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background: #dcf4fc !important;
+    color: #313131;
+}
+
+.table-bordered > thead > tr > th {
+    border: 1px solid #c5e7f2 !important;
+}
+
+.dataTables_wrapper table tbody {
+    border: 1px solid #ccc;
+    overflow: hidden !important;
+}

@@ -8,6 +8,7 @@ using ServiceStack;
 using HLS.Topup.Dtos.PayBacks;
 using System.Collections.Generic;
 using System.Threading;
+using HLS.Topup.Common;
 using HLS.Topup.Dtos.Transactions;
 
 namespace HLS.Topup.Transactions
@@ -61,7 +62,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"BlockBalanceAsync error: {ex}");
                 return new ApiResponseDto<AccountBalanceInfo>
                 {
-                    ResponseCode = "0"
+                    ResponseCode = ResponseCodeConst.Error
                 };
             }
         }
@@ -86,7 +87,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"UnBlockBalanceAsync error: {ex}");
                 return new ApiResponseDto<AccountBalanceInfo>
                 {
-                    ResponseCode = "0"
+                    ResponseCode = ResponseCodeConst.Error
                 };
             }
         }
@@ -131,7 +132,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"AdjustmentRequest error: {ex}");
                 return new TransactionResponse
                 {
-                    ResponseCode = "0",
+                    ResponseCode = ResponseCodeConst.Error,
                     ResponseMessage = "Giao dịch không thành công"
                 };
             }
@@ -156,7 +157,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"ClearDebtRequest error: {ex}");
                 return new TransactionResponse
                 {
-                    ResponseCode = "0",
+                    ResponseCode = ResponseCodeConst.Error,
                     ResponseMessage = "Lỗi nạp tiền không thành công"
                 };
             }
@@ -181,7 +182,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"SaleDepositRequest error: {ex}");
                 return new TransactionResponse
                 {
-                    ResponseCode = "0",
+                    ResponseCode = ResponseCodeConst.Error,
                     ResponseMessage = "Lỗi nạp tiền không thành công"
                 };
             }
@@ -233,7 +234,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"TransferRequest error: {ex}");
                 return new TransactionResponse
                 {
-                    ResponseCode = "0",
+                    ResponseCode = ResponseCodeConst.Error,
                     ResponseMessage = "Lỗi chuyển tiền không thành công"
                 };
             }
@@ -284,7 +285,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"DepositRequest error: {ex}");
                 return new TransactionResponse
                 {
-                    ResponseCode = "0",
+                    ResponseCode = ResponseCodeConst.Error,
                     ResponseMessage = "Lỗi nạp tiền không thành công"
                 };
             }
@@ -309,7 +310,7 @@ namespace HLS.Topup.Transactions
                 _logger.LogError($"TransferSystemRequest error: {ex}");
                 return new TransactionResponse
                 {
-                    ResponseCode = "0",
+                    ResponseCode = ResponseCodeConst.Error,
                     ResponseMessage = "Lỗi chuyển tiền không thành công"
                 };
             }

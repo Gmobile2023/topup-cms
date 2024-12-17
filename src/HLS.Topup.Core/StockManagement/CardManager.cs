@@ -223,7 +223,7 @@ namespace HLS.Topup.StockManagement
                 _logger.LogError($"CardImportFileRequest error: {ex}");
                 return new ResponseMessages()
                 {
-                    ResponseCode = "0",
+                    ResponseCode = ResponseCodeConst.Error,
                     ResponseMessage = ex.Message,
                 };
             }
@@ -292,7 +292,7 @@ namespace HLS.Topup.StockManagement
                 _logger.LogError($"CardStockGetListRequest error: {ex}");
                 return new ApiResponseDto<List<StockResponseDto>>
                 {
-                    ResponseCode = "0"
+                    ResponseCode = ResponseCodeConst.Error
                 };
             }
         }

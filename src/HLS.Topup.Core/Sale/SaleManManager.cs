@@ -67,10 +67,10 @@ namespace HLS.Topup.Sale
             {
                 var checkPhone =
                     await _userManager.ValidateEmailPhone(input.PhoneNumber, input.EmailAddress, null);
-                if (checkPhone.ResponseCode != "1")
+                if (checkPhone.ResponseCode != ResponseCodeConst.ResponseCode_Success)
                     throw new UserFriendlyException(checkPhone.ResponseMessage);
                 var checkUsername = await _userManager.ValidateAccountRegister(input.UserName);
-                if (checkUsername.ResponseCode != "1" && checkUsername.ResponseCode != "0")
+                if (checkUsername.ResponseCode != ResponseCodeConst.ResponseCode_Success && checkUsername.ResponseCode != "0")
                     throw new UserFriendlyException(checkUsername.ResponseMessage);
                 if (input?.TenantId == 0)
                     input.TenantId = null;
@@ -125,7 +125,7 @@ namespace HLS.Topup.Sale
                     throw new UserFriendlyException("Tài khoản không tồn tại");
                 var checkPhone =
                     await _userManager.ValidateEmailPhone(input.PhoneNumber, input.EmailAddress, user.Id);
-                if (checkPhone.ResponseCode != "1")
+                if (checkPhone.ResponseCode != ResponseCodeConst.ResponseCode_Success)
                     throw new UserFriendlyException("Số điên thoại/Email không hợp lệ hoặc đã tồn tại");
 
                 if (!string.IsNullOrEmpty(input.PhoneNumber) && input.PhoneNumber != user.PhoneNumber)

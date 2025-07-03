@@ -37,12 +37,12 @@ namespace HLS.Topup.Web.Controllers
             var link = _appConfiguration["App:DownloadApp"];
             ViewBag.Android = link.Split("|")[1];
             ViewBag.Ios = link.Split("|")[0];
-            var checkService = await _commonManger.CheckServiceActive(CommonConst.ServiceCodes.PAY_BILL);
-            if (!checkService)
-            {
-                TempData["Type"] = CommonConst.MessageType.ServiceDisible;
-                return RedirectToAction("Message", "Home");
-            }
+            // var checkService = await _commonManger.CheckServiceActive(CommonConst.ServiceCodes.PAY_BILL);
+            // if (!checkService)
+            // {
+            //     TempData["Type"] = CommonConst.MessageType.ServiceDisible;
+            //     return RedirectToAction("Message", "Home");
+            // }
 
             if (_topupAppSession.AccountType == CommonConst.SystemAccountType.StaffApi ||
                 _topupAppSession.AgentType == CommonConst.AgentType.AgentApi)

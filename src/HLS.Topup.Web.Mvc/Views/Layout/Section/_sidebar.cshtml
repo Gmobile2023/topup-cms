@@ -19,26 +19,30 @@
         </li>
         @if (IsGranted(AppPermissions.Pages_CreatePayment))
         {
-            <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Topup)">
-                <a class="active" href="@Url.Action("Index", "Topup")">
-                    <img src="/themes/topup/images/ic_dark/ic-01.svg" alt="">Nạp tiền điện thoại
-                </a>
-            </li>
-            <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.TopupData)">
-                <a class="active" href="@Url.Action("TopupData", "Topup")">
-                    <img src="/themes/topup/images/ic_dark/ic-topup-data.svg" alt="">Nạp Topup Data
-                </a>
-            </li>
-            <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.PinCode)">
-                <a class="active" href="@Url.Action("PinCode", "Topup")">
-                    <img src="/themes/topup/images/ic_dark/ic-05.svg" alt="">Mua thẻ trả trước
-                </a>
-            </li>
-            <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.BillPayment)">
-                <a href="/billpayment">
-                    <img src="/themes/topup/images/ic_dark/ic-03.svg" alt="">Thanh toán hóa đơn
-                </a>
-            </li>
+            @if (IsGranted(AppPermissions.Pages_CreatePayment_Topup))
+            {
+                <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.Topup)">
+                    <a class="active" href="@Url.Action("Index", "Topup")">
+                        <img src="/themes/topup/images/ic_dark/ic-01.svg" alt="">Nạp tiền điện thoại
+                    </a>
+                </li>
+            }
+            @if (IsGranted(AppPermissions.Pages_CreatePayment_PinCode))
+            {
+                <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.PinCode)">
+                    <a class="active" href="@Url.Action("PinCode", "Topup")">
+                        <img src="/themes/topup/images/ic_dark/ic-05.svg" alt="">Mua mã thẻ
+                    </a>
+                </li>
+            }
+            @if (IsGranted(AppPermissions.Pages_CreatePayment_PayBill))
+            {
+                <li class="@ActiveLinkClass(ViewBag.CurrentPageName, FrontEndPageNames.BillPayment)">
+                    <a href="/billpayment">
+                        <img src="/themes/topup/images/ic_dark/ic-03.svg" alt="">Thanh toán hóa đơn
+                    </a>
+                </li>
+            }
         }
         @if (IsGranted(AppPermissions.Pages_CreateBatchLotPayment))
         {

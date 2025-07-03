@@ -1,4 +1,4 @@
-﻿﻿(function () {
+﻿(function () {
     $(function () {
         $('.date-picker').datetimepicker({
             locale: abp.localization.currentLanguage.name,
@@ -23,7 +23,8 @@
                         serviceCode: $('#ServiceCodeFilter').val(),
                         statusFilter: $("#StatusFilterId").val(),
                         fromDate: getDateFilter($('#FromDateFilterId')),
-                        toDate: getDateFilter($('#ToDateFilterId'))
+                        toDate: getDateFilter($('#ToDateFilterId')),
+                        agentTypeFilter:99
                     };
                 }
             },

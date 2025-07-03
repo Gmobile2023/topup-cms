@@ -262,7 +262,7 @@
             }, function (response) {
                 ctrlList.addTableDataTopupConfirm(response.result.payload);
             }, function () {
-                abp.message.error("Chính giá bị lỗi!");
+                abp.message.error("Chính sách giá bị lỗi!");
             });
         } else if (type == "PINCODE") {
             $('#input_pinCode_box_confirm').show();

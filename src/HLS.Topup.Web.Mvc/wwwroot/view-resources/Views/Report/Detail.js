@@ -51,6 +51,7 @@
             paging: true,
             serverSide: true,
             processing: true,
+            scrollX: true,
             listAction: {
                 ajaxFunction: _reportService.getReportTransDetailList,
                 inputFilter: function () {
@@ -69,14 +70,6 @@
             columnDefs: [
                 {
                     targets: 0,
-                    className: 'control responsive text-center',
-                    orderable: false,
-                    render: function () {
-                        return '';
-                    }
-                },
-                {
-                    targets: 1,
                     data: "statusName",
                     className: 'all ctrl-ss',
                     render: (data, type, row) => {
@@ -100,7 +93,7 @@
                     }
                 },
                 {
-                    targets: 2,
+                    targets: 1,
                     data: "transTypeName",
                     render: function (data, dispaly, row) {
                         if (row.status === 3)
@@ -112,7 +105,7 @@
                     }
                 },
                 {
-                    targets: 3,
+                    targets: 2,
                     data: "vender",
                     render: function (data, dispaly, row) {
                         if (row.status === 3)
@@ -124,7 +117,7 @@
                     }
                 },
                 {
-                    targets: 4,
+                    targets: 3,
                     className: "all text-right",
                     data: "amount",
                     name: "amount",
@@ -138,7 +131,7 @@
                     }
                 },
                 {
-                    targets: 5,
+                    targets: 4,
                     className: "all text-right",
                     data: "quantity",
                     render: function (data, dispaly, row) {
@@ -152,7 +145,7 @@
 
                 },
                 {
-                    targets: 6,
+                    targets: 5,
                     className: "all text-right",
                     data: "discount",
                     render: function (data, dispaly, row) {
@@ -166,7 +159,7 @@
 
                 },
                 {
-                    targets: 7,
+                    targets: 6,
                     className: "all text-right",
                     data: "fee",
                     render: function (data, dispaly, row) {
@@ -180,7 +173,7 @@
 
                 },
                 {
-                    targets: 8,
+                    targets: 7,
                     className: "all text-right",
                     data: "priceIn",
                     render: function (data, dispaly, row) {
@@ -197,7 +190,7 @@
                     }
                 },
                 {
-                    targets: 9,
+                    targets: 8,
                     className: "all text-right",
                     data: "priceOut",
                     render: function (data, dispaly, row) {
@@ -215,7 +208,7 @@
                     }
                 },
                 {
-                    targets: 10,
+                    targets: 9,
                     data: "balance",
                     className: "all text-right",
                     render: function (data, dispaly, row) {
@@ -228,7 +221,7 @@
                     }
                 },
                 {
-                    targets: 11,
+                    targets: 10,
                     data: "accountRef",
                     render: function (data, dispaly, row) {
                         if (row.status === 3)
@@ -240,7 +233,7 @@
                     }
                 },
                 {
-                    targets: 12,
+                    targets: 11,
                     data: "transCode",
                     render: function (data, dispaly, row) {
                         if (row.status === 3)
@@ -252,7 +245,7 @@
                     }
                 },
                 {
-                    targets: 13,
+                    targets: 12,
                     data: "userProcess",
                     render: function (data, dispaly, row) {
                         if (row.status === 3)
@@ -264,7 +257,7 @@
                     }
                 },
                 {
-                    targets: 14,
+                    targets: 13,
                     data: "createdDate",
                     name: "createdDate",
                     render: function (createdTime, dispaly, row) {
@@ -277,7 +270,7 @@
                     }
                 },
                 {
-                    targets: 15,
+                    targets: 14,
                     data: "requestTransSouce",
                     render: function (data, dispaly, row) {
                         if (row.status === 3)

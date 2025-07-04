@@ -103,10 +103,10 @@
             abp.message.info("Vui lòng chọn mệnh giá");
             return false;
         }
-        if (!obj.isReadTerm) {
-            abp.message.info("Vui lòng đồng ý chính sách của chúng tôi");
-            return false;
-        }
+        // if (!obj.isReadTerm) {
+        //     abp.message.info("Vui lòng đồng ý chính sách của chúng tôi");
+        //     return false;
+        // }
         return true;
     },
     // netx step 1

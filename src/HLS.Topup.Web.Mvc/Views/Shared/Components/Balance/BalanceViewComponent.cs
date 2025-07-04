@@ -21,6 +21,10 @@ namespace HLS.Topup.Web.Views.Shared.Components.Balance
 
         public async Task<IViewComponentResult> InvokeAsync(string accountCode)
         {
+            if (_session.AccountType == CommonConst.SystemAccountType.StaffApi)
+            {
+                accountCode = _session.ParentCode;
+            }
             ViewBag.Balance = (await _transactionsAppService.GetBalance(new GetBalanceRequest
             {
                 AccountCode = !string.IsNullOrEmpty(accountCode) ? accountCode : _session.AccountCode,

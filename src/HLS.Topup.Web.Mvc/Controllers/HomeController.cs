@@ -47,7 +47,7 @@ namespace HLS.Topup.Web.Controllers
             if (_topupAppSession.AccountType == CommonConst.SystemAccountType.StaffApi ||
                 _topupAppSession.AgentType == CommonConst.AgentType.AgentApi)
             {
-                return RedirectToAction("Index", "Profile");
+                return RedirectToAction("Detail", "Report");
             }
 
             var cates = await _commonManger.GetCategories(CommonConst.ServiceCodes.PAY_BILL, null);

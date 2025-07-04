@@ -72,3 +72,417 @@
     border: 1px solid #ccc;
     overflow: hidden !important;
 }
+
+.form-control,
+.select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple {
+    border: 1px solid #ddd !important;
+}
+
+.select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple {
+    height: calc(1.5em + 1.65rem + 2px);
+    padding: 0.825rem 1.42rem;
+    font-size: 1.08rem;
+    line-height: 1.5;
+    border-radius: 0.42rem;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+/* Container cho danh sách thẻ cào */
+.topup-item-list .form-group-radio.grid5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+}
+
+/* Mỗi item trong danh sách */
+.topup-item-list .form-group-radio.grid5 li {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #fff;
+    border: 2px solid #f0f0f0;
+    cursor: pointer;
+}
+
+/* Hover effect cho item */
+.topup-item-list .form-group-radio.grid5 li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255, 198, 60, 0.2);
+    border-color: #FFC63C;
+}
+
+/* Radio button container */
+.topup-item-list .radio.radio-btn {
+    position: relative;
+    height: 100%;
+}
+
+/* Label styling */
+.topup-item-list .radio.radio-btn .label-height-auto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    margin: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    min-height: 200px;
+    position: relative;
+}
+
+/* Ẩn radio button gốc */
+.topup-item-list .radio.radio-btn input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Logo container - Tăng size, loại bỏ border và shadow */
+.topup-item-list .radio-btn-upperlogo {
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto 16px auto;
+    display: block;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effect cho logo */
+.topup-item-list .radio.radio-btn:hover .radio-btn-upperlogo {
+    transform: scale(1.1);
+}
+
+/* Price styling - Đảm bảo ở giữa */
+.topup-item-list .card-data-price {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 12px auto;
+    text-align: center;
+    color: #333;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+}
+
+.topup-item-list .card-data-price.card-hide-5000 {
+    color: #333 !important;
+}
+
+.topup-item-list .card-data-price.card-show-5000 {
+    color: #FFC63C !important;
+}
+
+/* Custom checkbox styling - Đảm bảo ở góc trên bên phải */
+.topup-item-list .checkbox-custom {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    background: #fff;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+/* Checked state - Đẹp hơn */
+.topup-item-list .radio.radio-btn input[type="radio"]:checked ~ .checkbox-custom {
+    border-color: #FFC63C;
+    background: #FFC63C;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(255, 198, 60, 0.2);
+}
+
+.topup-item-list .radio.radio-btn input[type="radio"]:checked ~ .checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 1;
+    animation: checkmark 0.3s ease-in-out;
+}
+
+/* Selected item styling */
+.topup-item-list .form-group-radio.grid5 li:has(input[type="radio"]:checked) {
+    border-color: #FFC63C;
+    background: linear-gradient(135deg, #fffbf0 0%, #fff 100%);
+    box-shadow: 0 8px 24px rgba(255, 198, 60, 0.25);
+    transform: translateY(-2px);
+}
+
+.topup-item-list .form-group-radio.grid5 li:has(input[type="radio"]:checked) .card-data-price {
+    color: #FFC63C;
+    transform: scale(1.05);
+}
+
+.topup-item-list .form-group-radio.grid5 li:has(input[type="radio"]:checked) .radio-btn-upperlogo {
+    transform: scale(1.05);
+}
+
+/* Card note styling */
+.topup-item-list .card-note {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #FFC63C 0%, #ffb347 100%);
+    color: #333;
+    margin: 0;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Show card note on hover */
+.topup-item-list .form-group-radio.grid5 li:hover .card-note {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Eye view card styling */
+.topup-item-list .eye-view-card {
+    color: #333;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.topup-item-list .eye-view-card:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Icon styling */
+.topup-item-list .las.la-eye {
+    font-size: 18px;
+}
+
+/* Text view styling */
+.topup-item-list .text-view {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Pulse animation cho selected item */
+.topup-item-list .form-group-radio.grid5 li:has(input[type="radio"]:checked)::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FFC63C, #ffb347, #FFC63C);
+    border-radius: 18px;
+    z-index: -1;
+    animation: pulse-border 2s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .topup-item-list .form-group-radio.grid5 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+    }
+}
+
+@media (max-width: 992px) {
+    .topup-item-list .form-group-radio.grid5 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .topup-item-list .radio-btn-upperlogo {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 12px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .topup-item-list .form-group-radio.grid5 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .topup-item-list .radio.radio-btn .label-height-auto {
+        padding: 20px 12px;
+        min-height: 180px;
+    }
+
+    .topup-item-list .radio-btn-upperlogo {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 12px auto;
+    }
+
+    .topup-item-list .card-data-price {
+        font-size: 18px;
+    }
+
+    .topup-item-list .text-view {
+        font-size: 11px;
+    }
+
+    .topup-item-list .checkbox-custom {
+        width: 20px;
+        height: 20px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .topup-item-list .radio.radio-btn input[type="radio"]:checked ~ .checkbox-custom::after {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .topup-item-list .form-group-radio.grid5 {
+        gap: 10px;
+    }
+
+    .topup-item-list .radio.radio-btn .label-height-auto {
+        padding: 16px 10px;
+        min-height: 160px;
+    }
+
+    .topup-item-list .radio-btn-upperlogo {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 10px auto;
+    }
+
+    .topup-item-list .card-data-price {
+        font-size: 16px;
+    }
+
+    .topup-item-list .checkbox-custom {
+        width: 18px;
+        height: 18px;
+        top: 8px;
+        right: 8px;
+    }
+
+    .topup-item-list .radio.radio-btn input[type="radio"]:checked ~ .checkbox-custom::after {
+        font-size: 10px;
+    }
+}
+
+/* Animation cho price khi hiển thị */
+.topup-item-list .animate__fadeInTopLeft {
+    animation: fadeInTopLeft 0.5s ease-in-out;
+}
+
+@keyframes fadeInTopLeft {
+    from {
+        opacity: 0;
+        transform: translate3d(-100%, -100%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Checkmark animation */
+@keyframes checkmark {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Pulse border animation */
+@keyframes pulse-border {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.02);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+}
+
+/* Loading state */
+.topup-item-list .form-group-radio.grid5 li.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.topup-item-list .form-group-radio.grid5 li.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #FFC63C;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Hover gradient effect */
+.topup-item-list .form-group-radio.grid5 li:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 198, 60, 0.1) 0%, rgba(255, 179, 71, 0.05) 100%);
+    pointer-events: none;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}

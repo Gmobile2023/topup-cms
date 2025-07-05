@@ -14,6 +14,22 @@
     <script abp-src="/view-resources/Views/BatchTopup/History.js" asp-append-version="true"></script>
 }
 
+<style>
+    .dataTables_wrapper .bottom {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+    }
+
+    .dataTables_wrapper .bottom .dataTables_length label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        font-weight: 400;
+    }
+</style>
+
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.TransactionInfo;
     ViewBag.PageTitle = "Lịch sử nạp lô";

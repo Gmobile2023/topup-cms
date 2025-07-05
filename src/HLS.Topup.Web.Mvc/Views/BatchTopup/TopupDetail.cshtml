@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
 }
 @model HLS.Topup.Web.Models.TopupRequest.HistoryModalDetailViewModel
 @{
@@ -13,100 +13,164 @@
     <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
     <script abp-src="/view-resources/Views/BatchTopup/TopupDetail.js" asp-append-version="true"></script>
 }
-<div class="section-body-middle">
-    <div class="section-body-middle-introduce">
-        <div class="page-body">
-            <div class="row">
-                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
-                    <div class="form-group">
-                        <label for="">Loại lô:</label> @Model.BatchName
-                    </div>
+
+<style>
+    .form-group label {
+        font-weight: 400;
+    }
+
+    .dataTables_wrapper .bottom {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+    }
+
+    .dataTables_wrapper .bottom .dataTables_length label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        font-weight: 400;
+    }
+</style>
+
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.DetailLot;
+    ViewBag.PageTitle = "Chi tiết lô";
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Trang chủ", Url.Action("Index", "Home")),
+        ("Chi tiết lô", null),
+    };
+}
+
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
+
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b">
+            <div class="card-header flex-wrap py-3">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        @ViewBag.PageTitle
+                    </h3>
                 </div>
-                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
-                    <div class="form-group">
-                        <label for="">Mã lô: @Model.BatchCode</label>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
-                    <div class="form-group">
-                        <label for="">Số lượng giao dịch: @Model.Quantity.ToString("N0")</label>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
-                    <div class="form-group">
-                        <label for="">Số lượng giao dịch thành công : @Model.QuantitySuccess.ToString("N0")</label>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
-                    <div class="form-group">
-                        <label for="">Tổng số tiền: @Model.Price.ToString("N0")</label>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
-                    <div class="form-group">
-                        <label for="">Tổng số tiền thành công: @Model.PriceSuccess.ToString("N0")</label>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
-                    <div class="form-group">
-                        <label for="">Trạng thái lô</label>                        
-                        <select class="form-control" name="selectBatchStatus" id="selectBatchStatus">
-                            <option value="-1">--Tất cả--</option>
-                            <option value="0">Khởi tạo</option>
-                            <option value="1">Hoàn tất</option>
-                            <option value="2">Đang xử lý</option>
-                            <option value="3">Dừng</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
-                    <div class="form-group">
-                        <label for="StatusFilterId">Trạng thái giao dịch</label>                        
-                        <select class="form-control" name="selectStatusTrans" id="selectStatusTrans">
-                            <option value="-1">--Tất cả--</option>
-                            <option value="1">Thành công</option>
-                            <option value="2">Chưa có kết quả</option>
-                            <option value="3">Lỗi</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xs-6 col-fix-mobi col-xs-100">
-                    <div class="form-group">
-                        <button type="button" id="btnSeachDetail" class="hlsCtrl button btn-custom btn-blue">Tìm kiếm</button>
-                        <button type="button" id="btnUndo" class="button btn-custom btn-grey">Quay lại</button>
-                        <button type="button" id="btnExportDetail" class="button btn-custom btn-grey">@L("ExportToExcel")</button>
-                    </div>
+                <div class="card-toolbar">
+                    <!--begin::Button-->
+                    <button type="button" id="btnExportDetail" class="btn btn-primary font-weight-bolder">
+                        <span class="svg-icon svg-icon-md">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <defs></defs>
+                                <g id="Stockholm-icons-/-Files-/-Downloaded-file" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                    <path d="M14.8875071,11.8306874 L12.9310336,11.8306874 L12.9310336,9.82301606 C12.9310336,9.54687369 12.707176,9.32301606 12.4310336,9.32301606 L11.4077349,9.32301606 C11.1315925,9.32301606 10.9077349,9.54687369 10.9077349,9.82301606 L10.9077349,11.8306874 L8.9512614,11.8306874 C8.67511903,11.8306874 8.4512614,12.054545 8.4512614,12.3306874 C8.4512614,12.448999 8.49321518,12.5634776 8.56966458,12.6537723 L11.5377874,16.1594334 C11.7162223,16.3701835 12.0317191,16.3963802 12.2424692,16.2179453 C12.2635563,16.2000915 12.2831273,16.1805206 12.3009811,16.1594334 L15.2691039,12.6537723 C15.4475388,12.4430222 15.4213421,12.1275254 15.210592,11.9490905 C15.1202973,11.8726411 15.0058187,11.8306874 14.8875071,11.8306874 Z" id="Shape" fill="#000000"></path>
+                                </g>
+                            </svg>
+                        </span>Xuất Excel
+                    </button>
+                    <!--end::Button-->
                 </div>
             </div>
-            <div class="row" style="margin-top:20px">
-                <div class="col-md-12">
-                    <div class="align-items-center">
-                        <table id="tableDetail" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
-                            <thead>
-                                <tr>
-                                    <th style="text-align:center" colspan="3">Tổng cộng</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th colspan="2"></th>
-                                </tr>
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Trạng thái</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Nhà mạng</th>
-                                    <th>Mệnh giá</th>
-                                    <th>Chiết khấu</th>
-                                    <th>Thành tiền</th>
-                                    <th>Trạng thái giao dịch</th>
-                                    <th>Ngày cập nhật</th>
-                                </tr>
-                            </thead>
-                        </table>
+            <div class="card-body">
+                <div class="table-filter">
+                    <input type="hidden" id="hdnBatchCode" value="@Model.BatchCode" />
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 col-fix-mobi col-xs-100">
+                            <div class="form-group">
+                                <label for="">Loại lô:</label> <strong>@Model.BatchName</strong>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-6 col-fix-mobi col-xs-100">
+                            <div class="form-group">
+                                <label for="">Mã lô: <strong>@Model.BatchCode</strong></label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-6 col-fix-mobi col-xs-100">
+                            <div class="form-group">
+                                <label for="">Số lượng giao dịch: <strong>@Model.Quantity.ToString("N0")</strong></label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-6 col-fix-mobi col-xs-100">
+                            <div class="form-group">
+                                <label for="">Số lượng giao dịch thành công: <strong>@Model.QuantitySuccess.ToString("N0")</strong></label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-6 col-fix-mobi col-xs-100">
+                            <div class="form-group">
+                                <label for="">Tổng số tiền: <strong>@Model.Price.ToString("N0")</strong></label>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-xs-6 col-fix-mobi col-xs-100">
+                            <div class="form-group">
+                                <label for="">Tổng số tiền thành công: <strong>@Model.PriceSuccess.ToString("N0")</strong></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-6">
+                            <div class="form-group">
+                                <label for="selectBatchStatus" class="font-weight-bold">Trạng thái lô</label>
+                                <select class="form-control select2" id="selectBatchStatus">
+                                    <option value="-1">Tất cả</option>
+                                    <option value="0">Khởi tạo</option>
+                                    <option value="1">Hoàn tất</option>
+                                    <option value="2">Đang xử lý</option>
+                                    <option value="3">Dừng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="form-group">
+                                <label for="selectStatusTrans" class="font-weight-bold">Trạng thái giao dịch</label>
+                                <select class="form-control select2" id="selectStatusTrans">
+                                    <option value="-1">Tất cả</option>
+                                    <option value="1">Thành công</option>
+                                    <option value="2">Chưa có kết quả</option>
+                                    <option value="3">Lỗi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-8">
+                                <button type="button" id="btnSeachDetail" class="btn btn-primary font-weight-bold mr-2">Tìm kiếm</button>
+                                <button type="button" id="btnUndo" class="btn btn-secondary font-weight-bold">Quay lại</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="divider"></div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover dt-responsive nowrap mt-8" id="tableDetail">
+                        <thead>
+                        <tr>
+                            <th style="text-align:center" colspan="3">Tổng cộng</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th colspan="2"></th>
+                        </tr>
+                        <tr>
+                            <th>STT</th>
+                            <th>Trạng thái</th>
+                            <th>Số điện thoại</th>
+                            <th>Nhà mạng</th>
+                            <th>Mệnh giá</th>
+                            <th>Chiết khấu</th>
+                            <th>Thành tiền</th>
+                            <th>Trạng thái giao dịch</th>
+                            <th>Ngày cập nhật</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <input type="hidden" id="hdnBatchCode" value="@Model.BatchCode" />
         </div>
     </div>
 </div>

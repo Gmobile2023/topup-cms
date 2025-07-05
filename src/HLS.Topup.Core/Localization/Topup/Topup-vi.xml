@@ -2179,5 +2179,8 @@
         <text name="CreateTopupGateResponseMessage">Thêm mới mã lỗi NCC</text>
         <text name="EditTopupGateResponseMessage">Sửa mã lỗi NCC</text>
         <text name="DeleteTopupGateResponseMessage">Xóa mã lỗi NCC</text>
+
+        <text name="Pages_Report_Sale_Summary_Today">Báo cáo tổng hợp theo ngày</text>
+        <text name="Pages_Report_Sale_Summary_DashBoard">Báo cáo Dashboard doanh số</text>
     </texts>
 </localizationDictionary>

@@ -3,7 +3,7 @@
 @using HLS.Topup.Web.Areas.App.Startup
 @model HLS.Topup.Web.Models.TopupRequest.CreateOrEditTopupRequestModalViewModel
 @{
-    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
 }
 @{
     ViewBag.CurrentPageName = FrontEndPageNames.BatchLotPayment;
@@ -16,362 +16,391 @@
     <script abp-src="/view-resources/Views/BatchTopup/Index.js" asp-append-version="true"></script>
 }
 
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Profile_Edit;
+    ViewBag.PageTitle = "Nạp lô";
+    ViewBag.MobileToggle = true;
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Trang chủ", Url.Action("Index", "Home")),
+        ("Nạp lô", Url.Action("Index", "BatchTopup")),
+    };
+}
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
+
 <style>
     td.ctrl-ss {
         padding: 0 10px 0 0 !important;
     }
 
-        td.ctrl-ss i.fa {
-            padding: 8px 12px !important;
-        }
+    td.ctrl-ss i.fa {
+        padding: 8px 12px !important;
+    }
 
     .modal-content {
         border-radius: 0 !important;
     }
 
+    .form-group label {
+        font-weight: 400;
+    }
+
     select.form-control, input.form-control {
         border-radius: 0;
     }
+
+    .dataTables_wrapper .bottom {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+    }
+
+    .dataTables_wrapper .bottom .dataTables_length label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        font-weight: 400;
+    }
+
+    .table .thead-dark th {
+        background-color: inherit;
+    }
 </style>
 
-<div class="row topup-page" id="topup_Page">
-    <div class="col-md-12" id="topup_PageList">
-        <div class="tab" role="tabpanel">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                @if (IsGranted(AppPermissions.Pages_BatchLotTopup))
-                {
-                    <li role="presentation">
-                        <a data-toggle="tab" href="#input-topUp-box" data-label="0" onClick="ctrlList.tabBatchType('TOPUP')" class="active">Nạp tiền điện thoại</a>
-                    </li>
-                }
-                @if (IsGranted(AppPermissions.Pages_BatchLotPinCode))
-                {
-                    <li role="presentation">
-                        <a data-toggle="tab" href="#input-pinCode-box" data-label="1" onClick="ctrlList.tabBatchType('PINCODE')">Mua mã thẻ</a>
-                    </li>
-                }
-                @if (IsGranted(AppPermissions.Pages_BatchLotPayBill))
-                {
-                    <li role="presentation">
-                        <a data-toggle="tab" href="#input-payBill-box" data-label="2" onClick="ctrlList.tabBatchType('PAYBILL')">Thanh toán hóa đơn</a>
-                    </li>
-                }
-            </ul>
-            <!-- Tab panes -->
-            <div class="tab-content tabs">
-                <div role="tabpanel" class="tab-pane fade in active" id="input-topUp-box">
-                    @if (IsGranted(AppPermissions.Pages_BatchLotTopup))
-                    {
-                        <div class="section-body-middle">
-                            <div class="section-body-middle-form-p1 no-border-top">
-                                <div class="section-box">
-                                    <div class="form-group margin-big">
-                                        <label for="" class="title">
-                                            <img src="/themes/topup/images/ic_dark/ic-03.svg" alt=""> Chọn file nhập &nbsp;
-                                            <span class="lightred">
-                                                (*)
+<div class="d-flex flex-column-fluid" id="Topup_Page">
+    <div class="container">
+        <div class="d-flex flex-row">
+            <div class="flex-row-fluid">
+                <div class="card card-custom card-stretch">
+                    <div class="card-header py-3">
+                        <div class="card-title align-items-start flex-column">
+                            <h3 class="card-label font-weight-bolder text-dark">@ViewBag.PageTitle</h3>
+                        </div>
+                        <div class="card-toolbar">
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <input type="hidden" id="hdnBatchType" value="TOPUP" />
+                        <div class="batch-topup-form" id="topup_PageList">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                @if (IsGranted(AppPermissions.Pages_BatchLotTopup))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#input-topUp-box">
+                                            <span class="nav-icon">
+                                                <i class="flaticon2-phone"></i>
                                             </span>
-                                        </label>
-                                        <div class="form-group-wrap">
-                                            <input placeholder="Nhập file" type="file" class="form-control" name="fileTopupInput" id="fileTopupInput" accept=".xlsx, .xls, .csv">
+                                            <span class="nav-text"><strong>Nạp tiền điện thoại</strong></span>
+                                        </a>
+                                    </li>
+                                }
+
+                                @if (IsGranted(AppPermissions.Pages_BatchLotPinCode))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab"
+                                           href="#input-pinCode-box">
+                                            <span class="nav-icon">
+                                                <i class="flaticon2-phone"></i>
+                                            </span>
+                                            <span class="nav-text"><strong>Mua mã thẻ</strong></span>
+                                        </a>
+                                    </li>
+                                }
+
+                                @if (IsGranted(AppPermissions.Pages_BatchLotPayBill))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab"
+                                           href="#input-payBill-box">
+                                            <span class="nav-icon">
+                                                <i class="flaticon2-phone"></i>
+                                            </span>
+                                            <span class="nav-text"><strong>Mua mã thẻ</strong></span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            <div class="tab-content mt-5" id="myTabContent">
+                                @if (IsGranted(AppPermissions.Pages_BatchLotTopup))
+                                {
+                                    <div class="tab-pane fade active show" id="input-topUp-box" role="tabpanel"
+                                         aria-labelledby="topUp-tab">
+                                        <div class="form-group">
+                                            <label class="required">Chọn file nhập</label>
+                                            <div></div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="fileTopupInput"
+                                                       id="fileTopupInput" accept=".xlsx, .xls, .csv"/>
+                                                <label class="custom-file-label" for="fileTopupInput"
+                                                       style="font-weight: 400;">Chọn file</label>
+                                            </div>
+                                            <small>
+                                                <a href="/assets/SampleFiles/ImportNapLoTopup.xlsx">Tải xuống File
+                                                    mẫu</a></small>
                                         </div>
-                                        <div class="" style="margin-top:10px">
-                                            <a href="/assets/SampleFiles/ImportNapLoTopup.xlsx">Tải xuống File mẫu</a>
+                                        <div class="form-group">
+                                            <table id="topupTable"
+                                                   class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th colspan="3" class="text-center">Tổng cộng</th>
+                                                    <th class="text-center"><span class="card-note__name" id="sumTopupTable"></span></th>
+                                                    <th></th>
+                                                </tr>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Nhà mạng</th>
+                                                    <th>Mệnh giá</th>
+                                                    <th>Xóa</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
                                         </div>
+                                        <div class="form-group text-center">
+                                            <button type="button" id="btnNextTopup" onClick="ctrlList.nextToStep()" class="hlsCtrl btn btn-primary btn-lg">
+                                                Xác nhận <i class="flaticon2-right-arrow"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (IsGranted(AppPermissions.Pages_BatchLotPinCode))
+                                {
+                                    <div class="tab-pane fade" id="input-pinCode-box" role="tabpanel"
+                                         aria-labelledby="pinCode-tab">
+                                        <div class="form-group">
+                                            <label class="required">Chọn file nhập</label>
+                                            <div></div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="filePinCodeInput"
+                                                       id="filePinCodeInput" accept=".xlsx, .xls, .csv"/>
+                                                <label class="custom-file-label" for="filePinCodeInput"
+                                                       style="font-weight: 400;">Chọn file</label>
+                                            </div>
+                                            <small>
+                                                <a href="/assets/SampleFiles/pinCode_List.xlsx">Tải xuống File
+                                                    mẫu</a></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <table id="pinCodeTable"
+                                                   class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th colspan="4" class="text-center">Tổng cộng</th>
+                                                    <th class="text-center"><span class="card-note__name" id="sumPinCodeTable"></span></th>
+                                                    <th></th>
+                                                </tr>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Loại thẻ</th>
+                                                    <th>Nhà phát hành</th>
+                                                    <th>Mệnh giá</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Xóa</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <button type="button" id="btnNextPinCode" onClick="ctrlList.nextToStep()" class="hlsCtrl btn btn-primary btn-lg">
+                                                Xác nhận <i class="flaticon2-right-arrow"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (IsGranted(AppPermissions.Pages_BatchLotPayBill))
+                                {
+                                    <div class="tab-pane fade" id="input-payBill-box" role="tabpanel"
+                                         aria-labelledby="payBill-tab">
+                                        <div class="form-group">
+                                            <label class="required">Chọn file nhập</label>
+                                            <div></div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="filePayBillInput"
+                                                       id="filePayBillInput" accept=".xlsx, .xls, .csv"/>
+                                                <label class="custom-file-label" for="filePayBillInput"
+                                                       style="font-weight: 400;">Chọn file</label>
+                                            </div>
+                                            <small>
+                                                <a href="/assets/SampleFiles/ImportNapLoTTHoaDon.xlsx">Tải xuống File
+                                                    mẫu</a></small>
+                                        </div>
+                                        <div class="form-group">
+                                            <table id="payBillTable"
+                                                   class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th colspan="3" class="text-center">Tổng cộng</th>
+                                                    <th class="text-center"><span class="card-note__name" id="sumPayBillTable"></span></th>
+                                                    <th></th>
+                                                </tr>
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Loại</th>
+                                                    <th>Nhà cung cấp</th>
+                                                    <th>Mã khách hàng</th>
+                                                    <th>Số tiền</th>
+                                                    <th>Ghi chú</th>
+                                                    <th>Xóa</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <button type="button" id="btnNextPayBill" onClick="ctrlList.nextToStep()" class="hlsCtrl btn btn-primary btn-lg">
+                                                Xác nhận <i class="flaticon2-right-arrow"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="batch-topup-confirm" id="topup_PageConfirm" style="display:none;">
+                            <div class="tab-content-confirm" style="margin-top:25px">
+                                <div id="input_topUp_box_confirm" style="display:none">
+                                    <div class="form-group form-group-dashed row mb-2">
+                                        <label class="col-md-4 col-xs-6 control-label">Loại lô</label>
+                                        <label class="col-md-8 col-xs-6 control-label control-label-result"><strong>Nạp tiền điện thoại</strong></label>
+                                    </div>
+
+                                    <div class="form-group form-group-dashed row mb-2">
+                                        <label class="col-md-4 col-xs-6 control-label">Số lượng giao dịch</label>
+                                        <label class="col-md-8 col-xs-6 control-label control-label-result "><span class="font-weight-bold" id="sumTopupQty"></span></label>
+                                    </div>
+                                    <div class="form-group form-group-dashed row mb-2">
+                                        <label class="col-md-4 col-xs-6 control-label">Tổng số tiền</label>
+                                        <label class="col-md-8 col-xs-6 control-label control-label-result"><span class="font-weight-bold" id="sumTopupPrice"></span></label>
+                                    </div>
+
+                                    <div class="form-group margin-big">
                                         <div class="form-group" style="margin-top:20px">
                                             <div class="align-items-center">
-                                                <table id="topupTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
-                                                    <thead>
-                                                        <tr>
-                                                            <th colspan="3">Tổng cộng</th>
-                                                            <th><span class="card-note__name" id="sumTopupTable"></span></th>
-                                                            <th></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>STT</th>
-                                                            <th>Số điện thoại</th>
-                                                            <th>Nhà mạng</th>
-                                                            <th>Mệnh giá</th>
-                                                            <th>Xóa</th>
-                                                        </tr>
+                                                <table id="topupTableConfirm" class="table table-bordered table-checkable table-hover dt-responsive nowrap">
+                                                    <thead class="thead-dark">
+                                                    <tr>
+                                                        <th colspan="3" class="text-center">Tổng cộng</th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumTopupTableValue"></span></th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumTopupTableDiscount"></span></th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumTopupTablePrice"></span></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Số điện thoại</th>
+                                                        <th>Nhà mạng</th>
+                                                        <th>Mệnh giá</th>
+                                                        <th>Chiết khấu</th>
+                                                        <th>Thành tiền</th>
+                                                    </tr>
                                                     </thead>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-7">
+
+                                <div id="input_pinCode_box_confirm" style="display:none">
+                                    <div class="form-group form-group-dashed row mb-2">
+                                        <label class="col-md-4 col-xs-6 control-label">Loại lô</label>
+                                        <label class="col-md-8 col-xs-6 control-label control-label-result font-weight-bold">Mua mã thẻ</label>
                                     </div>
-                                    <div class="col-sm-5 text-right">
-                                        <button type="button" id="btnNextTopup" onClick="ctrlList.nextToStep()" class="hlsCtrl button btn-custom btn-blue">Xác nhận</button>
+
+                                    <div class="form-group form-group-dashed row mb-2">
+                                        <label class="col-md-4 col-xs-6 control-label">Số lượng thẻ:</label>
+                                        <label class="col-md-8 col-xs-6 control-label control-label-result"><span class="font-weight-bold" id="sumPinCodeQty"></span></label>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="input-pinCode-box">
-                    @if (IsGranted(AppPermissions.Pages_BatchLotPinCode))
-                    {
-                        <div class="section-body-middle">
-                            <div class="section-body-middle-form-p1 no-border-top">
-                                <div class="section-box">
+                                    <div class="form-group form-group-dashed row mb-2">
+                                        <label class="col-md-4 col-xs-6 control-label">Tổng số tiền</label>
+                                        <label class="col-md-8 col-xs-6 control-label control-label-result"><span class="font-weight-bold" id="sumPinCodePrice"></span></label>
+                                    </div>
                                     <div class="form-group margin-big">
-                                        <label for="" class="title" style="display:none">
-                                            <img src="/themes/topup/images/ic_dark/ic-03.svg" alt=""> Chọn file nhập &nbsp;
-                                            <span class="lightred">
-                                                (*)
-                                            </span>
-                                        </label>
-                                        <button id="CreateAddCardButton" class="button btn-custom btn-blue pull-right">
-                                            <i class="fa fa-file-excel"></i>Thêm mới
-                                        </button>
-                                        <div class="form-group-wrap">
-                                            <input placeholder="Nhập file" type="file" class="form-control" style="display:none" name="filePinCodeInput" id="filePinCodeInput" accept=".xlsx, .xls, .csv">
-                                        </div>
-                                        <div class="" style="margin-top:10px; display:none">
-                                            <a href="/assets/SampleFiles/pinCode_List.xlsx">Tải xuống File mẫu</a>
-                                        </div>
                                         <div class="form-group">
                                             <div class="align-items-center" style="margin-top:20px">
-                                                <table id="pinCodeTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
-                                                    <thead>
-                                                        <tr>
-                                                            <th colspan="4">Tổng cộng</th>
-                                                            <th>
-                                                                <span class="card-note__name" id="sumPinCodeTable"></span>
-                                                            </th>
-                                                            <th></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>STT</th>
-                                                            <th>Loại thẻ</th>
-                                                            <th>Nhà phát hành</th>
-                                                            <th>Mệnh giá</th>
-                                                            <th>Số lượng</th>
-                                                            <th>Xóa</th>
-                                                        </tr>
+                                                <table id="pinCodeTableConfirm" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                                    <thead class="thead-dark">
+                                                    <tr>
+                                                        <th colspan="4" class="text-center">Tổng cộng</th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumPinCodeTableQty"></span></th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumPinCodeTableDiscount"></span></th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumPinCodeTablePrice"></span></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Loại thẻ</th>
+                                                        <th>Nhà phát hành</th>
+                                                        <th>Mệnh giá</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Chiết khấu</th>
+                                                        <th>Thành tiền</th>
+                                                    </tr>
                                                     </thead>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-7">
+                                <div id="input_payBill_box_confirm" style="display:none;">
+                                    <div class="form-group form-group-dashed row mb-2">
+                                        <label class="col-md-4 col-xs-6 control-label">Loại lô</label>
+                                        <label class="col-md-8 col-xs-6 control-label control-label-result font-weight-bold">Thanh toán hóa đơn</label>
                                     </div>
-                                    <div class="col-sm-5 text-right">
-                                        <button type="button" id="btnNextPinCode" onClick="ctrlList.nextToStep()" class="hlsCtrl button btn-custom btn-blue">Xác nhận</button>
+                                    <div class="form-group form-group-dashed row mb-2">
+                                        <label class="col-md-4 col-xs-6 control-label">Số lượng giao dịch</label>
+                                        <label class="col-md-8 col-xs-6 control-label control-label-result"><span class="font-weight-bold" id="sumPayBillQty"></span></label>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="input-payBill-box">
-                    @if (IsGranted(AppPermissions.Pages_BatchLotPayBill))
-                    {
-                        <div class="section-body-middle">
-                            <div class="section-body-middle-form-p1 no-border-top">
-                                <div class="section-box">
-                                    <div class="form-group margin-big" style="margin-bottom: 0;">
-                                        <label for="" class="title">
-                                            <img src="/themes/topup/images/ic_dark/ic-03.svg" alt=""> Chọn file nhập &nbsp;
-                                            <span class="lightred">
-                                                (*)
-                                            </span>
-                                        </label>
-                                        <div class="form-group-wrap">
-                                            <input placeholder="Nhập file" type="file" class="form-control" name="filePayBillInput" id="filePayBillInput" accept=".xlsx, .xls, .csv">
-                                        </div>
-                                        <div class="" style="margin-top:10px">
-                                            <a href="/assets/SampleFiles/ImportNapLoTTHoaDon.xlsx">Tải xuống File mẫu</a>
-                                        </div>
+                                    <div class="form-group form-group-dashed row mb-2">
+                                        <label class="col-md-4 col-xs-6 control-label">Tổng số tiền</label>
+                                        <label class="col-md-8 col-xs-6 control-label control-label-result"><span class="font-weight-bold" id="sumPayBillPrice"></span></label>
+                                    </div>
+
+                                    <div class="form-group margin-big">
                                         <div class="form-group">
                                             <div class="align-items-center" style="margin-top:20px">
-                                                <table id="payBillTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
-                                                    <thead>
-                                                        <tr>
-                                                            <th colspan="4"></th>
-                                                            <th>
-                                                                <span class="card-note__name" id="sumPayBillTable"></span>
-                                                            </th>
-                                                            <th colspan="2"></th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>STT</th>
-                                                            <th>Loại</th>
-                                                            <th>Nhà cung cấp</th>
-                                                            <th>Mã khách hàng</th>
-                                                            <th>Số tiền</th>
-                                                            <th>Ghi chú</th>
-                                                            <th>Xóa</th>
-                                                        </tr>
+                                                <table id="payBillTableConfirm" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                                    <thead class="thead-dark">
+                                                    <tr>
+                                                        <th colspan="4" class="text-center">Tổng cộng</th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumPayBillTableValue"></span></th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumPayBillTableDiscount"></span></th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumPayBillTableFee"></span></th>
+                                                        <th class="text-center"><span class="card-note__name" id="sumPayBillTablePrice"></span></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Loại</th>
+                                                        <th>Nhà cung cấp</th>
+                                                        <th>Mã khách hàng</th>
+                                                        <th>Số tiền</th>
+                                                        <th>Chiết khấu</th>
+                                                        <th>Phí</th>
+                                                        <th>Thành tiền</th>
+                                                    </tr>
                                                     </thead>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-7">
-                                    </div>
-                                    <div class="col-sm-5 text-right">
-                                        <button type="button" id="btnNextPayBill" onClick="ctrlList.nextToStep()" class="hlsCtrl button btn-custom btn-blue">Xác nhận</button>
+                                <div class="section-body-p2">
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="button" onClick="ctrlList.undoMenu()" class="btn btn-secondary btn-lg">
+                                                <i class="flaticon2-left-arrow"></i> Quay lại
+                                            </button>
+                                            <button type="button" onClick="ctrlList.nextToStepConfirm()" class="btn btn-primary btn-lg">
+                                                Xác nhận <i class="flaticon2-right-arrow"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section-body-right section-body-middle-introduce" id="topup_PageConfirm" style="display:none; background: #fff;">
-        <div class="section-body-right-header">
-            <div class="cart"></div>
-            <p>Thông tin giao dịch</p>
-        </div>
-        <div class="tab-content-confirm" style="margin-top:25px">
-            <div id="input_topUp_box_confirm" style="display:none">
-
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label">Loại lô</label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result ">Nạp tiền điện thoại</label>
-                </div>
-
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label">Số lượng giao dịch</label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result "><span id="sumTopupQty"></span></label>
-                </div>
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label">Tổng số tiền</label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result"><span id="sumTopupPrice"></span></label>
-                </div>
-
-
-                <div class="form-group margin-big">
-                    <div class="form-group" style="margin-top:20px">
-                        <div class="align-items-center">
-                            <table id="topupTableConfirm" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th colspan="3">Tổng cộng</th>
-                                        <th><span class="card-note__name" id="sumTopupTableValue"></span></th>
-                                        <th><span class="card-note__name" id="sumTopupTableDiscount"></span></th>
-                                        <th><span class="card-note__name" id="sumTopupTablePrice"></span></th>
-                                    </tr>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Nhà mạng</th>
-                                        <th>Mệnh giá</th>
-                                        <th>Chiết khấu</th>
-                                        <th>Thành tiền</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="input_pinCode_box_confirm" style="display:none">
-
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label">Loại lô</label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result ">Mua mã thẻ</label>
-                </div>
-
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label">Số lượng thẻ:</label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result "><span id="sumPinCodeQty"></span></label>
-                </div>
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label">Tổng số tiền</label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result"><span id="sumPinCodePrice"></span></label>
-                </div>
-                <div class="form-group margin-big">
-                    <div class="form-group">
-                        <div class="align-items-center" style="margin-top:20px">
-                            <table id="pinCodeTableConfirm" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th colspan="4">Tổng cộng</th>
-                                        <th><span class="card-note__name" id="sumPinCodeTableQty"></span></th>
-                                        <th><span class="card-note__name" id="sumPinCodeTableDiscount"></span></th>
-                                        <th><span class="card-note__name" id="sumPinCodeTablePrice"></span></th>
-                                    </tr>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Loại thẻ</th>
-                                        <th>Nhà phát hành</th>
-                                        <th>Mệnh giá</th>
-                                        <th>Số lượng</th>
-                                        <th>Chiết khấu</th>
-                                        <th>Thành tiền</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div id="input_payBill_box_confirm" style="display:none;">
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label">Loại lô</label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result ">Thanh toán hóa đơn</label>
-                </div>
-
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label">Số lượng giao dịch</label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result "><span id="sumPayBillQty"></span></label>
-                </div>
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label">Tổng số tiền</label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result"><span id="sumPayBillPrice"></span></label>
-                </div>
-
-                <div class="form-group margin-big">
-                    <div class="form-group">
-                        <div class="align-items-center" style="margin-top:20px">
-                            <table id="payBillTableConfirm" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th colspan="4">Tổng cộng</th>
-                                        <th><span class="card-note__name" id="sumPayBillTableValue"></span></th>
-                                        <th><span class="card-note__name" id="sumPayBillTableDiscount"></span></th>
-                                        <th><span class="card-note__name" id="sumPayBillTableFee"></span></th>
-                                        <th><span class="card-note__name" id="sumPayBillTablePrice"></span></th>
-                                    </tr>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Loại</th>
-                                        <th>Nhà cung cấp</th>
-                                        <th>Mã khách hàng</th>
-                                        <th>Số tiền</th>
-                                        <th>Chiết khấu</th>
-                                        <th>Phí</th>
-                                        <th>Thành tiền</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-body-p2">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <button type="button" onClick="ctrlList.undoMenu()" class="button btn-custom btn-grey">Quay lại</button>
-                        <button type="button" onClick="ctrlList.nextToStepConfirm()" class="button btn-custom btn-blue">Xác nhận</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <input type="hidden" id="hdnBatchType" value="TOPUP" />
 </div>

@@ -1,42 +1,43 @@
 ﻿@using HLS.Topup.Web.TagHelpers
 @model HLS.Topup.Web.Models.TopupInfoDto
-<div class="section-body-right bg-white affix-wrap affix-top">
+<div class="section-body-right bg-white affix-wrap affix-top mb-5">
     <input type="hidden" name="_TotalAmount" value="@Model.TotalAmount" />
     <div class="section-body-right-header">
         <div class="cart"></div>
         <p>Thông tin giao dịch</p>
     </div>
-    <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Nhà mạng</label>
-        <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.CategoryName</label>
-    </div>
-    @* <div class="form-group form-group-dashed row"> *@
-    @*     <label class="col-md-4 col-xs-6 control-label">Hình thức nạp</label> *@
-    @*     <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.Method</label> *@
-    @* </div> *@
-
-
-    <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Số điện thoại</label>
-        <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.PhoneNumber</label>
-    </div>
-    @if (Model.ServiceCode == "TOPUP_DATA")
-    {
-        <div class="form-group form-group-dashed row">
-            <label class="col-md-4 col-xs-6 control-label">Gói Data</label>
-            <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.Description</label>
-        </div>
-    }
-    <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Số tiền giao dịch</label>
-        <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.CardValue.ToFormat()</label>
-    </div>
-    <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Số tiền chiết khấu</label>
-        <label class="col-md-8 col-xs-6 control-label control-label-result ">@Model.Discount.ToFormat()</label>
-    </div>
-    <div class="form-group form-group-dashed row">
-        <label class="col-md-4 col-xs-6 control-label">Tổng tiền thanh toán</label>
-        <label class="col-md-8 col-xs-6 control-label control-label-result">@Model.TotalAmount.ToFormat()</label>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered" style="line-height: 2;">
+            <tbody>
+            <tr>
+                <td class="font-weight-bold">Nhà mạng</td>
+                <td><strong>@Model.CategoryName</strong></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Số điện thoại</td>
+                <td><strong>@Model.PhoneNumber</strong></td>
+            </tr>
+            @if (Model.ServiceCode == "TOPUP_DATA")
+            {
+                <tr>
+                    <td class="font-weight-bold">Gói Data</td>
+                    <td><strong>@Model.Description</strong></td>
+                </tr>
+            }
+            <tr>
+                <td class="font-weight-bold">Số tiền giao dịch</td>
+                <td><strong>@Model.CardValue.ToFormat()</strong></td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Số tiền chiết khấu</td>
+                <td><strong>@Model.Discount.ToFormat()</strong></td>
+            </tr>
+            <tr class="table-primary">
+                <td class="font-weight-bold">Tổng tiền thanh toán</td>
+                <td class="font-weight-bold text-danger"><strong>@Model.TotalAmount.ToFormat()</strong></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>

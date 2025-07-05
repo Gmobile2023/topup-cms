@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = $"~/Views/Layout/_LayoutFull.cshtml";
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
 }
 @model HLS.Topup.Web.Models.Report.ReportViewModel
 @{
@@ -8,9 +8,15 @@
     ViewBag.ImageTitle = "/themes/topup/images/transaction-history-white.svg";
 }
 
+@section Styles
+{
+    <style>
+        .font-weight-bold { font-weight: 600 !important; }
+    </style>
+}
+
 @section Scripts
 {
-    
     <script type="application/javascript">
         var agentType = '@Model.User.AgentType';
         var sendMethod = '@Model.User.MethodReceivePassFile';
@@ -19,162 +25,186 @@
     <script abp-src="/view-resources/Views/Report/Detail.js" asp-append-version="true"></script>
 }
 
-<style>
-    td.ctrl-ss {
-        padding: 0 10px 0 0 !important;
-    }
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.TransactionInfo;
+    ViewBag.PageTitle = "Lịch sử giao dịch";
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Trang chủ", Url.Action("Index", "Home")),
+        ("Lịch sử giao dịch", Url.Action("Detail", "Report")),
+    };
+}
 
-        td.ctrl-ss i.fa {
-            padding: 8px 12px !important;
-        }
-</style>
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
 
-<div class="report-detail">
-    <div class="page-title text-right">
-        <a href="javascript:" onclick="Sv.goBackHistory()">
-            <button class="btn-file-export" style="float: left !important;">
-                <i class="fa fa-chevron-left" aria-hidden="true"></i> @L("Back")
-            </button>
-        </a>
-        <div class="add-button">
-            <button id="ExportToExcelButton" class=" btn-file-export">
-                <i class="fa fa-file-excel"></i> @L("ExportToExcel")
-            </button>
-        </div>
-    </div>
-
-    <div class="page-body">
-        <div class="row">
-            <div class="col-md-3 col-xs-6 col-fix-mobi col-xs-100">
-                <div class="form-group">
-                    <label for="FromDateFilterId">Thời gia từ:</label>
-                    <div class="dis-flex" style="display: flex;">
-                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="FromDateFilterId">
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Card-->
+        <div class="card card-custom gutter-b">
+            <div class="card-header flex-wrap py-3">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        @ViewBag.PageTitle
+                    </h3>
+                </div>
+                <div class="card-toolbar">
+                    <!--begin::Button-->
+                    <button type="button" id="ExportToExcelButton" class="btn btn-primary font-weight-bolder">
+                        <span class="svg-icon svg-icon-md">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <defs></defs>
+                                <g id="Stockholm-icons-/-Files-/-Downloaded-file" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <polygon id="Shape" points="0 0 24 0 24 24 0 24"></polygon>
+                                    <path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+                                    <path d="M14.8875071,11.8306874 L12.9310336,11.8306874 L12.9310336,9.82301606 C12.9310336,9.54687369 12.707176,9.32301606 12.4310336,9.32301606 L11.4077349,9.32301606 C11.1315925,9.32301606 10.9077349,9.54687369 10.9077349,9.82301606 L10.9077349,11.8306874 L8.9512614,11.8306874 C8.67511903,11.8306874 8.4512614,12.054545 8.4512614,12.3306874 C8.4512614,12.448999 8.49321518,12.5634776 8.56966458,12.6537723 L11.5377874,16.1594334 C11.7162223,16.3701835 12.0317191,16.3963802 12.2424692,16.2179453 C12.2635563,16.2000915 12.2831273,16.1805206 12.3009811,16.1594334 L15.2691039,12.6537723 C15.4475388,12.4430222 15.4213421,12.1275254 15.210592,11.9490905 C15.1202973,11.8726411 15.0058187,11.8306874 14.8875071,11.8306874 Z" id="Shape" fill="#000000"></path>
+                                </g>
+                            </svg>
+                        </span>Xuất Excel
+                    </button>
+                    <!--end::Button-->
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-filter">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="" class="font-weight-bold">Thời gian</label>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group date" id="kt_datetimepicker_7_1" data-target-input="nearest">
+                                            <input type="text" class="form-control date-picker" id="FromDateFilterId" placeholder="Bắt đầu"/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="ki ki-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group date" id="kt_datetimepicker_7_2" data-target-input="nearest">
+                                            <input type="text" class="form-control date-picker" id="ToDateFilterId" placeholder="Kết thúc"/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="ki ki-calendar"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtRequestTrans" class="font-weight-bold">Mã giao dịch</label>
+                                <input type="text" class="form-control" id="txtRequestTrans" placeholder="Mã giao dịch"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="txtReceivedAccount" class="font-weight-bold">Tài khoản thụ hưởng</label>
+                                <input type="text" class="form-control" id="txtReceivedAccount" maxlength="10" placeholder="Tài khoản thụ hưởng"/>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="form-group">
+                                <label for="selectProvider" class="font-weight-bold">Nhà cung cấp</label>
+                                <select id="selectProvider" name="selectProvider" class="form-control select2">
+                                    <option value="">Tất cả</option>
+                                    @foreach (var x in Model.Providers)
+                                    {
+                                        <option value="@(x.Value)">@(x.DisplayText)</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="selectUserProcess" class="font-weight-bold">Người thực hiện</label>
+                                <select id="selectUserProcess" name="selectUserProcess" class="form-control select2"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="form-group">
+                                <label for="ServiceCodeFilter" class="font-weight-bold">Loại giao dịch</label>
+                                <select class="form-control select2" id="ServiceCodeFilter">
+                                    <option value="">Chọn loại giao dịch</option>
+                                    <option value="TOPUP">Nạp tiền điện thoại</option>
+                                    <option value="TOPUP_DATA">Topup Data</option>
+                                    <option value="PIN_CODE">Mua mã thẻ</option>
+                                    <option value="PIN_DATA">Mua thẻ Data</option>
+                                    <option value="PIN_GAME">Mua thẻ Game</option>
+                                    <option value="PAY_BILL">Thanh toán hóa đơn</option>
+                                    <option value="CORRECT_UP">Điều chỉnh tăng</option>
+                                    <option value="CORRECT_DOWN">Điều chỉnh giảm</option>
+                                    <option value="REFUND">Hoàn tiền</option>
+                                    <option value="DEPOSIT">Nạp tiền</option>
+                                    <option value="TRANSFER">Chuyển tiền ngang</option>
+                                    <option value="RECEIVE_MONEY">Nhận tiền đại lý</option>
+                                    <option value="PAYBATCH">Trả thưởng</option>
+                                    <option value="PAYCOMMISSION">Hoa hồng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="form-group">
+                                <label for="StatusFilterId" class="font-weight-bold">Trạng thái</label>
+                                <select class="form-control select2" id="StatusFilterId">
+                                    <option value="99">Tất cả</option>
+                                    <option value="1">Thành công</option>
+                                    <option value="2">Chưa có kết quả</option>
+                                    <option value="3">Lỗi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-8">
+                                <button type="button" id="btnSearch" class="btn btn-primary font-weight-bold mr-2">Tìm kiếm</button>
+                                <button type="reset" class="btn btn-secondary font-weight-bold">Đặt lại</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-fix-mobi col-xs-100">
-                <div class="form-group">
-                    <label for="FromDateFilterId">Thời gian tới:</label>
-                    <div class="dis-flex" style="display: flex;">
-                        <input class="form-control m-input datedepart hasDatepicker date-picker" value="@DateTime.Now.ToShortDateString()" type="datetime" id="ToDateFilterId">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-12 col-fix-mobi col-xs-100">
-                <div class="form-group">
-                    <label for="RequestTransFilter">Mã giao dịch:</label>
-                    <input type="text" id="txtRequestTrans" class="form-control" />
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-12">
-                <div class="form-group align-items-center">
-                    <label>Tài khoản thụ hưởng: </label>
-                    <div class="input-group">
-                        <input type="text" id="txtReceivedAccount" class="form-control" />
-                        <span class="input-group-btn">
-                            <button id="btnSearch" class="btn btn-success btn-blue btn-search-icon" type="submit">
-                                <i class="flaticon-search-1" aria-label="@L("Search")"></i>
-                            </button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-xs-100">
-                <div class="form-group">
-                    <label for="ProviderFilter">Nhà cung cấp:</label>
-                    <select id="selectProvider" name="selectProvider" class="form-control select2">
-                        <option value="">--Tất cả--</option>
-                        @foreach (var x in Model.Providers)
-                        {
-                            <option value="@(x.Value)">@(x.DisplayText)</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-xs-100">
-                <div class="form-group">
-                    <label for="UserProcessFilter">Người thực hiện:</label>
-
-                    <select id="selectUserProcess" name="selectUserProcess" class="form-control select2"></select>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-xs-100 box-input-select">
-                <div class="form-group">
-                    <label for="ServiceCodeFilter">Loại giao dịch:</label>
-                    <span class="down-arrow-black arrow-small" style="top:25px"></span>
-                    <select id="ServiceCodeFilter" class="form-control">
-                        <option value="">-- @L("TransType") --</option>
-                        <option value="TOPUP">Nạp tiền điện thoại</option>
-                        <option value="TOPUP_DATA">Topup Data</option>
-                        <option value="PIN_CODE">Mua mã thẻ</option>
-                        <option value="PIN_DATA">Mua thẻ Data</option>
-                        <option value="PIN_GAME">Mua thẻ Game</option>
-                        <option value="PAY_BILL">Thanh toán hóa đơn</option>
-                        <option value="CORRECT_UP">Điều chỉnh tăng</option>
-                        <option value="CORRECT_DOWN">Điều chỉnh giảm</option>
-                        <option value="REFUND">Hoàn tiền</option>
-                        <option value="DEPOSIT">Nạp tiền</option>
-                        <option value="TRANSFER">Chuyển tiền ngang</option>
-                        <option value="RECEIVE_MONEY">Nhận tiền đại lý</option>
-                        <option value="PAYBATCH">Trả thưởng</option>
-						<option value="PAYCOMMISSION">Hoa hồng</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3 col-xs-6 col-xs-100">
-                <div class="form-group">
-                    <label for="StatusFilterId">@L("Status"):</label>
-                    <span class="down-arrow-black arrow-small" style="top:25px"></span>
-                    <select class="form-control" name="StatusFilter" id="StatusFilterId">
-                        <option value="0">@L("All")</option>
-                        <option value="1">Thành công</option>
-                        <option value="2">Chưa có KQ</option>
-                        <option value="3">Lỗi</option>
-                    </select>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="row" style="margin-top:20px">
-            <div class="col-md-12">
-                <div class="tb-transaction-history">
-                    <table id="Table" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                <div class="divider"></div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover dt-responsive nowrap mt-8" id="Table">
                         <thead>
-                            <tr>
-                                <th style="text-align:center" colspan="4">Tổng cộng</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th colspan="5"></th>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <th>Trạng thái</th>
-                                <th>Loại giao dịch</th>
-                                <th>Nhà cung cấp</th>
-                                <th>Đơn giá</th>
-                                <th>Số lượng</th>
-                                <th>Chiết khấu</th>
-                                <th>Phí</th>
-                                <th>Thu</th>
-                                <th>Chi</th>
-                                <th>Số dư</th>
-                                <th>Tài khoản thụ hưởng</th>
-                                <th>Mã giao dịch</th>
-                                <th>Người thực hiện</th>
-                                <th>Thời gian</th>
-                                <th>Mã tham chiếu</th>
-                            </tr>
+                        <tr>
+                            <th style="text-align:center" colspan="4">Tổng cộng</th>
+                            <th class="font-weight-bold">0</th>
+                            <th class="font-weight-bold">0</th>
+                            <th class="font-weight-bold">0</th>
+                            <th class="font-weight-bold">0</th>
+                            <th class="font-weight-bold">0</th>
+                            <th class="font-weight-bold">0</th>
+                            <th colspan="5"></th>
+                        </tr>
+                        <tr>
+                            <th>Trạng thái</th>
+                            <th>Loại giao dịch</th>
+                            <th>Nhà cung cấp</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Chiết khấu</th>
+                            <th>Phí</th>
+                            <th>Thu</th>
+                            <th>Chi</th>
+                            <th>Số dư</th>
+                            <th>Tài khoản thụ hưởng</th>
+                            <th>Mã giao dịch</th>
+                            <th>Người thực hiện</th>
+                            <th>Thời gian</th>
+                            <th>Mã tham chiếu</th>
+                        </tr>
                         </thead>
+                        <tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

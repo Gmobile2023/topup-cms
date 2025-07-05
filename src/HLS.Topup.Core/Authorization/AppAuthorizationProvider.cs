@@ -54,32 +54,31 @@ namespace HLS.Topup.Authorization
             var auditActivities =
                 pagesBackend.CreateChildPermission(AppPermissions.Pages_AuditActivities, L("AuditActivities"));
 
-            var payment =
-                pagesFrontEnd.CreateChildPermission(AppPermissions.Pages_CreatePayment, L("Pages_CreatePayment"));
-            var paymentTopup =
+            var payment = pagesFrontEnd.CreateChildPermission(AppPermissions.Pages_CreatePayment, L("Pages_CreatePayment"));
                 payment.CreateChildPermission(AppPermissions.Pages_CreatePayment_Topup, L("Pages_CreatePayment_Topup"));
-            var paymentPinCode =
-                payment.CreateChildPermission(AppPermissions.Pages_CreatePayment_PinCode,
-                    L("Pages_CreatePayment_PinCode"));
-            var paymentPayBill =
-                payment.CreateChildPermission(AppPermissions.Pages_CreatePayment_PayBill,
-                    L("Pages_CreatePayment_PayBill"));
-            var requestDeposit =
-                pagesFrontEnd.CreateChildPermission(AppPermissions.Pages_RequestDeposit, L("Pages_RequestDeposit"));
-            var transfer =
-                pagesFrontEnd.CreateChildPermission(AppPermissions.Pages_TransferMoney, L("Pages_TransferMoney"));
-            var balanceHistory =
-                pagesFrontEnd.CreateChildPermission(AppPermissions.Pages_BalanceHistory, L("Pages_BalanceHistory"));
-            var batchLotHistory =
-                pagesFrontEnd.CreateChildPermission(AppPermissions.Pages_BatchLotHistory, L("Pages_BatchLotHistory"));
-            batchLotHistory.CreateChildPermission(AppPermissions.Pages_BatchLotStop, L("BatchLotStop"));
+                payment.CreateChildPermission(AppPermissions.Pages_CreatePayment_PinCode, L("Pages_CreatePayment_PinCode"));
+                payment.CreateChildPermission(AppPermissions.Pages_CreatePayment_PayBill, L("Pages_CreatePayment_PayBill"));
+                payment.CreateChildPermission(AppPermissions.Pages_RequestDeposit, L("Pages_RequestDeposit"));
+                payment.CreateChildPermission(AppPermissions.Pages_TransferMoney, L("Pages_TransferMoney"));
+            
+            //Nạp lo
             var batchLotPayment = pagesFrontEnd.CreateChildPermission(AppPermissions.Pages_CreateBatchLotPayment,
                 L("Pages_CreateBatchLotPayment"));
             batchLotPayment.CreateChildPermission(AppPermissions.Pages_BatchLotTopup, L("BatchLotTopup"));
             batchLotPayment.CreateChildPermission(AppPermissions.Pages_BatchLotPinCode, L("BatchLotPinCode"));
             batchLotPayment.CreateChildPermission(AppPermissions.Pages_BatchLotPayBill, L("BatchLotPayBill"));
+            batchLotPayment.CreateChildPermission(AppPermissions.Pages_BatchLotHistory, L("Pages_BatchLotHistory"));
+            batchLotPayment.CreateChildPermission(AppPermissions.Pages_BatchLotStop, L("BatchLotStop"));
+            
+            
             var transactionHistory = pagesFrontEnd.CreateChildPermission(AppPermissions.Pages_TransactionHistory,
                 L("Pages_TransactionHistory"));
+            
+            transactionHistory.CreateChildPermission(AppPermissions.Pages_Report_Sale_Summary_Today, L("Pages_Report_Sale_Summary_Today"));
+            transactionHistory.CreateChildPermission(AppPermissions.Pages_Report_Sale_Summary_DashBoard, L("Pages_Report_Sale_Summary_DashBoard"));
+            transactionHistory.CreateChildPermission(AppPermissions.Pages_BalanceHistory, L("Pages_BalanceHistory"));
+            
+            
             var agentParentFontend =
                 pagesFrontEnd.CreateChildPermission(AppPermissions.Pages_Report_CommissionAgentGeneral,
                     L("ReportCommissionAgentGeneral"));
@@ -136,16 +135,14 @@ namespace HLS.Topup.Authorization
             cardStocks.CreateChildPermission(AppPermissions.Pages_CardStocks_EditQuantity, L("EditQuantityStock"));
 
 
-            var stocksAirtimes = pages.CreateChildPermission(AppPermissions.Pages_StocksAirtimes, L("StocksAirtimes"));
-            stocksAirtimes.CreateChildPermission(AppPermissions.Pages_StocksAirtimes_Create,
-                L("CreateNewStocksAirtime"));
+            var stocksAirtimes = pagesBackend.CreateChildPermission(AppPermissions.Pages_StocksAirtimes, L("StocksAirtimes"));
+            stocksAirtimes.CreateChildPermission(AppPermissions.Pages_StocksAirtimes_Create, L("CreateNewStocksAirtime"));
             stocksAirtimes.CreateChildPermission(AppPermissions.Pages_StocksAirtimes_Edit, L("EditStocksAirtime"));
             stocksAirtimes.CreateChildPermission(AppPermissions.Pages_StocksAirtimes_Delete, L("DeleteStocksAirtime"));
-            stocksAirtimes.CreateChildPermission(AppPermissions.Pages_StocksAirtimes_Deposit,
-                L("DepositStocksAirtime"));
+            stocksAirtimes.CreateChildPermission(AppPermissions.Pages_StocksAirtimes_Deposit, L("DepositStocksAirtime"));
 
 
-            var batchAirtimes = pages.CreateChildPermission(AppPermissions.Pages_BatchAirtimes, L("BatchAirtimes"));
+            var batchAirtimes = pagesBackend.CreateChildPermission(AppPermissions.Pages_BatchAirtimes, L("BatchAirtimes"));
             batchAirtimes.CreateChildPermission(AppPermissions.Pages_BatchAirtimes_Create, L("CreateNewBatchAirtime"));
             batchAirtimes.CreateChildPermission(AppPermissions.Pages_BatchAirtimes_Edit, L("EditBatchAirtime"));
             batchAirtimes.CreateChildPermission(AppPermissions.Pages_BatchAirtimes_Approval, L("ApprovalBatchAirtime"));

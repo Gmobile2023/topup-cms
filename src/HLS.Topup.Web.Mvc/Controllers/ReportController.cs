@@ -54,13 +54,13 @@ namespace HLS.Topup.Web.Controllers
             return View(module);
         }
 
-        [AbpMvcAuthorize(AppPermissions.Pages_TransactionHistory)]
+        [AbpMvcAuthorize(AppPermissions.Pages_Report_Sale_Summary_Today)]
         public async Task<IActionResult> TotalDay()
         {
             return View();
         }
 
-        [AbpMvcAuthorize(AppPermissions.Pages_TransactionHistory)]
+        [AbpMvcAuthorize(AppPermissions.Pages_Report_Sale_Summary_DashBoard)]
         public async Task<IActionResult> DashRevenue()
         {
             var date = DateTime.Now;

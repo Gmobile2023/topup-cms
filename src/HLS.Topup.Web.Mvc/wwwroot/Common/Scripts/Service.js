@@ -2825,9 +2825,9 @@ var Dialog = {
         if (type === 'Pw2') {
             title = "Mật khẩu cấp 2";
             message = '<form class="bootbox-form" autocomplete="off">' +
-                '<div class="bootbox-prompt-message">' + app.localize("Message_Level2Pass_Description") + '</div>' +
+                '<div class="bootbox-prompt-message mb-2">' + app.localize("Message_Level2Pass_Description") + '</div>' +
                 '<input class="bootbox-input bootbox-input-password dialog-fn-input form-control" autocomplete="off" type="password">' +
-                '<div class="b-action"><a class="saction" href="/Profile/Password2Level">Quên mật khẩu cấp 2?</a></div>' +
+                '<div class="b-action mt-2"><a class="saction" href="/Profile/Password2Level">Quên mật khẩu cấp 2?</a></div>' +
                 '</form>';
             className += "dialog-pw2";
         } else if (type === 'OTP') {

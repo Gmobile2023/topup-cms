@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
 }
 @model HLS.Topup.Web.Models.TopupRequest.CreateOrEditTopupRequestModalViewModel
 @{
@@ -14,26 +14,45 @@
     <script abp-src="/view-resources/Views/Topup/IndexTopupList.js" asp-append-version="true"></script>
 }
 
-<div id="Topup_Page" class="section-body-middle">
-    <div class="section-body-middle-introduce">
-        <ul class="navbar-card row mg0" style="display: none;">
-            <li onclick="ctrl.TabActive('card__slider_menu1')" class="card__slider_menu1 active">
-                <div class="navbar-card__slider"></div>
-                <a data-toggle="tab" href="#card__slider_menu1">Nạp trực tiếp</a>
-            </li>
-            @*<li onclick="ctrl.TabActive('card__slider_menu2')" class="card__slider_menu2">
-                <a data-toggle="tab" href="#card__slider_menu2"> Nạp danh sách</a>
-            </li>*@
-        </ul>
-        <div class="clearfix"></div>
-        <div class="tab-content tab-content--card">
-            <div id="card__slider_menu1" class="tab-pane fade active">
-                @await Html.PartialAsync("IndexTopup", Model)
-            </div>
-            <!--<div id="card__slider_menu2" class="tab-pane fade text-center">-->
-                @* @Html.Partial("IndexTopupList", Model) *@
-                <!--<label>Dịch vụ tạm thời dừng hoạt động, vui lòng quay lại sau!</label>
-            </div>-->
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.Profile_Edit;
+    ViewBag.PageTitle = "Nạp tiền điện thoại";
+    ViewBag.MobileToggle = true;
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Trang chủ", Url.Action("Index", "Home")),
+        ("Nạp tiền điện thoại", Url.Action("Index", "Topup")),
+    };
+}
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
+
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid" id="Topup_Page">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Profile Personal Information-->
+        <div class="d-flex flex-row">
+            @await Html.PartialAsync("IndexTopup", Model)
         </div>
+        <!--end::Profile Personal Information-->
     </div>
+    <!--end::Container-->
 </div>
+<!--end::Entry-->
+
+@* <div id="Topup_Page" class="section-body-middle"> *@
+@*     <div class="section-body-middle-introduce"> *@
+@*         <ul class="navbar-card row mg0" style="display: none;"> *@
+@*             <li onclick="ctrl.TabActive('card__slider_menu1')" class="card__slider_menu1 active"> *@
+@*                 <div class="navbar-card__slider"></div> *@
+@*                 <a data-toggle="tab" href="#card__slider_menu1">Nạp trực tiếp</a> *@
+@*             </li> *@
+@*         </ul> *@
+@*         <div class="clearfix"></div> *@
+@*         <div class="tab-content tab-content--card"> *@
+@*             <div x="card__slider_menu1" class="tab-pane fade active"> *@
+@*                 @await Html.PartialAsync("IndexTopup", Model) *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@

@@ -17,25 +17,24 @@
 
 @await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
 
-<!--begin::Entry-->
 <div class="d-flex flex-column-fluid">
     <!--begin::Container-->
     <div class="container">
         <!--begin::Dashboard-->
         <!--begin::Row-->
         <div class="row">
-            <div class="col-xl-12">
+            <div class="col-xl-8 mx-auto">
                 <div class="card card-custom gutter-b">
                     <div class="card-header flex-wrap mx-auto py-3">
                         <div class="card-title">
                             <h3 class="card-label">
                                 @if (Model.Code == "1")
                                 {
-                                    <span style="color: green;">Giao dịch thành công</span>
+                                    <span class="text-success">Giao dịch thành công</span>
                                 }
                                 else
                                 {
-                                    <span style="color: red;">Giao dịch không thành công</span>
+                                    <span class="text-danger">Giao dịch không thành công</span>
                                 }
                             </h3>
                         </div>
@@ -44,114 +43,58 @@
                     <div class="card-body p-0">
                         @if (Model.Code == "1")
                         {
-                            if (Model.TransType == CommonConst.TransactionType.Deposit.ToString("G"))
-                            {
-                                <div class="alert alert-custom alert-success alert-light-success fade show mb-0" role="alert">
-                                    <div class="alert-text">
+                            <!-- Success Alert -->
+                            <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+                                <div class="alert-text">
+                                    @if (Model.TransType == CommonConst.TransactionType.Deposit.ToString("G"))
+                                    {
                                         <span>Bạn vừa tạo thành công thông báo nạp tiền với mã nạp: <strong>@Model.RequestCode</strong></span>
                                         <br>
                                         <span>Vui lòng ghi "@(Model.RequestCode != null ? Model.RequestCode + " - " : "")Nap tien - @ViewBag.AccountCode" vào nội dung chuyển khoản của bạn</span>
-                                    </div>
-                                    <div class="alert-close">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">
-                                                <i class="ki ki-close"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            }
-                            else if (Model.TransType == CommonConst.TransactionType.Transfer.ToString("G"))
-                            {
-                                <div class="alert alert-custom alert-success alert-light-success fade show mb-0" role="alert">
-                                    <div class="alert-text">
-                                        <span>Bạn vừa chuyển tiền cho tài khoản <strong>@Model.Account</strong> số tiền là: <strong class="color-red"> @Model.Amount.ToFormat()</strong>. Ghi chú: <strong>@Model.Description</strong></span>
-                                    </div>
-                                    <div class="alert-close">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">
-                                                <i class="ki ki-close"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            }
-                            else if (Model.TransType == CommonConst.TransactionType.Topup.ToString("G"))
-                            {
-                                <div class="alert alert-custom alert-success alert-light-success fade show mb-0" role="alert">
-                                    <div class="alert-text">
+                                    }
+                                    else if (Model.TransType == CommonConst.TransactionType.Transfer.ToString("G"))
+                                    {
+                                        <span>Bạn vừa chuyển tiền cho tài khoản <strong>@Model.Account</strong> số tiền là: <strong class="text-danger"> @Model.Amount.ToFormat()</strong>. Ghi chú: <strong>@Model.Description</strong></span>
+                                    }
+                                    else if (Model.TransType == CommonConst.TransactionType.Topup.ToString("G"))
+                                    {
                                         @if (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP_DATA)
                                         {
-                                            <span>Chúc mừng bạn đã nạp data thành công cho khách hàng <strong>@Model.Account</strong>.<br/> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="color-red"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                                            <span>Chúc mừng bạn đã nạp data thành công cho khách hàng <strong>@Model.Account</strong>.<br/> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="text-danger"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
                                         }
                                         else
                                         {
-                                            <span>Chúc mừng bạn đã nạp tiền thành công cho khách hàng <strong>@Model.Account</strong>.<br/> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="color-red"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                                            <span>Chúc mừng bạn đã nạp tiền thành công cho khách hàng <strong>@Model.Account</strong>.<br/> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="text-danger"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
                                         }
-                                    </div>
-                                    <div class="alert-close">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">
-                                                <i class="ki ki-close"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            }
-                            else if (Model.TransType == CommonConst.TransactionType.Payment.ToString("G"))
-                            {
-                                <div class="alert alert-custom alert-success alert-light-success fade show mb-0" role="alert">
-                                    <div class="alert-text">
-                                        <span>Chúc mừng bạn đã thanh toán thành công cho khách hàng <strong>@Model.Account</strong>.<br/> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="color-red"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
-                                    </div>
-                                    <div class="alert-close">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">
-                                                <i class="ki ki-close"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            }
-                            else if (Model.TransType == CommonConst.TransactionType.PinCode.ToString("G"))
-                            {
-                                var type = L("ServiceNameByCode_" + Model.TransInfo.ServiceCode);
-                                <div class="alert alert-custom alert-success alert-light-success fade show mb-0" role="alert">
-                                    <div class="alert-text">
-                                        <span>Chúc mừng bạn đã thanh toán thành công cho giao dịch @type.<br/> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="color-red"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
-                                    </div>
-                                    <div class="alert-close">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">
-                                                <i class="ki ki-close"></i>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="alert alert-custom alert-success alert-light-success fade show mb-0" role="alert">
-                                    <div class="alert-text">
+                                    }
+                                    else if (Model.TransType == CommonConst.TransactionType.Payment.ToString("G"))
+                                    {
+                                        <span>Chúc mừng bạn đã thanh toán thành công cho khách hàng <strong>@Model.Account</strong>.<br/> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="text-danger"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                                    }
+                                    else if (Model.TransType == CommonConst.TransactionType.PinCode.ToString("G"))
+                                    {
+                                        var type = L("ServiceNameByCode_" + Model.TransInfo.ServiceCode);
+                                        <span>Chúc mừng bạn đã thanh toán thành công cho giao dịch @type.<br/> Mã giao dịch <strong>@Model.TransCode</strong> số tiền là: <strong class="text-danger"> @Model.TransInfo.Amount.ToFormat("đ")</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
+                                    }
+                                    else
+                                    {
                                         <span>Chúc mừng bạn đã thanh toán thành công cho giao dịch có mã: <strong>@Model.TransCode</strong> lúc <strong>@Model.TransInfo.CreatedTime.ToString("dd/MM/yyyy HH:mm:ss")</strong></span>
                                         @if (Model.TransType == CommonConst.TransactionType.PinCode.ToString("G") && !string.IsNullOrEmpty(Model.Message))
                                         {
-                                            <span>@Model.Message</span>
+                                            <br><span>@Model.Message</span>
                                         }
-                                    </div>
-                                    <div class="alert-close">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">
-                                                <i class="ki ki-close"></i>
-                                            </span>
-                                        </button>
-                                    </div>
+                                    }
                                 </div>
-                            }
+                            </div>
                         }
                         else
                         {
-                            <span>@Model.Message</span>
+                            <!-- Error Alert -->
+                            <div class="alert alert-danger alert-dismissible fade show mb-0" role="alert">
+                                <div class="alert-text text-center">
+                                    <strong>Lỗi!</strong> @Model.Message
+                                </div>
+                            </div>
                         }
                     </div>
                     <!--end::Body-->
@@ -159,38 +102,42 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-3">
             @if (Model.Code == "1" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_CODE
                                        || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_DATA
                                        || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PIN_GAME))
             {
-                <div tabindex="12" class="col-md-12 text-center">
+                <div tabindex="12" class="col-md-12 text-center mb-3">
                     <div class="form-group">
-                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="button btn-custom btn-blue btn-printMobile" style="display:none; width: auto; padding: 0 20px;">@L("PrintBluetooth")</button>
-                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="button btn-custom btn-blue btn-printDesktop" style="display:none; width: auto; padding: 0 20px;">@L("Print1")</button>
-                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'copy')" class="button btn-custom btn-blue" style="width: auto;">@L("Copy")</button>
-                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'export')" class="button btn-custom btn-blue" style="width: auto;"> @L("ExportToExcel")</button>
-                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'printA4')" class="button btn-custom btn-blue" style="width: auto;">@L("PrintA4")</button>
+                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="btn btn-outline-primary btn-printMobile" style="display:none;">@L("PrintBluetooth")</button>
+                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="btn btn-outline-primary btn-printDesktop" style="display:none;">@L("Print1")</button>
+                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'copy')" class="btn btn-outline-primary">@L("Copy")</button>
+                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'export')" class="btn btn-outline-primary">@L("ExportToExcel")</button>
+                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'printA4')" class="btn btn-outline-primary">@L("PrintA4")</button>
                     </div>
                 </div>
             }
             <div tabindex="12" class="col-md-12 text-center">
-                <button type="button" onclick="back()" class="button btn btn-secondary btn-grey">Quay lại</button>
-                @if (Model.TransType == CommonConst.TransactionType.Deposit.ToString("G") || Model.TransType == CommonConst.TransactionType.Transfer.ToString("G"))
-                {
-                    <button type="button" onclick="historyBalance()" class="button text-center btn-blue">Xem lịch sử giao dịch</button>
-                }
-                else
-                {
-                    <button type="button" onclick="historyNext()" class="button btn btn-primary btn-blue">Xem lịch sử giao dịch</button>
-                }
-                @if (Model.Code == "1" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP_DATA
-                                           || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PAY_BILL
-                                           || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP))
-                {
-                    <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="button btn-custom btn-blue btn-printMobile" style="display:none; width: auto; padding: 0 20px;">@L("PrintBluetooth")</button>
-                    <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="button btn-custom btn-blue btn-printDesktop" style="display:none; width: auto; padding: 0 20px;">@L("Print1")</button>
-                }
+                <div class="btn-group" role="group">
+                    <button type="button" onclick="back()" class="btn btn-secondary">
+                        <i class="flaticon2-left-arrow"></i> Quay lại
+                    </button>
+                    @if (Model.TransType == CommonConst.TransactionType.Deposit.ToString("G") || Model.TransType == CommonConst.TransactionType.Transfer.ToString("G"))
+                    {
+                        <button type="button" onclick="historyBalance()" class="btn btn-primary">Xem lịch sử giao dịch <i class="flaticon2-right-arrow"></i></button>
+                    }
+                    else
+                    {
+                        <button type="button" onclick="historyNext()" class="btn btn-primary">Xem lịch sử giao dịch <i class="flaticon2-right-arrow"></i></button>
+                    }
+                    @if (Model.Code == "1" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP_DATA
+                                               || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PAY_BILL
+                                               || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP))
+                    {
+                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="btn btn-outline-primary btn-printMobile" style="display:none;">@L("PrintBluetooth")</button>
+                        <button type="button" onclick="ngtAction.open('@Model.TransCode', 'print')" class="btn btn-outline-primary btn-printDesktop" style="display:none;">@L("Print1")</button>
+                    }
+                </div>
             </div>
         </div>
     </div>

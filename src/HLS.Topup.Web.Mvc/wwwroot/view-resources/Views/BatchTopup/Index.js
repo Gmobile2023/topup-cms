@@ -369,7 +369,7 @@
                     targets: 4,
                     className: 'all text-center',
                     render: function (data, type, row) {
-                        return '<button onclick="ctrlList.removeItemTopup(\'' + row.id + '\')" data-id="' + row.id + '">Xóa</button>';
+                        return '<button class="btn btn-danger btn-sm" onclick="ctrlList.removeItemTopup(\'' + row.id + '\')" data-id="' + row.id + '">Xóa</button>';
                     },
                 }
             ],

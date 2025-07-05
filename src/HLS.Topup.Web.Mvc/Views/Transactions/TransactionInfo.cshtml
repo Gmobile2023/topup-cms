@@ -23,7 +23,7 @@
         <!--begin::Dashboard-->
         <!--begin::Row-->
         <div class="row">
-            <div class="col-xl-12">
+            <div class="col-xl-8 mx-auto">
                 <div class="card card-custom gutter-b">
                     <div class="card-header flex-wrap mx-auto py-3">
                         <div class="card-title">
@@ -119,14 +119,16 @@
             }
             <div tabindex="12" class="col-md-12 text-center">
                 <div class="btn-group" role="group">
-                    <button type="button" onclick="back()" class="btn btn-secondary">Quay lại</button>
+                    <button type="button" onclick="back()" class="btn btn-secondary">
+                        <i class="flaticon2-left-arrow"></i> Quay lại
+                    </button>
                     @if (Model.TransType == CommonConst.TransactionType.Deposit.ToString("G") || Model.TransType == CommonConst.TransactionType.Transfer.ToString("G"))
                     {
-                        <button type="button" onclick="historyBalance()" class="btn btn-primary">Xem lịch sử giao dịch</button>
+                        <button type="button" onclick="historyBalance()" class="btn btn-primary">Xem lịch sử giao dịch <i class="flaticon2-right-arrow"></i></button>
                     }
                     else
                     {
-                        <button type="button" onclick="historyNext()" class="btn btn-primary">Xem lịch sử giao dịch</button>
+                        <button type="button" onclick="historyNext()" class="btn btn-primary">Xem lịch sử giao dịch <i class="flaticon2-right-arrow"></i></button>
                     }
                     @if (Model.Code == "1" && (Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.TOPUP_DATA
                                                || Model.TransInfo.ServiceCode == CommonConst.ServiceCodes.PAY_BILL

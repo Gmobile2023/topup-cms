@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = $"~/Views/Layout/_LayoutTopup.cshtml";
+    Layout = $"~/Views/Layout/_LayoutGmobile.cshtml";
 }
 @model HLS.Topup.Web.Models.TopupRequest.TopupListModalViewModel
 @{
@@ -8,48 +8,114 @@
     ViewBag.ImageTitle = "/themes/topup/images/transaction-history-white.svg";
 }
 
+@{
+    ViewBag.CurrentPageName = FrontEndPageNames.ResultLot;
+    ViewBag.PageTitle = "Kết quả giao dịch";
+    ViewBag.MobileToggle = true;
+    ViewBag.Breadcrumbs = new List<(string Text, string Url)>
+    {
+        ("Trang chủ", Url.Action("Index", "Home")),
+        ("Kết quả giao dịch", null),
+    };
+}
+@await Html.PartialAsync("~/Views/Layout/Shared/_SubHeaderPartial.cshtml")
+
 @section Scripts
 {
     <script abp-src="/view-resources/Views/BatchTopup/Result.js" asp-append-version="true"></script>
     <script src="~/themes/topup/print/ctrl.js" asp-append-version="true"></script>
 }
-<div class="section-body-middle">
-    <div class="section-body-middle-introduce">
-        <div class="section-body-right-header">
-            <div class="cart"></div>
-            <p>Tạo lô thành công</p>
-        </div>
-        <div class="page-body" style="margin-top:30px">
-            @if (Model.Status == 1)
-            {
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label"></label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result ">Chúc mừng bạn đã tạo lô thành công</label>
-                </div>
 
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label"></label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result ">Loại lô : <span>@Model.BatchName</span></label>
+<div class="d-flex flex-column-fluid">
+    <!--begin::Container-->
+    <div class="container">
+        <!--begin::Dashboard-->
+        <!--begin::Row-->
+        <div class="row">
+            <div class="col-xl-8 mx-auto">
+                <div class="card card-custom gutter-b">
+                    <div class="card-header flex-wrap mx-auto py-3">
+                        <div class="card-title">
+                            <h3 class="card-label">
+                                @if (Model.Status == 1)
+                                {
+                                    <span class="text-success">Tạo lô thành công</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">Tạo lô không thành công</span>
+                                }
+                            </h3>
+                        </div>
+                    </div>
+                    <!--begin::Body-->
+                    <div class="card-body">
+                        @if (Model.Status == 1)
+                        {
+                            <!-- Success Table -->
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr style="border-bottom: 1px dashed #dee2e6;">
+                                            <td class="text-muted" style="width: 30%; padding: 15px 0;">Trạng thái</td>
+                                            <td style="padding: 15px 0;">
+                                                <strong class="text-success">Chúc mừng bạn đã tạo lô thành công</strong>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px dashed #dee2e6;">
+                                            <td class="text-muted" style="padding: 15px 0;">Loại lô</td>
+                                            <td style="padding: 15px 0;">
+                                                <strong class="text-black">@Model.BatchName</strong>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px dashed #dee2e6;">
+                                            <td class="text-muted" style="padding: 15px 0;">Số lượng giao dịch</td>
+                                            <td style="padding: 15px 0;">
+                                                <strong class="text-black">@Model.Quantity.ToString("N0")</strong>
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px dashed #dee2e6;">
+                                            <td class="text-muted" style="padding: 15px 0;">Tổng số tiền</td>
+                                            <td style="padding: 15px 0;">
+                                                <strong class="text-danger">@Model.Price.ToString("N0")</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <!-- Error Table -->
+                            <div class="table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr style="border-bottom: 1px dashed #dee2e6;">
+                                            <td class="text-muted" style="width: 30%; padding: 15px 0;">Trạng thái</td>
+                                            <td style="padding: 15px 0;">
+                                                <strong class="text-danger">Giao dịch không thành công. Chưa tiếp nhận được kết quả.</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                    <!--end::Body-->
                 </div>
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label"></label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result">Số lượng giao dịch : <span>@Model.Quantity.ToString("N0")</span></label>
-                </div>
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label"></label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result">Tổng số tiền : <span>@Model.Price.ToString("N0")</span></label>
-                </div>
-            }
-            else
-            {
-                <div class="form-group form-group-dashed row">
-                    <label class="col-md-4 col-xs-6 control-label"></label>
-                    <label class="col-md-8 col-xs-6 control-label control-label-result">Giao dịch không thành công. Chưa tiếp nhận được kết quả.</label>
-                </div>
-            }
+            </div>
+        </div>
+
+        <div class="row mt-3">
             <div class="col-md-12 text-center">
-                <button type="button" id="btnUndo" class="button btn-custom btn-grey">Quay lại</button>
-                <button type="button" id="btnHistory" class="button btn-custom btn-blue">Xem lịch sử lô</button>
+                <div class="btn-group" role="group">
+                    <button type="button" id="btnUndo" class="btn btn-secondary">
+                        <i class="flaticon2-left-arrow"></i> Quay lại
+                    </button>
+                    <button type="button" id="btnHistory" class="btn btn-primary">
+                        Xem lịch sử lô <i class="flaticon2-right-arrow"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

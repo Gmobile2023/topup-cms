@@ -2443,5 +2443,6 @@
         <text name="Message_Sms_NT">{0}+la+%C3%98DP+cua+quy+khach</text>
         <text name="LockUnLock">Khóa/Mở khóa</text>
         <text name="TopupGateResponseMessage">Quản lý mã lỗi NCC</text>
+        <text name="TopupGateResponseMessageManagerment">Quản lý mã lỗi NCC</text>
     </texts>
 </localizationDictionary>

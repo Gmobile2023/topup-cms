@@ -69,8 +69,8 @@
                         Provider: row["Nhà cung cấp"],
                         Code: row["Mã lỗi nhà cung cấp"],
                         Name: row["Thông báo lỗi nhà cung cấp"],
-                        ReponseCode: row['Mã Lỗi NT'],
-                        ReponseName: row["Thông báo lỗi NT"],
+                        ResponseCode: row['Mã Lỗi NT'],
+                        ResponseName: row["Thông báo lỗi NT"],
                         AddedAtUtc: new Date(),
                     };
                     listTopupGateResponseMessage.push(bankMessageConfig);
@@ -175,15 +175,15 @@
                 },
                 {
                     targets: 4,
-                    data: "reponseCode",
-                    name: "reponseCode",
+                    data: "responseCode",
+                    name: "responseCode",
                     className: "all text-center",
 
                 },
                 {
                     targets: 5,
-                    data: "reponseName",
-                    name: "reponseName",
+                    data: "responseName",
+                    name: "responseName",
                 },
                 {
                     targets: 6,

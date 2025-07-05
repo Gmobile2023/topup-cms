@@ -422,6 +422,8 @@
         public const string Pages_Report_CommissionAgentDetail = "Pages.Report.CommissionAgentDetail";
         public const string Pages_Report_CommissionAgentTotal = "Pages.Report.CommissionAgentTotal";
         public const string Pages_Report_CommissionAgentDash = "Pages.Report.CommissionAgentDash";
+        public const string Pages_Report_Sale_Summary_Today = "Pages.Report.SaleSummaryToday";
+        public const string Pages_Report_Sale_Summary_DashBoard = "Pages.Report.SaleSummaryDashBoard";
 
         //
         public const string Pages_PartnerServiceConfigurations = "Pages.PartnerServiceConfigurations";

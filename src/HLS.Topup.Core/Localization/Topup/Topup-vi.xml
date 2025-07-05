@@ -2176,5 +2176,8 @@
         <text name="Enum_CardTransStatus_3">Lỗi</text>
         <text name="TopupGateResponseMessage">Quản lý mã lỗi NCC</text>
         <text name="TopupGateResponseMessageManagerment">Quản lý mã lỗi NCC</text>
+        <text name="CreateTopupGateResponseMessage">Thêm mới mã lỗi NCC</text>
+        <text name="EditTopupGateResponseMessage">Sửa mã lỗi NCC</text>
+        <text name="DeleteTopupGateResponseMessage">Xóa mã lỗi NCC</text>
     </texts>
 </localizationDictionary>

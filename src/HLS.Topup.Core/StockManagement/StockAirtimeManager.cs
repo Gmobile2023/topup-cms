@@ -305,7 +305,7 @@ namespace HLS.Topup.StockManagement
                                     {
                                         Message = message,
                                         Module = "WEB",
-                                        Title = "Cảnh báo tồn kho NCC",
+                                        Title = "Cảnh báo số dư NCC",
                                         BotType = (byte)CommonConst.BotType.Provider,
                                         MessageType = (byte)CommonConst.BotMessageType.Wraning
                                     });
@@ -346,7 +346,7 @@ namespace HLS.Topup.StockManagement
                                     Message =
                                         $"Kiểm tra số dư NCC :{item.Code} không thành công\nMessage:{response.ResponseStatus.ToJson()}",
                                     Module = "WEB",
-                                    Title = "Cảnh báo tồn kho NCC",
+                                    Title = "Cảnh báo số dư NCC",
                                     BotType = (byte)CommonConst.BotType.Provider,
                                     MessageType = (byte)CommonConst.BotMessageType.Error
                                 });
@@ -393,7 +393,7 @@ namespace HLS.Topup.StockManagement
                     {
                         Message = message,
                         Module = "WEB",
-                        Title = "Cảnh báo tồn kho NCC",
+                        Title = "Cảnh báo số dư NCC",
                         BotType = (byte)CommonConst.BotType.Provider,
                         MessageType = (byte)CommonConst.BotMessageType.Wraning
                     });

@@ -438,24 +438,24 @@
             Passport = 3 //Hộ chiếu
         }
 
-        public enum BotMessageType
-        {
-            Error = 1,
-            Wraning = 2,
-            Message = 3
-        }
-
-        public enum BotType
-        {
-            Dev = 1,
-            Sale = 2,
-            CardMapping = 3,
-            Provider = 4,
-            Transaction = 5,
-            Stock = 6,
-            Deposit = 7,
-            Channel = 8
-        }
+        // public enum BotMessageType
+        // {
+        //     Error = 1,
+        //     Wraning = 2,
+        //     Message = 3
+        // }
+        //
+        // public enum BotType
+        // {
+        //     Dev = 1,
+        //     Sale = 2,
+        //     CardMapping = 3,
+        //     Provider = 4,
+        //     Transaction = 5,
+        //     Stock = 6,
+        //     Deposit = 7,
+        //     Channel = 8
+        // }
 
         public enum PayBackStatus : byte
         {

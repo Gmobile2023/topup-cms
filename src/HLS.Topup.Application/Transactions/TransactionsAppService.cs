@@ -1191,8 +1191,8 @@ namespace HLS.Topup.Transactions
             //                     Message = botMessage,
             //                     Module = "Balance",
             //                     Title = "Thông báo biến động số dư do hoàn tiền lỗi giao dịch",
-            //                     BotType = (byte)CommonConst.BotType.Sale,
-            //                     MessageType = (byte)CommonConst.BotMessageType.Message,
+            //                     BotType = (byte)BotType.Sale,
+            //                     MessageType = (byte)BotMessageType.Message,
             //                     ChatId = userProfile.ChatId
             //                 });
             //             }

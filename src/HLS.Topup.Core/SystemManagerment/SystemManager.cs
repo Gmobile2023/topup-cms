@@ -86,8 +86,8 @@ namespace HLS.Topup.SystemManagerment
                         Message = $"Kênh {providerCode} đã được mở lại tự động. Vui lòng theo dõi tình trạng Kênh",
                         Module = "WEB",
                         Title = $"Mở kênh {provider.Code} tự động",
-                        BotType = (byte) CommonConst.BotType.Channel,
-                        MessageType = (byte) CommonConst.BotMessageType.Message
+                        BotType = (byte) BotType.Channel,
+                        MessageType = (byte) BotMessageType.Message
                     });
                 }
 

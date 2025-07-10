@@ -412,8 +412,8 @@ namespace HLS.Topup.Common
                     Message = notify,
                     Module = "API",
                     Title = code == "1" ? "Duyệt yêu cầu nạp tiền ngân hàng thành công" : "Cảnh báo Duyệt yêu cầu nạp tiền ngân hàng không thành công",
-                    BotType = (byte)CommonConst.BotType.Deposit,
-                    MessageType = code == "1" ? (byte)CommonConst.BotMessageType.Message : (byte)CommonConst.BotMessageType.Wraning,
+                    BotType = (byte)BotType.Deposit,
+                    MessageType = code == "1" ? (byte)BotMessageType.Message : (byte)BotMessageType.Wraning,
                     Code = code
                 });
 

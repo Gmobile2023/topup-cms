@@ -491,8 +491,8 @@ namespace HLS.Topup.Deposits
                             Message = message,
                             Module = "WEB",
                             Title = "Thông báo Đại lý nạp tiền vào tài khoản",
-                            BotType = (byte) CommonConst.BotType.Deposit,
-                            MessageType = (byte) CommonConst.BotMessageType.Message
+                            BotType = (byte) BotType.Deposit,
+                            MessageType = (byte) BotMessageType.Message
                         });
                         _logger.LogInformation($"Done send bot:Message:{message}");
                     }
@@ -684,8 +684,8 @@ namespace HLS.Topup.Deposits
                                         Message = botMessage,
                                         Module = "Balance",
                                         Title = "Thông báo Nạp tiền TK",
-                                        BotType = (byte) CommonConst.BotType.Deposit,
-                                        MessageType = (byte) CommonConst.BotMessageType.Message,
+                                        BotType = (byte) BotType.Deposit,
+                                        MessageType = (byte) BotMessageType.Message,
                                         ChatId = userProfile.ChatId
                                     });
                                 }
@@ -1195,8 +1195,8 @@ namespace HLS.Topup.Deposits
                         Message = message,
                         Module = "WEB",
                         Title = "Thông báo Đại lý nạp tiền vào tài khoản",
-                        BotType = (byte) CommonConst.BotType.Deposit,
-                        MessageType = (byte) CommonConst.BotMessageType.Message,
+                        BotType = (byte) BotType.Deposit,
+                        MessageType = (byte) BotMessageType.Message,
                     });
                     _logger.LogInformation($"Done send bot:Message:{message}");
                 }

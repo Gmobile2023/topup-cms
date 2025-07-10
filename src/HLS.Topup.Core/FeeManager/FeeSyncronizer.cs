@@ -41,8 +41,8 @@ namespace HLS.Topup.FeeManager
                 ClearFeeCache();
                 _appNotifier.PublishTeleMessage(new RequestDtos.SendTeleMessageRequest
                 {
-                    BotType = (byte)CommonConst.BotType.Dev,
-                    MessageType = (byte)CommonConst.BotMessageType.Message,
+                    BotType = (byte)BotType.Dev,
+                    MessageType = (byte)BotMessageType.Message,
                     Title = "Chính sách Fee  được thêm mới",
                     Message = eventData.Entity.ToJson(),
                     Module = "WEB",
@@ -63,8 +63,8 @@ namespace HLS.Topup.FeeManager
                 ClearFeeCache();
                 _appNotifier.PublishTeleMessage(new RequestDtos.SendTeleMessageRequest
                 {
-                    BotType = (byte)CommonConst.BotType.Dev,
-                    MessageType = (byte)CommonConst.BotMessageType.Message,
+                    BotType = (byte)BotType.Dev,
+                    MessageType = (byte)BotMessageType.Message,
                     Title = "Chính sách Fee được cập nhật",
                     Message = eventData.Entity.ToJson(),
                     Module = "WEB",
@@ -85,8 +85,8 @@ namespace HLS.Topup.FeeManager
                 ClearFeeCache();
                 _appNotifier.PublishTeleMessage(new RequestDtos.SendTeleMessageRequest
                 {
-                    BotType = (byte)CommonConst.BotType.Dev,
-                    MessageType = (byte)CommonConst.BotMessageType.Message,
+                    BotType = (byte)BotType.Dev,
+                    MessageType = (byte)BotMessageType.Message,
                     Title = "Chính sách Fee được xóa",
                     Message = eventData.Entity.ToJson(),
                     Module = "WEB",
@@ -106,8 +106,8 @@ namespace HLS.Topup.FeeManager
                 ClearFeeCache();
                 _appNotifier.PublishTeleMessage(new RequestDtos.SendTeleMessageRequest
                 {
-                    BotType = (byte)CommonConst.BotType.Dev,
-                    MessageType = (byte)CommonConst.BotMessageType.Message,
+                    BotType = (byte)BotType.Dev,
+                    MessageType = (byte)BotMessageType.Message,
                     Title = "Chính sách Fee được thêm mới",
                     Message = eventData.Entity.ToJson(),
                     Module = "WEB",
@@ -127,8 +127,8 @@ namespace HLS.Topup.FeeManager
                 ClearFeeCache();
                 _appNotifier.PublishTeleMessage(new RequestDtos.SendTeleMessageRequest
                 {
-                    BotType = (byte)CommonConst.BotType.Dev,
-                    MessageType = (byte)CommonConst.BotMessageType.Message,
+                    BotType = (byte)BotType.Dev,
+                    MessageType = (byte)BotMessageType.Message,
                     Title = "Chính sách Fee được cập nhật",
                     Message = eventData.Entity.ToJson(),
                     Module = "WEB",
@@ -148,8 +148,8 @@ namespace HLS.Topup.FeeManager
                 ClearFeeCache();
                 _appNotifier.PublishTeleMessage(new RequestDtos.SendTeleMessageRequest
                 {
-                    BotType = (byte)CommonConst.BotType.Dev,
-                    MessageType = (byte)CommonConst.BotMessageType.Message,
+                    BotType = (byte)BotType.Dev,
+                    MessageType = (byte)BotMessageType.Message,
                     Title = "Chính sách Fee được xóa",
                     Message = eventData.Entity.ToJson(),
                     Module = "WEB",
@@ -171,8 +171,8 @@ namespace HLS.Topup.FeeManager
             {
                 _appNotifier.PublishTeleMessage(new RequestDtos.SendTeleMessageRequest
                 {
-                    BotType = (byte)CommonConst.BotType.Dev,
-                    MessageType = (byte)CommonConst.BotMessageType.Error,
+                    BotType = (byte)BotType.Dev,
+                    MessageType = (byte)BotMessageType.Error,
                     Title = "Clear Fee cache Error ",
                     Message = e.Message
                 });

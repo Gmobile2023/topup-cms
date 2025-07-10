@@ -306,8 +306,8 @@ namespace HLS.Topup.StockManagement
                                         Message = message,
                                         Module = "WEB",
                                         Title = "Cảnh báo số dư NCC",
-                                        BotType = (byte)CommonConst.BotType.Provider,
-                                        MessageType = (byte)CommonConst.BotMessageType.Wraning
+                                        BotType = (byte)BotType.Provider,
+                                        MessageType = (byte)BotMessageType.Wraning
                                     });
                                 }
 
@@ -329,11 +329,11 @@ namespace HLS.Topup.StockManagement
                                             : $"Không thể nạp tiền tự động vào cho NCC: {item.Code}. Vui lòng kiểm tra hoặc thử nạp bằng tay.\nThông tin lỗi:{depositResponse.ResponseStatus.ToJson()}\nLỗi NCC:{depositResponse.Results}",
                                         Module = "WEB",
                                         Title = $"Thông báo nạp tiền tự động NCC {item.Code}",
-                                        BotType = (byte)CommonConst.BotType.Provider,
+                                        BotType = (byte)BotType.Provider,
                                         MessageType = depositResponse.ResponseStatus.ErrorCode ==
                                                       ResponseCodeConst.Success
-                                            ? (byte)CommonConst.BotMessageType.Message
-                                            : (byte)CommonConst.BotMessageType.Error
+                                            ? (byte)BotMessageType.Message
+                                            : (byte)BotMessageType.Error
                                     });
                                 }
                             }
@@ -347,8 +347,8 @@ namespace HLS.Topup.StockManagement
                                         $"Kiểm tra số dư NCC :{item.Code} không thành công\nMessage:{response.ResponseStatus.ToJson()}",
                                     Module = "WEB",
                                     Title = "Cảnh báo số dư NCC",
-                                    BotType = (byte)CommonConst.BotType.Provider,
-                                    MessageType = (byte)CommonConst.BotMessageType.Error
+                                    BotType = (byte)BotType.Provider,
+                                    MessageType = (byte)BotMessageType.Error
                                 });
                             }
                         }
@@ -394,8 +394,8 @@ namespace HLS.Topup.StockManagement
                         Message = message,
                         Module = "WEB",
                         Title = "Cảnh báo số dư NCC",
-                        BotType = (byte)CommonConst.BotType.Provider,
-                        MessageType = (byte)CommonConst.BotMessageType.Wraning
+                        BotType = (byte)BotType.Provider,
+                        MessageType = (byte)BotMessageType.Wraning
                     });
                 }
             }

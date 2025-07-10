@@ -2097,7 +2097,7 @@
         <text name="ExportFileLimit">Xử lý file không thành công. Số lượng bản ghi vượt quá 100k</text>
 
         <text name="Bot_Send_MinStockAirtime">
-            <![CDATA[Tồn kho NCC {0}%0ATồn kho hiện tại {1}, lúc {2}.%0AVui lòng nạp tiền vào kho]]></text>
+            <![CDATA[Số dư NCC {0}%0ATồn kho hiện tại {1}, lúc {2}.%0AVui lòng nạp tiền vào kho]]></text>
 
 
         <text name="Email_CreateAccountApi_Body">

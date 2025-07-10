@@ -2433,7 +2433,7 @@
         <text name="Enum_SaleType_99">Chưa xác định</text>
         <text name="ExportFileLimit">Xử lý file không thành công. Số lượng bản ghi vượt quá 100k</text>
         <text name="Bot_Send_MinStockAirtime">
-            <![CDATA[Tồn kho NCC {0}%0ATồn kho hiện tại {1}, lúc {2}.%0AVui lòng nạp tiền vào kho]]></text>
+            <![CDATA[Số dư NCC {0}%0ATồn kho hiện tại {1}, lúc {2}.%0AVui lòng nạp tiền vào kho]]></text>
 
         <text name="Email_CreateAccountApi_Body">
             <![CDATA[Xin chào, {FullName}<br>Gmobile JSC xin thông gửi thông tin tài khoản kết nối API<br><br><strong>THÔNG TIN TÀI KHOẢN API</strong><br><strong>Url:</strong>{PaymentUrl}<br><strong>UserName:</strong>{UserName}<br><strong>Password:</strong>{Password}<br><strong>ClientID:</strong>{ClientID}<br><strong>ClientKey:</strong>{ClientKey}<br><strong>PartnerCode:</strong>{PartnerCode}<br><strong>Gmobile PublicKey:</strong><a href="{NT_KEY}" target="_blank">NT Key</a><br><strong>Tài liệu kết nối:</strong><a href="{NT_DOC}" target="_blank">Tài liệu</a><br><br><strong>THÔNG TÀI KHOẢN WEB XEM SỐ DƯ VÀ LSGD</strong><br><strong>Url:</strong>{NT_LINK}<br><strong>UserName:</strong>{UserNameStaff}<br><strong>Password:</strong>{PasswordStaff}<br>]]></text>

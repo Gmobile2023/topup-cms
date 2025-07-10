@@ -14,7 +14,7 @@ using MassTransit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Paygate.Contracts.Commands.Backend;
+using Topup.Contracts.Commands.Backend;
 
 namespace HLS.Topup.SystemManagerment
 {

@@ -1,13 +1,13 @@
 using System;
 using System.Threading.Tasks;
 using Abp.Notifications;
+using HLS.Topup.Common;
 using HLS.Topup.Dtos.Notifications;
 using HLS.Topup.RequestDtos;
 using MassTransit;
 using Microsoft.Extensions.Logging;
-using Paygate.Contracts.Commands.Commons;
-using Paygate.Contracts.Requests.Commons;
 using ServiceStack;
+using Topup.Contracts.Commands.Commons;
 
 namespace HLS.Topup.Notifications
 {

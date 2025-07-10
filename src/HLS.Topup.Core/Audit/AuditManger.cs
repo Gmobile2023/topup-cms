@@ -9,8 +9,8 @@ using HLS.Topup.RequestDtos;
 using MassTransit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
-using Paygate.Contracts.Commands.Commons;
 using ServiceStack;
+using Topup.Contracts.Commands.Commons;
 
 namespace HLS.Topup.Audit
 {

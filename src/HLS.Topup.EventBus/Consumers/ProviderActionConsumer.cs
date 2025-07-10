@@ -1,10 +1,10 @@
 ﻿using System;
 using MassTransit;
 using Microsoft.Extensions.Logging;
-using Paygate.Contracts.Commands.Backend;
 using System.Threading.Tasks;
 using HLS.Topup.SystemManagerment;
 using ServiceStack;
+using Topup.Contracts.Commands.Backend;
 
 namespace HLS.Topup.EventBus.Consumers
 {
